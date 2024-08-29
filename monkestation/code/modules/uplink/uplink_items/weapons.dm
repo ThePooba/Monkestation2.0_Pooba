@@ -80,7 +80,7 @@
 	cost = 8
 
 /datum/uplink_item/dangerous/surplus_smg
-	name = "Surplus Smg henchmen Bundle"
+	name = "Surplus SMG Bundle"
 	desc = "A single surplus Plastikov SMG and two extra magazines. A terrible weapon, perfect for henchmen."
 	item = /obj/item/storage/box/syndie_kit/surplus_smg_bundle
-	cost = 3
+	cost = 4
