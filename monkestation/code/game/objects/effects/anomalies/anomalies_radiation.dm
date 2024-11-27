@@ -41,3 +41,7 @@
 		new /obj/effect/decal/nuclear_waste(src.loc)
 		if(prob(33))
 			new /obj/effect/decal/nuclear_waste/epicenter(src.loc)
+
+/obj/effect/anomaly/radioactive/detonate()
+	playsound(src, 'sound/effects/empulse.ogg', vol = 100, vary = 1)
+	radiation_pulse(src, 500)
