@@ -32,7 +32,7 @@
 	..()
 	active = TRUE
 
-	if(isinspace(src) || !isopenturf(get_turf(src)))
+	if(isspaceturf(src) || !isopenturf(get_turf(src)))
 		return
 
 	radiation_pulse(src, 50)
