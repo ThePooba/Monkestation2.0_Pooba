@@ -5,11 +5,11 @@
 //THE STATION MUST SURVIVE
 /obj/effect/anomaly/frost
 	name = "glacial anomaly"
-	icon_state = "pyroclastic"
+	icon_state = "impact_laser_blue"
 	/// How many seconds between each gas release
 	var/releasedelay = 10
-	aSignal = /obj/item/assembly/signaler/anomaly/frost
 
+//todo: make a /turf/open/floor/iron/snow that works identically to /turf/open/floor/iron but is snowy and doesnt reveal pipes
 /obj/effect/anomaly/frost/anomalyEffect(seconds_per_tick)
 	..()
 
@@ -23,7 +23,7 @@
 		/turf/open/space,
 		/turf/open/lava,
 		/turf/open/chasm,
-		/turf/open/floor/plating/asteroid/snow))
+		/turf/open/floor/iron/snowed))
 
 	current_location.atmos_spawn_air ("o2=2;freon=1;water_vapor=8;TEMP=180")
 
@@ -33,12 +33,12 @@
 		else
 			valid_turfs |= searched_turfs
 	for(var/i = 1, i <= rand(MIN_REPLACEMENT, MAX_REPLACEMENT), i++) //Replace 2-7 tiles with snow
-		var/turf/searched_turfs = safepick(valid_turfs)
+		var/turf/searched_turfs = pick(valid_turfs)
 		if(searched_turfs)
 			if(istype(searched_turfs, /turf/open/floor/plating))
-				searched_turfs.PlaceOnTop(/turf/open/floor/plating/asteroid/snow)
+				searched_turfs.PlaceOnTop(/turf/open/floor/iron/snowed)
 			else
-				searched_turfs.ChangeTurf(/turf/open/floor/plating/asteroid/snow)
+				searched_turfs.ChangeTurf(/turf/open/floor/iron/snowed)
 
 /obj/effect/anomaly/frost/detonate()
 	//The station holds its breath, waiting for whatever the end will bring.
