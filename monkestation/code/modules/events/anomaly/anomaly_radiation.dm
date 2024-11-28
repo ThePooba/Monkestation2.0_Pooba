@@ -3,13 +3,13 @@
 	description = "A sickly green glow from byond the horizon."
 	typepath = /datum/round_event/anomaly/anomaly_radiation
 
-	max_occurrences = 5
-	weight = 10
+	max_occurrences = 2
+	weight = 3
 	min_players = 20
 	min_wizard_trigger_potency = 1
 	max_wizard_trigger_potency = 4
 	track = EVENT_TRACK_MODERATE
-	tags = list(TAG_SPOOKY)
+	tags = list(TAG_SPOOKY, TAG_DESTRUCTIVE)
 
 /datum/round_event/anomaly/anomaly_radiation
 	start_when = ANOMALY_START_HARMFUL_TIME

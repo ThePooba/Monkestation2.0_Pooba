@@ -13,6 +13,7 @@
 	if(random_icon_states && (icon_state == initial(icon_state)) && length(random_icon_states) > 0)
 		icon_state = pick(random_icon_states)
 	set_light(3)
+	AddComponent(/datum/component/radioactive_emitter, 30 SECONDS, 3, RAD_LIGHT_INSULATION)
 
 /// The one that actually does the irradiating. This is to avoid every bit of sludge PROCESSING
 /obj/effect/decal/nuclear_waste/epicenter
@@ -27,24 +28,25 @@
 	name = "Nuclear Waste Spawner Strong"
 	range = 8
 
+/** for rbmk
 //Spawns nuclear_waste_spawners on map
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/sludge_spawner_preload()
 	/// Smaller scale spawn for spawning range to power output
-	var/short_range = CLAMP(power/10, 5, 25)
+	var/short_range = CLAMP01(power/10, 5, 25)
 	for(var/turf/open/floor in orange(short_range, get_turf(src)))
 		if(prob(1)) //Prob of Spawn for sludge spawner
 			new /obj/effect/landmark/nuclear_waste_spawner(floor)
 		continue
 
 	/// Larger scale spawn for spawning range to power output
-	var/longe_range = CLAMP(power, 5, 200)
+	var/longe_range = CLAMP01(power, 5, 200)
 	for(var/turf/open/floor in orange(longe_range, get_turf(src)))
 		if(prob(5)) //Prob of Spawn for sludge spawner
 			new /obj/effect/landmark/nuclear_waste_spawner(floor)
 		continue
-
+*/
 /obj/effect/landmark/nuclear_waste_spawner/proc/fire()
-	playsound(loc, 'sound/effects/gib_step.ogg', 100)
+	playsound(loc, 'sound/effects/footstep/gib_step.ogg', 100)
 	new /obj/effect/decal/nuclear_waste/epicenter(get_turf(src))
 	for(var/turf/open/floor in orange(range, get_turf(src)))
 		if(prob(20)) //Scatter the sludge, don't smear it everywhere
@@ -59,20 +61,17 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
-/obj/effect/decal/nuclear_waste/epicenter/ComponentInitialize()
-	AddComponent(/datum/component/radioactive, 1500, src, 0)
-
 /obj/effect/decal/nuclear_waste/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
 
 	if(isliving(AM))
 		var/mob/living/L = AM
-		playsound(loc, 'sound/effects/gib_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 20 : 50, 1)
+		playsound(loc, 'sound/effects/footstep/gib_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 20 : 50, 1)
 	radiation_pulse(src, 500, 5) //MORE RADS
 
 /obj/effect/decal/nuclear_waste/attackby(obj/item/tool, mob/user)
 	if(tool.tool_behaviour == TOOL_SHOVEL)
-		radiation_pulse(src, 1000, 5) //MORE RADS
+		radiation_pulse(src, 400, 5) //MORE RADS
 		to_chat(user, "<span class='notice'>You start to clear [src]...</span>")
 		if(tool.use_tool(src, user, 50, volume=100))
 			to_chat(user, "<span class='notice'>You clear [src].</span>")
