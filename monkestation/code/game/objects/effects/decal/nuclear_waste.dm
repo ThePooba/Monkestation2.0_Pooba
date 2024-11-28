@@ -2,18 +2,18 @@
 	name = "Plutonium sludge"
 	desc = "A writhing pool of heavily irradiated, spent reactor fuel. A shovel should clear it up! Just sprinkle a little graphite on it, it will be fine. though you probably shouldn't step through this..."
 	icon = 'monkestation/icons/obj/machines/reactor_parts.dmi'
-	icon_state = "nuclearwaste"
+	icon_state = "waste1"
 	alpha = 150
 	light_color = LIGHT_COLOR_CYAN
 	color = "#ff9eff"
-	var/random_icon_states = list("waste1")
+	var/random_icon_states = list("waste1", "waste2")
 
 /obj/effect/decal/nuclear_waste/Initialize(mapload)
 	. = ..()
 	if(random_icon_states && (icon_state == initial(icon_state)) && length(random_icon_states) > 0)
 		icon_state = pick(random_icon_states)
 	set_light(3)
-	AddComponent(/datum/component/radioactive_emitter, 30 SECONDS, 3, RAD_LIGHT_INSULATION)
+	AddComponent(/datum/component/radioactive_emitter, 60 SECONDS, 3, RAD_LIGHT_INSULATION)
 
 /// The one that actually does the irradiating. This is to avoid every bit of sludge PROCESSING
 /obj/effect/decal/nuclear_waste/epicenter

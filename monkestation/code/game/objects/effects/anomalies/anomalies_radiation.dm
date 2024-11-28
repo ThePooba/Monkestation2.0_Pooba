@@ -39,9 +39,9 @@
 	if(!locate(/obj/effect/decal/nuclear_waste) in src.loc)
 		playsound(src, pick('sound/misc/desecration-01.ogg','sound/misc/desecration-02.ogg', 'sound/misc/desecration-03.ogg'), vol = 50, vary = 1)
 		new /obj/effect/decal/nuclear_waste(src.loc)
-		if(prob(33))
+		if(prob(15))
 			new /obj/effect/decal/nuclear_waste/epicenter(src.loc)
 
 /obj/effect/anomaly/radioactive/detonate()
 	playsound(src, 'sound/effects/empulse.ogg', vol = 100, vary = 1)
-	radiation_pulse(src, 500)
+	radiation_pulse(src, 1000)
