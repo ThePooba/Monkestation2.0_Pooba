@@ -9,7 +9,6 @@
 	/// How many seconds between each gas release
 	var/releasedelay = 10
 
-//todo: make a /turf/open/floor/iron/snow that works identically to /turf/open/floor/iron but is snowy and doesnt reveal pipes
 /obj/effect/anomaly/frost/anomalyEffect(seconds_per_tick)
 	..()
 
