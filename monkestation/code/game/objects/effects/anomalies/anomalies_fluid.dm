@@ -15,7 +15,7 @@
 		dangerous = TRUE //Unrestricts the reagent choice and increases fluid amounts
 
 	for(var/i = 1, i <= rand(1,5), i++) //Between 1 and 5 random chemicals
-		fluid_choices += dangerous ? get_unrestricted_random_reagent_id() : get_random_reagent_id()
+		fluid_choices += dangerous ? get_random_reagent_id_unrestricted() : get_random_reagent_id()
 //todo: make a /turf/open/floor/iron/snow that works identically to /turf/open/floor/iron but is snowy and doesnt reveal pipes
 /obj/effect/anomaly/fluid/anomalyEffect(seconds_per_tick)
 	..()
@@ -26,7 +26,7 @@
 	var/turf/spawn_point = get_turf(src)
 	spawn_point.add_liquid(pick(fluid_choices), dangerous ? DANGEROUS_FLUID_AMOUNT : NORMAL_FLUID_AMOUNT, chem_temp = rand(BODYTEMP_COLD_DAMAGE_LIMIT, BODYTEMP_HEAT_DAMAGE_LIMIT))
 
-/obj/effect/anomaly/frost/detonate()
+/obj/effect/anomaly/fluid/detonate()
 	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return
 	var/turf/spawn_point = get_turf(src)
