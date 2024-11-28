@@ -1,4 +1,4 @@
-/mob/living/simple_animal/pet/dog/bullterrier/walter/saulter
+/mob/living/basic/pet/dog/bullterrier/walter/saulter
 	name = "Saulter Goodman"
 	real_name = "Saulter Goodman"
 	desc = "Seccies and wardens are nothing compared to the might of this consititutional right loving lawyer."
@@ -10,7 +10,7 @@
 	unique_pet = TRUE
 	speak = list("barks!", "Hi, i'm Saul Goodman.", "Did you know you have rights?", "Based!")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/negative
+/mob/living/basic/pet/dog/bullterrier/walter/negative
 	name = "Negative Walter"
 	real_name = "Negative Walter"
 	desc = "Nar'sie and rat'var are a lot compared to the might of this skcurtretsnom despising god."
@@ -23,7 +23,7 @@
 	deathmessage = "starts moving"
 	speak = list("skrab!", "sfoow!", "retlaW", "skcurterif", "skcurtretsnom")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/syndicate
+/mob/living/basic/pet/dog/bullterrier/walter/syndicate
 	name = "Syndicate Walter"
 	real_name = "Syndicate Walter"
 	desc = "Nanotrasen and Centcom are nothing compared to the might of this nuke loving dog."
@@ -35,7 +35,7 @@
 	unique_pet = TRUE
 	speak = list("barks!", "woofs!", "Walter", "Down with Nanotrasen!", "For the Syndicate!")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/doom
+/mob/living/basic/pet/dog/bullterrier/walter/doom
 	name = "Doom Walter"
 	real_name = "Doom Walter"
 	desc = "Devils and Gods are nothing compared to the might of this gun loving soldier."
@@ -47,7 +47,7 @@
 	unique_pet = TRUE
 	speak = list("...")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/space
+/mob/living/basic/pet/dog/bullterrier/walter/space
 	name = "Space Walter"
 	real_name = "Space Walter"
 	desc = "Exploring the galaxies is nothing for this star loving dog."
@@ -62,7 +62,7 @@
 	unique_pet = TRUE
 	speak = list("barks!", "woofs!", "spess!", "Walter", "firetrucks", "monstertrucks", "spaceships")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/sus
+/mob/living/basic/pet/dog/bullterrier/walter/sus
 	name = "Suspicious Walter"
 	real_name = "Suspicious Walter"
 	desc = "This vent loving dog is a little suspicious..."
@@ -76,7 +76,7 @@
 	deathmessage = "gets ejected"
 	speak = list("barks!", "woofs!", "sus!", "Walter", "firetrucks", "monstertrucks", "tasks")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/clown
+/mob/living/basic/pet/dog/bullterrier/walter/clown
 	name = "Clown Walter"
 	real_name = "Clown Walter"
 	desc = "Seccies and staff members are nothing compared to the might of this banana loving loving dog."
@@ -89,7 +89,7 @@
 	speak = list("barks!", "woofs!", "honks!", "Walter", "firetrucks", "monstertrucks")
 
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/french
+/mob/living/basic/pet/dog/bullterrier/walter/french
 	name = "French Walter"
 	real_name = "French Walter"
 	desc = "Nar'sie et rat'var ne sont rien comparés à la puissance de ce chien qui aime les monstertrucks."
@@ -101,7 +101,7 @@
 	unique_pet = TRUE
 	speak = list("aboiement!", "aboyer!", "Walter", "camions de pompiers", "camions monstres")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/british
+/mob/living/basic/pet/dog/bullterrier/walter/british
 	name = "Bri'ish Wal'ah"
 	real_name = "Bri'ish Wal'ah"
 	desc = "Nar'sie and like ra''var are naw'hin' compared 'o 'he migh' of 'hiz mons'er'ruck lovin' dog."
@@ -109,7 +109,7 @@
 	unique_pet = TRUE
 	speak = list("barks!", "woofs!", "Wal'ah", "fire'rucks", "mons'er'rucks")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/wizard
+/mob/living/basic/pet/dog/bullterrier/walter/wizard
 	name = "Magic Walter"
 	real_name = "Magic Walter"
 	desc = "Assistants and secoffs are nothing compared to the might of this magic loving dog."
@@ -121,7 +121,7 @@
 	unique_pet = TRUE
 	speak = list("ONI SOMA", "CLANG!", "UN'LTD P'WAH", "AULIE OXIN FIERA", "GIN'YU`CAPAN")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/smallter
+/mob/living/basic/pet/dog/bullterrier/walter/smallter
 	name = "Smallter"
 	real_name = "Smallter"
 	desc = "Nar'sie and rat'var are nothing compared to the might of this tiny dog."
@@ -129,7 +129,7 @@
 	unique_pet = TRUE
 	speak = list("barks", "woofs", "walter", "firetrucks", "monstertrucks")
 
-/mob/living/simple_animal/pet/dog/bullterrier/walter/smallter/Initialize(mapload)
+/mob/living/basic/pet/dog/bullterrier/walter/smallter/Initialize(mapload)
 	. = ..()
 	resize = 0.5
 	update_transform()

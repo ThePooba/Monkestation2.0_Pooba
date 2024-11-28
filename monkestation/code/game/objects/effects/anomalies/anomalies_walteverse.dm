@@ -1,12 +1,10 @@
-#define MONKEY_SOUNDS list('sound/creatures/monkey/monkey_screech_1.ogg', 'sound/creatures/monkey/monkey_screech_2.ogg', 'sound/creatures/monkey/monkey_screech_3.ogg','sound/creatures/monkey/monkey_screech_4.ogg','sound/creatures/monkey/monkey_screech_5.ogg','sound/creatures/monkey/monkey_screech_6.ogg','sound/creatures/monkey/monkey_screech_7.ogg')
-
-/obj/effect/anomaly/monkey //Monkey Anomaly (Random Chimp Event)
-	name = "Screeching Anomaly"
-	desc = "An anomalous one-way gateway that leads straight to some sort of a ape dimension."
+/obj/effect/anomaly/walterverse//Monkey Anomaly (Random Chimp Event)
+	name = "Walter Anomaly"
+	desc = "An anomaly that summons Walters from all throughout the walterverse
 	icon_state = "dimensional_overlay"
-	lifespan = 35 SECONDS
+	lifespan = 20 SECONDS
 	var/active = TRUE
-		var/static/list/walter_spawns = list(
+	var/static/list/walter_spawns = list(
 		/mob/living/basic/pet/dog/bullterrier/walter/saulter = 5,
 		/mob/living/basic/pet/dog/bullterrier/walter/negative = 5,
 		/mob/living/basic/pet/dog/bullterrier/walter/syndicate = 5,
@@ -23,23 +21,16 @@
 /obj/effect/anomaly/petsplosion/anomalyEffect(seconds_per_tick)
 	..()
 
-	playsound(src, pick(MONKEY_SOUNDS), vol = 33, vary = 1, mixer_channel = CHANNEL_MOB_SOUNDS)
-
-	if(isspaceturf(src) || !isopenturf(get_turf(src)))
+		if(ispaceturf(src) || !isopenturf(get_turf(src)))
 		return
 
-	if(!active)
-		active = TRUE
+	if(active)
+		active = FALSE
+		var/selected_spawn = pickweight(walter_spawns)
+		new selected_spawn(src.loc)
 		return
+	active = TRUE
 
+/obj/effect/anomaly/walterverse/detonate()
 	if(prob(10))
-		new /mob/living/carbon/human/species/monkey/angry(src.loc)
-	else
-		new /mob/living/carbon/human/species/monkey(src.loc)
-	active = FALSE
-
-/obj/effect/anomaly/monkey/detonate()
-	if(prob(25))
-		new /mob/living/basic/hostile/gorilla(src.loc)
-
-#undef MONKEY_SOUNDS
+		new /mob/living/simple_animal/pet/dog/bullterrier/walter(src.loc)
