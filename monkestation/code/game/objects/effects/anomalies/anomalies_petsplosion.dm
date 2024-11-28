@@ -25,11 +25,9 @@
 		/mob/living/basic/bat,
 		/mob/living/basic/parrot,
 		/mob/living/basic/chicken,
-		/mob/living/basic/sloth,
+		/mob/living/basic/sloth)
 	pet_type_cache -= list(/mob/living/basic/pet/penguin, //Removing the risky and broken ones.
 		/mob/living/basic/pet/dog/corgi/narsie,
-		/mob/living/basic/pet/gondola/gondolapod,
-		/mob/living/basic/pet/gondola,
 		/mob/living/basic/pet/dog,
 		/mob/living/basic/pet/fox
 		)

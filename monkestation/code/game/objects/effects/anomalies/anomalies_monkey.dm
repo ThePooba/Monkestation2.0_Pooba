@@ -20,7 +20,7 @@
 		active = TRUE
 		return
 
-	if(prob(10))
+	if(prob(15))
 		new /mob/living/carbon/human/species/monkey/angry(src.loc)
 	else
 		new /mob/living/carbon/human/species/monkey(src.loc)
@@ -28,6 +28,6 @@
 
 /obj/effect/anomaly/monkey/detonate()
 	if(prob(25))
-		new /mob/living/simple_animal/hostile/gorilla(src.loc)
+		new /mob/living/basic/gorilla(src.loc)
 
 #undef MONKEY_SOUNDS
