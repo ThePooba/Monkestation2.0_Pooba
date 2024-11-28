@@ -4,7 +4,7 @@
 	typepath = /datum/round_event/anomaly/anomaly_clown
 
 	max_occurrences = 5
-	weight = 10
+	weight = 9
 	min_players = 20
 	min_wizard_trigger_potency = 1
 	max_wizard_trigger_potency = 4
