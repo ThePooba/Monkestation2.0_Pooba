@@ -43,13 +43,13 @@
 	active = FALSE
 
 	tesla_zap(src, rand(STORM_MIN_RANGE, STORM_MAX_RANGE), STORM_POWER_LEVEL)
-	playsound(loc, pick('sound/weapon/emitter2.ogg', 'sound/magic/lightningshock.ogg'))
+	playsound(src, 'sound/magic/lightningshock.ogg', 100, TRUE)
 
 	if(isspaceturf(src) || !isopenturf(get_turf(src)))
 		return
 
 	var/turf/location = get_turf(src)
-	location.atmos_spawn_air("water_vapor=10;TEMP=340")
+	location.atmos_spawn_air("water_vapor=10;TEMP=350")
 
 //No detonation because it's strong enough as it is
 
