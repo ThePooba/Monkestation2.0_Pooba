@@ -16,5 +16,5 @@
 	announce_when = ANOMALY_ANNOUNCE_HARMFUL_TIME
 	anomaly_path = /obj/effect/anomaly/radioactive
 
-/datum/round_event/anomaly/anomaly_frost/announce(fake)
+/datum/round_event/anomaly/anomaly_radiation/announce(fake)
 	priority_announce("Radioactive anomaly detected on long range scanners. Expected location: [impact_area.name].", "Anomaly Alert", SSstation.announcer.get_rand_alert_sound())
