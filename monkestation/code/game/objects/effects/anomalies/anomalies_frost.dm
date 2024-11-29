@@ -31,7 +31,7 @@
 			continue
 		else
 			valid_turfs |= searched_turfs
-	for(var/i = 1, i <= rand(MIN_REPLACEMENT, MAX_REPLACEMENT), i++) //Replace 2-7 tiles with snow
+	for(var/i = 1, to min(rand(MIN_REPLACEMENT, MAX_REPLACEMENT), length(valid_turfs)))//Replace 2-7 tiles with snow
 		var/turf/searched_turfs = pick(valid_turfs)
 		if(searched_turfs)
 			if(istype(searched_turfs, /turf/open/floor/plating))
