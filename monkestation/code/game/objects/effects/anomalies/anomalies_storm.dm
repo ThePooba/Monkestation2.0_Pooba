@@ -2,7 +2,7 @@
 //LORD OF LIGHTNING SHIFTS HIS GAZE
 #define STORM_MIN_RANGE 2
 #define STORM_MAX_RANGE 5
-#define STORM_POWER_LEVEL 1000
+#define STORM_POWER_LEVEL 1500
 
 /obj/effect/anomaly/storm
 	name = "Storm Anomaly"
@@ -31,7 +31,7 @@
 	if(active && iscarbon(atom_movable))
 		var/mob/living/carbon/target = atom_movable
 		active = FALSE
-		target.electrocute_act(10, "[name]", flags = SHOCK_NOGLOVES)
+		target.electrocute_act(23, "[name]", flags = SHOCK_NOGLOVES)
 		target.adjustFireLoss(10)
 
 //LEAVES DESTRUCTION IN HIS WAKE
