@@ -3,8 +3,8 @@
 	description = "A sickly green glow from byond the horizon."
 	typepath = /datum/round_event/anomaly/anomaly_radiation
 
-	max_occurrences = 2
-	weight = 3
+	max_occurrences = 1
+	weight = 1
 	min_players = 20
 	min_wizard_trigger_potency = 1
 	max_wizard_trigger_potency = 4
