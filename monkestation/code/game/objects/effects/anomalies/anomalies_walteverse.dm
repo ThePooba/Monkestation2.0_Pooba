@@ -4,7 +4,7 @@
 	icon_state = "dimensional_overlay"
 	lifespan = 20 SECONDS
 	var/active = TRUE
-	var/static/list/walter_spawns = list(
+	var/list/walter_spawns = list(
 		/mob/living/basic/pet/dog/bullterrier/walter/saulter = 5,
 		/mob/living/basic/pet/dog/bullterrier/walter/negative = 5,
 		/mob/living/basic/pet/dog/bullterrier/walter/syndicate = 5,
@@ -17,7 +17,7 @@
 		/mob/living/basic/pet/dog/bullterrier/walter/smallter = 5,
 		/mob/living/basic/pet/dog/bullterrier/walter/sus = 1)
 
-/obj/effect/anomaly/petsplosion/anomalyEffect(seconds_per_tick)
+/obj/effect/anomaly/walterverse/anomalyEffect(seconds_per_tick)
 	..()
 
 	if(isspaceturf(src) || !isopenturf(get_turf(src)))

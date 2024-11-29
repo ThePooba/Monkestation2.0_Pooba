@@ -16,7 +16,7 @@
 
 	for(var/i = 1, i <= rand(1,5), i++) //Between 1 and 5 random chemicals
 		fluid_choices += dangerous ? get_random_reagent_id_unrestricted() : get_random_reagent_id()
-//todo: make a /turf/open/floor/iron/snow that works identically to /turf/open/floor/iron but is snowy and doesnt reveal pipes
+
 /obj/effect/anomaly/fluid/anomalyEffect(seconds_per_tick)
 	..()
 

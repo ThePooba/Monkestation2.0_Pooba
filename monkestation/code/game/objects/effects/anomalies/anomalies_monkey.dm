@@ -8,7 +8,7 @@
 	lifespan = 35 SECONDS
 	var/active = TRUE
 
-/obj/effect/anomaly/petsplosion/anomalyEffect(seconds_per_tick)
+/obj/effect/anomaly/monkey/anomalyEffect(seconds_per_tick)
 	..()
 
 	playsound(src, pick(MONKEY_SOUNDS), vol = 33, vary = 1, mixer_channel = CHANNEL_MOB_SOUNDS)

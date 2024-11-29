@@ -1,4 +1,4 @@
-/obj/effect/anomaly/petsplosion //2catz lmao (also see thermonuclear catsplosion)
+/obj/effect/anomaly/lifebringer //2catz lmao (also see thermonuclear catsplosion)
 	name = "Lifebringer Anomaly"
 	desc = "An anomalous gateway that seemingly creates new life out of nowhere. Known by Lavaland Dwarves as the \"Petsplosion\"."
 	icon_state = "bluestream_fade"
@@ -7,8 +7,7 @@
 	var/list/pet_type_cache
 	var/catsplosion = FALSE
 
-//todo: make a /turf/open/floor/iron/snow that works identically to /turf/open/floor/iron but is snowy and doesnt reveal pipes
-/obj/effect/anomaly/petsplosion/Initialize(mapload, new_lifespan)
+/obj/effect/anomaly/lifebringer/Initialize(mapload, new_lifespan)
 	. = ..()
 	if(prob(1))
 		catsplosion = TRUE
@@ -32,7 +31,7 @@
 		/mob/living/basic/pet/fox
 		)
 
-/obj/effect/anomaly/petsplosion/anomalyEffect(seconds_per_tick)
+/obj/effect/anomaly/lifebringer/anomalyEffect(seconds_per_tick)
 	..()
 
 	if(isspaceturf(src) || !isopenturf(get_turf(src)))
@@ -40,8 +39,7 @@
 	if(active)
 
 		if(catsplosion)
-			var/mob/living/basic/pet/chosen_pet = /mob/living/simple_animal/pet/cat
-			new chosen_pet(src.loc)
+			new /mob/living/simple_animal/pet/cat(src.loc)
 			active = FALSE
 			var/turf/open/tile = get_turf(src)
 			if(istype(tile))
