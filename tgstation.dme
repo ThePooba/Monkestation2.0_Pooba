@@ -2945,7 +2945,7 @@
 #include "code\modules\antagonists\heretic\items\eldritch_flask.dm"
 #include "code\modules\antagonists\heretic\items\eldritch_painting.dm"
 #include "code\modules\antagonists\heretic\items\forbidden_book.dm"
-#include "code\modules\antagonists\heretic\items\heretic_armor.dm"
+#include "code\modules\antagonists\\items\heretic_armor.dm"
 #include "code\modules\antagonists\heretic\items\heretic_blades.dm"
 #include "code\modules\antagonists\heretic\items\heretic_necks.dm"
 #include "code\modules\antagonists\heretic\items\hunter_rifle.dm"
