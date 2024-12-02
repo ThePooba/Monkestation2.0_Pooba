@@ -21,7 +21,7 @@
 	var/mob/living/user = loc
 	if(!istype(user))
 		return
-	user.adjust_bodytemperature(seconds_per_tick, max_temp = user.standard_body_temperature)
+	user.adjust_bodytemperature(2 * seconds_per_tick, max_temp = user.standard_body_temperature)
 
 /obj/item/flashlight/lantern/rayne/toggle_light()
 	..()
