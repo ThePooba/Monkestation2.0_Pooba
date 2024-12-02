@@ -1,0 +1,23 @@
+/obj/item/flashlight/lantern/rayne
+	name = "lantern"
+	icon_state = "lantern"
+	inhand_icon_state = "lantern"
+	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
+	desc = "A lantern that hangs off the shoulder providing some warmth and lighting. It is stamped with a Rayne Corp"
+	light_outer_range = 5// luminosity when on
+	light_system = OVERLAY_LIGHT
+	icon = 'icons/obj/lighting.dmi'
+	dir = WEST
+	icon_state = "flashlight"
+	inhand_icon_state = "flashlight"
+	worn_icon_state = "flashlight"
+	slot_flags = ITEM_SLOT_NECK
+	light_system = OVERLAY_LIGHT_DIRECTIONAL
+	/// The sound the light makes when it's turned on
+	var/sound_on = 'sound/weapons/magin.ogg'
+	/// The sound the light makes when it's turned off
+	var/sound_off = 'sound/weapons/magout.ogg'
+	/// Is the light turned on or off currently
+	var/on = FALSE
+	var/start_on = FALSE
