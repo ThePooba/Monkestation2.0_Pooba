@@ -9,10 +9,32 @@
 	light_system = OVERLAY_LIGHT
 	icon = 'monkestation/icons/obj/rayne_corp/rayne.dmi'
 	icon_state = "flashlight"
-	inhand_icon_state = "flashlight"
-	worn_icon_state = "rayne_lantern"
+	inhand_icon_state = "rayne_lantern_inhand" // todo
+	worn_icon_state = "rayne_lantern" //do S E W
 	slot_flags = ITEM_SLOT_NECK
 	/// The sound the light makes when it's turned on
 	var/sound_on = 'sound/weapons/magin.ogg'
 	/// The sound the light makes when it's turned off
 	var/sound_off = 'sound/weapons/magout.ogg'
+
+	/obj/item/flashlight/lantern/rayne/process(seconds_per_tick)
+	if(!cell.use(CHARGE_PER_SECOND * seconds_per_tick))
+		set_on(FALSE)
+		return
+
+		var/mob/living/user = loc
+		if(!istype(user))
+			return
+		user.adjust_bodytemperature(0.5 *seconds_per_tick, max_temp = user.standard_body_temperature)
+
+	/obj/item/flashlight/lantern/rayne/proc/toggle_light()
+		. = ..()
+		//icon_state = "rayne_lantern_[on ? "on" : "off"]"
+		if(on)
+			START_PROCESSING(SSobj, src)
+		else
+			STOP_PROCESSING(SSobj, src)
+		var/mob/user = loc
+		if(!istype(user))
+			return
+		balloon_alert(user, "heater [on ? "on" : "off"]")
