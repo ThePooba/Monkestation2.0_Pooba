@@ -26,8 +26,6 @@
 	spawned.layer = ABOVE_MOB_LAYER
 	. = ..()
 
-//datum/component/particle_spewer/bloodydrip/adjust_animate_steps()
-	//animate_holder.add_animation_step(list(pixel_y = -32, time = 2 SECONDS))
-	//animate_holder.set_parent_copy(1, "pixel_y", FALSE)
+/atum/component/particle_spewer/bloodydrip/adjust_animate_steps()
+	animate_holder.add_animation_step(list(time = duration, alpha = 1, easing = LINEAR_EASING))
 
-	//animate_holder.add_animation_step(list(alpha = 25, time = 1.5 SECONDS))
