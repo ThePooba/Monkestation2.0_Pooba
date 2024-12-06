@@ -8230,6 +8230,7 @@
 #include "monkestation\code\modules\trading\unusual_effects\_unusual_component.dm"
 #include "monkestation\code\modules\trading\unusual_effects\animation_housing\__spawning_component.dm"
 #include "monkestation\code\modules\trading\unusual_effects\animation_housing\_footprint.dm"
+#include "monkestation\code\modules\trading\unusual_effects\animation_housing\bloody.dm"
 #include "monkestation\code\modules\trading\unusual_effects\animation_housing\confetti.dm"
 #include "monkestation\code\modules\trading\unusual_effects\animation_housing\fire.dm"
 #include "monkestation\code\modules\trading\unusual_effects\animation_housing\galaxies.dm"
