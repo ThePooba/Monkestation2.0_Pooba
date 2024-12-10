@@ -51,13 +51,13 @@
 			speak_up("lowblood")
 			return
 
-	var/brute = judged.bruteloss
+d	var/brute = judged.bruteloss
 	var/oxy = judged.oxyloss
 	var/tox = judged.toxloss
 	var/burn = judged.fireloss
 	var/big = max(brute,oxy,burn,tox)
 	if((brute + burn) >= 350)
-		speak_up("fuckedup")
+d		speak_up("fuckedup")
 		return
 	//cant do non constants in a switch, sad
 	if(brute == big)
