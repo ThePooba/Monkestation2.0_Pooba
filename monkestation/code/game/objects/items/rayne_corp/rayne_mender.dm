@@ -57,31 +57,30 @@
 
 
 //This proc controls what the medkit says when scanning a person, and recommends a best course of treatment (barely)
-/obj/item/storage/medkit/rayne/proc/judge_health(mob/living/judged)
+/obj/item/storage/medkit/rayne/proc/judge_health(mob/living/target)
 
-	var/brain
-
-	if(judged.on_fire)
+	var/obj/item/organ/internal/brain/target_brain/targetbrain
+	if(target.on_fire)
 		speak_up("onfire")
 		return
-	if(ishuman(judged))
-		if(!judged.get_organ_slot(ORGAN_SLOT_BRAIN))
+	if(ishuman(target))
+		if(!target.get_organ_slot(ORGAN_SLOT_BRAIN))
 			speak_up("nobrain")
 			return
 		else
-			brain = judged.get_organ_slot(ORGAN_SLOT_BRAIN).damage
-			if(brain > 150)
+			targetbrain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+			if(targetbrain.damage > 150)
 				speak_up("braindamage")
 				return
 
-		if((judged?.blood_volume <= BLOOD_VOLUME_SAFE) && !HAS_TRAIT(judged, TRAIT_NOBLOOD))
+		if((target?.blood_volume <= BLOOD_VOLUME_SAFE) && !HAS_TRAIT(target, TRAIT_NOBLOOD))
 			speak_up("lowblood")
 			return
 
-	var/brute = judged.bruteloss
-	var/oxy = judged.oxyloss
-	var/tox = judged.toxloss
-	var/burn = judged.fireloss
+	var/brute = target.bruteloss
+	var/oxy = target.oxyloss
+	var/tox = target.toxloss
+	var/burn = target.fireloss
 	var/big = max(brute,oxy,burn,tox)
 	if((brute + burn) >= 350)
 		speak_up("fuckedup")
