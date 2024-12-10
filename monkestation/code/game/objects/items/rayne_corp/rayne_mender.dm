@@ -59,7 +59,7 @@
 //This proc controls what the medkit says when scanning a person, and recommends a best course of treatment (barely)
 /obj/item/storage/medkit/rayne/proc/judge_health(mob/living/target)
 
-	var/obj/item/organ/internal/brain/target_brain/targetbrain
+	var/obj/item/organ/internal/brain/targetbrain
 	if(target.on_fire)
 		speak_up("onfire")
 		return
