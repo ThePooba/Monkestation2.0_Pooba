@@ -7,10 +7,37 @@
 
 /obj/item/storage/medkit/rayne
 	name = "Rayne Corp Health Analyzer Kit"
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/storage/medkit.dmi'
+	icon_state = "medkit_tactical"
+	inhand_icon_state = "medkit-tactical"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_flags = NOBLUDGEON
 	var/speech_json_file = RAYNE_MENDER_SPEECH
 	COOLDOWN_DECLARE(last_speech)
+	damagetype_healed = HEAL_ALL_DAMAGE
+
+/obj/item/storage/medkit/rayne/Initialize(mapload)
+	. = ..()
+	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
+	atom_storage.max_slots = 12
+	atom_storage.max_total_storage = 24
+
+/obj/item/storage/medkit/rayne/PopulateContents()
+	if(empty)
+		return
+	var/static/list/items_inside = list(
+		/obj/item/stack/medical/suture/medicated = 2,
+		/obj/item/stack/medical/mesh/advanced = 2,
+		/obj/item/reagent_containers/hypospray/medipen/deforest/coagulants = 2,
+		/obj/item/reagent_containers/hypospray/medipen/atropine = 2,
+		/obj/item/reagent_containers/syringe = 1,
+		/obj/item/reagent_containers/cup/bottle/formaldehyde = 1,
+		/obj/item/reagent_containers/hypospray/medipen/morphine = 1,
+		/obj/item/reagent_containers/hypospray/medipen/salbutamol = 1,
+		/obj/item/storage/pill_bottle/multiver = 1
+	)
+	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/rayne/attack(mob/living/M, mob/living/carbon/human/user)
 	if(!user.can_read(src) || user.is_blind())
@@ -51,27 +78,28 @@
 			speak_up("lowblood")
 			return
 
-d	var/brute = judged.bruteloss
+	var/brute = judged.bruteloss
 	var/oxy = judged.oxyloss
 	var/tox = judged.toxloss
 	var/burn = judged.fireloss
 	var/big = max(brute,oxy,burn,tox)
 	if((brute + burn) >= 350)
-d		speak_up("fuckedup")
+		speak_up("fuckedup")
 		return
 	//cant do non constants in a switch, sad
-	if(brute == big)
-		speak_up("brute")
-		return
-	if(burn == big)
-		speak_up("burn")
-		return
-	if(tox == big)
-		speak_up("tox")
-		return
-	if(oxy == big)
-		speak_up("oxy")
-		return
+	if(big > 10)
+		if(brute == big)
+			speak_up("brute")
+			return
+		if(burn == big)
+			speak_up("burn")
+			return
+		if(tox == big)
+			speak_up("tox")
+			return
+		if(oxy == big)
+			speak_up("oxy")
+			return
 
 	speak_up("fine")
 	return
