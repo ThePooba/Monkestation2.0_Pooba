@@ -8,14 +8,14 @@
 /datum/armament_entry/company_import/rayne/clothing/lamp
 //	name = "Wearable Rayne Corporation Chest Lamp"
 	item_type = /obj/item/flashlight/lantern/rayne
-	cost = PAYCHECK_COMMAND * 3
+	cost = PAYCHECK_COMMAND * 2
 
 /datum/armament_entry/company_import/rayne/first_aid_kit
 	subcategory = "First-Aid Kits"
 
 /datum/armament_entry/company_import/rayne/first_aid_kit/rayne_mender
 	item_type = /obj/item/storage/medkit/rayne
-	cost = PAYCHECK_COMMAND * 6
+	cost = PAYCHECK_COMMAND * 5
 
 //Rayne Corp Medkit: A portable medkit that contains a cynical artificial intelligence that can diagnose and treat your injuries, but also insults you and makes sarcastic comments about your condition.
 
