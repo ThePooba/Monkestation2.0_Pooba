@@ -7,9 +7,9 @@
 
 /obj/item/storage/medkit/rayne
 	name = "Rayne Corp Health Analyzer Kit"
-	icon = 'icons/obj/storage/medkit.dmi'
-	icon_state = "medkit_tactical"
-	inhand_icon_state = "medkit-tactical"
+	icon = "monkestation/icons/obj/rayne_corp/rayne2.dmi"
+	icon_state = "rayne_medkit"
+	inhand_icon_state = "coronerkit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	item_flags = NOBLUDGEON
@@ -85,7 +85,6 @@
 	if((brute + burn) >= 350)
 		speak_up("fuckedup")
 		return
-	//cant do non constants in a switch, sad
 	if(big > 10)
 		if(brute == big)
 			speak_up("brute")
