@@ -54,7 +54,7 @@
 		playsound(source, charge_sound, 40)
 	source.balloon_alert(user, "charging...")
 	SEND_SIGNAL(source, COMSIG_GUN_CRANKING, user) // monkestation edit
-	if(!do_after(user, cooldown_time, source, interaction_key = DOAFTER_SOURCE_CHARGE_CRANKRECHARGE, timed_action_flags = charge_move))
+	if(!do_after(user, cooldown_time, source, interaction_key = DOAFTER_SOURCE_CHARGE_GUNCRANK, timed_action_flags = charge_move))
 		is_charging = FALSE
 		return
 	charging_cell.give(charge_amount)
