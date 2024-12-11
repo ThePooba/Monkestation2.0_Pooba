@@ -20,8 +20,8 @@
 /obj/item/storage/medkit/rayne/Initialize(mapload)
 	. = ..()
 	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
-	atom_storage.max_slots = 12
-	atom_storage.max_total_storage = 24
+	atom_storage.max_slots = 14
+	atom_storage.max_total_storage = 28
 
 /obj/item/storage/medkit/rayne/equipped(mob/user, slot, initial)
 	. = ..()
@@ -89,15 +89,15 @@
 			speak_up("lowblood")
 			return
 
-	var/brute = target.bruteloss
-	var/oxy = target.oxyloss
-	var/tox = target.toxloss
-	var/burn = target.fireloss
+	var/brute = target.getBruteLoss()
+	var/oxy = target.getOxyLoss()
+	var/tox = target.getToxLoss()
+	var/burn = target.getFireLoss()
 	var/big = max(brute,oxy,burn,tox)
 	if((brute + burn) >= 350)
 		speak_up("fuckedup")
 		return
-	if(big > 10)
+	if(big >= 5)
 		if(brute == big)
 			speak_up("brute")
 			return
@@ -112,6 +112,7 @@
 			return
 	if(target.stat == DEAD)
 		speak_up("dead")
+		return
 
 	speak_up("fine")
 	return
