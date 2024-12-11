@@ -7,7 +7,7 @@
 
 /obj/item/storage/medkit/rayne
 	name = "Rayne Corp Health Analyzer Kit"
-	icon = "monkestation/icons/obj/rayne_corp/rayne2.dmi"
+	icon = 'monkestation/icons/obj/rayne_corp/rayne.dmi'
 	icon_state = "rayne_medkit"
 	inhand_icon_state = "coronerkit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -22,6 +22,18 @@
 	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
 	atom_storage.max_slots = 12
 	atom_storage.max_total_storage = 24
+
+/obj/item/storage/medkit/rayne/equipped(mob/user, slot, initial)
+	. = ..()
+	if(slot & ITEM_SLOT_HANDS)
+		speak_up("pickup")
+		return
+
+/obj/item/storage/medkit/rayne/dropped(mob/user, silent)
+	. = ..()
+	if(src in user.contents)
+		return // If they're still holding us or have us on them, dw about it
+	speak_up("putdown")
 
 /obj/item/storage/medkit/rayne/PopulateContents()
 	if(empty)
@@ -98,6 +110,8 @@
 		if(oxy == big)
 			speak_up("oxy")
 			return
+	if(target.stat == DEAD)
+		speak_up("dead")
 
 	speak_up("fine")
 	return

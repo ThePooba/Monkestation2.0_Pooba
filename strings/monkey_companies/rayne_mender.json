@@ -7,6 +7,14 @@
 		"You're lucky im here or you would be a goner, probably.",
 		"I can fix anything! Except for whatever the hell THAT is."
 	],
+
+	"putdown":[
+		"Talk soon.",
+		"You'll be back",
+		"Not so rough asshole!",
+		"Nap time"
+	],
+
 	"podnerd":[
 		"This is a plant. Water it.",
 		"I think plants need fertilizer or something I dont know",
@@ -63,7 +71,10 @@
 	],
 
 	"fine":[
-		"Subject is operating nominally."
+		"Subject is operating nominally.",
+		"Seem fine to me, might be in their head.",
+		"No functional issues detected, that i care about",
+		"Mostly alive"
 	],
 
 	"organ":[
@@ -74,7 +85,13 @@
 	"nobrain":[
 		"The subject has no brain.",
 		"Zero IQ detected."
+	],
 
+	"dead":[
+		"Subject is dead but whole.",
+		"Reviving recommended if possible.",
+		"Subject is dead but ready to function",
+		"Subject has yee'd their last haw"
 	]
 
 
