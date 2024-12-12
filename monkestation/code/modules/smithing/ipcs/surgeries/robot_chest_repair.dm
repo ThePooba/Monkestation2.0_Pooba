@@ -90,7 +90,7 @@
 	target.notify_revival("Someone is trying to reboot your posibrain.", source = target)
 
 /datum/surgery_step/finalize_positronic_restoration/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if (target.stat < DEAD)
+	if (target.stat < DEAD | HAS_TRAIT(target, TRAIT_DEFIB_BLACKLISTED))
 		target.visible_message(span_notice("...[target] is completely unaffected! Seems like they're already active!"))
 		return FALSE
 
@@ -98,7 +98,7 @@
 	target.grab_ghost()
 	target.updatehealth()
 
-	if(target.revive())
+	if(target.revive() && HAS_TRAIT(owner, TRAIT_DEFIB_BLACKLISTED))
 		target.emote("chime")
 		target.visible_message(span_notice("...[target] reactivates, their chassis coming online!"))
 		return FALSE //This is due to synths having some weirdness with their revive.

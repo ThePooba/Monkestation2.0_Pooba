@@ -299,8 +299,8 @@
 	do_sparks(3, TRUE, src)
 	var/atom/location_destroyed = drop_location()
 
-	if(prob(50) && bot_type != HONK_BOT)
-			drop_part(robot_arm, location_destroyed)
+	if(prob(50) && (bot_type != HONK_BOT))
+		drop_part(robot_arm, location_destroyed)
 	qdel(src)
 
 /mob/living/simple_animal/bot/emag_act(mob/user, obj/item/card/emag/emag_card)
