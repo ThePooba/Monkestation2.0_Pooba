@@ -350,7 +350,7 @@
 		/obj/item/gun/energy/disabler/smoothbore = 1,
 		/obj/item/stack/sheet/mineral/gold = 5,
 		/obj/item/stock_parts/cell/hyper = 1,
-		/datum/reagent/consumable/red_queen = 10,
+		/datum/reagent/consumable/red_queen = 10, //monke edit
 	)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 20 SECONDS

@@ -27,7 +27,6 @@
 	. = ..()
 	if(slot & ITEM_SLOT_HANDS)
 		speak_up("pickup")
-		return
 
 /obj/item/storage/medkit/rayne/dropped(mob/user, silent)
 	. = ..()

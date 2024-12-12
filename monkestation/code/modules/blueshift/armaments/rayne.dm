@@ -21,7 +21,6 @@
 
 //Rayne Corp Sticky Tiles: A synthetic tile that has a special adhesive property that can cushion any fall and prevent serious damage,
 //but also traps you in place until you can free yourself or get help. The Sticky Tile is ideal for people who are clumsy and prone to accidents.
-
 //Rayne Corp Teleporter: A device that can teleport you to any location, but also swaps your body parts with random objects or animals. The Teleporter is convenient and fast. It can let you travel anywhere,
 //in an instant. The Teleporter can also create amusing and weird situations, as you may end up with a different appearance, function,
 //or ability, after teleporting. However, the Teleporter can be very painful, and can damage your health, identity, or sanity, if used too often.
