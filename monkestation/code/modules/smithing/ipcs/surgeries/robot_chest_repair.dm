@@ -98,7 +98,7 @@
 	target.grab_ghost()
 	target.updatehealth()
 
-	if(target.revive() && HAS_TRAIT(owner, TRAIT_DEFIB_BLACKLISTED))
+	if(target.revive() && HAS_TRAIT(target, TRAIT_DEFIB_BLACKLISTED))
 		target.emote("chime")
 		target.visible_message(span_notice("...[target] reactivates, their chassis coming online!"))
 		return FALSE //This is due to synths having some weirdness with their revive.
