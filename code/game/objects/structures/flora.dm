@@ -462,7 +462,7 @@
 
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE
-	if(prob(90))
+	if(prob(50))
 		var/obj/item/G = new gift_type(src)
 		user.put_in_hands(G)
 		return
