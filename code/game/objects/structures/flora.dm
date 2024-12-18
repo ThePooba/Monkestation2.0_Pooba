@@ -463,8 +463,7 @@
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE
 	if(prob(50))
-		var/obj/item/G = new gift_type(src)
-		user.put_in_hands(G)
+		user.put_in_hands(new gift_type(drop_location()))
 		return
 	if(prob(1))
 		new /mob/living/carbon/human/species/monkey/angry(src.loc)
