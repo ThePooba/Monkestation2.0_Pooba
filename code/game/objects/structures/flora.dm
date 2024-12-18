@@ -469,8 +469,7 @@
 		new /mob/living/carbon/human/species/monkey/angry(src.loc)
 		to_chat(user, span_warning("A live monkey crawls out of the gift... its PISSED!!!"))
 		return
-	var/obj/item/G = new /obj/item/a_gift/anything(src)
-	user.put_in_hands(G)
+	user.put_in_hands(new /obj/item/a_gift/anything(drop_location()))
 
 
 /obj/structure/flora/tree/pine/xmas/presents/unlimited
