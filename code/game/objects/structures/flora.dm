@@ -466,7 +466,7 @@
 		user.put_in_hands(new gift_type(drop_location()))
 		return
 	if(prob(1))
-		new /mob/living/carbon/human/species/monkey/angry(src.loc)
+		new /mob/living/carbon/human/species/monkey/angry(drop_location())
 		to_chat(user, span_warning("A live monkey crawls out of the gift... its PISSED!!!"))
 		return
 	user.put_in_hands(new /obj/item/a_gift/anything(drop_location()))
