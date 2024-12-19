@@ -129,6 +129,20 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 			/obj/item/gun/magic/wand/resurrection/debug,
 			//holy fuck why was this enabled
 			/obj/item/debug,
+			/obj/item/clothing/glasses/debug,
+			/obj/item/disk/data/debug,
+			/obj/item/disk/surgery/debug,
+			/obj/item/disk/tech_disk/debug,
+			/obj/item/magic/wand/safety/debug,
+			/obj/item/storage/box/debugtools,
+			/obj/item/gun/energy/beam_rifle/debug,
+			/obj/item/multitool/field_debug,
+			/obj/item/card/id/advanced/debug,
+			/obj/item/bounty_cube/debug_cube,
+			/obj/item/organ/internal/cyberimp/brain/nif/debug,
+			/obj/item/uplink/debug,
+			/obj/item/uplink/nuclear/debug,
+			/obj/item/spellbook_charge/debug,
 			)
 		for(var/blocked_item as anything in blocked_items)
 			// Block the item listed, and any subtypes too.
