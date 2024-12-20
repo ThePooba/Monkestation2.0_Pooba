@@ -274,7 +274,6 @@
 		lung_pop_tick = 0
 		breather.clear_alert(ALERT_NOT_ENOUGH_OXYGEN)
 
-
 	breathe_gas_volume(breath, /datum/gas/oxygen, /datum/gas/carbon_dioxide)
 	// Heal mob if not in crit.
 	if(breather.health >= breather.crit_threshold && breather.oxyloss)
@@ -629,6 +628,7 @@
 
 	if(HAS_TRAIT(breather, TRAIT_NOBREATH))
 		return FALSE
+
 	// If the breath is null, it's actually a failed breath
 	var/no_breath = isnull(breath) || skip_breath
 	if(no_breath)
