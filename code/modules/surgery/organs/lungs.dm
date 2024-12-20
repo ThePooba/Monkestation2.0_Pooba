@@ -644,7 +644,7 @@
 		// Breath has more than 0 moles of gas.
 		//checks if the last breath was one of the not- this fucking breaths so it can clear it
 		if(failed_last_breath_checker)
-			failed_last_breath  = FALSE
+			breather.failed_last_breath = FALSE
 			failed_last_breath_checker = FALSE
 		// Route gases through mask filter if breather is wearing one.
 		if(istype(breather.wear_mask) && (breather.wear_mask.clothing_flags & GAS_FILTERING) && breather.wear_mask.has_filter)
@@ -683,8 +683,8 @@
 	// Robot, don't care lol
 	else if((owner && !HAS_TRAIT(owner, TRAIT_ASSISTED_BREATHING)))
 		// Can't breathe!
-			breather.failed_last_breath = TRUE
-			failed_last_breath_checker = TRUE
+		breather.failed_last_breath = TRUE
+		failed_last_breath_checker = TRUE
 
 	// The list of gases in the breath.
 	var/list/breath_gases = breath.gases
