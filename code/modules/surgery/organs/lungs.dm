@@ -114,6 +114,8 @@
 
 	///our last lung pop adventure
 	var/lung_pop_tick = 0
+	//fucking checks if the last breath failed was actually from something or not, and if not clears it
+	var/failed_last_breath_checker = 0
 
 // assign the respiration_type
 /obj/item/organ/internal/lungs/Initialize(mapload)
@@ -271,6 +273,7 @@
 		breather.failed_last_breath = FALSE
 		lung_pop_tick = 0
 		breather.clear_alert(ALERT_NOT_ENOUGH_OXYGEN)
+
 
 	breathe_gas_volume(breath, /datum/gas/oxygen, /datum/gas/carbon_dioxide)
 	// Heal mob if not in crit.
@@ -626,7 +629,6 @@
 
 	if(HAS_TRAIT(breather, TRAIT_NOBREATH))
 		return FALSE
-
 	// If the breath is null, it's actually a failed breath
 	var/no_breath = isnull(breath) || skip_breath
 	if(no_breath)
@@ -640,6 +642,10 @@
 	// Check for moles of gas and handle partial pressures / special conditions.
 	if(num_moles > 0 && not_low_pressure && not_high_pressure)
 		// Breath has more than 0 moles of gas.
+		//checks if the last breath was one of the not- this fucking breaths so it can clear it
+		if(failed_last_breath_checker)
+			failed_last_breath  = FALSE
+			failed_last_breath_checker = FALSE
 		// Route gases through mask filter if breather is wearing one.
 		if(istype(breather.wear_mask) && (breather.wear_mask.clothing_flags & GAS_FILTERING) && breather.wear_mask.has_filter)
 			breath = breather.wear_mask.consume_filter(breath)
@@ -672,11 +678,13 @@
 				breather.cause_pain(BODY_ZONE_CHEST, 10, BRUTE)
 				apply_organ_damage(5)
 		breather.failed_last_breath = TRUE
+		failed_last_breath_checker = TRUE
 		lung_pop_tick++
 	// Robot, don't care lol
 	else if((owner && !HAS_TRAIT(owner, TRAIT_ASSISTED_BREATHING)))
 		// Can't breathe!
-		breather.failed_last_breath = TRUE
+			breather.failed_last_breath = TRUE
+			failed_last_breath_checker = TRUE
 
 	// The list of gases in the breath.
 	var/list/breath_gases = breath.gases
