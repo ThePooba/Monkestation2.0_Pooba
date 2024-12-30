@@ -1,4 +1,4 @@
-/obj/machinery/recycler/shipbreaker
+/obj/machinery/shipbreaker
 	name = "ship recycler"
 	desc = "An expensive crushing machine used to recycle ship parts somewhat efficiently."
 	icon = 'icons/obj/recycling.dmi'
@@ -6,19 +6,31 @@
 	layer = ABOVE_ALL_MOB_LAYER // Overhead
 	plane = ABOVE_GAME_PLANE
 	density = TRUE
-	circuit = /obj/item/circuitboard/machine/recycler/shipbreaker
-	var/safety_mode = FALSE // Temporarily stops machine if it detects a mob
+	circuit = /obj/item/circuitboard/machine/shipbreaker
+	var/reclaimed = 0
 	var/icon_name = "grinder-o"
 	var/bloody = FALSE
 	var/eat_dir = WEST
 	var/item_recycle_sound = 'sound/items/welder.ogg'
-	var/recycle_points = 0
 
-/obj/machinery/recycler/shipbreaker/proc/on_entered(datum/source, atom/movable/AM)
+/obj/machinery/shipbreaker/Initialize(mapload)
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/shipbreaker/LateInitialize()
+	. = ..()
+	update_appearance(UPDATE_ICON)
+	req_one_access = SSid_access.get_region_access_list(list(REGION_ALL_STATION, REGION_CENTCOM))
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/machinery/shipbreaker/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(eat), AM)
+	INVOKE_ASYNC(src, PROC_REF(scraprecycle), AM)
 
-/obj/machinery/recycler/shipbreaker/proc/eat(atom/movable/morsel, sound=TRUE)
+/obj/machinery/shipbreaker/proc/scraprecycle(atom/movable/morsel, sound=TRUE)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(iseffect(morsel))
@@ -30,11 +42,39 @@
 	if(!istype(morsel, /obj/item/stack/scrap)) //we only eat shipbreaker scrap for now
 		playsound(src, 'sound/machines/buzz-sigh.ogg')
 		return
-	if(amount > 0)
-		var/recycle_reward = morsel.amount * morsel.point_value
-		playsound(src, item_recycle_sound, (50 + morsel.amount), TRUE, morsel.amount)
+	var/obj/item/stack/scrap/morselstack = morsel
+	if(morselstack.amount > 0)
+		var/recycle_reward = morselstack.amount * morselstack.point_value
+		playsound(src, item_recycle_sound, (50 + morselstack.amount), TRUE, morselstack.amount)
 		use_power(active_power_usage)
 		var/datum/bank_account/dept_budget = SSeconomy.get_dep_account(ACCOUNT_ENG)
 		if(dept_budget)
 			dept_budget.adjust_money(recycle_reward, "Shipbreaker Scrap Processed.")
 	qdel(morsel)
+
+/obj/machinery/shipbreaker/CanAllowThrough(atom/movable/mover, border_dir)
+	. = ..()
+	if(!anchored)
+		return
+	if(border_dir == eat_dir)
+		return TRUE
+
+/obj/machinery/shipbreaker/examine(mob/user)
+	. = ..()
+	. += span_notice("<b>[reclaimed]</b> credits worth of materials salvaged.")
+
+/obj/machinery/shipbreaker/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	default_unfasten_wrench(user, tool)
+	return TOOL_ACT_TOOLTYPE_SUCCESS
+
+/obj/machinery/shipbreaker/attackby(obj/item/I, mob/user, params)
+	if(default_deconstruction_screwdriver(user, "grinder-oOpen", "grinder-o0", I))
+		return
+
+	if(default_pry_open(I, close_after_pry = TRUE))
+		return
+
+	if(default_deconstruction_crowbar(I))
+		return
+	return ..()

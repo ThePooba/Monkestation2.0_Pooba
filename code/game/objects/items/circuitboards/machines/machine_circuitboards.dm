@@ -1253,10 +1253,10 @@
 		/datum/stock_part/manipulator = 1)
 	needs_anchored = FALSE
 
-/obj/item/circuitboard/machine/recycler/shipbreaker
+/obj/item/circuitboard/machine/shipbreaker
 	name = "Shipbreaking Recycler"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
-	build_path = /obj/machinery/recycler/shipbreaker
+	build_path = /obj/machinery/shipbreaker
 	req_components = list(
 		/datum/stock_part/manipulator = 1)
 	needs_anchored = FALSE

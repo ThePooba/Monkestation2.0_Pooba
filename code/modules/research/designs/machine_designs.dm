@@ -612,11 +612,11 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
-/datum/design/board/recycler/shipbreaker
+/datum/design/board/shipbreaker
 	name = "Shipbreaking Recycler Board"
 	desc = "The circuit board for a shipbreaking recycler."
 	id = "shipbreaker_recycler"
-	build_path = /obj/item/circuitboard/machine/recycler/shipbreaker
+	build_path = /obj/item/circuitboard/machine/shipbreaker
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
