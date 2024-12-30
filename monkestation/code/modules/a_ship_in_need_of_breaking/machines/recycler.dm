@@ -7,11 +7,11 @@
 	plane = ABOVE_GAME_PLANE
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/shipbreaker
-	var/reclaimed = 0
 	var/icon_name = "grinder-o"
 	var/bloody = FALSE
 	var/eat_dir = WEST
 	var/item_recycle_sound = 'sound/items/welder.ogg'
+	var/reclaimed = 0
 
 /obj/machinery/shipbreaker/Initialize(mapload)
 	. = ..()
@@ -45,11 +45,20 @@
 	var/obj/item/stack/scrap/morselstack = morsel
 	if(morselstack.amount > 0)
 		var/recycle_reward = morselstack.amount * morselstack.point_value
+		reclaimed += recycle_reward
 		playsound(src, item_recycle_sound, (50 + morselstack.amount), TRUE, morselstack.amount)
 		use_power(active_power_usage)
 		var/datum/bank_account/dept_budget = SSeconomy.get_dep_account(ACCOUNT_ENG)
+		var/payee_key = morselstack.fingerprintslast
+
 		if(dept_budget)
 			dept_budget.adjust_money(recycle_reward, "Shipbreaker Scrap Processed.")
+		if(payee_key != null)
+			var/mob/payee_mob = get_mob_by_key(payee_key)
+			if(payee_mob.account_id != null)
+				var/datum/bank_account/account = SSeconomy.bank_accounts_by_id[payee_mob.account_id]
+				account.adjust_money(recycle_reward*0.2, "Shipbreaker Scrap Processed. Payout:[recycle_reward*0.2]")
+
 	qdel(morsel)
 
 /obj/machinery/shipbreaker/CanAllowThrough(atom/movable/mover, border_dir)
