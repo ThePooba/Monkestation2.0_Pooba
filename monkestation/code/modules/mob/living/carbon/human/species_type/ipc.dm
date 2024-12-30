@@ -51,6 +51,7 @@
 	mutantlungs = /obj/item/organ/internal/lungs/synth
 	mutantheart = /obj/item/organ/internal/heart/synth
 	mutantliver = /obj/item/organ/internal/liver/synth
+	mutantbutt = /obj/item/organ/internal/butt/iron
 	mutantappendix = null
 	exotic_bloodtype = /datum/blood_type/oil
 
