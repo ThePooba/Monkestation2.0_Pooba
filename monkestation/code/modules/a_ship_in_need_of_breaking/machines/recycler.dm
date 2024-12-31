@@ -51,14 +51,12 @@
 		var/datum/bank_account/dept_budget = SSeconomy.get_dep_account(ACCOUNT_ENG)
 		var/payee_key = morselstack.fingerprintslast
 
-		if(dept_budget)
-			dept_budget.adjust_money(recycle_reward, "Shipbreaker Scrap Processed.")
+		dept_budget?.adjust_money(recycle_reward, "Shipbreaker Scrap Processed.")
 		if(payee_key != null)
-			var/mob/payee_mob = get_mob_by_key(payee_key)
+			var/mob/living/carbon/human/payee_mob = get_mob_by_key(payee_key)
 			if(payee_mob.account_id != null)
-				var/datum/bank_account/account = SSeconomy.bank_accounts_by_id[payee_mob.account_id]
+				var/datum/bank_account/account = SSeconomy.bank_accounts_by_id["[payee_mob.account_id]"]
 				account.adjust_money(recycle_reward*0.2, "Shipbreaker Scrap Processed. Payout:[recycle_reward*0.2]")
-
 	qdel(morsel)
 
 /obj/machinery/shipbreaker/CanAllowThrough(atom/movable/mover, border_dir)
