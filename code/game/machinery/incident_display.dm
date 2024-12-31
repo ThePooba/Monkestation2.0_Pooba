@@ -112,7 +112,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 	return TRUE
 
 // Switch modes with multitool
-/obj/machinery/incident_display/multitool_act(mob/living/user, obj/item/tool)
+/multitool_act(mob/living/user, obj/item/tool)
 	if(user.istate & ISTATE_HARM)
 		return FALSE
 
