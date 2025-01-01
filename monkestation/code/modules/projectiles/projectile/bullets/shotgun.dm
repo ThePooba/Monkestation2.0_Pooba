@@ -7,7 +7,7 @@
 	ricochet_chance = 100
 	ricochet_decay_chance = 0
 	ricochet_incidence_leeway = 0
-	ricochet_decay_damage = 0
+	ricochet_decay_damage = 1
 
 /obj/projectile/bullet/uraniumpen
 	name ="uranium penetrator"
