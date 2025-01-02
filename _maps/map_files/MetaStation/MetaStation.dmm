@@ -36487,7 +36487,6 @@
 /turf/open/floor/wood,
 /area/station/service/bar/backroom)
 "mFD" = (
-/obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering,
 /obj/structure/cable,
 /obj/structure/fans/tiny,

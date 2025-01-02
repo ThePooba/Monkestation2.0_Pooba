@@ -1,4 +1,3 @@
-
 /datum/map_template/shipbreaker
 	should_place_on_top = TRUE
 	returns_created_atoms = TRUE
