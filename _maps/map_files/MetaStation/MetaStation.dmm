@@ -48010,11 +48010,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/security/prison/garden)
-"qDQ" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "qDS" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -48078,10 +48073,6 @@
 /obj/effect/spawner/random/entertainment/deck,
 /turf/open/floor/iron,
 /area/station/security/prison)
-"qEH" = (
-/turf/open/space/basic,
-/area/space,
-/area/space)
 "qEK" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Medbay Maintenance"
@@ -104575,7 +104566,7 @@ lMJ
 lMJ
 lMJ
 lMJ
-qDQ
+lMJ
 lMJ
 lMJ
 lMJ
@@ -108704,7 +108695,7 @@ ciU
 ciU
 lMJ
 aaa
-qEH
+aaa
 cpH
 aaa
 aaa
