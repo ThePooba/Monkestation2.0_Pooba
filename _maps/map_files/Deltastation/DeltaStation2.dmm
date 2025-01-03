@@ -24140,12 +24140,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
-"fIv" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/space)
 "fIB" = (
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/engine/n2o,
@@ -41557,11 +41551,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/nuke_storage)
-"jMr" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/space)
 "jMs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -79570,11 +79559,6 @@
 "sRd" = (
 /turf/closed/wall/r_wall,
 /area/station/security/evidence)
-"sRk" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/engineering/shipbreaker_hut)
 "sRm" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -82073,10 +82057,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
-"tyy" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/station/engineering/shipbreaker_hut)
 "tyK" = (
 /obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/iron/dark,
@@ -115533,7 +115513,7 @@ tWr
 tWr
 tWr
 qYo
-jUT
+qYo
 umy
 umy
 hNL
@@ -116047,7 +116027,7 @@ tWr
 tWr
 tWr
 qYo
-jUT
+qYo
 hNL
 oUJ
 oeZ
@@ -116307,8 +116287,8 @@ qYo
 aaa
 aaa
 aaa
-sRk
-tyy
+chp
+vVc
 aaa
 aaa
 aaa
@@ -116564,8 +116544,8 @@ qYo
 aaa
 aaa
 aaa
-sRk
-tyy
+chp
+vVc
 aaa
 aaa
 aaa
@@ -116818,15 +116798,15 @@ tWr
 tWr
 tWr
 qYo
-owK
-tyy
-tyy
-sRk
-tyy
-owK
-owK
-owK
-owK
+vVc
+vVc
+vVc
+chp
+vVc
+vVc
+vVc
+vVc
+vVc
 aaa
 efQ
 aaa
@@ -117075,16 +117055,16 @@ tWr
 tWr
 tWr
 qYo
-owK
-tyy
-tyy
-sRk
-sRk
-jMr
-jMr
-jMr
-jMr
-jUT
+vVc
+vVc
+vVc
+chp
+chp
+chp
+chp
+chp
+chp
+qYo
 efQ
 qYo
 efQ
@@ -117332,15 +117312,15 @@ tWr
 tWr
 tWr
 qYo
-owK
-tyy
-tyy
-sRk
-tyy
-owK
-owK
-owK
-jMr
+vVc
+vVc
+vVc
+chp
+vVc
+vVc
+vVc
+vVc
+chp
 aaa
 qYo
 aaa
@@ -117592,12 +117572,12 @@ qYo
 lxy
 sZB
 lxy
-sRk
-tyy
+chp
+vVc
 aaa
 aaa
 aaa
-jMr
+chp
 aaa
 uHd
 qYo
@@ -117854,7 +117834,7 @@ lxy
 lxy
 aaa
 aaa
-jMr
+chp
 aaa
 qYo
 aaa
@@ -118103,7 +118083,7 @@ tWr
 tWr
 tWr
 qYo
-jUT
+qYo
 umy
 iyd
 wij
@@ -118111,7 +118091,7 @@ mUu
 umy
 aaa
 aaa
-jMr
+chp
 aaa
 uHd
 aaa
@@ -118368,7 +118348,7 @@ geD
 umy
 aaa
 aaa
-jMr
+chp
 aaa
 uHd
 aaa
@@ -118625,8 +118605,8 @@ hON
 lxy
 aaa
 aaa
-jMr
-jUT
+chp
+qYo
 qYo
 qYo
 uHd
@@ -118874,7 +118854,7 @@ tWr
 tWr
 tWr
 qYo
-jUT
+qYo
 lxy
 lxy
 lxy
@@ -118882,7 +118862,7 @@ umy
 lxy
 aaa
 aaa
-jMr
+chp
 aaa
 uHd
 aaa
@@ -119138,9 +119118,9 @@ aaa
 qYo
 qYo
 uHd
-jUT
-jMr
-jUT
+qYo
+chp
+qYo
 uHd
 aaa
 qYo
@@ -119396,7 +119376,7 @@ aaa
 qYo
 aaa
 aaa
-fIv
+chp
 aaa
 aaa
 aaa
@@ -119652,9 +119632,9 @@ aaa
 aaa
 uHd
 qYo
-jUT
-jMr
-jUT
+qYo
+chp
+qYo
 qYo
 uHd
 uHd
@@ -119910,7 +119890,7 @@ aaa
 xNe
 aaa
 aaa
-jMr
+chp
 aaa
 aaa
 qYo
