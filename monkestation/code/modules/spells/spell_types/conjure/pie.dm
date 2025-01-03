@@ -8,7 +8,7 @@
 	cooldown_time = 1 MINUTES
 	spell_requirements = null
 
-	invocation = "L'T TH'M E'T CAY K" //player.placeatme 00064B33 9
+	invocation = "L'T TH'M E'T CAY K" //let them eat cake
 	invocation_type = INVOCATION_SHOUT
 	garbled_invocation_prob = 0 //i'd rather it remain like this
 
