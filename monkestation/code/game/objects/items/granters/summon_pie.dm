@@ -3,7 +3,7 @@
 	desc = "Let them eat pie!"
 	icon_state = "bookpie"
 	action_name = "summon pies"
-	granted_action = /datum/action/cooldown/spell/conjure/pie
+	granted_action = /datum/action/cooldown/spell/conjure/cheese
 	remarks = list(
 		"Ooh tasty!",
 		"Raspberries, rhubarb...",
