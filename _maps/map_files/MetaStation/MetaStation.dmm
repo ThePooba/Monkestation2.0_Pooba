@@ -29745,9 +29745,6 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
-"kqM" = (
-/turf/open/space/basic,
-/area/station/engineering/shipbreaker_hut)
 "kqZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -47658,11 +47655,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/engine,
 /area/station/engineering/atmospherics_engine)
-"qxx" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/station/engineering/shipbreaker_hut)
 "qxE" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -51474,11 +51466,6 @@
 /obj/structure/sign/warning/test_chamber/directional/south,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/testlab)
-"rLv" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/space)
 "rLy" = (
 /obj/machinery/status_display/ai/directional/north,
 /obj/effect/turf_decal/tile/neutral{
@@ -59443,7 +59430,7 @@
 /obj/effect/spawner/random/structure/grille,
 /obj/effect/spawner/random/structure/grille,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "uzw" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -68399,10 +68386,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/aft/greater)
-"xHj" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space)
 "xIx" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
@@ -111260,8 +111243,8 @@ lMJ
 lMJ
 lMJ
 lMJ
-dPw
-dPw
+lMJ
+lMJ
 lMJ
 aaa
 aaa
@@ -111503,30 +111486,30 @@ aaa
 aaa
 kiE
 kiE
-xHj
-xHj
-xHj
-xHj
-xHj
-xHj
-xHj
-xHj
-xHj
-xHj
-rLv
-rLv
-qxx
-qxx
-qxx
-qxx
-qxx
-qxx
-qxx
-qxx
-qxx
-rLv
-rLv
-rLv
+aox
+aox
+aox
+aox
+aox
+aox
+aox
+aox
+aox
+aox
+dJN
+dJN
+dJN
+dJN
+dJN
+dJN
+dJN
+dJN
+dJN
+dJN
+dJN
+dJN
+dJN
+dJN
 dJN
 jpO
 sZU
@@ -111771,16 +111754,16 @@ aaa
 aaa
 aaa
 aaa
-dPw
+lMJ
 ffP
-dPw
-dPw
-dPw
+lMJ
+lMJ
+lMJ
 cpH
 aaa
 aaa
-kqM
-qxx
+aaa
+dJN
 aaa
 aaa
 aaa
@@ -112028,11 +112011,11 @@ aaa
 aaa
 aaa
 aaa
-dPw
+lMJ
 ffP
-dPw
+lMJ
 aaa
-kiE
+aUn
 lMJ
 aaa
 uVa
@@ -112546,7 +112529,7 @@ bwP
 ffP
 fAx
 aaa
-kiE
+aUn
 lMJ
 aaa
 soH
