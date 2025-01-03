@@ -4396,6 +4396,7 @@
 "bwP" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
+/obj/effect/mapping_helpers/apc/full_charge,
 /turf/open/floor/plating,
 /area/station/engineering/shipbreaker_hut)
 "bxf" = (
@@ -17205,10 +17206,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
-"glf" = (
-/obj/effect/mapping_helpers/apc/full_charge,
-/turf/closed/wall/r_wall,
-/area/station/engineering/shipbreaker_hut)
 "glh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -112544,7 +112541,7 @@ aaa
 aaa
 aaa
 aaa
-glf
+qsN
 bwP
 ffP
 fAx
