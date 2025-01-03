@@ -95215,10 +95215,6 @@
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /turf/open/floor/iron,
 /area/station/medical/medbay)
-"wBU" = (
-/turf/open/space/basic,
-/area/space,
-/area/space)
 "wBV" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -110389,7 +110385,7 @@ aaa
 aaa
 aaa
 aaa
-wBU
+aaa
 aaa
 aaa
 aaa
@@ -119143,7 +119139,7 @@ qYo
 qYo
 uHd
 jUT
-fIv
+jMr
 jUT
 uHd
 aaa

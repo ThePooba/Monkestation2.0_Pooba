@@ -22854,7 +22854,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/construction,
 /obj/structure/cable/layer1,
-/turf/closed/wall/r_wall,
+/turf/open/space/basic,
 /area/station/maintenance/starboard/aft)
 "hja" = (
 /obj/structure/cable,

@@ -2940,6 +2940,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/central/greater)
+"anW" = (
+/obj/effect/landmark/carpspawn,
+/turf/open/floor/engine/hull,
+/area/space)
 "anX" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
@@ -11144,8 +11148,7 @@
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
 "cse" = (
-/turf/open/space/openspace,
-/area/space,
+/turf/open/floor/engine/hull,
 /area/space)
 "csr" = (
 /obj/effect/decal/cleanable/dirt,
@@ -14726,6 +14729,9 @@
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/iron/white,
 /area/station/medical/surgery/aft)
+"dCL" = (
+/turf/closed/wall,
+/area/station/medical/pathology)
 "dDd" = (
 /obj/structure/closet{
 	name = "Evidence Closet 3"
@@ -30083,6 +30089,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
+"iyV" = (
+/obj/structure/lattice,
+/turf/open/openspace/airless,
+/area/station/asteroid)
 "izy" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -45935,6 +45945,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/commons/dorms)
+"nvL" = (
+/obj/structure/lattice/catwalk,
+/turf/open/openspace/airless,
+/area/station/asteroid)
 "nvU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
@@ -76695,7 +76709,7 @@
 "xbh" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/station/medical/pathology)
 "xbp" = (
 /obj/machinery/computer/shuttle/labor,
@@ -173301,11 +173315,11 @@ jhd
 jhd
 jhd
 jhd
-jhd
-jhd
-jhd
-jhd
-jhd
+cse
+cse
+cse
+cse
+cse
 jhd
 jhd
 jhd
@@ -173558,11 +173572,11 @@ jhd
 jhd
 jhd
 jhd
-jhd
-jhd
-jhd
-jhd
-jhd
+cse
+cse
+cse
+cse
+cse
 jhd
 jhd
 jhd
@@ -173815,11 +173829,11 @@ jhd
 jhd
 jhd
 jhd
-jhd
-jhd
-jhd
-jhd
-jhd
+cse
+cse
+cse
+cse
+cse
 jhd
 jhd
 jhd
@@ -174072,11 +174086,11 @@ jhd
 jhd
 jhd
 jhd
-jhd
-jhd
-jhd
-meb
-jhd
+cse
+cse
+cse
+anW
+cse
 jhd
 jhd
 jhd
@@ -174329,11 +174343,11 @@ jhd
 jhd
 jhd
 jhd
-jhd
-jhd
-jhd
-jhd
-jhd
+cse
+cse
+cse
+cse
+cse
 jhd
 jhd
 jhd
@@ -177162,7 +177176,7 @@ jhd
 jhd
 jhd
 jhd
-cse
+jhd
 jhd
 jhd
 jhd
@@ -179941,7 +179955,7 @@ ugt
 ugt
 ugt
 ugt
-ugt
+dCL
 adM
 oGJ
 oGJ
@@ -180198,7 +180212,7 @@ cqn
 ugt
 oGv
 iMd
-ugt
+dCL
 oGJ
 oGJ
 oGJ
@@ -180455,7 +180469,7 @@ dbu
 ugt
 puf
 wvQ
-ugt
+dCL
 oGJ
 oGJ
 oGJ
@@ -180712,7 +180726,7 @@ gWV
 ugt
 gWV
 lAm
-ugt
+dCL
 oGJ
 oGJ
 oGJ
@@ -180969,7 +180983,7 @@ rkd
 ewk
 ycI
 fwB
-ugt
+dCL
 oGJ
 oGJ
 oGJ
@@ -181483,7 +181497,7 @@ jqY
 jqY
 jqY
 nNG
-ugt
+dCL
 aak
 aaa
 aaa
@@ -181990,14 +182004,14 @@ kOL
 vrJ
 nNE
 tMb
-ugt
-ugt
-ugt
+dCL
+dCL
+dCL
 dhC
 dhC
 fLP
 dhC
-ugt
+dCL
 agQ
 aac
 aaa
@@ -182247,7 +182261,7 @@ lXC
 txh
 sAd
 ykV
-ugt
+dCL
 wdi
 kHB
 uWO
@@ -182504,7 +182518,7 @@ dzj
 cZN
 tkh
 kgN
-ugt
+dCL
 mDp
 jFi
 lWz
@@ -182761,14 +182775,14 @@ ugt
 ugt
 ugt
 jHi
-ugt
+dCL
 fpf
 uWO
 vvA
 sCO
 dyl
 cHn
-ugt
+dCL
 agR
 agX
 agX
@@ -183018,14 +183032,14 @@ srC
 srC
 ugt
 ugt
-ugt
-ugt
-ugt
-ugt
-ugt
-ugt
-ugt
-ugt
+dCL
+dCL
+dCL
+dCL
+dCL
+dCL
+dCL
+dCL
 aaa
 aac
 aac
@@ -187656,7 +187670,7 @@ xAp
 qMZ
 ptD
 aac
-bFw
+nvL
 aac
 aac
 aaa
@@ -187913,7 +187927,7 @@ aaa
 yiG
 mSE
 lGu
-bFw
+nvL
 aac
 aac
 aaa
@@ -188170,7 +188184,7 @@ bFw
 wJh
 iWf
 tic
-bFw
+nvL
 aac
 aac
 aaa
@@ -188424,9 +188438,9 @@ aaa
 aaa
 aac
 bFw
-bFw
-bFw
-bFw
+iyV
+iyV
+iyV
 aaa
 aaa
 aaa
@@ -188681,9 +188695,9 @@ lVi
 aaa
 aaa
 aaa
-bFw
-bFw
-bFw
+nvL
+nvL
+nvL
 aaa
 aaa
 aaa
@@ -189208,7 +189222,7 @@ soq
 dMh
 nNX
 xCS
-soq
+lVi
 jPz
 eli
 dLe
@@ -190236,7 +190250,7 @@ soq
 nNX
 cLZ
 xCS
-soq
+lVi
 eli
 jPz
 dLe
