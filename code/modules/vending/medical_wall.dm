@@ -16,7 +16,7 @@
 		/obj/item/healthanalyzer/simple = 2,
 		/obj/item/stack/medical/bone_gel = 2,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_liquid_solder = 2,
-		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_liquid_solder = 2,
+		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_system_cleaner = 4,
 	)
 	contraband = list(
 		/obj/item/reagent_containers/pill/tox = 2,
