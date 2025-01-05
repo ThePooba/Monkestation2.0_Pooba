@@ -107,7 +107,7 @@
 	ship_health = 100
 
 /obj/machinery/computer/shipbreaker/proc/modify_health(turf/source)
-	ship_health -= (1 / turf_count)
+	ship_health -= (100 / turf_count)
 	ship_health = max(ship_health, 0)
 
 
