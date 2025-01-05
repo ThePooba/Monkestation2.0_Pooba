@@ -93,12 +93,16 @@
 
 	switch(action)
 		if("spawn_ship")
-			turf_count = 0
-			spawn_ship()
+			say("ERROR: FUNCTIONS CURRENTLY DISABLED, CHECK BACK AT A LATER DATE")
 			return
+			//turf_count = 0
+			//spawn_ship()
+			//return
 		if("clear_floor_plating")
-			clear_floor_plating()
+			say("ERROR: FUNCTIONS CURRENTLY DISABLED, CHECK BACK AT A LATER DATE")
 			return
+			//clear_floor_plating()
+			//return
 
 /obj/machinery/computer/shipbreaker/proc/setup_health_tracker()
 	for(var/turf/turf in linked)

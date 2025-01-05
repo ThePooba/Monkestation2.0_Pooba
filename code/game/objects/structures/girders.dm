@@ -302,7 +302,11 @@
 			if(state != GIRDER_DISPLACED)
 				return
 			state = GIRDER_DISASSEMBLED
-			var/obj/item/stack/sheet/iron/M = new (loc, 2)
+			var/area/shipbreak/A = get_area(src)
+			if(istype(A)) //shipbreaking
+				remains = /obj/item/stack/scrap/framing
+			else
+				var/obj/item/stack/sheet/iron/M = new (loc, 2)
 			if (!QDELETED(M))
 				M.add_fingerprint(user)
 			qdel(src)
