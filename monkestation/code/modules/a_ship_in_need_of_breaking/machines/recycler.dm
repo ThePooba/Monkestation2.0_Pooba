@@ -24,6 +24,7 @@
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	var/list/allowed_materials = list(
 		/datum/material/iron,
 		/datum/material/glass,
