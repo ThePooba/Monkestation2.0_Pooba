@@ -75,7 +75,7 @@
 			var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 			var/material_amount = materials.get_item_material_amount(morselstack, BREAKDOWN_FLAGS_RECYCLER)
 			if(material_amount)
-				materials.insert_item(morselstack, material_amount, multiplier = (morselstack.amount), breakdown_flags=BREAKDOWN_FLAGS_RECYCLER)
+				materials.insert_item(morselstack, material_amount, multiplier = 1, breakdown_flags=BREAKDOWN_FLAGS_RECYCLER)
 				materials.retrieve_all()
 	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 	qdel(morsel)
