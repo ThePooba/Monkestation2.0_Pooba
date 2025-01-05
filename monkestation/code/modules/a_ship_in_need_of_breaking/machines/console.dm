@@ -102,8 +102,9 @@
 
 /obj/machinery/computer/shipbreaker/proc/setup_health_tracker()
 	for(var/turf/turf in linked)
-		turf_count++
-		RegisterSignal(turf, COMSIG_TURF_DESTROY, PROC_REF(modify_health))
+		if(!isspaceturf(turf))
+			turf_count++
+			RegisterSignal(turf, COMSIG_TURF_CHANGE, PROC_REF(modify_health))
 	ship_health = 100
 
 /obj/machinery/computer/shipbreaker/proc/modify_health(turf/source)
