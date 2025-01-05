@@ -47,7 +47,6 @@
 					/obj/item/taperecorder,
 					/obj/item/toy/crayon/white,
 					/obj/item/clothing/head/fedora/det_hat,
-					/obj/item/wallframe/detectiveboard
 				)
 	crate_name = "forensics crate"
 
