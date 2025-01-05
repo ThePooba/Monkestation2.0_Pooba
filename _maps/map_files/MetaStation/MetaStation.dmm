@@ -4397,7 +4397,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/full_charge,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "bxf" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -14133,7 +14133,7 @@
 /area/station/hallway/primary/fore)
 "ffP" = (
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "ffU" = (
 /obj/effect/turf_decal/siding/purple,
@@ -15336,7 +15336,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "fAx" = (
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "fAI" = (
 /obj/effect/spawner/random/structure/crate,
@@ -18959,7 +18959,7 @@
 /area/station/engineering/break_room)
 "gQX" = (
 /obj/machinery/light/directional/east,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "gRb" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -53719,7 +53719,7 @@
 /area/station/security/warden)
 "szm" = (
 /obj/machinery/computer/shipbreaker,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "szp" = (
 /turf/closed/wall,

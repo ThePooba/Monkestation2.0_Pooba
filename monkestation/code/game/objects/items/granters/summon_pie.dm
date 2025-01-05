@@ -1,5 +1,5 @@
 /obj/item/book/granter/action/spell/summon_pie
-	name = "Lusty Xenomorph Maid vol. III - Cheese Bakery"
+	name = "Mythical pies and where to find them, a compendium."
 	desc = "Let them eat pie!"
 	icon_state = "bookpie"
 	action_name = "summon pies"
@@ -15,10 +15,6 @@
 		"Zucchini does not belong here.",
 
 	)
-/*
-if(prob(1))
-	name = "pippi"
-*/
 
 /obj/item/book/granter/action/spell/summon_pie/recoil(mob/living/user)
 	to_chat(user, span_warning("\The [src] turns into a delectable pastry!"))

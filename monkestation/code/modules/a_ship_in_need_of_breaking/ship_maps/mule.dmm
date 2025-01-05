@@ -33,7 +33,6 @@
 /area/shipbreak)
 "gc" = (
 /obj/effect/turf_decal/bot,
-/obj/effect/artifact_spawner,
 /obj/machinery/light/small/warm/directional/south,
 /turf/open/floor/iron/dark/side,
 /area/shipbreak)
@@ -132,10 +131,6 @@
 	dir = 4
 	},
 /area/shipbreak)
-"kL" = (
-/obj/machinery/computer/crew,
-/turf/open/floor/iron/dark,
-/area/shipbreak)
 "kT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/machinery/light/very_dim/directional/east,
@@ -216,7 +211,6 @@
 "rj" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/critter,
-/mob/living/simple_animal/hostile/asteroid/polarbear,
 /obj/machinery/light/small/warm/directional/south,
 /turf/open/floor/iron/dark/side,
 /area/shipbreak)
@@ -241,7 +235,6 @@
 /area/shipbreak)
 "tn" = (
 /obj/structure/closet/crate/coffin,
-/obj/structure/closet/body_bag/environmental/prisoner/syndicate,
 /turf/open/floor/plating,
 /area/shipbreak)
 "tO" = (
@@ -297,7 +290,7 @@
 /turf/open/floor/carpet/neon/simple/black/nodots,
 /area/shipbreak)
 "xw" = (
-/obj/machinery/computer/communications,
+/obj/machinery/computer/old,
 /turf/open/floor/iron/dark,
 /area/shipbreak)
 "yh" = (
@@ -331,10 +324,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/shipbreak)
-"Bt" = (
-/obj/effect/spawner/random/exotic/antag_gear_weak,
 /turf/open/floor/plating,
 /area/shipbreak)
 "Bz" = (
@@ -404,13 +393,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/shipbreak)
-"Io" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/artifact_spawner,
-/turf/open/floor/iron/dark/side{
-	dir = 1
-	},
-/area/shipbreak)
 "IR" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck/syndicate/holographic,
@@ -451,10 +433,6 @@
 /obj/structure/window/reinforced/plasma/spawner/directional/east,
 /turf/open/floor/plating,
 /area/shipbreak)
-"MH" = (
-/obj/machinery/computer/shuttle,
-/turf/open/floor/iron/dark,
-/area/shipbreak)
 "MM" = (
 /obj/machinery/button/door/directional/east{
 	id = 4
@@ -467,7 +445,6 @@
 "Nx" = (
 /obj/structure/table/greyscale,
 /obj/item/storage/backpack/satchel/flat,
-/obj/effect/spawner/random/exotic/syndie,
 /obj/effect/spawner/random/exotic/syndie,
 /turf/open/floor/iron/dark,
 /area/shipbreak)
@@ -536,7 +513,6 @@
 /area/shipbreak)
 "Sf" = (
 /obj/effect/turf_decal/delivery,
-/obj/structure/artifact/heal,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
@@ -591,7 +567,6 @@
 "Wq" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/critter,
-/mob/living/basic/bear/butter,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -930,7 +905,7 @@ yR
 "}
 (12,1,1) = {"
 Xa
-MH
+xw
 nm
 QE
 ah
@@ -984,7 +959,7 @@ yR
 "}
 (14,1,1) = {"
 Xa
-kL
+xw
 Nx
 Zv
 ah
@@ -1100,11 +1075,11 @@ yR
 ah
 Sh
 ah
-Io
+Yo
 JE
 gc
 ah
-Bt
+WM
 ah
 GZ
 Lm
@@ -1127,9 +1102,9 @@ yR
 ah
 ah
 ah
-Io
+Yo
 JE
-hq
+SO
 ah
 ah
 ah
@@ -1154,7 +1129,7 @@ yR
 yR
 yR
 ah
-Io
+Yo
 JE
 hq
 ah

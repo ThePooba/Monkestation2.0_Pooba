@@ -12,9 +12,6 @@
 	var/eat_dir = WEST
 	var/item_recycle_sound = 'sound/items/welder.ogg'
 	var/reclaimed = 0
-	var/datum/component/remote_materials/materials
-
-
 
 /obj/machinery/shipbreaker/Initialize(mapload)
 	. = ..()

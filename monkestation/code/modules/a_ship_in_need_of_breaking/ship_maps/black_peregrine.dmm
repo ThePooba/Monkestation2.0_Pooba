@@ -232,10 +232,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shipbreak)
 "rf" = (
-/obj/machinery/computer/crew/syndie{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/dark_red/corner{
+/obj/machinery/computer/old{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -524,10 +521,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/shipbreak)
-"Sr" = (
-/obj/machinery/computer/communications/syndicate,
-/turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
 "Te" = (
 /obj/effect/turf_decal/siding/dark_red/corner{
 	dir = 1
@@ -571,10 +564,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shipbreak)
 "Yv" = (
-/obj/machinery/computer/shuttle/caravan/syndicate1{
+/obj/machinery/computer/old{
 	dir = 4
 	},
-/obj/effect/turf_decal/siding/dark_red/corner,
 /turf/open/floor/mineral/plastitanium,
 /area/shipbreak)
 "YM" = (
@@ -923,7 +915,7 @@ Zy
 Zy
 vA
 Kl
-Sr
+iI
 bY
 Zu
 WK

@@ -17969,7 +17969,7 @@
 /turf/open/floor/iron,
 /area/station/security/prison/safe)
 "eBC" = (
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "eBF" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -29878,7 +29878,7 @@
 /area/station/maintenance/central/greater)
 "iwp" = (
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "iws" = (
 /obj/effect/turf_decal/delivery,
@@ -40291,7 +40291,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/full_charge,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "lGu" = (
 /obj/structure/lattice/catwalk,
@@ -44814,7 +44814,7 @@
 /area/station/maintenance/department/cargo)
 "nfw" = (
 /obj/machinery/computer/shipbreaker,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "nfB" = (
 /obj/structure/table,
@@ -74025,7 +74025,7 @@
 /area/station/maintenance/tram/right)
 "wiy" = (
 /obj/machinery/shipbreaker,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "wiI" = (
 /obj/machinery/door/airlock/security/glass{

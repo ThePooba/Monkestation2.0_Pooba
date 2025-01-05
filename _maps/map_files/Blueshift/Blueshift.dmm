@@ -28214,7 +28214,7 @@
 /area/station/hallway/primary/central)
 "fsz" = (
 /obj/machinery/shipbreaker,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "fsG" = (
 /obj/effect/spawner/random/decoration/paint,
@@ -36293,6 +36293,10 @@
 	dir = 8
 	},
 /area/station/hallway/primary/port)
+"gYY" = (
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "gZk" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -50847,8 +50851,8 @@
 /turf/open/floor/iron/dark,
 /area/station/security/checkpoint/engineering)
 "jQP" = (
-/turf/open/floor/iron,
-/area/space/nearstation)
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "jQR" = (
 /obj/effect/turf_decal/stripes{
 	dir = 1
@@ -85414,7 +85418,7 @@
 	dir = 1
 	},
 /obj/machinery/light/directional/west,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "qCS" = (
 /obj/structure/flora/grass/jungle,
@@ -91324,7 +91328,7 @@
 /area/station/cargo/miningdock)
 "rIj" = (
 /obj/effect/turf_decal/stripes,
-/turf/open/floor/iron,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "rIB" = (
 /obj/structure/lattice/catwalk,
@@ -108232,7 +108236,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/full_charge,
-/turf/open/floor/iron,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "uUQ" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -214373,8 +214377,8 @@ czg
 ulx
 ulx
 fqO
-tnL
-msW
+gYY
+jQP
 fqO
 xJH
 xPK
@@ -214630,8 +214634,8 @@ czg
 ulx
 ulx
 fqO
-tnL
-msW
+gYY
+jQP
 fqO
 xJH
 xPK
@@ -214883,12 +214887,12 @@ ulx
 gcg
 gcg
 gcg
-hMF
+mQV
+mQV
+mQV
 jQP
+gYY
 jQP
-msW
-tnL
-msW
 rIj
 xJH
 xPK
@@ -215140,12 +215144,12 @@ ulx
 wPl
 wPl
 mBU
-tnL
-tnL
-tnL
-tnL
-tnL
-msW
+gYY
+gYY
+gYY
+gYY
+gYY
+jQP
 rIj
 xJH
 xPK

@@ -140,7 +140,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shipbreak)
 "o" = (
-/obj/machinery/computer/emergency_shuttle{
+/obj/machinery/computer/old{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/yellow,
@@ -241,7 +241,10 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shipbreak)
 "N" = (
-/obj/machinery/vending/wallmed/directional/west,
+/obj/machinery/vending/wallmed/directional/west{
+	products = null;
+	products_monke = null
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shipbreak)
 "P" = (
@@ -256,9 +259,9 @@
 /turf/open/floor/plating/airless,
 /area/shipbreak)
 "R" = (
-/obj/machinery/computer/communications,
 /obj/machinery/camera/autoname/directional/north,
 /obj/machinery/light/directional/north,
+/obj/machinery/computer/old,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shipbreak)
 "T" = (
@@ -268,10 +271,10 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/shipbreak)
 "W" = (
-/obj/machinery/computer/crew{
+/obj/machinery/light/directional/south,
+/obj/machinery/computer/old{
 	dir = 1
 	},
-/obj/machinery/light/directional/south,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shipbreak)
 "X" = (

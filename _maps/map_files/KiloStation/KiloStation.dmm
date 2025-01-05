@@ -11171,7 +11171,7 @@
 /area/station/engineering/atmos/pumproom)
 "dxl" = (
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "dxm" = (
 /obj/structure/sign/warning/secure_area,
@@ -32482,6 +32482,9 @@
 /obj/structure/ghost_critter_spawn,
 /turf/open/floor/wood,
 /area/station/commons/fitness/recreation)
+"jXC" = (
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "jXM" = (
 /obj/effect/turf_decal/box,
 /obj/structure/cable,
@@ -55511,7 +55514,7 @@
 /area/station/hallway/primary/central)
 "rsN" = (
 /obj/machinery/shipbreaker,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "rsT" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -56888,7 +56891,7 @@
 /area/station/service/hydroponics)
 "rQY" = (
 /obj/machinery/computer/shipbreaker,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "rQZ" = (
 /obj/structure/cable,
@@ -61820,7 +61823,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/full_charge,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "tsD" = (
 /obj/effect/turf_decal/bot,
@@ -119575,7 +119578,7 @@ rCB
 rCB
 rCB
 rCB
-wTm
+jXC
 aBW
 xZB
 uNP
@@ -119829,10 +119832,10 @@ aaa
 nOj
 rQY
 dxl
+jXC
 wTm
-wTm
-wTm
-wTm
+jXC
+jXC
 aBW
 jWK
 jDV
@@ -120089,7 +120092,7 @@ dxl
 nOj
 rsN
 nOj
-wTm
+jXC
 svi
 nRs
 jDV
@@ -120341,12 +120344,12 @@ aaa
 aaa
 aaa
 nOj
-wTm
-wTm
+jXC
+jXC
 nOj
 nOj
 nOj
-wTm
+jXC
 svi
 svi
 qdA

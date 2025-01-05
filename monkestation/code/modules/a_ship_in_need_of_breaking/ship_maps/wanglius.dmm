@@ -337,7 +337,7 @@
 /turf/open/floor/iron,
 /area/shipbreak)
 "tH" = (
-/obj/machinery/computer/crew,
+/obj/machinery/computer/old,
 /turf/open/floor/mineral/titanium,
 /area/shipbreak)
 "tN" = (
@@ -413,10 +413,6 @@
 	name = "Wanglius Sick Bay"
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
-"Bt" = (
-/obj/machinery/computer/emergency_shuttle,
-/turf/open/floor/mineral/titanium,
 /area/shipbreak)
 "BF" = (
 /obj/machinery/door/airlock/public/glass{
@@ -1019,7 +1015,7 @@ Er
 Er
 Er
 YZ
-Bt
+tH
 FA
 nN
 nN

@@ -839,7 +839,7 @@
 /turf/open/floor/iron,
 /area/station/maintenance/department/eva/abandoned)
 "ajt" = (
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "ajG" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
@@ -30033,6 +30033,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/maintenance/port/fore)
+"hcH" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "hcK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -57471,7 +57475,7 @@
 /area/station/hallway/secondary/entry)
 "nBA" = (
 /obj/machinery/light/directional/west,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "nBC" = (
 /obj/item/kirbyplants/random,
@@ -59757,7 +59761,7 @@
 "oeZ" = (
 /obj/machinery/light/directional/east,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "ofa" = (
 /obj/machinery/light/small/directional/west,
@@ -61240,7 +61244,7 @@
 /area/station/medical/medbay)
 "oyK" = (
 /obj/machinery/computer/shipbreaker,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "oyY" = (
 /obj/effect/landmark/event_spawn,
@@ -62971,7 +62975,7 @@
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "oUU" = (
 /obj/effect/decal/cleanable/dirt,
@@ -80256,7 +80260,7 @@
 /area/station/medical/abandoned)
 "sZB" = (
 /obj/machinery/shipbreaker,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "sZC" = (
 /obj/structure/disposalpipe/segment{
@@ -115514,8 +115518,8 @@ tWr
 tWr
 qYo
 qYo
-umy
-umy
+hcH
+hcH
 hNL
 ajt
 aaa
@@ -115771,7 +115775,7 @@ tWr
 tWr
 qYo
 aaa
-umy
+hcH
 oyK
 nBA
 ajt

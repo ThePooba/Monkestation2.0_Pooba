@@ -113,7 +113,7 @@
 "Qk" = (/obj/machinery/door/airlock/diamond,/turf/open/floor/mineral/titanium/tiled/blue,/area/shipbreak)
 "QE" = (/obj/effect/turf_decal/trimline/neutral/filled/corner{dir = 1},/obj/structure/cable,/obj/machinery/light/small/directional/north,/obj/effect/decal/cleanable/dirt,/turf/open/floor/mineral/plastitanium,/area/shipbreak)
 "QJ" = (/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,/obj/effect/decal/cleanable/blood/splatter/over_window,/turf/open/floor/plating/airless,/area/shipbreak)
-"QV" = (/obj/structure/window/reinforced{dir = 1},/obj/machinery/computer/communications{pixel_y = -5},/obj/structure/cable,/obj/structure/sign/poster/contraband/donk_co/directional/north,/turf/open/floor/mineral/plastitanium,/area/shipbreak)
+"QV" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/cable,/obj/structure/sign/poster/contraband/donk_co/directional/north,/obj/machinery/computer/old,/turf/open/floor/mineral/plastitanium,/area/shipbreak)
 "QY" = (/obj/effect/turf_decal/trimline/yellow/filled/warning{dir = 4},/obj/effect/decal/cleanable/dirt,/turf/open/floor/mineral/plastitanium,/area/shipbreak)
 "RE" = (/obj/effect/turf_decal/trimline/blue/corner,/obj/structure/cable,/turf/open/floor/mineral/plastitanium,/area/shipbreak)
 "RK" = (/obj/effect/turf_decal/trimline/yellow/filled/warning{dir = 8},/turf/open/floor/mineral/plastitanium,/area/shipbreak)
