@@ -3,8 +3,8 @@
 	return TRUE
 
 /datum/uplink_item/dangerous/lever_action
-	name = "Lever Action Shotgun"
-	desc = "A western lever action shotgun we found on a planet in the frontier, fits in your backpack unlike most shotguns, and can be levered with one hand. Fits five shells."
+	name = "Pump action Shotgun"
+	desc = "A classic sturdy and robust shotgun. Fits five shells."
 	item = /obj/item/gun/ballistic/shotgun/lethal
 	cost = 7
 
