@@ -304,11 +304,13 @@
 			state = GIRDER_DISASSEMBLED
 			var/area/shipbreak/A = get_area(src)
 			if(istype(A)) //shipbreaking
-				remains = /obj/item/stack/scrap/framing
+				var/obj/item/stack/scrap/framing/M = new(loc, 1)
+				if (!QDELETED(M))
+					M.add_fingerprint(user)
 			else
 				var/obj/item/stack/sheet/iron/M = new (loc, 2)
-			if (!QDELETED(M))
-				M.add_fingerprint(user)
+				if (!QDELETED(M))
+					M.add_fingerprint(user)
 			qdel(src)
 		return TRUE
 
