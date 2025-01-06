@@ -44,7 +44,7 @@
 /obj/machinery/computer/shipbreaker/proc/spawn_ship()
 	area_clear_check()
 	if(!spawn_area_clear)
-		say("ERROR: SHIPBREAKING ZONE NOT CLEAR, PLEASE REMOVE ALL REMAINING SHIP PARTS")
+		say("ERROR: SHIPBREAKING ZONE NOT CLEAR, PLEASE REMOVE ALL REMAINING FLOORS, STRUCTURES, AND MACHINERY")
 		return
 	var/datum/map_template/shipbreaker/ship_to_spawn = pick(possible_ships)
 
@@ -57,9 +57,11 @@
 	for(var/turf/t in linked)
 		if(!isspaceturf(t))
 			spawn_area_clear = FALSE
+			say("FLOORING OR WALL DETECTED")
 			return
 	for(var/obj/s in linked)
 		if(isstructure(s) || ismachinery(s))
+			say("MACHINE OR STRUCTURE DETECTED.")
 			spawn_area_clear = FALSE
 			return
 
@@ -93,16 +95,12 @@
 
 	switch(action)
 		if("spawn_ship")
-			say("ERROR: FUNCTIONS CURRENTLY DISABLED, CHECK BACK AT A LATER DATE")
+			turf_count = 0
+			spawn_ship()
 			return
-			//turf_count = 0
-			//spawn_ship()
-			//return
 		if("clear_floor_plating")
-			say("ERROR: FUNCTIONS CURRENTLY DISABLED, CHECK BACK AT A LATER DATE")
+			clear_floor_plating()
 			return
-			//clear_floor_plating()
-			//return
 
 /obj/machinery/computer/shipbreaker/proc/setup_health_tracker()
 	for(var/turf/turf in linked)
