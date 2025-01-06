@@ -27,7 +27,7 @@
 		/obj/item/food/pie/mimetart,
 		/obj/item/food/pie/grapetart,
 		/obj/item/food/pie/appletart,
-		/obj/item/food/pie/pumpkin,
+		/obj/item/food/pie/pumpkinpie,
 		/obj/item/food/pie/cherrypie,
 		/obj/item/food/pie/applepie,
 		/obj/item/food/pie/xemeatpie,
