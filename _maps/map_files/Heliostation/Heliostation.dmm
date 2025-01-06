@@ -44349,13 +44349,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/science)
-"kad" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters{
-	id = "Rep Windows"
-	},
-/turf/open/floor/plating,
-/area/station/hallway/secondary/command)
 "kak" = (
 /obj/structure/chair/sofa/bench/right{
 	dir = 1
@@ -57016,7 +57009,7 @@
 "oWz" = (
 /obj/docking_port/stationary{
 	dir = 4;
-	dwidth = 4;
+	dwidth = 5;
 	height = 7;
 	name = "Cargo Bay";
 	shuttle_id = "cargo_home";
@@ -66693,10 +66686,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/service)
 "sMm" = (
-/obj/machinery/button/door/directional/west{
-	id = sss;
-	name = "Window Shutters"
-	},
 /obj/machinery/suit_storage_unit/security,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
@@ -127651,9 +127640,9 @@ azW
 azW
 xYB
 azW
-kad
-kad
-kad
+axD
+axD
+axD
 aQK
 azn
 aOd
