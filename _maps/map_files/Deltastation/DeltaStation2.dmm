@@ -9834,6 +9834,16 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/exit/departure_lounge)
+"ckI" = (
+/obj/machinery/light/directional/west{
+	dir = 4
+	},
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "ckP" = (
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
@@ -12037,6 +12047,14 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/wood,
 /area/station/service/theater)
+"cMz" = (
+/obj/machinery/conveyor{
+	id = "shitbreaker";
+	dir = 4
+	},
+/obj/machinery/shipbreaker,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "cMA" = (
 /obj/effect/turf_decal/trimline/yellow/warning{
 	dir = 8
@@ -59759,7 +59777,6 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "oeZ" = (
-/obj/machinery/light/directional/east,
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
@@ -60523,6 +60540,13 @@
 	},
 /turf/open/floor/iron,
 /area/station/security/execution/transfer)
+"onz" = (
+/obj/structure/window,
+/obj/machinery/conveyor_switch/oneway{
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "onK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -62975,6 +62999,7 @@
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/structure/cable,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "oUU" = (
@@ -80259,7 +80284,13 @@
 /turf/open/floor/iron,
 /area/station/medical/abandoned)
 "sZB" = (
-/obj/machinery/shipbreaker,
+/obj/structure/rack,
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = 6
+	},
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = -5
+	},
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "sZC" = (
@@ -87502,6 +87533,14 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"uNL" = (
+/obj/machinery/light/directional/west,
+/obj/machinery/conveyor{
+	id = "shitbreaker";
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "uNQ" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -115521,9 +115560,9 @@ qYo
 hcH
 hcH
 hNL
-ajt
-aaa
-aaa
+hcH
+lxy
+lxy
 aaa
 aaa
 aaa
@@ -115779,8 +115818,8 @@ hcH
 oyK
 nBA
 ajt
-aaa
-aaa
+uNL
+lxy
 aaa
 aaa
 aaa
@@ -116035,9 +116074,9 @@ qYo
 hNL
 oUJ
 oeZ
-ajt
-aaa
-aaa
+onz
+cMz
+lxy
 aaa
 aaa
 aaa
@@ -116289,12 +116328,12 @@ tWr
 tWr
 qYo
 aaa
-aaa
-aaa
-chp
-vVc
-aaa
-aaa
+hcH
+sZB
+oeZ
+ajt
+ckI
+lxy
 aaa
 aaa
 aaa
@@ -116546,12 +116585,12 @@ tWr
 tWr
 qYo
 aaa
-aaa
-aaa
-chp
-vVc
-aaa
-aaa
+hcH
+hcH
+oeZ
+hcH
+lxy
+lxy
 aaa
 aaa
 aaa
@@ -117573,9 +117612,9 @@ tWr
 tWr
 tWr
 qYo
-lxy
-sZB
-lxy
+aaa
+aaa
+aaa
 chp
 vVc
 aaa

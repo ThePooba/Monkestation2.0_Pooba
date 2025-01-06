@@ -10590,6 +10590,14 @@
 	},
 /turf/open/floor/iron,
 /area/station/cargo/storage)
+"dol" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "shitbreaker"
+	},
+/obj/machinery/shipbreaker,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "dom" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -14284,6 +14292,13 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/port)
+"ezR" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "ezX" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/effect/turf_decal/bot,
@@ -32485,6 +32500,16 @@
 "jXC" = (
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
+"jXJ" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/east{
+	dir = 2
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "jXM" = (
 /obj/effect/turf_decal/box,
 /obj/structure/cable,
@@ -32853,6 +32878,13 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/hos)
+"kdN" = (
+/obj/structure/cable,
+/obj/structure/window/spawner/directional/east{
+	dir = 2
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "kdO" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/coffee,
@@ -40825,6 +40857,17 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/service/chapel)
+"mHp" = (
+/obj/machinery/conveyor{
+	dir = 10;
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/east{
+	dir = 2
+	},
+/obj/structure/window/spawner/directional/east,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "mHq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -48694,6 +48737,16 @@
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/security/execution/transfer)
+"pme" = (
+/obj/machinery/light/directional/east,
+/obj/structure/window{
+	dir = 1
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "pmg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -49722,6 +49775,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
+"pDp" = (
+/obj/structure/window/spawner/directional/east{
+	dir = 2
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "pDF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -55513,7 +55572,13 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "rsN" = (
-/obj/machinery/shipbreaker,
+/obj/structure/rack,
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = 6
+	},
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = -5
+	},
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "rsT" = (
@@ -61823,6 +61888,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/full_charge,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "tsD" = (
@@ -64678,6 +64744,13 @@
 /obj/structure/sign/warning,
 /turf/closed/wall/r_wall,
 /area/station/security/processing)
+"upJ" = (
+/obj/machinery/conveyor{
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/east,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "upK" = (
 /obj/effect/turf_decal/siding/thinplating/dark/end,
 /turf/open/floor/glass/reinforced,
@@ -69369,6 +69442,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard)
+"vMC" = (
+/obj/machinery/conveyor{
+	dir = 6;
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/east,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "vMG" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
@@ -119059,9 +119140,9 @@ aaa
 aaa
 rCB
 aaa
-oFO
+cry
 aaa
-aaa
+rCB
 aaa
 sUP
 rCB
@@ -119315,11 +119396,11 @@ aaa
 aaa
 sUP
 rCB
-aaa
-aaa
-aaa
-aaa
-acK
+rCB
+rCB
+rCB
+rCB
+rCB
 rCB
 rCB
 svi
@@ -119563,21 +119644,21 @@ oAg
 oAg
 oAg
 oAg
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
+acK
+acK
+acK
+acK
+acK
+acK
+acK
+acK
+acK
+nOj
+rQY
+dxl
+jXC
+wTm
+jXC
 jXC
 aBW
 xZB
@@ -119830,10 +119911,10 @@ aaa
 aaa
 aaa
 nOj
-rQY
-dxl
-jXC
-wTm
+tsC
+kdN
+ezR
+pme
 jXC
 jXC
 aBW
@@ -120087,11 +120168,11 @@ aaa
 aaa
 aaa
 nOj
-tsC
-dxl
-nOj
 rsN
+pDp
+dol
 nOj
+jXJ
 jXC
 svi
 nRs
@@ -120345,11 +120426,11 @@ aaa
 aaa
 nOj
 jXC
-jXC
-nOj
-nOj
-nOj
-jXC
+pDp
+vMC
+upJ
+mHp
+wTm
 svi
 svi
 qdA

@@ -15454,6 +15454,12 @@
 /obj/machinery/status_display/ai/directional/west,
 /obj/structure/extinguisher_cabinet/directional/south,
 /obj/structure/table,
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = -5
+	},
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = 6
+	},
 /turf/open/floor/iron/dark/side/airless{
 	dir = 10
 	},
@@ -23308,6 +23314,16 @@
 "hxY" = (
 /turf/closed/wall,
 /area/station/maintenance/central)
+"hxZ" = (
+/obj/machinery/light/directional/west{
+	dir = 4
+	},
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "hya" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible/layer2{
 	dir = 6
@@ -24719,6 +24735,14 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
+"hVt" = (
+/obj/machinery/conveyor{
+	id = "shitbreaker";
+	dir = 4
+	},
+/obj/machinery/shipbreaker,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "hVF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -41629,6 +41653,19 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark/textured,
 /area/station/hallway/primary/aft)
+"nyZ" = (
+/obj/structure/window,
+/obj/machinery/conveyor_switch/oneway{
+	id = "shitbreaker"
+	},
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "nzl" = (
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/dark,
@@ -57542,7 +57579,11 @@
 	},
 /area/station/commons/storage/primary)
 "sQK" = (
-/obj/machinery/light/small/directional/east,
+/obj/machinery/light/directional/west,
+/obj/machinery/conveyor/inverted{
+	dir = 9;
+	id = "shitbreaker"
+	},
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "sQL" = (
@@ -63093,6 +63134,10 @@
 /obj/machinery/duct,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/aft)
+"uEM" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "uEU" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -69642,7 +69687,9 @@
 /turf/open/floor/iron/large,
 /area/station/engineering/storage)
 "wCP" = (
-/obj/machinery/shipbreaker,
+/obj/machinery/conveyor{
+	id = "shitbreaker"
+	},
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "wCX" = (
@@ -70396,6 +70443,13 @@
 /obj/machinery/duct,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
+"wPq" = (
+/obj/machinery/conveyor{
+	id = "shitbreaker";
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "wPy" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -70510,7 +70564,7 @@
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/starboard/aft)
 "wRh" = (
-/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/iron/dark/side/airless{
 	dir = 6
 	},
@@ -92709,12 +92763,12 @@ uoo
 ksa
 uoo
 ksa
-ksa
 aVH
-sQK
-wUb
+aVH
+aVH
+uEM
 gwf
-ksa
+gwf
 ksa
 ksa
 ksa
@@ -92968,10 +93022,10 @@ sxb
 iCE
 uoo
 aVH
-sxb
+wUb
 wCP
-sxb
-ksa
+sQK
+gwf
 ksa
 ksa
 ksa
@@ -93223,12 +93277,12 @@ fbA
 fak
 sxb
 uoo
-ksa
 aVH
-sxb
-sxb
-sxb
-ksa
+aVH
+wUb
+nyZ
+hVt
+gwf
 ksa
 ksa
 ksa
@@ -93482,11 +93536,11 @@ hLk
 vCp
 vCp
 vCp
-vCp
-vCp
-vCp
-vCp
-ksa
+wUb
+wPq
+hxZ
+gwf
+gwf
 ksa
 ksa
 ksa
@@ -93737,13 +93791,13 @@ idr
 mzC
 sxb
 uoo
-ksa
+aVH
 vCp
-ksa
-ksa
-ksa
-vCp
-ksa
+wUb
+wUb
+wUb
+wUb
+gwf
 ksa
 ksa
 ksa

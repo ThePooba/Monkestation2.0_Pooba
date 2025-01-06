@@ -1597,8 +1597,12 @@
 /turf/open/floor/iron/checker,
 /area/station/science/research)
 "aDq" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "shitbreaker"
+	},
 /obj/machinery/shipbreaker,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "aDA" = (
 /obj/machinery/light/small/directional/south,
@@ -1950,6 +1954,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "aID" = (
@@ -4958,6 +4963,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/landmark/start/gary,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "bJQ" = (
@@ -6998,6 +7004,7 @@
 "czs" = (
 /obj/structure/easel,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "czG" = (
@@ -12124,6 +12131,13 @@
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
+"erv" = (
+/obj/machinery/conveyor{
+	dir = 6;
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "erF" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/virology/glass{
@@ -12264,6 +12278,17 @@
 /obj/structure/light_construct/small/directional/east,
 /turf/open/floor/wood,
 /area/station/maintenance/port/aft)
+"ety" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/rack,
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = -5
+	},
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = 6
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "etz" = (
 /obj/structure/window/spawner/directional/west,
 /obj/effect/turf_decal/siding/wood{
@@ -18959,6 +18984,12 @@
 /area/station/engineering/break_room)
 "gQX" = (
 /obj/machinery/light/directional/east,
+/obj/structure/window{
+	dir = 1
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "shitbreaker"
+	},
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "gRb" = (
@@ -21314,6 +21345,11 @@
 /obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/iron/white,
 /area/station/science/research)
+"hCO" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "hDa" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -23062,6 +23098,16 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/floor/plating,
 /area/station/maintenance/fore)
+"iid" = (
+/obj/machinery/conveyor{
+	dir = 10;
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/east{
+	dir = 2
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "iio" = (
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /obj/machinery/door/airlock/command{
@@ -25912,6 +25958,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white,
 /area/station/science/circuits)
+"jbJ" = (
+/obj/machinery/conveyor{
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "jbR" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -26518,6 +26570,7 @@
 "jlM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "jlU" = (
@@ -26725,6 +26778,7 @@
 "jpO" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "jpQ" = (
@@ -31402,6 +31456,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "kVJ" = (
@@ -31543,6 +31598,7 @@
 "kXx" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "kXA" = (
@@ -32422,6 +32478,11 @@
 "lnc" = (
 /turf/closed/wall,
 /area/station/commons/dorms)
+"lnd" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "lnv" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance{
@@ -39457,6 +39518,13 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"nDR" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "nDS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/broken_floor,
@@ -39476,6 +39544,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "nEb" = (
@@ -54916,6 +54985,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/storage)
+"sUY" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/east{
+	dir = 2
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "sVc" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/field/generator,
@@ -55199,6 +55278,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "tak" = (
@@ -111515,7 +111595,7 @@ jpO
 sZU
 nDW
 sZU
-wrn
+jcy
 qIB
 rCn
 oUz
@@ -111760,14 +111840,14 @@ lMJ
 lMJ
 lMJ
 cpH
-aaa
-aaa
-aaa
+ety
+lnd
+aox
 dJN
+aox
+aox
 aaa
-aaa
-aaa
-dJN
+aox
 tCS
 tCS
 tCS
@@ -112017,14 +112097,14 @@ lMJ
 aaa
 aUn
 lMJ
-aaa
+aox
 uVa
 uVa
 mFD
 uVa
 uVa
 aaa
-dJN
+aox
 nqL
 hHK
 dLO
@@ -112271,7 +112351,7 @@ qsN
 szm
 ffP
 fAx
-aaa
+aox
 uzu
 lMJ
 aaa
@@ -112281,7 +112361,7 @@ dtN
 frF
 soH
 aaa
-dJN
+aox
 nqL
 oHC
 wdK
@@ -112528,7 +112608,7 @@ qsN
 bwP
 ffP
 fAx
-aaa
+aox
 aUn
 lMJ
 aaa
@@ -112538,7 +112618,7 @@ nIZ
 fmA
 soH
 aaa
-dJN
+aox
 nqL
 eBe
 hHK
@@ -112782,11 +112862,11 @@ aaa
 aaa
 aaa
 qsN
-fAx
+nDR
 gQX
 fAx
-aaa
-aaa
+aox
+aox
 cpH
 aaa
 uVa
@@ -112795,7 +112875,7 @@ nIZ
 qtd
 uVa
 aaa
-dJN
+aox
 nqL
 tdP
 wdK
@@ -113041,9 +113121,9 @@ dPw
 qsN
 aDq
 qsN
-fAx
-aaa
-aaa
+sUY
+hCO
+aox
 lMJ
 aaa
 uVa
@@ -113052,7 +113132,7 @@ uVa
 soH
 uVa
 aaa
-dJN
+aox
 nqL
 hHK
 fQe
@@ -113295,11 +113375,11 @@ aaa
 aaa
 aWl
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+uVa
+erv
+jbJ
+iid
+aox
 kiE
 lMJ
 lMJ
@@ -113309,7 +113389,7 @@ lMJ
 lMJ
 lMJ
 lMJ
-dJN
+aox
 nqL
 nqL
 nqL
@@ -113552,11 +113632,11 @@ aaa
 aaa
 rrt
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+uVa
+uVa
+uVa
+uVa
+aox
 kiE
 lMJ
 aaa
@@ -113566,7 +113646,7 @@ aaa
 aaa
 aaa
 aaa
-dJN
+aox
 lMJ
 aaa
 aaa
@@ -113823,7 +113903,7 @@ aaa
 aaa
 aaa
 aaa
-dJN
+aox
 lMJ
 aaa
 aaa
@@ -114080,7 +114160,7 @@ aaa
 aaa
 aaa
 aaa
-dJN
+aox
 lMJ
 aav
 sxo

@@ -28213,7 +28213,13 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/central)
 "fsz" = (
-/obj/machinery/shipbreaker,
+/obj/machinery/light/directional/east,
+/obj/structure/window{
+	dir = 1
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "shitbreaker"
+	},
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "fsG" = (
@@ -49629,6 +49635,13 @@
 /obj/structure/window/spawner/directional/south,
 /turf/open/floor/iron/white,
 /area/station/service/barber)
+"jFq" = (
+/obj/machinery/conveyor{
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/east,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "jFs" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -53535,6 +53548,14 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
+"kpF" = (
+/obj/machinery/conveyor{
+	dir = 10;
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/east,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "kpG" = (
 /obj/effect/spawner/random/trash/mess,
 /obj/effect/decal/cleanable/dirt,
@@ -64765,9 +64786,12 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
 "mBU" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space/openspace,
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "shitbreaker"
+	},
+/obj/machinery/shipbreaker,
+/turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "mBV" = (
 /obj/structure/grille,
@@ -69971,6 +69995,14 @@
 /obj/machinery/meter,
 /turf/open/floor/engine,
 /area/station/science/ordnance)
+"nEq" = (
+/obj/machinery/conveyor{
+	dir = 6;
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/east,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "nEr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -84450,6 +84482,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/fore/upper)
+"qtX" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "qtY" = (
 /obj/structure/railing,
 /turf/open/floor/iron/stairs/old{
@@ -89072,6 +89111,12 @@
 /obj/machinery/digital_clock/directional/east,
 /turf/open/floor/wood,
 /area/station/command/captain_dining)
+"rmU" = (
+/obj/structure/window/spawner/directional/east{
+	dir = 2
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "rmY" = (
 /obj/effect/turf_decal/trimline/purple/filled/warning{
 	dir = 10
@@ -111085,6 +111130,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/science)
+"vxe" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "vxf" = (
 /obj/machinery/firealarm/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -122577,6 +122626,13 @@
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/iron/dark/side,
 /area/station/command/bridge)
+"xGW" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "shitbreaker"
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "xHd" = (
 /mob/living/basic/chicken/brown{
 	forced_gender = "male"
@@ -124996,6 +125052,16 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood/large,
 /area/station/science/auxlab/firing_range)
+"yfm" = (
+/obj/structure/rack,
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = 6
+	},
+/obj/item/weldingtool/electric/raynewelder{
+	pixel_y = -5
+	},
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "yfv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -214378,7 +214444,7 @@ ulx
 ulx
 fqO
 gYY
-jQP
+yfm
 fqO
 xJH
 xPK
@@ -214635,7 +214701,7 @@ ulx
 ulx
 fqO
 gYY
-jQP
+vxe
 fqO
 xJH
 xPK
@@ -215143,7 +215209,7 @@ czg
 ulx
 wPl
 wPl
-mBU
+wPl
 gYY
 gYY
 gYY
@@ -215399,10 +215465,10 @@ czg
 czg
 czg
 wPl
-czg
-rYL
+rmU
+xGW
 fsz
-rYL
+jQP
 nTQ
 nTQ
 bDM
@@ -215656,10 +215722,10 @@ ulx
 czg
 ulx
 wPl
-ulx
+rmU
+mBU
 rYL
-rYL
-rYL
+qtX
 rYL
 wwE
 tnL
@@ -215913,10 +215979,10 @@ ulx
 czg
 ulx
 wPl
-ulx
-ulx
-ulx
-ulx
+rmU
+nEq
+jFq
+kpF
 fqO
 mxv
 msW
