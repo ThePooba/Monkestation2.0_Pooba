@@ -21342,11 +21342,6 @@
 /obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/iron/white,
 /area/station/science/research)
-"hCO" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "hDa" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -113116,7 +113111,7 @@ qsN
 aDq
 qsN
 sUY
-hCO
+aox
 aox
 lMJ
 aaa
