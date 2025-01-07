@@ -48598,7 +48598,6 @@
 "lMB" = (
 /obj/machinery/light/directional/east,
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/item/kirbyplants/organic/plant16,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/blueshield)
@@ -54535,13 +54534,6 @@
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/upper)
-"obe" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/wood/parquet,
-/area/station/command/heads_quarters/nt_rep)
 "obr" = (
 /obj/machinery/light/directional/west,
 /obj/effect/turf_decal/tile/neutral/full,
@@ -61290,11 +61282,6 @@
 /obj/effect/spawner/random/trash/soap,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
-"qEk" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/closed/wall,
-/area/station/maintenance/department/cargo)
 "qEp" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -117661,7 +117648,7 @@ bxo
 bxo
 bJp
 bJp
-qEk
+bJp
 bJp
 bJp
 bJp
@@ -128647,7 +128634,7 @@ duM
 duM
 xnl
 xtP
-obe
+fxp
 thm
 dZC
 dnO
