@@ -4,8 +4,9 @@
 	desc = "A Rayne corp laser cutter and welder."
 	icon = 'monkestation/code/modules/a_ship_in_need_of_breaking/icons/shipbreaking.dmi'
 	icon_state = "raynewelder"
-	inhand_icon_state = "inducer"
-	worn_icon_state = "inducer"
+	inhand_icon_state = "raynewelder"
+	lefthand_file = 'monkestation/icons/obj/rayne_corp/inhand_left.dmi'
+	righthand_file = 'monkestation/icons/obj/rayne_corp/inhand_right.dmi'
 	light_power = 1
 	light_color = LIGHT_COLOR_FLARE
 	tool_behaviour = NONE
