@@ -28214,12 +28214,10 @@
 /area/station/hallway/primary/central)
 "fsz" = (
 /obj/machinery/light/directional/east,
-/obj/structure/window{
-	dir = 1
-	},
 /obj/machinery/conveyor_switch/oneway{
 	id = "shitbreaker"
 	},
+/obj/structure/window/spawner/directional/north,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "fsG" = (
@@ -89112,9 +89110,7 @@
 /turf/open/floor/wood,
 /area/station/command/captain_dining)
 "rmU" = (
-/obj/structure/window/spawner/directional/east{
-	dir = 2
-	},
+/obj/structure/window/spawner/directional/south,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "rmY" = (

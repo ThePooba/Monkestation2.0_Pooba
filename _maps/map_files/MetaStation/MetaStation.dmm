@@ -18984,9 +18984,6 @@
 /area/station/engineering/break_room)
 "gQX" = (
 /obj/machinery/light/directional/east,
-/obj/structure/window{
-	dir = 1
-	},
 /obj/machinery/conveyor_switch/oneway{
 	id = "shitbreaker"
 	},
@@ -23103,9 +23100,7 @@
 	dir = 10;
 	id = "shitbreaker"
 	},
-/obj/structure/window/spawner/directional/east{
-	dir = 2
-	},
+/obj/structure/window/spawner/directional/south,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "iio" = (
@@ -39523,6 +39518,7 @@
 	dir = 4;
 	id = "shitbreaker"
 	},
+/obj/structure/window/spawner/directional/south,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "nDS" = (
@@ -54990,9 +54986,7 @@
 	dir = 8;
 	id = "shitbreaker"
 	},
-/obj/structure/window/spawner/directional/east{
-	dir = 2
-	},
+/obj/structure/window/spawner/directional/south,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "sVc" = (

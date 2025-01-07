@@ -41654,16 +41654,12 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/hallway/primary/aft)
 "nyZ" = (
-/obj/structure/window,
 /obj/machinery/conveyor_switch/oneway{
 	id = "shitbreaker"
 	},
-/obj/structure/window{
-	dir = 4
-	},
-/obj/structure/window{
-	dir = 8
-	},
+/obj/structure/window/spawner/directional/south,
+/obj/structure/window/spawner/directional/east,
+/obj/structure/window/spawner/directional/west,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "nzl" = (

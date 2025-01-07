@@ -14297,6 +14297,8 @@
 	dir = 4;
 	id = "shitbreaker"
 	},
+/obj/structure/window/spawner/directional/south,
+/obj/structure/window/spawner/directional/north,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "ezX" = (
@@ -32505,9 +32507,7 @@
 	dir = 8;
 	id = "shitbreaker"
 	},
-/obj/structure/window/spawner/directional/east{
-	dir = 2
-	},
+/obj/structure/window/spawner/directional/south,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "jXM" = (
@@ -32878,13 +32878,6 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/hos)
-"kdN" = (
-/obj/structure/cable,
-/obj/structure/window/spawner/directional/east{
-	dir = 2
-	},
-/turf/open/floor/plating/airless,
-/area/station/engineering/shipbreaker_hut)
 "kdO" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/coffee,
@@ -40862,10 +40855,8 @@
 	dir = 10;
 	id = "shitbreaker"
 	},
-/obj/structure/window/spawner/directional/east{
-	dir = 2
-	},
 /obj/structure/window/spawner/directional/east,
+/obj/structure/window/spawner/directional/south,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "mHq" = (
@@ -48739,9 +48730,6 @@
 /area/station/security/execution/transfer)
 "pme" = (
 /obj/machinery/light/directional/east,
-/obj/structure/window{
-	dir = 1
-	},
 /obj/machinery/conveyor_switch/oneway{
 	id = "shitbreaker"
 	},
@@ -49775,12 +49763,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
-"pDp" = (
-/obj/structure/window/spawner/directional/east{
-	dir = 2
-	},
-/turf/open/floor/plating/airless,
-/area/station/engineering/shipbreaker_hut)
 "pDF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -69448,6 +69430,7 @@
 	id = "shitbreaker"
 	},
 /obj/structure/window/spawner/directional/east,
+/obj/structure/window/spawner/directional/north,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "vMG" = (
@@ -119912,7 +119895,7 @@ aaa
 aaa
 nOj
 tsC
-kdN
+dxl
 ezR
 pme
 jXC
@@ -120169,7 +120152,7 @@ aaa
 aaa
 nOj
 rsN
-pDp
+jXC
 dol
 nOj
 jXJ
@@ -120426,7 +120409,7 @@ aaa
 aaa
 nOj
 jXC
-pDp
+jXC
 vMC
 upJ
 mHp
