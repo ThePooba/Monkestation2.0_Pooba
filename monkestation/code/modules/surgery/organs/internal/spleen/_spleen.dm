@@ -22,7 +22,7 @@ If you have > 135 toxin damage and dont have spleenless/liverless metabolism you
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_SPLEEN
-	desc = "What the hell even is this"
+	desc = "Handles part of blood generation, hypervolemia, and critically dangerous toxin levels at cost to itself."
 
 	maxHealth = STANDARD_ORGAN_THRESHOLD
 	healing_factor = STANDARD_ORGAN_HEALING
@@ -36,7 +36,7 @@ If you have > 135 toxin damage and dont have spleenless/liverless metabolism you
 	var/internal_blood_buffer_max = 24 //a buffer that hold blood unside the spleen, when you get low on blood it releases this and takes a while to regenerate it fully
 	var/stored_blood = 24 //current blood in your spleen buffer
 	var/toxResistance = -0.2 //how much the spleen will heal when you are messed up from toxins (damages iteself in process)
-	var/toxLimit = 135 //how high tox can get before spleen starts sacrificing itself
+	var/toxLimit = 135 //how high tox can get before spleen starts sacrificing itself to heal it
 
 /obj/item/organ/internal/spleen/Initialize(mapload)
 	. = ..()
@@ -111,3 +111,59 @@ If you have > 135 toxin damage and dont have spleenless/liverless metabolism you
 
 /obj/item/organ/internal/spleen/get_availability(datum/species/owner_species, mob/living/owner_mob)
 	return owner_species.mutantliver
+
+/obj/item/organ/internal/spleen/cybernetic
+	name = "basic cybernetic spleen"
+	icon_state = "spleen-c"
+	desc = "A very basic device designed to mimic the functions of a human liver. Handles toxins slightly worse than an organic liver."
+	organ_flags = ORGAN_SYNTHETIC
+	maxHealth = STANDARD_ORGAN_THRESHOLD*0.5
+	var/emp_vulnerability = 80 //Chance of permanent effects if emp-ed.
+
+	blood_regen_mult = 0.05 //how much the spleen will multiply your blood regen
+	operated = FALSE //whether the spleens been repaired with surgery and can be fixed again or not
+	internal_blood_buffer_max = 10 //a buffer that hold blood unside the spleen, when you get low on blood it releases this and takes a while to regenerate it fully
+	stored_blood = 10 //current blood in your spleen buffer
+	toxResistance = -0.1 //how much the spleen will heal when you are messed up from toxins (damages iteself in process)
+	toxLimit = 150 //
+
+/obj/item/organ/internal/spleen/cybernetic/tier2
+	name = "cybernetic spleen"
+	icon_state = "spleen-c-u"
+	desc = "An electronic device designed to mimic the functions of a human spleen. Handles blood and emergency toxins slightly better than an organic spleen."
+	organ_flags = ORGAN_SYNTHETIC
+	maxHealth = STANDARD_ORGAN_THRESHOLD
+	var/emp_vulnerability = 40 //Chance of permanent effects if emp-ed.
+
+	blood_regen_mult = 0.15 //how much the spleen will multiply your blood regen
+	operated = FALSE //whether the spleens been repaired with surgery and can be fixed again or not
+	internal_blood_buffer_max = 30 //a buffer that hold blood unside the spleen, when you get low on blood it releases this and takes a while to regenerate it fully
+	stored_blood = 30 //current blood in your spleen buffer
+	toxResistance = -0.4 //how much the spleen will heal when you are messed up from toxins (damages iteself in process)
+	toxLimit = 130
+
+/obj/item/organ/internal/spleen/cybernetic/tier3
+	name = "upgraded cybernetic spleen"
+	icon_state = "spleen-c-u2"
+	desc = "An upgraded version of the cybernetic spleen designed to mimic hematopoiesis of bone marrow while being able to in emergencies sacrifice its durability to cleans toxins. Stores 50 units of blood for emergency release in case of hypervolemic shock. "
+	organ_flags = ORGAN_SYNTHETIC
+	maxHealth = STANDARD_ORGAN_THRESHOLD*1.5
+	var/emp_vulnerability = 20 //Chance of permanent effects if emp-ed.
+
+	blood_regen_mult = 0.35
+	operated = FALSE
+	internal_blood_buffer_max = 50
+	stored_blood = 50
+	toxResistance = -0.7
+	toxLimit = 99
+
+/obj/item/organ/internal/spleen/cybernetic/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(!COOLDOWN_FINISHED(src, severe_cooldown)) //So we cant just spam emp to kill people.
+		owner.adjustToxLoss(10)
+		COOLDOWN_START(src, severe_cooldown, 10 SECONDS)
+	if(prob(emp_vulnerability/severity)) //Chance of permanent effects
+		organ_flags |= ORGAN_SYNTHETIC_EMP //Starts organ faliure - gonna need replacing soon.
+

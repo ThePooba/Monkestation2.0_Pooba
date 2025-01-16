@@ -8324,6 +8324,7 @@
 #include "monkestation\code\modules\surgery\organs\internal\stomach.dm"
 #include "monkestation\code\modules\surgery\organs\internal\tongue.dm"
 #include "monkestation\code\modules\surgery\organs\internal\appendix\fidgetappendix.dm"
+#include "monkestation\code\modules\surgery\organs\internal\spleen\_spleen.dm"
 #include "monkestation\code\modules\syndicate_ghostroles\_base.dm"
 #include "monkestation\code\modules\syndicate_ghostroles\depot.dm"
 #include "monkestation\code\modules\syndicate_ghostroles\listeningpost.dm"
