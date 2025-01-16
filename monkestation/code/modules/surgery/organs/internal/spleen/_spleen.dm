@@ -133,7 +133,7 @@ If you have > 135 toxin damage and dont have spleenless/liverless metabolism you
 	desc = "An electronic device designed to mimic the functions of a human spleen. Handles blood and emergency toxins slightly better than an organic spleen."
 	organ_flags = ORGAN_SYNTHETIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD
-	var/emp_vulnerability = 40 //Chance of permanent effects if emp-ed.
+	emp_vulnerability = 40 //Chance of permanent effects if emp-ed.
 
 	blood_regen_mult = 0.15 //how much the spleen will multiply your blood regen
 	operated = FALSE //whether the spleens been repaired with surgery and can be fixed again or not
@@ -148,7 +148,7 @@ If you have > 135 toxin damage and dont have spleenless/liverless metabolism you
 	desc = "An upgraded version of the cybernetic spleen designed to mimic hematopoiesis of bone marrow while being able to in emergencies sacrifice its durability to cleans toxins. Stores 50 units of blood for emergency release in case of hypervolemic shock. "
 	organ_flags = ORGAN_SYNTHETIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD*1.5
-	var/emp_vulnerability = 20 //Chance of permanent effects if emp-ed.
+	emp_vulnerability = 20 //Chance of permanent effects if emp-ed.
 
 	blood_regen_mult = 0.35
 	operated = FALSE
