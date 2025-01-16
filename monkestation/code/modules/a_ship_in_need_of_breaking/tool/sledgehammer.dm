@@ -7,7 +7,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	force = 5 /// The weapon requires two hands
-	throwforce = 19
+	throwforce = 12
 	throw_range = 3 /// Doesn't throw very far
 	demolition_mod = 3 // BREAK THINGS
 	armour_penetration = -20
@@ -22,7 +22,7 @@
 
 /obj/item/melee/sledgehammer/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_wielded = 15, wield_callback = CALLBACK(src, PROC_REF(on_wield)), unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), require_twohands = TRUE)
+	AddComponent(/datum/component/two_handed, force_wielded = 10, wield_callback = CALLBACK(src, PROC_REF(on_wield)), unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), require_twohands = TRUE)
 
 /obj/item/melee/sledgehammer/proc/on_wield(atom/source, mob/living/user)
 	hitsound = "swing_hit"
@@ -58,5 +58,5 @@
 	if(iscarbon(thrower))
 		var/mob/living/carbon/C = thrower
 		C.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/sledgehammer_thrown_stagger, update=TRUE)
-		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/status_effect/sledgehammer_thrown_stagger), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/status_effect/sledgehammer_thrown_stagger), 4 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		to_chat(target, span_danger("You are staggered from throwing such a heavy object!"))
