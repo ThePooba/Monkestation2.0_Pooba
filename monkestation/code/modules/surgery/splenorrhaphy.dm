@@ -43,12 +43,12 @@
 	)
 	display_pain(target, "Your abdomen burns in horrific stabbing pain!")
 
-/datum/surgery_step/hepatectomy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
+/datum/surgery_step/splenorrhaphy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
 	var/mob/living/carbon/human/human_target = target
-	var/obj/item/organ/internal/liver/target_liver = target.get_organ_slot(ORGAN_SLOT_LIVER)
-	human_target.setOrganLoss(ORGAN_SLOT_LIVER, 10) //not bad, not great
-	if(target_liver)
-		target_liver.operated = TRUE
+	var/obj/item/organ/internal/spleen/target_spleen = target.get_organ_slot(ORGAN_SLOT_SPLEEN)
+	human_target.setOrganLoss(ORGAN_SLOT_SPLEEN, 10) //not bad, not great
+	if(target_spleen)
+		target_spleen.operated = TRUE
 	display_results(
 		user,
 		target,
@@ -59,9 +59,9 @@
 	display_pain(target, "The pain receeds slightly.")
 	return ..()
 
-/datum/surgery_step/hepatectomy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery)
+/datum/surgery_step/splenorrhaphy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery)
 	var/mob/living/carbon/human/human_target = target
-	human_target.adjustOrganLoss(ORGAN_SLOT_LIVER, 15)
+	human_target.adjustOrganLoss(ORGAN_SLOT_spleen, 15)
 	display_results(
 		user,
 		target,
