@@ -56,7 +56,7 @@
 
 /obj/machinery/computer/shipbreaker/proc/area_clear_check()
 	for(var/turf/t in linked)
-		if(!isspaceturf(t))
+		if(!isspaceturf(t) || !isopenspaceturf(t))
 			spawn_area_clear = FALSE
 			say("FLOORING OR WALL DETECTED")
 			return
@@ -108,7 +108,7 @@
 
 /obj/machinery/computer/shipbreaker/proc/setup_health_tracker()
 	for(var/turf/turf in linked)
-		if(!isspaceturf(turf))
+		if(!isspaceturf(turf) || !isopenspaceturf(turf))
 			turf_count++
 			RegisterSignal(turf, COMSIG_TURF_CHANGE, PROC_REF(modify_health))
 	ship_health = 100
