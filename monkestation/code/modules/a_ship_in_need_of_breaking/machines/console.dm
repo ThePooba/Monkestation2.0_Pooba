@@ -110,7 +110,7 @@
 
 /obj/machinery/computer/shipbreaker/proc/setup_health_tracker()
 	for(var/turf/turf in linked)
-		if(!isgroundlessturf(t))
+		if(!isgroundlessturf(turf))
 			turf_count++
 			RegisterSignal(turf, COMSIG_TURF_CHANGE, PROC_REF(modify_health))
 	total_turf = turf_count
@@ -118,7 +118,7 @@
 	ship_health = 100
 
 /obj/machinery/computer/shipbreaker/proc/modify_health(turf/source)
-	ship_health -= ((totalturf - turf_count) * ship_part)
+	ship_health -= ((total_turf - turf_count) * ship_part)
 	ship_health = max(ship_health, 0)
 	if(ship_health < 1)
 		ship_health = 0
