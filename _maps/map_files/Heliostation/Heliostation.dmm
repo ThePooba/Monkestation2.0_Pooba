@@ -35758,8 +35758,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"gPJ" = (
-/turf/closed/wall)
 "gQe" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -117950,9 +117948,9 @@ cBL
 cBL
 kUi
 kUi
-gPJ
-gPJ
-gPJ
+aaa
+aaa
+aaa
 kHY
 kHY
 ezL
@@ -119492,9 +119490,9 @@ cBL
 cBL
 kUi
 kUi
-gPJ
-gPJ
-gPJ
+aaa
+aaa
+aaa
 kHY
 kHY
 aUH
