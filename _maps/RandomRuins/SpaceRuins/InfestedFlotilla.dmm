@@ -3300,9 +3300,6 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/infested_flotilla)
@@ -6420,8 +6417,6 @@
 /obj/structure/table,
 /obj/item/knife/kitchen,
 /obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
@@ -6945,8 +6940,6 @@
 /area/ruin/space/has_grav/infested_flotilla)
 "NV" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/passive_vent/layer2{
 	dir = 1
@@ -10022,7 +10015,7 @@ WG
 WG
 WG
 WG
-uo
+GN
 Qk
 jC
 KR
