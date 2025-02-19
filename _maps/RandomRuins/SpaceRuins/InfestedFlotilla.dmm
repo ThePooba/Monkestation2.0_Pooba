@@ -7955,10 +7955,12 @@
 	pixel_y = 6
 	},
 /obj/item/cigbutt/roach{
-	pixel_y = 2pixel_x = 7
+	pixel_y = 2;
+	pixel_x = 7
 	},
 /obj/item/cigbutt{
-	pixel_y = 2pixel_x = -5
+	pixel_y = 2;
+	pixel_x = -5
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/infested_flotilla)
