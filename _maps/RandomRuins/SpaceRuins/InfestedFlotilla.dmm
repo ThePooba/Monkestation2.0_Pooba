@@ -3575,10 +3575,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/infested_flotilla)
-"uo" = (
-/obj/structure/lattice,
-/turf/closed/mineral/random/stationside/asteroid/porus,
-/area/template_noop)
 "uq" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
@@ -11729,7 +11725,7 @@ EW
 GN
 GN
 GN
-uo
+GN
 Bm
 Dp
 mi
