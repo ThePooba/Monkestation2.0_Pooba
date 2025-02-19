@@ -7953,7 +7953,7 @@
 /obj/structure/table,
 /obj/item/trash/empty_food_tray{
 	pixel_y = 6;
-	desc = s
+	
 	},
 /obj/item/cigbutt/roach{
 	pixel_y = 2;
