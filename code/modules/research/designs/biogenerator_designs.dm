@@ -186,7 +186,7 @@
 	build_path = /obj/item/rollingpaper
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_MATERIALS)
 
-/datum/design/strange_seed
+/datum/design/strange_seeds
 	name = "Strange Seeds"
 	id = "strange_seeds"
 	build_type = BIOGENERATOR
