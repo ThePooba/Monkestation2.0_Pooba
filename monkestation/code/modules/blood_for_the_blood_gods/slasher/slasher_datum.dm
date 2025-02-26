@@ -121,6 +121,15 @@
 		human.regenerate_icons()
 		reset_fear(human)
 
+/datum/antagonist/slasher/greet()
+	. = ..()
+	to_chat(owner.current, span_userdanger("The time is ripe to hunt for souls."))
+	to_chat(owner.current, span_announce("You are a vengeful spirit that feeds on fear. <b>Stick to maintenance, the darkness reveals us but is our greatest friend</b>."))
+	to_chat(owner.current, span_announce("Stalk targets to instill fear! You will gain their souls after stalking, turning them a pallid white."))
+	to_chat(owner.current, span_announce("Claim the souls of the fallen, the more souls you have, the sharper your blade."))
+	to_chat(owner.current, span_announce("Reject the light, it hides you but makes you vulnerable."))
+	owner.current.playsound_local(null, 'monkestation/sound/ambience/antag/slasher.ogg', vol = 100, vary = FALSE, pressure_affected = FALSE)
+	owner.announce_objectives()
 
 /datum/antagonist/slasher/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 
