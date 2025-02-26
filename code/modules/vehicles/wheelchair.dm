@@ -191,8 +191,3 @@
 	foldabletype = /obj/item/wheelchair/gold
 	delay_multiplier = 1.5
 	foldabletype = /obj/item/wheelchair/gold
-
-/obj/item/wheelchair/broom/proc/deploy_wheelchair(mob/user, atom/location)
-	var/obj/vehicle/ridden/wheelchair/broom/broom_deployed = new unfolded_type(location)
-	broom_deployed.add_fingerprint(user)
-	qdel(src)
