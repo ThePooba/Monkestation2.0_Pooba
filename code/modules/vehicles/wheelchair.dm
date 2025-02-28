@@ -171,23 +171,3 @@
 	usr.visible_message(span_notice("[bell_attached] falls off!"))
 	bell_attached = null
 	update_appearance()
-
-/obj/item/wheelchair/broom
-	name = "Magic Broomstick"
-	desc = "A magic broomstick perfect for aspiring witches or wizards."
-	icon = 'icons/obj/weapons/guns/magic.dmi'
-	icon_state = "broom"
-	inhand_icon_state = "broom"
-	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
-	force = 12
-
-/obj/vehicle/ridden/wheelchair/broom
-	desc = "Its magic! Wow!"
-	icon_state = "gold_wheelchair"
-	overlay_icon = "gold_wheelchair_overlay"
-	max_integrity = 150 //MONKESTATION EDIT
-	armor_type = /datum/armor/wheelchair_gold
-	foldabletype = /obj/item/wheelchair/gold
-	delay_multiplier = 1.5
-	foldabletype = /obj/item/wheelchair/gold
