@@ -1121,7 +1121,8 @@ SUBSYSTEM_DEF(job)
 
 
 	if(!isnull(possible_job.job_req_donor) && (!is_admin(player.client) && !player.client?.is_mentor()))
-		if(get_player_details(player)?.patreon?.is_donator() < possible_job.job_req_donor)
+		var/donator_rank = get_player_details(player)?.patreon?.is_donator()
+		if(isnull(donator_rank) || donator_rank < possible_job.job_req_donor)
 			JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_UNAVAILABLE_DONOR_RANK, possible_job.title)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 			return JOB_UNAVAILABLE_DONOR_RANK
 
