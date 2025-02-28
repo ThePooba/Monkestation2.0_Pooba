@@ -289,7 +289,9 @@
 
 /datum/component/riding/vehicle/magic_broom/handle_specials()
 	. = ..()
-	set_vehicle_dir_offsets(NORTH, 0, 5)
-	set_vehicle_dir_offsets(SOUTH, 0, 5)
-	set_vehicle_dir_offsets(EAST, 0, 5)
-	set_vehicle_dir_offsets(WEST, 0, 5)
+	set_vehicle_dir_offsets(NORTH, 0, 0)
+	set_vehicle_dir_offsets(SOUTH, 0, 0)
+	set_vehicle_dir_offsets(EAST, 0, 0)
+	set_vehicle_dir_offsets(WEST, 0, 0)
+	set_vehicle_dir_layer(EAST, BELOW_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, BELOW_MOB_LAYER)

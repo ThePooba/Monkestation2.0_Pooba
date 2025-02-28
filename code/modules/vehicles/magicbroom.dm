@@ -47,8 +47,8 @@
 /obj/vehicle/ridden/magic_broom
 	desc = "Its magic! Wow!"
 	icon_state = "broom"
-	var/overlay_icon = "magic_broom_overlay"
-	var/image/magic_broom_overlay
+	var/overlay_icon = "broom_overlay"
+	var/image/broom_overlay
 	max_integrity = 150 //MONKESTATION EDIT
 	armor_type = /datum/armor/magic_broom
 	var/foldabletype = /obj/item/magic_broom
@@ -57,7 +57,7 @@
 /obj/vehicle/ridden/magic_broom/Initialize(mapload)
 	. = ..()
 	make_ridable()
-	magic_broom_overlay = image(icon, overlay_icon, ABOVE_MOB_LAYER)
+	broom_overlay = image(icon, overlay_icon, ABOVE_MOB_LAYER)
 	ADD_TRAIT(src, TRAIT_NO_IMMOBILIZE, INNATE_TRAIT)
 	AddComponent(/datum/component/simple_rotation) //rotation for roleplay
 
