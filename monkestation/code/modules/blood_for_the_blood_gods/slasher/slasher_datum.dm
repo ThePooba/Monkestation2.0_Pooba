@@ -17,6 +17,7 @@
 	hud_icon = 'monkestation/icons/mob/slasher.dmi'
 	preview_outfit = /datum/outfit/slasher
 	show_to_ghosts = TRUE
+	var/give_objectives = TRUE
 	objectives = list("Harvest souls by stalking your targets and feasting on their fear.", "Use soulsteal to harvest souls.", "Use your traps to slow down your victims.")
 	var/datum/action/cooldown/slasher/active_action = null
 	///the linked machette that the slasher can summon even if destroyed and is unique to them
