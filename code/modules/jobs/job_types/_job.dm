@@ -127,6 +127,8 @@
 	/// custom ringtone for this job
 	var/job_tone
 
+	/// Donor rank required for this job. Leave null for no requirement.
+	var/job_req_donor = null
 
 /datum/job/New()
 	. = ..()
