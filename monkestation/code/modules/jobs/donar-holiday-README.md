@@ -1,4 +1,4 @@
-Guide to Setting Up Donator/Holiday Jobs and Holidays
+## Guide to Setting Up Donator/Holiday Jobs and Holidays
 
 Setting up pre-made jobs for holidays and donator ranks is relatively simple. However, setting up new jobs and holidays is more complex. This guide will walk you through the process.
 
