@@ -295,3 +295,4 @@
 	set_vehicle_dir_offsets(WEST, 0, 0)
 	set_vehicle_dir_layer(EAST, BELOW_MOB_LAYER)
 	set_vehicle_dir_layer(WEST, BELOW_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
