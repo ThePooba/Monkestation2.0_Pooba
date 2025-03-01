@@ -139,8 +139,11 @@ SUBSYSTEM_DEF(job)
 		if(!job.map_check()) //Even though we initialize before mapping, this is fine because the config is loaded at new
 			log_job_debug("Removed [job.title] due to map config")
 			continue
-		if(!CONFIG_GET(flag/spooktober_enabled) && job.job_flags & JOB_SPOOKTOBER) //if spooktober's not enabled, don't load spooktober jobs
-			continue
+
+		if(length(job.job_event_flags)) // Check if this job is part of an event. Skip event checks if it isnt.
+			if(!check_holidays(job.job_event_flags) || !job.special_config_check())
+				continue
+
 		new_all_occupations += job
 		name_occupations[job.title] = job
 		type_occupations[job_type] = job

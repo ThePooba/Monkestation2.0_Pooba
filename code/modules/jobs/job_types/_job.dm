@@ -106,6 +106,8 @@
 	/// All values = (JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_BOLD_SELECT_TEXT | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN | JOB_CANNOT_OPEN_SLOTS)
 	var/job_flags = NONE
 
+	var/list/job_event_flags
+
 	/// Multiplier for general usage of the voice of god.
 	var/voice_of_god_power = 1
 	/// Multiplier for the silence command of the voice of god.
@@ -212,6 +214,10 @@
 /datum/job/proc/special_check_latejoin(client/latejoin)
 	return TRUE
 
+//Used to check if the config or special setting for this job is enabled.
+//Override where appropriate. Be aware of parent procs. Defaults to false.
+/datum/job/proc/special_config_check()
+	return FALSE
 
 /mob/living/proc/on_job_equipping(datum/job/equipping)
 	return
