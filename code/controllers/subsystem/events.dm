@@ -137,7 +137,7 @@ GLOBAL_LIST(holidays)
 		return // Failed to generate holidays, for some reason
 
 	// We should allow one datum to have multiple holidays if it is applicable. Could be a community related thing.
-	if(islist(holiday_to_find))
+	if(islist(holiday_to_find)) //MONKESTATION EDIT
 
 		var/list/valid_holidays = list()
 		for(var/holiday in holiday_to_find)

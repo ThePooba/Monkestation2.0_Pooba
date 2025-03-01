@@ -106,7 +106,9 @@
 	/// All values = (JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_BOLD_SELECT_TEXT | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN | JOB_CANNOT_OPEN_SLOTS)
 	var/job_flags = NONE
 
-	var/list/job_event_flags
+	/// Holidays this job should only appear on. Leave null for it to always show. Supports multiple holidays.
+	//base defines in [code\__DEFINES\time.dm]
+	var/list/job_holiday_flags //MONKESTATION EDIT
 
 	/// Multiplier for general usage of the voice of god.
 	var/voice_of_god_power = 1

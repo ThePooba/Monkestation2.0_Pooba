@@ -140,8 +140,8 @@ SUBSYSTEM_DEF(job)
 			log_job_debug("Removed [job.title] due to map config")
 			continue
 
-		if(length(job.job_event_flags)) // Check if this job is part of an event. Skip event checks if it isnt.
-			if(!check_holidays(job.job_event_flags) || !job.special_config_check())
+		if(length(job.job_holiday_flags)) // Check if this job is part of a holiday. Skip holiday checks if it isnt. //MONKESTATION EDIT
+			if(!check_holidays(job.job_holiday_flags) || !job.special_config_check())
 				continue
 
 		new_all_occupations += job
