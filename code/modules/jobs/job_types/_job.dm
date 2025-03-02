@@ -134,6 +134,8 @@
 	/// Donar rank required for this job. Leave null for no requirement.
 	//defines found in [code\__DEFINES\~monkestation\_patreon.dm]
 	var/job_req_donar = null //MONKESTATION EDIT
+	//donator bypass for holidays
+	var/job_donar_bypass = null //MONKESTATION EDIT
 
 /datum/job/New()
 	. = ..()
