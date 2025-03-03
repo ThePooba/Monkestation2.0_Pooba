@@ -122,7 +122,7 @@
 		if(JOB_UNAVAILABLE_ANTAG_INCOMPAT)
 			return "[jobtitle] is not compatible with some antagonist role assigned to you."
 		if(JOB_UNAVAILABLE_DONAR_RANK) //MONKESTATION EDIT
-			return "[jobtitle] requires a higher donator rank than you have. Go to to <span class='warningplain'><b><a href=\"https://www.patreon.com/dukeook\">Duke of Ook's Monke Content Creation Fund</a></b></span> to learn more."
+			return "The [jobtitle] job requires a higher donator rank than you have or it is out of season. Go to to https://www.patreon.com/dukeook \"Duke of Ook's Monke Content Creation Fund\" to learn more."
 
 	return GENERIC_JOB_UNAVAILABLE_ERROR
 
