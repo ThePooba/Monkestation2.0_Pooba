@@ -2,7 +2,7 @@
 	name = "Magic Broomstick"
 	desc = "A magic broomstick perfect for aspiring witches or wizards."
 	icon = 'icons/obj/weapons/guns/magic.dmi'
-	icon_state = "broom"
+	icon_state = "magic_broom"
 	inhand_icon_state = "magic_broom"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
