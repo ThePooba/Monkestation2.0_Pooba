@@ -50,6 +50,7 @@
 	return ..() // This hotkey is BLACKLISTED since it's used by /datum/component/simple_rotation
 
 /obj/vehicle/ridden/magic_broom
+	name = "Magic Broom"
 	desc = "Wow! it really is magic!"
 	icon_state = "broom"
 	var/overlay_icon = "broom_overlay"
@@ -70,10 +71,20 @@
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 3)
 	return ..()
 
+/obj/vehicle/ridden/magic_broom/move_camera_by_click(newloc,move_dir)
+	if(has_buckled_mobs())
+		new /obj/effect/temp_visual/dir_setting/magicbroom_trail(loc,move_dir)
+	return ..()
+
 /obj/vehicle/ridden/magic_broom/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(!forced && !check_move_loop_flags(MOVEMENT_LOOP_DRAGGING))
 		playsound(src, 'sound/effects/space_wind.ogg', 50, TRUE)
+
+/obj/vehicle/ridden/magic_broom/update_overlays()
+	. = ..()
+	if(has_buckled_mobs())
+		. += broom_overlay
 
 /obj/vehicle/ridden/magic_broom/post_buckle_mob(mob/living/user)
 	. = ..()
