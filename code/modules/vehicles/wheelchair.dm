@@ -171,3 +171,4 @@
 	usr.visible_message(span_notice("[bell_attached] falls off!"))
 	bell_attached = null
 	update_appearance()
+

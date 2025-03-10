@@ -282,7 +282,7 @@
 	if(istype(our_chair) && our_chair.power_cell)
 		our_chair.power_cell.use(our_chair.power_usage / max(our_chair.power_efficiency, 1) * 0.05)
 
-/datum/component/riding/vehicle/magic_broom
+/datum/component/riding/vehicle/magic_broom //monkestation addition
 	vehicle_move_delay = 1.5
 	override_allow_spacemove = TRUE
 	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
