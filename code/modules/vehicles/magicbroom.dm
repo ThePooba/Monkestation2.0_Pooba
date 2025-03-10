@@ -9,6 +9,11 @@
 	force = 12
 	var/unfolded_type = /obj/vehicle/ridden/magic_broom
 
+/obj/item/magic_broom/proc/on_examine_more(atom/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	examine_list += span_notice("It has the name Shion carved into the handle.")
+
+
 /obj/item/magic_broom/attack_self(mob/user)  //Deploys wheelchair on in-hand use
 	deploy_broom(user, user.loc)
 
@@ -45,7 +50,7 @@
 	return ..() // This hotkey is BLACKLISTED since it's used by /datum/component/simple_rotation
 
 /obj/vehicle/ridden/magic_broom
-	desc = "Its magic! Wow!"
+	desc = "Wow! it really is magic!"
 	icon_state = "broom"
 	var/overlay_icon = "broom_overlay"
 	var/image/broom_overlay
