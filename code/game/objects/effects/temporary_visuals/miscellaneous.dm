@@ -87,11 +87,11 @@
 
 
 /obj/effect/temp_visual/dir_setting/magicbroom_trail //monkestation addition
-	name = "speedbike trails"
+	name = "magic trails"
 	icon_state = "ion_fade"
 	layer = BELOW_MOB_LAYER
 	plane = GAME_PLANE
-	duration = 4
+	duration = 10
 	randomdir = 0
 
 /obj/effect/temp_visual/dir_setting/firing_effect

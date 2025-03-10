@@ -71,7 +71,7 @@
 	new /obj/item/stack/sheet/mineral/wood(drop_location(), 3)
 	return ..()
 
-/obj/vehicle/ridden/magic_broom/move_camera_by_click(newloc,move_dir)
+/obj/vehicle/ridden/magic_broom/Move(newloc, dir)
 	if(has_buckled_mobs())
 		new /obj/effect/temp_visual/dir_setting/magicbroom_trail(loc,move_dir)
 	return ..()
