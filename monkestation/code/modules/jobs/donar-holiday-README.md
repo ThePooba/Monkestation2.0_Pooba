@@ -19,9 +19,9 @@ Once your job is set up to your needs, you'll need to edit the following setting
 	var/list/job_holiday_flags
 
 
-	/// Donar rank required for this job. Leave null for no requirement.
+	/// donor rank required for this job. Leave null for no requirement.
 	//defines found in [code\__DEFINES\~monkestation\_patreon.dm]
-	var/job_req_donar = null //MONKESTATION EDIT
+	var/job_req_donor = null //MONKESTATION EDIT
 ```
 
 Finally one last checking proc is called in [code\controllers\subsystem\job.dm] that can be used to disable the job. This can be overriden for your specific purposes. Make sure to watch the parent procs.
