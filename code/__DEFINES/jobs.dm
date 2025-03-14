@@ -84,6 +84,8 @@
 #define JOB_LAWYER "Lawyer"
 #define JOB_CHAPLAIN "Chaplain"
 #define JOB_PSYCHOLOGIST "Psychologist"
+//Spring Donator Jobs
+#define JOB_NEWS_REPORTER "News Reporter"
 //Spooktober
 #define JOB_SPOOKTOBER_GHOST "Ghost"
 #define JOB_SPOOKTOBER_GODZILLA "Discount Godzilla"
