@@ -72,7 +72,6 @@
 
 /datum/species/monkey/simian/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load)
 	. = ..()
-	human_who_gained_species.gain_trauma(/datum/brain_trauma/severe/kleptomaniac, TRAUMA_RESILIENCE_ABSOLUTE)
 
 /datum/species/monkey/simian/random_name(gender,unique,lastname)
 	if(unique)
