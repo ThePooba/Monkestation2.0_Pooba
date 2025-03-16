@@ -19,10 +19,10 @@
 		 /datum/job_department/spooktober,
 		)
 
-	family_heirlooms = list(/obj/item/clothing/suit/costume/ghost_sheet)
+	family_heirlooms = list(/obj/item/toy/minimeteor)
 
 	mail_goodies = list(
-		/obj/item/clothing/suit/costume/ghost_sheet
+		/obj/item/toy/minimeteor
 	)
 
 	rpg_title = "Town Crier"
@@ -39,7 +39,7 @@
 	name = "News Reporter"
 	jobtype = /datum/job/news_reporter
 	head = /obj/item/clothing/head/fedora/beige/press
-	suit = /obj/item/clothing/under/suite/beige
+	uniform = /obj/item/clothing/under/suite/beige
 	shoes = /obj/item/clothing/shoes/laceup
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
