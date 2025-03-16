@@ -32,7 +32,7 @@
 
 ///This override checks specific config values as a final blocking check.
 //Used initially to check if spooktober events were enabled. Edit for your application.
-/datum/job/ghost/special_config_check()
+/datum/job/news_reporter/special_config_check()
 	return CONFIG_GET(flag/spring_enabled)
 
 /datum/outfit/job/news_reporter
