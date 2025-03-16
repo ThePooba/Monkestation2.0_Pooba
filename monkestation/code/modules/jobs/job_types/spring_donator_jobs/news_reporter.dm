@@ -39,7 +39,7 @@
 	name = "News Reporter"
 	jobtype = /datum/job/news_reporter
 	head = /obj/item/clothing/head/fedora/beige/press
-	uniform = /obj/item/clothing/under/suite/beige
+	uniform = /obj/item/clothing/under/suit/beige
 	shoes = /obj/item/clothing/shoes/laceup
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
