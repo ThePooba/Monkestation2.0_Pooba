@@ -16,7 +16,7 @@
 	display_order = JOB_DISPLAY_ORDER_ASSISTANT
 
 	departments_list = list(
-		 /datum/job_department/spooktober,
+		 /datum/job_department/spring,
 		)
 
 	family_heirlooms = list(/obj/item/food/egg) // My child
