@@ -87,6 +87,7 @@
 //Spring Donator Jobs
 #define JOB_NEWS_REPORTER "News Reporter"
 #define JOB_EASTER_BUNNY "Easter Bunny"
+#define JOB_FLORIST "Florist"
 //Spooktober
 #define JOB_SPOOKTOBER_GHOST "Ghost"
 #define JOB_SPOOKTOBER_GODZILLA "Discount Godzilla"
