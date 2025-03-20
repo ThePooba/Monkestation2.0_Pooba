@@ -1,13 +1,13 @@
-/datum/job/spring_cleaner
-	title = JOB_SPRING_CLEANER
-	description = "A seasonal janitor sent to the station to assist in cleaning."
+/datum/job/bird_watcher
+	title = JOB_BIRD_WATCHER
+	description = "Amateur ornithologist, watcher of birds, in space or otherwise. Has some strange ideas about imaginary radiogenic birds."
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 0
 	supervisors = SUPERVISOR_HOP
 	exp_granted_type = EXP_TYPE_CREW
 
-	outfit = /datum/outfit/job/spring_cleaner
+	outfit = /datum/outfit/job/bird_watcher
 	plasmaman_outfit = /datum/outfit/plasmaman
 
 	paycheck = PAYCHECK_LOWER
@@ -19,28 +19,28 @@
 		 /datum/job_department/spring,
 		)
 
-	family_heirlooms = list(/obj/item/toy/minimeteor)
+	family_heirlooms = list(/obj/item/food/grown/rose) // My child
 
 	mail_goodies = list(
-		/obj/item/toy/minimeteor
+		/obj/item/seeds/random
 	)
 
-	rpg_title = "Stable Mucker"
+	rpg_title = "Twitcher"
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 	job_holiday_flags = list(SPRING)
 	job_donor_bypass = ACCESS_COMMAND_RANK
 
 ///This override checks specific config values as a final blocking check.
 //Used initially to check if spooktober events were enabled. Edit for your application.
-/datum/job/news_reporter/special_config_check()
+/datum/job/florist/special_config_check()
 	return CONFIG_GET(flag/spring_enabled)
 
-/datum/outfit/job/spring_cleaner
-	name = "Spring Cleaner"
-	jobtype = /datum/job/spring_cleaner
-	mask = /obj/item/clothing/mask/bandana/purple
-	uniform = /obj/item/clothing/under/costume/buttondown/slacks
-	shoes = /obj/item/clothing/shoes/sneakers/black
+/datum/outfit/job/bird_watcher
+	name = JOB_BIRD_WATCHER
+	jobtype = /datum/job/bird_watcher
+	head = /obj/item/clothing/head/costume/garland/sunflower
+	suit = /obj/item/clothing/suit/apron
+	back = /obj/item/storage/backpack/satchel
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
-	backpack_contents = list(/obj/item/reagent_containers/spray/cleaner, /obj/item/bodypart/arm/right/robot, /obj/item/bot_assembly/cleanbot, /obj/item/reagent_containers/cup/rag)
+	backpack_contents = list(/obj/item/binoculars)

@@ -89,6 +89,7 @@
 #define JOB_EASTER_BUNNY "Easter Bunny"
 #define JOB_FLORIST "Florist"
 #define JOB_SPRING_CLEANER "Spring Cleaner"
+#define JOB_BIRD_WATCHER "Bird Watcher"
 //Spooktober
 #define JOB_SPOOKTOBER_GHOST "Ghost"
 #define JOB_SPOOKTOBER_GODZILLA "Discount Godzilla"
