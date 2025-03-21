@@ -19,10 +19,10 @@
 		 /datum/job_department/spring,
 		)
 
-	family_heirlooms = list(/obj/item/food/grown/rose) // My child
+	family_heirlooms = list(/obj/item/toy/plush/lobotomy/bigbird)
 
 	mail_goodies = list(
-		/obj/item/seeds/random
+		/obj/item/camera_film
 	)
 
 	rpg_title = "Twitcher"
@@ -38,9 +38,8 @@
 /datum/outfit/job/bird_watcher
 	name = JOB_BIRD_WATCHER
 	jobtype = /datum/job/bird_watcher
-	head = /obj/item/clothing/head/costume/garland/sunflower
-	suit = /obj/item/clothing/suit/apron
+	suit = /obj/item/clothing/suit/toggle/jacket/hoodie
 	back = /obj/item/storage/backpack/satchel
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
-	backpack_contents = list(/obj/item/binoculars)
+	backpack_contents = list(/obj/item/binoculars, /obj/item/camera, /obj/item/photo_album/personal)
