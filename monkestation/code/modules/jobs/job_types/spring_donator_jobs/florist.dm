@@ -43,4 +43,4 @@
 	back = /obj/item/storage/backpack/satchel
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
-	backpack_contents = list(/obj/item/secateurs, /obj/item/food/grown/moonflower, /obj/item/food/grown/rainbow_flower, /obj/item/bouquet, /obj/item/bouqet/rose, obj/item/seeds/poppy/geranium)
+	backpack_contents = list(/obj/item/secateurs, /obj/item/food/grown/moonflower, /obj/item/food/grown/rainbow_flower, /obj/item/bouquet, /obj/item/bouqet/rose, /obj/item/seeds/poppy/geranium)
