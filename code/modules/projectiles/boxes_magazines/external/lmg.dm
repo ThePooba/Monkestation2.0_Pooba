@@ -37,4 +37,5 @@
 	name = "Minigun drum (.22 LR \"peashooter\")"
 	icon_state = "peashooter_ammo"
 	ammo_type = MECHA_AMMO_PEASHOOTER
+	caliber = CALIBER_22LR
 	max_ammo = 500
