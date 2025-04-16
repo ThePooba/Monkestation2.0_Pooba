@@ -35,6 +35,7 @@
 
 /obj/item/ammo_box/magazine/minigun22
 	name = "Minigun drum (.22 LR)"
+	icon = 'monkestation/icons/mecha/makeshift_ammo.dmi'
 	icon_state = "peashooter_ammo"
 	ammo_type = /obj/item/ammo_casing/minigun22
 	caliber = CALIBER_22LR
