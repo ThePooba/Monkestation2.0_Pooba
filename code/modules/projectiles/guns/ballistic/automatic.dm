@@ -357,7 +357,7 @@
 	casing_ejector = FALSE
 
 /obj/item/gun/ballistic/automatic/minigun22
-	name = "\improper WT-550 Autorifle"
+	name = "\improper Minigun Ammo Drum"
 	desc = "A Miniaturized Multibarrel rotary gun that fires .22 LR \"peashooter\" ammunition"
 	icon = 'icons/obj/weapons/guns/minigun.dmi'
 	icon_state = "minigun_spin"
@@ -365,7 +365,6 @@
 	slowdown = 1
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
-	inhand_icon_state = "arg"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/minigun22
 	fire_delay = 1
 	can_suppress = FALSE
