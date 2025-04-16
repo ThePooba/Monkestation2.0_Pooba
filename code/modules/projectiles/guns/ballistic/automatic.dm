@@ -355,3 +355,24 @@
 	actions_types = list()
 	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 	casing_ejector = FALSE
+
+/obj/item/gun/ballistic/automatic/minigun22
+	name = "\improper WT-550 Autorifle"
+	desc = "A Miniaturized Multibarrel rotary gun that fires .22 LR \"peashooter\" ammunition"
+	icon = 'icons/obj/weapons/guns/minigun.dmi'
+	icon_state = "minigun_spin"
+	inhand_icon_state = "minigun"
+	slowdown = 1
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	inhand_icon_state = "arg"
+	accepted_magazine_type = /obj/item/ammo_box/magazine/minigun22
+	fire_delay = 1
+	can_suppress = FALSE
+	burst_size = 1
+	actions_types = list()
+	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
+
+/obj/item/gun/ballistic/automatic/minigun22/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.3 SECONDS)
