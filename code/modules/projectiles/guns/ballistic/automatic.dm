@@ -364,11 +364,11 @@
 	inhand_icon_state = "minigun"
 	slowdown = 1
 	fire_sound = 'sound/weapons/gun/minigun10burst.ogg'
-	fire_sound_volume = 70
+	fire_sound_volume = 60
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/minigun22
-	fire_delay = 1
+	fire_delay = 0.4
 	can_suppress = FALSE
 	burst_size = 1
 	actions_types = list()
@@ -379,4 +379,4 @@
 
 /obj/item/gun/ballistic/automatic/minigun22/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 1 SECONDS, TRUE, 0.3, 0.05, 5 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 4 SECONDS, TRUE, 0.1, 0.08, 5 SECONDS)
