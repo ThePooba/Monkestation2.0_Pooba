@@ -40,4 +40,4 @@
 	ammo_type = /obj/item/ammo_casing/minigun22
 	w_class = WEIGHT_CLASS_NORMAL
 	caliber = CALIBER_22LR
-	max_ammo = 300
+	max_ammo = 3000
