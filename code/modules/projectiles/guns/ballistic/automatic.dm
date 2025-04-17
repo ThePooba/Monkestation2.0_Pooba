@@ -380,4 +380,3 @@
 /obj/item/gun/ballistic/automatic/minigun22/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 1 SECONDS, TRUE, 0.3, 0.05, 5 SECONDS)
-datum/component/automatic_fire
