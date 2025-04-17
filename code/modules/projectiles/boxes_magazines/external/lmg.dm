@@ -35,8 +35,8 @@
 
 /obj/item/ammo_box/magazine/minigun22
 	name = "Minigun drum (.22 LR)"
-	icon = 'icons/obj/weapons/guns/minigun.dmi'
-	icon_state = "ammobox"
+	icon = 'icons/obj/weapons/guns/ammo.dmi'
+	icon_state = "22minigun_drum"
 	ammo_type = /obj/item/ammo_casing/minigun22
 	w_class = WEIGHT_CLASS_NORMAL
 	caliber = CALIBER_22LR
