@@ -374,7 +374,7 @@
 	actions_types = list()
 	item_flags = SLOWS_WHILE_IN_HAND
 	recoil = 1.2
-	spread = 15
+	spread = 20
 
 /obj/item/gun/ballistic/automatic/minigun22/Initialize(mapload)
 	. = ..()
