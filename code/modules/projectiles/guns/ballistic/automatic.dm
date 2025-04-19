@@ -373,7 +373,6 @@
 	burst_size = 1
 	actions_types = list()
 	item_flags = SLOWS_WHILE_IN_HAND
-	pin = /obj/item/firing_pin/implant/pindicate
 	recoil = 1.2
 	spread = 15
 
