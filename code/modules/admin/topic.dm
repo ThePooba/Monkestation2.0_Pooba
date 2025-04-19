@@ -758,7 +758,7 @@
 		usr.client.holder.vuap_open()
 
 	else if(href_list["adminopendemo"])
-		usr.client << link("https://xx_monkeviewer_xx_tb-303.monkestation.com/?roundid=[GLOB.round_id]&password=[CONFIG_GET(string/replay_password)]#[world.time]") //opens current round at current time
+		usr.client << link("http://viewer.monkestation.com/?roundid=[GLOB.round_id]&password=[CONFIG_GET(string/replay_password)]#[world.time]") //opens current round at current time
 
 	else if(href_list["adminplayerobservefollow"])
 		if(!isobserver(usr) && !check_rights(R_ADMIN))
