@@ -123634,7 +123634,7 @@
 /area/station/maintenance/abandon_art_studio)
 "xPK" = (
 /turf/open/space/basic,
-/area/shipbreak)
+/area/space/shipbreak)
 "xPO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
