@@ -692,7 +692,7 @@
 
 	beaker_one.reagents.add_reagent(/datum/reagent/fluorosurfactant, 5, reagtemp = 4500)
 	beaker_one.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, 5, reagtemp = 4500)
-	beaker_two.reagents.add_reagent(/datum/reagent/ice, 5, reagtemp = 100)
+	beaker_two.reagents.add_reagent(/datum/reagent/consumable/ice, 5, reagtemp = 100)
 
 	beakers += beaker_one
 	beakers += beaker_two
