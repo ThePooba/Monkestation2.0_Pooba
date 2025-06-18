@@ -1,13 +1,13 @@
 /datum/job/tourist
 	title = JOB_TOURIST
-	description = "Time to grill."
+	description =  "Neat! a Corpse! They dont have these on my station!"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 0
 	supervisors = SUPERVISOR_HOP
 	exp_granted_type = EXP_TYPE_CREW
 
-	outfit = /datum/outfit/job/grill_master
+	outfit = /datum/outfit/job/tourist
 	plasmaman_outfit = /datum/outfit/plasmaman
 
 	paycheck = PAYCHECK_LOWER
