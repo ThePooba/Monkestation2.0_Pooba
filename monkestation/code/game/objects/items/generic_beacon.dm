@@ -1,7 +1,7 @@
-/obj/item/generic_beacon
+/obj/item/beacon
 	name = "A beacon for direct delivery of big things"
 	desc = "delivers the thing"
-	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
+	icon = 'monkestation/icons/obj/beacons.dmi'
 	icon_state = "music_beacon"
 	var/list/spawnables = list(/obj/item/, /obj/machinery/)
 	var/used = FALSE
@@ -23,18 +23,16 @@
 	))
 	qdel(src)
 
-/obj/item/generic_beacon/jukebox_beacon
+/obj/item/beacon/jukebox_beacon
 	name = "jukebox beacon"
 	desc = "N.T. jukebox beacon, toss it down and you will have a complementary jukebox delivered to you. It comes with a free wrench to move it after deployment."
-	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "music_beacon"
 	spawnables = list(/obj/item/wrench, /obj/machinery/jukebox)
 	var/used = FALSE
 
-/obj/item/generic_beacon/hotdog
+/obj/item/beacon/hotdog
 	name = "tactical hotdog deployer"
 	desc = "For the glizzy guzzler in us all."
-	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "hotdog_beacon"
 	spawnables = list(/obj/item/food/hotdog, /obj/item/food/hotdog)
 	var/used = FALSE
@@ -42,7 +40,6 @@
 /obj/item/generic_beacon/grill
 	name = "grill beacon"
 	desc = "Grillin aint easy but someones gotta do it."
-	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
-	icon_state = "hotdog_beacon"
+	icon_state = "fire_beacon"
 	spawnables = list(/obj/machinery/grill)
 	var/used = FALSE
