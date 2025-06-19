@@ -43,5 +43,5 @@
 	back = /obj/item/storage/backpack/satchel
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
-	backpack_contents = list(/obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog,/obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog)
+	backpack_contents = list(/obj/item/generic_beacon/hotdog, /obj/item/food/hotdog,/obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog)
 	//add choice beacon for hotdogs

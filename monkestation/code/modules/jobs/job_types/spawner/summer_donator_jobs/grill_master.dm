@@ -39,8 +39,9 @@
 /datum/outfit/job/grill_master
 	name = JOB_BIRD_WATCHER
 	jobtype = /datum/job/grill_master
-	suit = /obj/item/clothing/suit/toggle/jacket/hoodie
+	suit = /obj/item/clothing/suit/apron/chef
 	back = /obj/item/storage/backpack/satchel
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
-	backpack_contents = list(/obj/item/binoculars, /obj/item/camera, /obj/item/storage/photo_album/personal)
+	shoes = /obj/item/clothing/shoes/colorable_sandals
+	backpack_contents = list(/obj/item/kitchen/tongs, /obj/item/stack/sheet/mineral/coal/five, /obj/item/reagent_containers/cup/soda_cans/monkey_energy, )
