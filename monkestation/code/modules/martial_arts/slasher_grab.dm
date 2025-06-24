@@ -1,5 +1,4 @@
 /datum/martial_art/slasher_grab //martial art that exists so slasher can aggro grab like a real evil dude
-
 	name = "Slasher Grabbing"
 	id = MARTIALART_SLASHER_GRAB
 
