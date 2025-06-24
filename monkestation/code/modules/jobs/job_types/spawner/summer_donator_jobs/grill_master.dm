@@ -44,4 +44,4 @@
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
 	shoes = /obj/item/clothing/shoes/colorable_sandals
-	backpack_contents = list(/obj/item/kitchen/tongs, /obj/item/stack/sheet/mineral/coal/five, /obj/item/reagent_containers/cup/soda_cans/monkey_energy, )
+	backpack_contents = list(/obj/item/kitchen/tongs, /obj/item/stack/sheet/mineral/coal/five, /obj/item/reagent_containers/cup/soda_cans/monkey_energy, /obj/item/generic_beacon/grill)

@@ -37,10 +37,13 @@
 	return CONFIG_GET(flag/summer_enabled)
 
 /datum/outfit/job/gym_bro
-	name = JOB_GYMBRO
+	name = JOB_GYM_BRO
 	jobtype = /datum/job/gym_bro
-	suit = /obj/item/clothing/suit/toggle/jacket/hoodie
+	uniform = /obj/item/clothing/under/shorts/red
+	shoes = /obj/item/clothing/shoes/sneakers/red
+	glasses = /obj/item/clothing/glasses/fake_sunglasses
 	back = /obj/item/storage/backpack/satchel
+	l_hand = /obj/item/storage/backpack/duffelbag
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
-	backpack_contents = list(/obj/item/binoculars, /obj/item/camera, /obj/item/storage/photo_album/personal)
+	backpack_contents = list(/obj/item/reagent_containers/cup/glass/waterbottle/protein = 3, /obj/item/reagent_containers/spray/spraytan = 1)

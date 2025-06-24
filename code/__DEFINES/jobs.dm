@@ -94,7 +94,7 @@
 //Summer Donator Jobs
 #define JOB_GRILLER "Grill Master"
 #define JOB_HOTDOG "Hotdog Dude"
-#define JOB_GYMBRO "Gym Bro"
+#define JOB_GYM_BRO "Gym Bro"
 #define JOB_TOURIST "Tourist"
 //Spooktober
 #define JOB_SPOOKTOBER_GHOST "Ghost"

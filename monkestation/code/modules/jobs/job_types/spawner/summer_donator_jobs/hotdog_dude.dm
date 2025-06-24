@@ -1,6 +1,6 @@
 /datum/job/hotdog_dude
 	title = JOB_HOTDOG
-	description = "They say the devil's water it aint so sweet."
+	description = "They say the devil's water it ain't so sweet."
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 0
@@ -39,9 +39,10 @@
 /datum/outfit/job/hotdog_dude
 	name = JOB_HOTDOG
 	jobtype = /datum/job/hotdog_dude
-	suit = /obj/item/clothing/suit/toggle/jacket/hoodie
-	back = /obj/item/storage/backpack/satchel
+	suit = /obj/item/clothing/suit/hooded/hotdog
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
 	backpack_contents = list(/obj/item/generic_beacon/hotdog, /obj/item/food/hotdog,/obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog, /obj/item/food/hotdog)
 	//add choice beacon for hotdogs
+
+

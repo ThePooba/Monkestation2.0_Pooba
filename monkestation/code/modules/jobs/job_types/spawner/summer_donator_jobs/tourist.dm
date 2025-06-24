@@ -36,11 +36,14 @@
 /datum/job/bird_watcher/special_config_check()
 	return CONFIG_GET(flag/summer_enabled)
 
-/datum/outfit/job/grill_master
-	name = JOB_BIRD_WATCHER
-	jobtype = /datum/job/grill_master
-	suit = /obj/item/clothing/suit/toggle/jacket/hoodie
+/datum/outfit/job/tourist
+	name = JOB_TOURIST
+	jobtype = /datum/job/tourist
+	head = /obj/item/clothing/head/soft/red
+	suit = /obj/item/clothing/suit/toggle/jacket/sweater
+	glasses = /obj/item/clothing/glasses/regular/hipster
+	uniform = /obj/item/clothing/under/costume/buttondown/slacks
 	back = /obj/item/storage/backpack/satchel
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
-	backpack_contents = list(/obj/item/binoculars, /obj/item/camera, /obj/item/storage/photo_album/personal)
+	backpack_contents = list(/obj/item/binoculars, /obj/item/camera, /obj/item/storage/photo_album/personal, /obj/item/paper/pamphlet/radstorm)
