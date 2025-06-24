@@ -39,4 +39,4 @@
 	name = "grill beacon"
 	desc = "Grillin aint easy but someones gotta do it."
 	icon_state = "fire_beacon"
-	spawnables = list(/obj/machinery/grill)
+	spawnables = list(/obj/item/wrench, /obj/machinery/grill)

@@ -17,14 +17,8 @@
 	allow_overflow = FALSE
 
 	departments_list = list(
-		 /datum/job_department/spring,
+		 /datum/job_department/summer,
 		)
-
-	family_heirlooms = list(/obj/item/toy/plush/lobotomy/bigbird)
-
-	mail_goodies = list(
-		/obj/item/camera_film
-	)
 
 	rpg_title = "Dad"
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
@@ -33,14 +27,16 @@
 
 ///This override checks specific config values as a final blocking check.
 //Used initially to check if spooktober events were enabled. Edit for your application.
-/datum/job/bird_watcher/special_config_check()
+/datum/job/grill_master/special_config_check()
 	return CONFIG_GET(flag/summer_enabled)
 
 /datum/outfit/job/grill_master
-	name = JOB_BIRD_WATCHER
+	name = JOB_GRILLER
 	jobtype = /datum/job/grill_master
 	suit = /obj/item/clothing/suit/apron/chef
 	back = /obj/item/storage/backpack/satchel
+	uniform = /obj/item/clothing/under/rank/civilian/chef
+	head = /obj/item/clothing/head/soft/fishing_hat
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
 	shoes = /obj/item/clothing/shoes/colorable_sandals

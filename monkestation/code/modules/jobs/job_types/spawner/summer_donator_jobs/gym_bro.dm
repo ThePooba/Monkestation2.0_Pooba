@@ -17,7 +17,7 @@
 	allow_overflow = FALSE
 
 	departments_list = list(
-		 /datum/job_department/spring,
+		 /datum/job_department/summer,
 		)
 
 	family_heirlooms = list(/obj/item/toy/plush/lobotomy/bigbird)
@@ -33,7 +33,7 @@
 
 ///This override checks specific config values as a final blocking check.
 //Used initially to check if spooktober events were enabled. Edit for your application.
-/datum/job/bird_watcher/special_config_check()
+/datum/job/gym_bro/special_config_check()
 	return CONFIG_GET(flag/summer_enabled)
 
 /datum/outfit/job/gym_bro
@@ -43,7 +43,6 @@
 	shoes = /obj/item/clothing/shoes/sneakers/red
 	glasses = /obj/item/clothing/glasses/fake_sunglasses
 	back = /obj/item/storage/backpack/satchel
-	l_hand = /obj/item/storage/backpack/duffelbag
 	id_trim = /datum/id_trim/job/assistant
 	belt = /obj/item/modular_computer/pda/assistant
 	backpack_contents = list(/obj/item/reagent_containers/cup/glass/waterbottle/protein = 3, /obj/item/reagent_containers/spray/spraytan = 1)
