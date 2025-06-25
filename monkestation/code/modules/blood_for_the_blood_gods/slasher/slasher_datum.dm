@@ -65,6 +65,8 @@
 	var/list/seers = list()
 	///this is the time counter for stalking
 	var/time_counter = 0
+	//aggrograb for slasher
+	var/datum/martial_art/slasher_grab/grabbyhands
 
 /datum/antagonist/slasher/on_gain()
 	. = ..() // Call parent first
@@ -74,6 +76,9 @@
 		if(owner?.current)
 			for(var/datum/objective/objective in objectives)
 				owner.announce_objectives()
+	var/mob/living/carbon/human/stabguy = mob_override || owner.current
+	grabbyhands.teach(stabguy)
+
 
 /datum/antagonist/slasher/forge_objectives()
 	if(!owner)
