@@ -1,8 +1,10 @@
+/*
 /datum/armament_entry/company_import/vitezstvi
 	category = VITEZSTVI_AMMO_NAME
 	company_bitflag = CARGO_COMPANY_VITEZSTVI_AMMO
 
 // Ammo bench and the lethals disk
+
 
 /datum/armament_entry/company_import/vitezstvi/ammo_bench
 	subcategory = "Ammunition Manufacturing Equipment"
@@ -201,3 +203,4 @@
 	item_type = /obj/item/ammo_box/c980grenade/shrapnel/phosphor
 	contraband = TRUE
 	cost = PAYCHECK_COMMAND * 2
+*/

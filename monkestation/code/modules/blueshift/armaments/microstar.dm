@@ -1,3 +1,4 @@
+/*
 /datum/armament_entry/company_import/microstar
 	category = MICROSTAR_ENERGY_NAME
 	company_bitflag = CARGO_COMPANY_MICROSTAR
@@ -45,3 +46,4 @@
 /datum/armament_entry/company_import/microstar/basic_energy_long_weapons/ion_carbine
 	item_type = /obj/item/gun/energy/ionrifle/carbine
 	cost = PAYCHECK_COMMAND * 5
+*/

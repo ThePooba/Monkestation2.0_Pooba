@@ -4,6 +4,8 @@
 
 // A collection of melee weapons fitting the company's more exotic feeling weapon selection
 
+/*
+
 /datum/armament_entry/company_import/blacksteel/blade
 	subcategory = "Bladed Weapons"
 
@@ -22,3 +24,5 @@
 /datum/armament_entry/company_import/blacksteel/blade/shamshir_sabre
 	item_type = /obj/item/storage/belt/sabre/cargo
 	cost = PAYCHECK_COMMAND * 3
+
+*/
