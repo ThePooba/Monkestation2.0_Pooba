@@ -76,7 +76,7 @@
 		if(owner?.current)
 			for(var/datum/objective/objective in objectives)
 				owner.announce_objectives()
-	var/mob/living/carbon/human/stabguy = mob_override || owner.current
+	var/mob/living/carbon/human/stabguy = owner.current
 	grabbyhands.teach(stabguy)
 
 
