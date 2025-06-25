@@ -100,7 +100,7 @@
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	current_mob.overlay_fullscreen("slasher_prox", /atom/movable/screen/fullscreen/nearby, 1)
-	current_mob.teach(stabguy)
+	grabbyhands.teach(current_mob)
 	monitor_key = "slasher_monitor_[current_mob.ckey]"
 	tracking_beacon = current_mob.AddComponent(/datum/component/tracking_beacon, monitor_key, null, null, TRUE, "#f3d594")
 	slasher_monitor = current_mob.AddComponent(/datum/component/team_monitor, monitor_key, null, tracking_beacon)
