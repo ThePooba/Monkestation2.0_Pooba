@@ -90,12 +90,10 @@ SUBSYSTEM_DEF(mapping)
 	var/list/random_bar_templates = list()
 	var/list/random_engine_templates = list()
 	var/list/random_arena_templates = list()
-	var/list/random_armoury_templates = list()
 	///Temporary list, where room spawners are kept roundstart. Not used later.
 	var/list/random_room_spawners = list()
 	var/list/random_engine_spawners = list()
 	var/list/random_bar_spawners = list()
-	var/list/random_armoury_spawners = list()
 
 /datum/controller/subsystem/mapping/PreInit()
 	..()
