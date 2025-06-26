@@ -86,7 +86,7 @@
 
 	if(has_manufacturer)
 		give_manufacturer_examine()
-	Destroy()
+	qdel(src)
 
 /obj/item/gun/Destroy()
 	if(isobj(pin)) //Can still be the initial path, then we skip
