@@ -1,4 +1,4 @@
-/*
+
 /datum/armament_entry/company_import/vitezstvi
 	category = VITEZSTVI_AMMO_NAME
 	company_bitflag = CARGO_COMPANY_VITEZSTVI_AMMO
@@ -37,6 +37,8 @@
 /datum/armament_entry/company_import/vitezstvi/accessory/large_case
 	item_type = /obj/item/storage/toolbox/guncase/skyrat/empty
 	cost = PAYCHECK_COMMAND * 2
+
+/*
 
 // Boxes of non-shotgun ammo
 

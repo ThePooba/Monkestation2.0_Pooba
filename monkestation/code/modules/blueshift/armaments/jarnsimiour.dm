@@ -1,10 +1,11 @@
+/*
 /datum/armament_entry/company_import/blacksteel
 	category = BLACKSTEEL_FOUNDATION_NAME
 	company_bitflag = CARGO_COMPANY_BLACKSTEEL
 
 // A collection of melee weapons fitting the company's more exotic feeling weapon selection
 
-/*
+
 
 /datum/armament_entry/company_import/blacksteel/blade
 	subcategory = "Bladed Weapons"

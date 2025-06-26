@@ -1,4 +1,4 @@
-/*
+
 /datum/armament_entry/company_import/sol_defense
 	category = SOL_DEFENSE_DEFENSE_NAME
 	company_bitflag = CARGO_COMPANY_SOL_DEFENSE
@@ -55,6 +55,8 @@
 
 /datum/armament_entry/company_import/sol_defense/armor_hardened/emt_hardened_vest
 	item_type = /obj/item/clothing/suit/armor/sf_hardened/emt
+
+/*
 
 /datum/armament_entry/company_import/sol_defense/case
 	subcategory = "Weapon Cases"
