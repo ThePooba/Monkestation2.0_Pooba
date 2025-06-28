@@ -712,6 +712,7 @@ GLOBAL_LIST_EMPTY_TYPED(closets, /obj/structure/closet)
 	locked = FALSE //applies to critter crates and secure lockers only
 	broken = TRUE //applies to secure lockers only
 	for(var/obj/item/broken as anything in src.contents)
+	if(!istype(broken, var/mob))
 		if(prob(33))
 			QDEL_NULL(broken)
 			new /obj/effect/decal/cleanable/ash(src.loc)
