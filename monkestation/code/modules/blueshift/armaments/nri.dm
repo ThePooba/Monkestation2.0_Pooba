@@ -138,3 +138,4 @@
 	item_type = /obj/item/ammo_box/magazine/wylom
 	contraband = TRUE
 	cost = PAYCHECK_CREW * 3
+*/
