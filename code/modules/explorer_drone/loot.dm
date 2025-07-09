@@ -96,18 +96,18 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index,generate_generator_index())
 	id = "pets"
 	var/carrier_type = /obj/item/pet_carrier/biopod
 	var/list/possible_pets = list(
-		/mob/living/basic/pet/cat/space,
 		/mob/living/basic/pet/dog/corgi,
 		/mob/living/basic/pet/dog/pug,
 		/mob/living/basic/pet/penguin/baby,
+		/mob/living/simple_animal/pet/cat/space,
 	)
 
 /datum/adventure_loot_generator/pet/generate()
 	var/obj/item/pet_carrier/carrier = new carrier_type()
 	var/chosen_pet_type = pick(possible_pets)
-	var/mob/living/basic/pet/pet = new chosen_pet_type()
+	var/mob/living/simple_animal/pet/pet = new chosen_pet_type()
 	carrier.add_occupant(pet)
-	return list(carrier)
+	return carrier
 
 /obj/item/antique
 	name = "antique"
@@ -152,33 +152,35 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index,generate_generator_index())
 	lefthand_file = 'icons/mob/inhands/items/firelance_lefthand.dmi'
 	var/windup_time = 10 SECONDS
 	var/melt_range = 3
-	var/obj/item/stock_parts/power_store/cell
+	var/charge_per_use = 200
+	var/obj/item/stock_parts/cell/cell
 
 /obj/item/firelance/Initialize(mapload)
 	. = ..()
-	cell = new /obj/item/stock_parts/power_store/cell(src)
+	cell = new /obj/item/stock_parts/cell(src)
 	AddComponent(/datum/component/two_handed)
 
-/obj/item/firelance/attack(mob/living/M, mob/living/user, list/modifiers, list/attack_modifiers)
-	if(!user.combat_mode)
+/obj/item/firelance/attack(mob/living/M, mob/living/user, params)
+	if(!(user.istate & ISTATE_HARM))
 		return
 	. = ..()
 
 /obj/item/firelance/get_cell()
 	return cell
 
-/obj/item/firelance/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
-	. = ITEM_INTERACT_BLOCKING
-	if(!HAS_TRAIT(src, TRAIT_WIELDED))
-		to_chat(user, span_notice("You need to wield [src] in two hands before you can fire it."))
-		return .
+/obj/item/firelance/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	. |= AFTERATTACK_PROCESSED_ITEM
+	if(!HAS_TRAIT(src,TRAIT_WIELDED))
+		to_chat(user,span_notice("You need to wield [src] in two hands before you can fire it."))
+		return
 	if(LAZYACCESS(user.do_afters, "firelance"))
-		return .
-	if(!cell.use(0.2 * STANDARD_CELL_CHARGE))
-		to_chat(user,span_warning("[src]'s battery ran dry!"))
-		return .
+		return
+	if(!cell.use(charge_per_use))
+		to_chat(user,span_warning("[src] battery ran dry!"))
+		return
 	ADD_TRAIT(user, TRAIT_IMMOBILIZED, REF(src))
-	to_chat(user,span_notice("You begin to charge [src]..."))
+	to_chat(user,span_notice("You begin to charge [src]"))
 	inhand_icon_state = "firelance_charging"
 	user.update_held_items()
 	if(do_after(user,windup_time,interaction_key="firelance",extra_checks = CALLBACK(src, PROC_REF(windup_checks))))
@@ -188,11 +190,9 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index,generate_generator_index())
 		for(var/turf/turf_to_melt in get_line(start_turf,last_turf))
 			if(turf_to_melt.density)
 				turf_to_melt.Melt()
-		. = ITEM_INTERACT_SUCCESS
 	inhand_icon_state = initial(inhand_icon_state)
 	user.update_held_items()
 	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, REF(src))
-	return .
 
 /// Additional windup checks
 /obj/item/firelance/proc/windup_checks()
