@@ -274,7 +274,8 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 	if(!damage_amount) //Micro-optimization.
 		return
 	if(maximum < damage)
-		return
+		if(!istype(src, /obj/item/organ/internal/brain))
+			return
 	if(required_organ_flag && !(organ_flags & required_organ_flag))
 		return
 	damage = clamp(damage + damage_amount, 0, maximum)
