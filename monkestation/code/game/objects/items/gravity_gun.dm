@@ -75,7 +75,7 @@
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/item/gravity_gun/process(seconds_per_tick)
-	if(!picked_owner.client || picked_owner.incapacitated(INCAPABLE_GRAB))
+	if(!picked_owner.client || picked_owner.INCAPACITATED_IGNORING(user, INCAPABLE_GRAB))
 		clear_grab()
 		return
 	if(!range_check(grabbed_atom))

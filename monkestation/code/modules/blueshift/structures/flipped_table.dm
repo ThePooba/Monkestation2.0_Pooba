@@ -123,7 +123,7 @@
 			return FALSE
 		if(DOING_INTERACTION_WITH_TARGET(src, table))
 			return FALSE
-		if(incapacitated())
+		if(incapacitated)
 			return FALSE
 		if(!CanReach(table))
 			return FALSE
