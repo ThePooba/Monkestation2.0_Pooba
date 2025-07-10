@@ -14,7 +14,6 @@ And the only victory you achieved was a lie. Now you understand Gotham is beyond
 
 
 
-/datum/ai_controller/bane/able_to_run()
 /datum/ai_controller/bane/on_stat_changed(mob/living/source, new_stat)
 	. = ..()
 	update_able_to_run()
