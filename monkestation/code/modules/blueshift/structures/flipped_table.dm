@@ -74,7 +74,7 @@
 		return TRUE
 	if(is_admin(user.client))
 		return TRUE
-	if(check_incapacitated && user.incapacitated())
+	if(check_incapacitated && user.incapacitated)
 		return FALSE
 	return TRUE
 

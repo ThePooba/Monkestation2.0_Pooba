@@ -28,7 +28,7 @@
 	var/time_between_alerts = 60 SECONDS
 
 /obj/structure/closet/cardboard/relaymove(mob/living/user, direction)
-	if(opened || move_delay || user.incapacitated() || !isturf(loc) || !has_gravity(loc))
+	if(opened || move_delay || user.incapacitated || !isturf(loc) || !has_gravity(loc))
 		return
 	move_delay = TRUE
 	var/oldloc = loc

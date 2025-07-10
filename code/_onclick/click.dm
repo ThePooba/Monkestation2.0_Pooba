@@ -388,7 +388,7 @@
 		return FALSE
 
 /mob/living/CtrlClick(mob/user)
-	if(!isliving(user) || !user.CanReach(src) || user.incapacitated())
+	if(!isliving(user) || !user.CanReach(src) || user.incapacitated)
 		return ..()
 
 	if(world.time < user.next_move)
@@ -403,7 +403,7 @@
 
 
 /mob/living/carbon/human/CtrlClick(mob/user)
-	if(!iscarbon(user) || !user.CanReach(src) || user.incapacitated())
+	if(!iscarbon(user) || !user.CanReach(src) || user.incapacitated)
 		return ..()
 
 	if(world.time < user.next_move)

@@ -638,7 +638,7 @@
 					parent.losebreath += 4
 				else if(heart_attack_counter >= 3)
 					to_chat(parent, span_userdanger("Your heart stops!"))
-					if(!parent.incapacitated())
+					if(!parent.incapacitated)
 						parent.visible_message(span_danger("[parent] grabs at [parent.p_their()] chest!"), ignored_mobs = parent)
 					parent.set_heartattack(TRUE)
 					heart_attack_counter = -2
