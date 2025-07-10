@@ -816,7 +816,7 @@
 		return FALSE
 	if(cooldown && !COOLDOWN_FINISHED(src, time_since_last_pain_message))
 		return FALSE
-	if(parent.stat >= UNCONSCIOUS || parent.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB))
+	if(parent.stat >= UNCONSCIOUS || parent.incapacitated(INCAPABLE_RESTRAINTS|INCAPABLE_GRAB))
 		return FALSE
 
 	INVOKE_ASYNC(parent, TYPE_PROC_REF(/mob, emote), emote)
