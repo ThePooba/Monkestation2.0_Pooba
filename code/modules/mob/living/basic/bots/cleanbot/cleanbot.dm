@@ -366,3 +366,6 @@
 	name = "Scrubs, MD"
 	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_JANITOR, ACCESS_MEDICAL)
 	bot_mode_flags = ~(BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED)
+
+/mob/living/basic/bot/cleanbot/medbay/jr
+	name = "Scrubs Junior, PA"
