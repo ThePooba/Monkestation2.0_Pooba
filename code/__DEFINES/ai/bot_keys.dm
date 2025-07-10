@@ -54,6 +54,9 @@ DEFINE_BITFIELD(repairbot_flags, list(
 #define BB_TEMPORARY_IGNORE_LIST "temporary_ignore_list"
 ///penalty cooldown if we are unable to path to any beacons
 #define BB_BOT_BEACON_COOLDOWN "bot_beacon_cooldown"
+///Last thing we attempted to reach
+//#define BB_LAST_ATTEMPTED_PATHING "last_attempted_pathing"
+
 
 // medbot keys
 ///the patient we must heal
