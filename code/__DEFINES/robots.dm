@@ -169,7 +169,9 @@ DEFINE_BITFIELD(bot_cover_flags, list(
 /// Cleanbot - Cleaning
 #define BOT_CLEANING "Cleaning"
 /// Hygienebot - Cleaning unhygienic humans
-#define BOT_SHOWERSTANCE "Chasing filth"
+#define BOT_SHOWERSTANCE "Chasing filth"3
+/// Floorbots - Repairing hull breaches
+#define BOT_REPAIRING "Repairing"
 /// Medibots - Healing people
 #define BOT_HEALING "Healing"
 /// MULEbot - Moving to deliver
