@@ -272,15 +272,15 @@
 	new /obj/item/gun_maintenance_supplies(src)
 	new /obj/item/gun_maintenance_supplies(src)
 
-//floorbot assembly
-/obj/item/storage/toolbox/attackby(obj/item/stack/tile/iron/T, mob/user, params)
+//repairbot assembly
+/obj/item/storage/toolbox/attackby(/obj/item/assembly/prox_sensor/tool, mob/user, params)
 	var/list/allowed_toolbox = list(/obj/item/storage/toolbox/emergency, //which toolboxes can be made into floorbots
 							/obj/item/storage/toolbox/electrical,
 							/obj/item/storage/toolbox/mechanical,
 							/obj/item/storage/toolbox/artistic,
 							/obj/item/storage/toolbox/syndicate)
 
-	if(!istype(T, /obj/item/stack/tile/iron))
+	if(!istype(tool, /obj/item/assembly/prox_sensor))
 		..()
 		return
 	if(!is_type_in_list(src, allowed_toolbox) && (type != /obj/item/storage/toolbox))
@@ -288,27 +288,23 @@
 	if(contents.len >= 1)
 		balloon_alert(user, "not empty!")
 		return
-	if(T.use(10))
-		var/obj/item/bot_assembly/floorbot/B = new
-		B.toolbox = type
-		switch(B.toolbox)
-			if(/obj/item/storage/toolbox)
-				B.toolbox_color = "r"
-			if(/obj/item/storage/toolbox/emergency)
-				B.toolbox_color = "r"
-			if(/obj/item/storage/toolbox/electrical)
-				B.toolbox_color = "y"
-			if(/obj/item/storage/toolbox/artistic)
-				B.toolbox_color = "g"
-			if(/obj/item/storage/toolbox/syndicate)
-				B.toolbox_color = "s"
-		user.put_in_hands(B)
-		B.update_appearance()
-		B.balloon_alert(user, "tiles added")
-		qdel(src)
-	else
-		balloon_alert(user, "needs 10 tiles!")
-		return
+	var/static/list/toolbox_colors = list(
+		/obj/item/storage/toolbox = "#445eb3",
+		/obj/item/storage/toolbox/emergency = "#445eb3",
+		/obj/item/storage/toolbox/electrical = "#b77931",
+		/obj/item/storage/toolbox/artistic = "#378752",
+		/obj/item/storage/toolbox/syndicate = "#3d3d3d",
+	)
+	var/obj/item/bot_assembly/repairbot/repair = new
+	repair.toolbox = type
+	var/new_color = toolbox_colors[type] || "#445eb3"
+	repair.set_color(new_color)
+	user.put_in_hands(repair)
+	repair.update_appearance()
+	repair.balloon_alert(user, "sensor added!")
+	qdel(tool)
+	qdel(src)
+	return
 
 
 /obj/item/storage/toolbox/haunted

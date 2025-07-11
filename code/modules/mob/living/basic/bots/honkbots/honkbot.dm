@@ -4,7 +4,7 @@
 	icon_state = "honkbot"
 	base_icon_state = "honkbot"
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0)
-	req_access = list(ACCESS_ROBOTICS, ACCESS_THEATRE, ACCESS_JANITOR)
+	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_THEATRE, ACCESS_JANITOR)
 	radio_key = /obj/item/encryptionkey/headset_service
 	ai_controller = /datum/ai_controller/basic_controller/bot/honkbot
 	radio_channel = RADIO_CHANNEL_SERVICE

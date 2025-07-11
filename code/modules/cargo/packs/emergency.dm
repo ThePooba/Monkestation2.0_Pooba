@@ -16,7 +16,7 @@
 /datum/supply_pack/emergency/equipment
 	name = "Emergency Bot/Internals Crate"
 	desc = "Explosions got you down? These supplies are guaranteed to patch up holes, \
-		in stations and people alike! Comes with two floorbots, two medbots, five oxygen \
+		in stations and people alike! Comes with two Repairbots, two medbots, five oxygen \
 		masks and five small oxygen tanks."
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(

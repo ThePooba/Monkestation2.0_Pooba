@@ -15,12 +15,13 @@
 	var/result = ability.Trigger(target = target)
 	finish_action(controller, result, ability_key, target_key)
 
+/*
 /datum/ai_behavior/targeted_mob_ability/finish_action(datum/ai_controller/controller, succeeded, ability_key, target_key)
 	. = ..()
 	var/atom/target = controller.blackboard[target_key]
 	if (QDELETED(target))
 		controller.clear_blackboard_key(target_key)
-
+*/
 /**
  * # Try Mob Ability and plan execute
  * Attempts to use a mob's cooldown ability on a target and then move the target into a special target blackboard datum

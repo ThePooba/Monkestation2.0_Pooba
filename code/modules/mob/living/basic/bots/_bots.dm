@@ -396,7 +396,7 @@ GLOBAL_LIST_INIT(command_strings, list(
 /mob/living/basic/bot/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SimpleBot", name)
+		ui = new(user, src, bot_ui, name)
 		ui.open()
 
 /mob/living/basic/bot/AltClick(mob/user)

@@ -192,43 +192,63 @@
 					to_chat(user, span_notice("You complete the ED-209."))
 					qdel(src)
 
-//Floorbot assemblies
-/obj/item/bot_assembly/floorbot
+//Repairbot assemblies
+/obj/item/bot_assembly/repairbot
 	desc = "It's a toolbox with tiles sticking out the top."
-	name = "tiles and toolbox"
-	icon_state = "toolbox_tiles"
+	name = "Repairbot Chasis"
+	icon_state = "repairbot_base"
 	throwforce = 10
-	created_name = "Floorbot"
+	created_name = "Repairbot"
 	var/toolbox = /obj/item/storage/toolbox/mechanical
 	var/toolbox_color = "" //Blank for blue, r for red, y for yellow, etc.
 
-/obj/item/bot_assembly/floorbot/Initialize(mapload)
+/obj/item/bot_assembly/repairbot/Initialize(mapload)
 	. = ..()
 	update_appearance()
 
-/obj/item/bot_assembly/floorbot/update_name()
-	. = ..()
-	switch(build_step)
-		if(ASSEMBLY_SECOND_STEP)
-			name = "incomplete floorbot assembly"
-		else
-			name = initial(name)
+/obj/item/bot_assembly/repairbot/proc/set_color(new_color)
+	add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)
+	toolbox_color = new_color
 
-/obj/item/bot_assembly/floorbot/update_desc()
-	. = ..()
-	switch(build_step)
-		if(ASSEMBLY_SECOND_STEP)
-			desc = "It's a toolbox with tiles sticking out the top and a sensor attached."
-		else
-			desc = initial(desc)
-
-/obj/item/bot_assembly/floorbot/update_icon_state()
+/obj/item/bot_assembly/repairbot/update_desc()
 	. = ..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
-			icon_state = "[toolbox_color]toolbox_tiles"
+			desc = "It's a toolbox with a giant monitor sticking out!."
+		else
+			desc = initial(desc)
+
+/obj/item/bot_assembly/repairbot/update_overlays()
+	. = ..()
+	if(build_step >= ASSEMBLY_FIRST_STEP)
+		. += mutable_appearance(icon, "repairbot_base_sensor", appearance_flags = RESET_COLOR)
+	if(build_step >= ASSEMBLY_SECOND_STEP)
+		. += mutable_appearance(icon, "repairbot_base_arms", appearance_flags = RESET_COLOR)
+
+/obj/item/bot_assembly/repairbot/attackby(obj/item/item, mob/user, params)
+	..()
+	switch(build_step)
+		if(ASSEMBLY_FIRST_STEP)
+			if(!istype(item, /obj/item/bodypart/arm/left/robot) && !istype(item, /obj/item/bodypart/arm/right/robot))
+				return
+			if(!can_finish_build(item, user))
+				return
+			build_step++
+			to_chat(user, span_notice("You add [item] to [src]. Boop beep!"))
+			qdel(item)
+			update_appearance()
 		if(ASSEMBLY_SECOND_STEP)
-			icon_state = "[toolbox_color]toolbox_tiles_sensor"
+			if(!istype(item, /obj/item/stack/conveyor))
+				return
+			if(!can_finish_build(item, user))
+				return
+			var/mob/living/basic/bot/repairbot/repair = new(drop_location())
+			repair.name = created_name
+			repair.toolbox = toolbox
+			repair.set_color(toolbox_color)
+			to_chat(user, span_notice("You add [item] to [src]. Boop beep!"))
+			qdel(item)
+			qdel(src)
 
 //Medbot Assembly
 /obj/item/bot_assembly/medbot
