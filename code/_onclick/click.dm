@@ -127,7 +127,7 @@
 		alt_click_on_secondary(A)
 		return
 
-	if(INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS|INCAPABLE_STASIS|IGNORE_CRIT)) //ignore crit allows using in crit
+	if(INCAPACITATED_IGNORING(src, IGNORE_RESTRAINTS|IGNORE_STASIS|IGNORE_CRIT)) //ignore crit allows using in crit
 		return
 
 	face_atom(A)

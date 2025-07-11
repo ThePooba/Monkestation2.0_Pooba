@@ -103,7 +103,7 @@ have ways of interacting with a specific mob and control it.
 /datum/ai_controller/monkey/get_able_to_run()
 	var/mob/living/living_pawn = pawn
 
-	if(INCAPACITATED_IGNORING(living_pawn, INCAPABLE_RESTRAINTS|INCAPABLE_STASIS|INCAPABLE_GRAB) || living_pawn.stat > CONSCIOUS)
+	if(INCAPACITATED_IGNORING(living_pawn, IGNORE_RESTRAINTS|IGNORE_STASIS|IGNORE_GRAB) || living_pawn.stat > CONSCIOUS)
 		return FALSE
 	return ..()
 

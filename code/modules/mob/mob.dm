@@ -103,7 +103,7 @@
 		add_to_dead_mob_list()
 	else
 		add_to_alive_mob_list()
-	update_incapacitated
+	update_incapacitated()
 	set_focus(src)
 	prepare_huds()
 	for(var/v in GLOB.active_alternate_appearances)
@@ -412,7 +412,7 @@
 /mob/proc/update_incapacitated()
 	SIGNAL_HANDLER
 	var/old_incap = incapacitated
-	incapacitated = build_incapacitated
+	incapacitated = build_incapacitated()
 	if(old_incap == incapacitated)
 		return FALSE
 
