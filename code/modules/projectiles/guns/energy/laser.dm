@@ -33,6 +33,15 @@
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.2 SECONDS, allow_akimbo = FALSE)
 
+/obj/item/gun/energy/laser/carbine/cybersun
+	name = "\improper Cybersun S-120"
+	desc = "A laser gun primarily used by syndicate security guards. It fires a rapid spray of low-power plasma beams."
+	icon_state = "cybersun_s120"
+	inhand_icon_state = "s120"
+	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/carbine/cybersun)
+	spread = 14
+	pin = /obj/item/firing_pin/implant/pindicate
+
 /obj/item/gun/energy/laser/retro/old
 	name ="laser gun"
 	icon_state = "retro"

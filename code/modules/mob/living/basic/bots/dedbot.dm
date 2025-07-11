@@ -8,12 +8,12 @@
 	desc = "A bladed commercial defence drone, often called an 'Ex-Drone' or 'D.E.D.bot'. It follows a simple programmed patrol route, and slashes at anyone who doesn't have an identity implant."
 	icon_state = "ded_drone0"
 	base_icon_state = "ded_drone"
-	req_one_access = list(ACCESS_SYNDICATE)
+	maints_access_required = list(ACCESS_SYNDICATE)
 	health = 50
 	maxHealth = 50
 	melee_damage_lower = 15
 	melee_damage_upper = 20
-	light_range = 1
+	light_outer_range = 1
 	light_power = 0.3
 	light_color = "#eb1809"
 	ai_controller = /datum/ai_controller/basic_controller/bot/dedbot
@@ -21,15 +21,15 @@
 	sharpness = SHARP_EDGED
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
-	attack_sound = 'sound/items/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	gold_core_spawnable = HOSTILE_SPAWN
 	limb_destroyer = TRUE
 	bubble_icon = "machine"
 	pass_flags = PASSMOB | PASSFLAPS
-	maximum_survivable_temperature = 360 //prone to overheating
+	bodytemp_heat_damage_limit = 360 //prone to overheating
 	possessed_message = "You are an exenteration drone. Exenterate."
-	additional_access = /datum/id_trim/away/hauntedtradingpost/boss
+	//additional_access = /datum/id_trim/away/hauntedtradingpost/boss
 	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL
 	mob_size = MOB_SIZE_SMALL
 	robot_arm = /obj/item/hatchet/cutterblade
@@ -46,9 +46,9 @@
 	if(length(remains))
 		remains = string_list(remains)
 		AddElement(/datum/element/death_drops, remains)
-	var/static/list/innate_actions = list(
-	SPIN_SLASH_ABILITY_TYPEPATH = BB_DEDBOT_SLASH,
-	)
+	//var/static/list/innate_actions = list(
+//SPIN_SLASH_ABILITY_TYPEPATH = BB_DEDBOT_SLASH,
+	//)
 	grant_actions_by_list(innate_actions)
 
 /datum/ai_controller/basic_controller/bot/dedbot
@@ -59,7 +59,7 @@
 	)
 	ai_movement = /datum/ai_movement/jps/bot
 	planning_subtrees = list(
-		/datum/ai_planning_subtree/escape_captivity,
+		///datum/ai_planning_subtree/escape_captivity,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/targeted_mob_ability/exenterate,
 		/datum/ai_planning_subtree/respond_to_summon,

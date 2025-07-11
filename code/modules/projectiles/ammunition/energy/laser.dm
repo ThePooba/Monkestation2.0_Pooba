@@ -38,6 +38,12 @@
 	pellets = 3
 	variance = 10
 
+/obj/item/ammo_casing/energy/lasergun/carbine/cybersun
+	projectile_type = /obj/projectile/beam/laser/carbine/cybersun
+	e_cost = LASER_SHOTS(54, STANDARD_CELL_CHARGE)
+	select_name = "rapid fire"
+	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser2.ogg'
+
 /obj/item/ammo_casing/energy/laser/practice
 	projectile_type = /obj/projectile/beam/practice
 	select_name = "practice"

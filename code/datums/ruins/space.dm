@@ -507,3 +507,9 @@
 	suffix = "syndicate_depot.dmm"
 	name = "Syndicate Depot"
 	description = "A small depot ran by the Syndicate sitting out in space, responsible for logistics across the vast reaches of space."
+
+/datum/map_template/ruin/space/hauntedtradingpost
+	id = "hauntedtradingpost"
+	suffix = "hauntedtradingpost.dmm"
+	name = "Space-Ruin Donk Co. Interstellar Trading Post 6016"
+	description = "A small station for trading ships to dock at. It's been abandoned for some time, but its security systems have kept looters away. Rumored to be haunted."

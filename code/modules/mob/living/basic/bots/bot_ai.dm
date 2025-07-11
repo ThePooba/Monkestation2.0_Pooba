@@ -6,16 +6,18 @@
 		BB_SALUTE_MESSAGES = list(
 			"performs an elaborate salute for",
 			"nods in appreciation towards",
+			"fist bumps",
+			"salutes",
 		),
 		BB_UNREACHABLE_LIST_COOLDOWN = 45 SECONDS,
 	)
 
 	ai_movement = /datum/ai_movement/jps/bot
 	planning_subtrees = list(
-/datum/ai_planning_subtree/escape_captivity/pacifist,
 		/datum/ai_planning_subtree/respond_to_summon,
 		/datum/ai_planning_subtree/salute_authority,
 		/datum/ai_planning_subtree/find_patrol_beacon,
+		/datum/ai_planning_subtree/manage_unreachable_list,
 	)
 	max_target_distance = AI_BOT_PATH_LENGTH
 	can_idle = FALSE
@@ -252,10 +254,14 @@
 	action_cooldown = BOT_COMMISSIONED_SALUTE_DELAY
 
 /datum/ai_behavior/find_and_set/valid_authority/search_tactic(datum/ai_controller/controller, locate_path, search_range)
-	for(var/mob/living/nearby_mob in oview(search_range, controller.pawn))
-		if(!HAS_TRAIT(nearby_mob, TRAIT_COMMISSIONED))
+	for(var/mob/living/robot in oview(search_range, controller.pawn))
+		if(istype(robot, /mob/living/simple_animal/bot/secbot))
+			return robot
+		if(!istype(robot, /mob/living/basic/bot/cleanbot))
 			continue
-		return nearby_mob
+		var/mob/living/basic/bot/cleanbot/potential_bot = robot
+		if(potential_bot.comissioned)
+			return potential_bot
 	return null
 
 /datum/ai_behavior/salute_authority

@@ -1,3 +1,4 @@
+
 /// Generic away/offstation trim.
 /datum/id_trim/away
 	access = list(ACCESS_AWAY_GENERAL)
@@ -239,3 +240,16 @@
 /// Trim for the SCP site ruins.
 /datum/id_trim/away/scp4
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_MAINTENANCE, ACCESS_AWAY_SEC, ACCESS_AWAY_SCIENCE, ACCESS_AWAY_GENERIC1, ACCESS_AWAY_GENERIC2, ACCESS_AWAY_COMMAND, ACCESS_AWAY_GENERIC3, ACCESS_AWAY_GENERIC4, ACCESS_AWAY_ENGINEERING)
+
+//Haunted Trading Post IDs                                 //
+/datum/id_trim/away/hauntedtradingpost
+	assignment = "Donk Co. Employee"
+	department_color = COLOR_ENGINEERING_ORANGE
+	sechud_icon_state = SECHUD_SYNDICATE
+	threat_modifier = 5
+	access = list(ACCESS_SYNDICATE)
+
+/datum/id_trim/away/hauntedtradingpost/boss
+	assignment = "Donk Co. Executive"
+	access = list(ACCESS_SYNDICATE, ACCESS_AWAY_COMMAND)
+//                                                         //

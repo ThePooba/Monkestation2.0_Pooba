@@ -1,35 +1,39 @@
 /mob/living/basic/bot/proc/diag_hud_set_bothealth()
-	set_hud_image_state(DIAG_HUD, "huddiag[RoundDiagBar(health/maxHealth)]")
+	var/image/holder = hud_list[DIAG_HUD]
+	holder.pixel_y = get_cached_height() - world.icon_size
+	holder.icon_state = "huddiag[RoundDiagBar(health/maxHealth)]"
 
 /mob/living/basic/bot/proc/diag_hud_set_botstat() //On (With wireless on or off), Off, EMP'ed
+	var/image/holder = hud_list[DIAG_STAT_HUD]
+	holder.pixel_y = get_cached_height() - world.icon_size
 	if(bot_mode_flags & BOT_MODE_ON)
-		set_hud_image_state(DIAG_STAT_HUD, "hudstat")
+		holder.icon_state = "hudstat"
 		return
-
 	if(stat != CONSCIOUS)
-		set_hud_image_state(DIAG_STAT_HUD, "hudoffline")
+		holder.icon_state = "hudoffline"
 		return
-
-	set_hud_image_state(DIAG_STAT_HUD, "huddead2")
+	holder.icon_state = "huddead2"
 
 /mob/living/basic/bot/proc/diag_hud_set_botmode() //Shows a bot's current operation
+	var/image/holder = hud_list[DIAG_BOT_HUD]
+	holder.pixel_y = get_cached_height() - world.icon_size
 	if(client) //If the bot is player controlled, it will not be following mode logic!
-		set_hud_image_state(DIAG_BOT_HUD, "hudsentient")
+		holder.icon_state = "hudsentient"
 		return
 
 	switch(mode)
 		if(BOT_SUMMON, BOT_RESPONDING) //Responding to PDA or AI summons
-			set_hud_image_state(DIAG_BOT_HUD, "hudcalled")
-		if(BOT_CLEANING, BOT_HEALING) //Cleanbot cleaning, Floorbot fixing, or Medibot Healing
-			set_hud_image_state(DIAG_BOT_HUD, "hudworking")
+			holder.icon_state = "hudcalled"
+		if(BOT_CLEANING, BOT_REPAIRING, BOT_HEALING) //Cleanbot cleaning, repairbot fixing, or Medibot Healing
+			holder.icon_state = "hudworking"
 		if(BOT_PATROL, BOT_START_PATROL) //Patrol mode
-			set_hud_image_state(DIAG_BOT_HUD, "hudpatrol")
+			holder.icon_state = "hudpatrol"
 		if(BOT_PREP_ARREST, BOT_ARREST, BOT_HUNT) //STOP RIGHT THERE, CRIMINAL SCUM!
-			set_hud_image_state(DIAG_BOT_HUD, "hudalert")
+			holder.icon_state = "hudalert"
 		if(BOT_MOVING, BOT_DELIVER, BOT_GO_HOME, BOT_NAV) //Moving to target for normal bots, moving to deliver or go home for MULES.
-			set_hud_image_state(DIAG_BOT_HUD, "hudmove")
+			holder.icon_state = "hudmove"
 		else
-			set_hud_image_state(DIAG_BOT_HUD, "")
+			holder.icon_state = ""
 
 ///proc that handles drawing and transforming the bot's path onto diagnostic huds
 /mob/living/basic/bot/proc/generate_bot_path(datum/move_loop/has_target/jps/source)
@@ -40,14 +44,12 @@
 	if(isnull(ai_controller))
 		return
 
-	//Removes path images and handles removing hud client images
 	clear_path_hud()
-
-	var/list/path_huds_watching_me = list(GLOB.huds[DATA_HUD_DIAGNOSTIC], GLOB.huds[DATA_HUD_BOT_PATH])
 
 	var/list/path_images = active_hud_list[DIAG_PATH_HUD]
 	LAZYCLEARLIST(path_images)
 
+	var/list/path_huds_watching_me = list(GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED])
 
 	var/atom/move_target = ai_controller.current_movement_target
 	if(move_target != ai_controller.blackboard[BB_BEACON_TARGET])
@@ -56,6 +58,9 @@
 	var/list/our_path = source.movement_path
 	if(!length(our_path))
 		return
+
+	for(var/datum/atom_hud/hud as anything in path_huds_watching_me)
+		hud.remove_atom_from_hud(src)
 
 	for(var/index in 1 to our_path.len)
 		if(index == 1 || index == our_path.len)
@@ -111,9 +116,4 @@
 		var/image/our_image = current_pathed_turfs[index]
 		animate(our_image, alpha = 0, time = 0.3 SECONDS)
 		current_pathed_turfs -= index
-
-	// Call hud remove handlers to ensure viewing user client images are removed
-	var/list/path_huds_watching_me = list(GLOB.huds[DATA_HUD_DIAGNOSTIC], GLOB.huds[DATA_HUD_BOT_PATH])
-	for(var/datum/atom_hud/hud as anything in path_huds_watching_me)
-		hud.remove_atom_from_hud(src)
 

@@ -9,7 +9,7 @@
 	ai_controller = /datum/ai_controller/basic_controller/bot/honkbot
 	radio_channel = RADIO_CHANNEL_SERVICE
 	bot_type = HONK_BOT
-	bot_mode_flags = BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED | BOT_MODE_CAN_BE_SAPIENT | BOT_MODE_AUTOPATROL | BOT_MODE_ROUNDSTART_POSSESSION
+	bot_mode_flags = BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED | BOT_MODE_GHOST_CONTROLLABLE | BOT_MODE_AUTOPATROL | BOT_MODE_ROUNDSTART_POSSESSION
 	hackables = "sound control systems"
 	path_image_color = "#FF69B4"
 	data_hud_type = DATA_HUD_SECURITY_BASIC
