@@ -286,13 +286,13 @@
 /mob/living/basic/bot/repairbot/ui_data(mob/user)
 	var/list/data = ..()
 	data["repairbot_materials"] = list()
-	if((bot_access_flags & BOT_COVER_LOCKED) && !issilicon(user) && !isAdminGhostAI(user))
-		return data
-	data["custom_controls"]["fix_breaches"] = repairbot_flags & REPAIRBOT_FIX_BREACHES
-	data["custom_controls"]["replace_windows"] = repairbot_flags & REPAIRBOT_REPLACE_WINDOWS
-	data["custom_controls"]["replace_tiles"] = repairbot_flags & REPAIRBOT_REPLACE_TILES
-	data["custom_controls"]["fix_girders"] = repairbot_flags & REPAIRBOT_FIX_GIRDERS
-	data["custom_controls"]["build_girders"] = repairbot_flags & REPAIRBOT_BUILD_GIRDERS
+	if(!(bot_cover_flags & BOT_COVER_LOCKED) || issilicon(user) || isAdminGhostAI(user))
+		data["custom_controls"]["fix_breaches"] = repairbot_flags & REPAIRBOT_FIX_BREACHES
+		data["custom_controls"]["replace_windows"] = repairbot_flags & REPAIRBOT_REPLACE_WINDOWS
+		data["custom_controls"]["replace_tiles"] = repairbot_flags & REPAIRBOT_REPLACE_TILES
+		data["custom_controls"]["fix_girders"] = repairbot_flags & REPAIRBOT_FIX_GIRDERS
+		data["custom_controls"]["build_girders"] = repairbot_flags & REPAIRBOT_BUILD_GIRDERS
+	return data
 
 	for(var/data_path in retrievable_types)
 		var/atom/to_retrieve = locate(data_path) in src
@@ -309,7 +309,7 @@
 
 /mob/living/basic/bot/repairbot/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	if(. || !isliving(ui.user) || (bot_access_flags & BOT_COVER_LOCKED) && !(HAS_SILICON_ACCESS(ui.user)))
+	if(. || (bot_cover_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
 		return
 	switch(action)
 		if("fix_breaches")
