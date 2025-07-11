@@ -46,9 +46,7 @@
 	if(length(remains))
 		remains = string_list(remains)
 		AddElement(/datum/element/death_drops, remains)
-	//var/static/list/innate_actions = list(
-//SPIN_SLASH_ABILITY_TYPEPATH = BB_DEDBOT_SLASH,
-	//)
+	var/static/list/innate_actions = list(SPIN_SLASH_ABILITY_TYPEPATH = BB_DEDBOT_SLASH,)
 	grant_actions_by_list(innate_actions)
 
 /datum/ai_controller/basic_controller/bot/dedbot

@@ -20,7 +20,7 @@
 		var/list/possible_bots = list(
 			/mob/living/basic/bot/medbot,
 			/mob/living/simple_animal/bot/secbot,
-			/mob/living/simple_animal/bot/floorbot,
+			/mob/living/basic/bot/repairbot,
 			/mob/living/simple_animal/bot/buttbot
 		)
 		var/chosen_bot = pick(possible_bots)

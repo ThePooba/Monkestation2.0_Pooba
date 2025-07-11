@@ -119,8 +119,31 @@
 		return TRUE
 	if(get_turf(pawn) == get_turf(target))
 		return TRUE
-	var/list/path = get_path_to(pawn, target, simulated_only = !HAS_TRAIT(pawn, TRAIT_SPACEWALK), mintargetdist = minimum_distance, max_distance = distance, access = get_access())
-	return (!!length(path))
+	var/list/path = get_path_to(pawn, target, max_distance = distance, access = get_access())
+	if(!length(path))
+		return FALSE
+	return TRUE
+
+/// subtree to manage our list of unreachables, we reset it every 15 seconds
+/datum/ai_planning_subtree/manage_unreachable_list
+
+/datum/ai_planning_subtree/manage_unreachable_list/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+	if(isnull(controller.blackboard[BB_UNREACHABLE_LIST_COOLDOWN]) || controller.blackboard[BB_CLEAR_LIST_READY] > world.time)
+		return
+	controller.queue_behavior(/datum/ai_behavior/manage_unreachable_list, BB_TEMPORARY_IGNORE_LIST)
+
+/datum/ai_behavior/manage_unreachable_list
+	behavior_flags = AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
+
+/datum/ai_behavior/manage_unreachable_list/perform(seconds_per_tick, datum/ai_controller/controller, list_key)
+	. = ..()
+	if(!isnull(controller.blackboard[list_key]))
+		controller.clear_blackboard_key(list_key)
+	finish_action(controller, TRUE)
+
+/datum/ai_behavior/manage_unreachable_list/finish_action(datum/ai_controller/controller, succeeded)
+	. = ..()
+	controller.set_blackboard_key(BB_CLEAR_LIST_READY, controller.blackboard[BB_UNREACHABLE_LIST_COOLDOWN] + world.time)
 
 /datum/ai_planning_subtree/find_patrol_beacon
 	///travel towards beacon behavior

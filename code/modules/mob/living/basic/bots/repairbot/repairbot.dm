@@ -13,7 +13,7 @@
 	maxHealth = 100
 	path_image_color = "#80dae7"
 	bot_ui = "RepairBot"
-	req_one_access = list(ACCESS_ROBOTICS, ACCESS_ENGINEERING)
+	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_ENGINEERING)
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_ENGINEERING
 	bot_type = REPAIR_BOT

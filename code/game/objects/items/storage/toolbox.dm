@@ -273,14 +273,14 @@
 	new /obj/item/gun_maintenance_supplies(src)
 
 //repairbot assembly
-/obj/item/storage/toolbox/attackby(/obj/item/assembly/prox_sensor/tool, mob/user, params)
+/obj/item/storage/toolbox/attackby(/obj/item/assembly/prox_sensor/T, mob/user, params)
 	var/list/allowed_toolbox = list(/obj/item/storage/toolbox/emergency, //which toolboxes can be made into floorbots
 							/obj/item/storage/toolbox/electrical,
 							/obj/item/storage/toolbox/mechanical,
 							/obj/item/storage/toolbox/artistic,
 							/obj/item/storage/toolbox/syndicate)
 
-	if(!istype(tool, /obj/item/assembly/prox_sensor))
+	if(!istype(T, /obj/item/assembly/prox_sensor))
 		..()
 		return
 	if(!is_type_in_list(src, allowed_toolbox) && (type != /obj/item/storage/toolbox))
@@ -302,7 +302,7 @@
 	user.put_in_hands(repair)
 	repair.update_appearance()
 	repair.balloon_alert(user, "sensor added!")
-	qdel(tool)
+	qdel(T)
 	qdel(src)
 	return
 
