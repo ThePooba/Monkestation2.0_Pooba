@@ -246,7 +246,6 @@
 	assignment = "Donk Co. Employee"
 	department_color = COLOR_ENGINEERING_ORANGE
 	sechud_icon_state = SECHUD_SYNDICATE
-	threat_modifier = 5
 	access = list(ACCESS_SYNDICATE)
 
 /datum/id_trim/away/hauntedtradingpost/boss

@@ -88,7 +88,6 @@
 	icon = 'icons/obj/storage/bigcrates.dmi'
 	icon_state = "securetrashcart"
 	base_icon_state = "securetrashcart"
-	paint_jobs = null
 	req_access = list(ACCESS_JANITOR)
 
 /obj/structure/closet/crate/secure/trashcart/filled
@@ -96,12 +95,12 @@
 /obj/structure/closet/crate/secure/trashcart/filled/PopulateContents()
 	. = ..()
 	for(var/i in 1 to rand(8,12))
-		new /obj/effect/spawner/random/trash/deluxe_garbage(src)
+		new /obj/effect/spawner/random/contraband/narcotics(src)
 		if(prob(35))
-			new /obj/effect/spawner/random/trash/garbage(src)
+			new /obj/effect/spawner/random/contraband/landmine(src)
 	for(var/i in 1 to rand(4,6))
 		if(prob(30))
-			new /obj/item/storage/bag/trash/filled(src)
+			new /obj/effect/spawner/random/contraband/cannabis(src)
 
 /obj/structure/closet/crate/secure/owned
 	name = "private crate"

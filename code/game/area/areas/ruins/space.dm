@@ -823,7 +823,7 @@
 /area/ruin/space/has_grav/hauntedtradingpost/office
 	name = "\improper Donk Co. Trading Outpost Captains Office"
 	icon_state = "donk_command"
-	airlock_wires = /datum/wires/airlock/cargo
+	airlock_wires = /datum/wires/airlock/command
 	sound_environment = SOUND_ENVIRONMENT_ROOM
 
 /area/ruin/space/has_grav/hauntedtradingpost/office/meetingroom

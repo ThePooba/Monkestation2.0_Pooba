@@ -13,6 +13,7 @@
 	)
 
 	ai_movement = /datum/ai_movement/jps/bot
+	idle_behavior = /datum/idle_behavior/idle_random_walk/less_walking
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/respond_to_summon,
 		/datum/ai_planning_subtree/salute_authority,

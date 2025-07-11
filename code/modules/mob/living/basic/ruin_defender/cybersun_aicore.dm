@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(selfdestructs_when_boss_dies)
 ///dramatic death animations
 	var/turf/my_turf = get_turf(src)
 	new /obj/effect/gibspawner/robot(my_turf)
-playsound(loc, 'sound/effects/explosion2.ogg', vol = 75, vary = TRUE, pressure_affected = FALSE)
+	playsound(loc, 'sound/effects/explosion2.ogg', vol = 75, vary = TRUE, pressure_affected = FALSE)
 	for (var/mob/witness in range(10, src))
 		if (!witness.client || !isliving(witness))
 			continue

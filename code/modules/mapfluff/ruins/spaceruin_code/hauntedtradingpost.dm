@@ -213,12 +213,6 @@ GLOBAL_LIST_EMPTY(tripwire_suicide_pact)
 	icon_state= "button-warning"
 	skin = "-warning"
 
-/obj/machinery/button/door/selfdestructs/attempt_press(mob/user)
-	. = ..()
-	do_sparks(rand(1,3), src)
-	playsound(src, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	qdel(src)
-
 //trap that gloms onto the first machine it finds on its tile, and lives inside it
 //then it zaps everyone who gets close. disarm by dissassembling the machine, or running out its charges
 /obj/effect/overloader_trap
@@ -335,7 +329,7 @@ GLOBAL_LIST_EMPTY(tripwire_suicide_pact)
 	icon_state = "donk_lethal"
 	max_integrity = 120
 	base_icon_state = "donk"
-	stun_projectile = /obj/projectile/bullet/foam_dart/riot
+	stun_projectile = /obj/projectile/bullet/pellet/stingball
 	lethal_projectile = /obj/projectile/bullet/c9mm/blunttip
 	lethal_projectile_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	stun_projectile_sound = 'sound/weapons/gun/pistol/shot.ogg'

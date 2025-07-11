@@ -223,7 +223,6 @@
 	)
 	tastes = list("quality meat" = 2, "dough" = 2, "raw fanciness" = 1)
 	foodtypes = GRAIN | MEAT
-	crafting_complexity = FOOD_COMPLEXITY_4
 
 	warm_type = /obj/item/food/donkpocket/warm/deluxe
 	var/static/list/deluxe_added_reagents = list(
@@ -260,7 +259,6 @@
 	)
 	tastes = list("raw meat" = 2, "more meat" = 2, "no carbs" = 1)
 	foodtypes = MEAT | RAW
-	crafting_complexity = FOOD_COMPLEXITY_4
 
 	warm_type = /obj/item/food/donkpocket/warm/deluxe/nocarb
 
@@ -293,7 +291,6 @@
 	)
 	tastes = list("rice patty" = 2, "dough" = 2, "peppery kick" = 1)
 	foodtypes = GRAIN | VEGETABLES
-	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/donkpocket/deluxe/vegan/make_bakeable()
 	AddComponent(/datum/component/bakeable, warm_type, rand(baking_time_short, baking_time_long), TRUE, TRUE, deluxe_added_reagents)

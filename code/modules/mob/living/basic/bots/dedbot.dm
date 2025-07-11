@@ -80,7 +80,7 @@
 /datum/action/cooldown/mob_cooldown/exenterate
 	name = "Exenterate"
 	desc = "Disembowel every living thing in range with your blades."
-	button_icon = 'icons/obj/weapons/stabby.dmi'
+	button_icon = 'icons/obj/kitchen.dmi'
 	button_icon_state = "huntingknife"
 	click_to_activate = FALSE
 	background_icon = 'icons/hud/guardian.dmi'
@@ -106,7 +106,7 @@
 		return FALSE
 	caster.Shake(1.4, 0.8, 0.3 SECONDS)
 	caster.visible_message(span_danger("[caster] shakes violently!"))
-	playsound(caster, 'sound/items/weapons/drill.ogg', 120 , TRUE)
+	playsound(caster, 'sound/weapons/drill.ogg', 120 , TRUE)
 	slash_em(caster)
 	StartCooldown(cooldown_time)
 

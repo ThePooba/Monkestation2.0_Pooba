@@ -8,7 +8,7 @@
 	light_color = "#8cffc9"
 	light_power = 0.8
 
-	req_one_access = list(ACCESS_ROBOTICS, ACCESS_CONSTRUCTION)
+	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_CONSTRUCTION)
 	radio_key = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
 	bot_type = FIRE_BOT
@@ -105,7 +105,7 @@
 // Variables sent to TGUI
 /mob/living/basic/bot/firebot/ui_data(mob/user)
 	var/list/data = ..()
-	if(!(bot_access_flags & BOT_COVER_LOCKED) || HAS_SILICON_ACCESS(user))
+	if(. || !isliving(ui.user) || !(bot_access_flags & BOT_COVER_LOCKED) && !(ui.user.has_unlimited_silicon_privilege))
 		data["custom_controls"]["extinguish_fires"] = firebot_mode_flags & FIREBOT_EXTINGUISH_FLAMES
 		data["custom_controls"]["extinguish_people"] = firebot_mode_flags & FIREBOT_EXTINGUISH_PEOPLE
 		data["custom_controls"]["stationary_mode"] = firebot_mode_flags & FIREBOT_STATIONARY_MODE
@@ -115,7 +115,7 @@
 /mob/living/basic/bot/firebot/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	var/mob/user = ui.user
-	if(. || (bot_access_flags & BOT_COVER_LOCKED && !HAS_SILICON_ACCESS(user)))
+	if(. || !isliving(ui.user) || !(bot_access_flags & BOT_COVER_LOCKED) && !(ui.user.has_unlimited_silicon_privilege))
 		return
 
 	switch(action)
