@@ -14,7 +14,7 @@
 	mask = /obj/item/clothing/mask/gas/slasher2
 	belt = /obj/item/storage/belt/slasher
 	gloves = /obj/item/clothing/gloves/admiral
-	backpack = /obj/item/storage/backpack/cursed
+	back = /obj/item/storage/backpack/cursed
 
 /datum/antagonist/slasher
 	name = "\improper Slasher"
