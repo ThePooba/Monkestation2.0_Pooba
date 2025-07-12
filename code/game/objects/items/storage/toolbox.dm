@@ -273,12 +273,12 @@
 	new /obj/item/gun_maintenance_supplies(src)
 
 //repairbot assembly
-/obj/item/storage/toolbox/attackby(/obj/item/assembly/prox_sensor/T, mob/user, params)
+/obj/item/storage/toolbox/attackby(obj/item/assembly/prox_sensor/T, mob/user, params)
 	var/list/allowed_toolbox = list(/obj/item/storage/toolbox/emergency, //which toolboxes can be made into floorbots
 							/obj/item/storage/toolbox/electrical,
 							/obj/item/storage/toolbox/mechanical,
 							/obj/item/storage/toolbox/artistic,
-							/obj/item/storage/toolbox/syndicate)
+							/obj/item/storage/toolbox/syndicate,)
 
 	if(!istype(T, /obj/item/assembly/prox_sensor))
 		..()

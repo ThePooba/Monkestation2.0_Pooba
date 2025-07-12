@@ -4573,6 +4573,8 @@
 #include "code\modules\mob\living\basic\bots\cleanbot\cleanbot.dm"
 #include "code\modules\mob\living\basic\bots\cleanbot\cleanbot_abilities.dm"
 #include "code\modules\mob\living\basic\bots\cleanbot\cleanbot_ai.dm"
+#include "code\modules\mob\living\basic\bots\honkbots\honkbot_abilities.dm"
+#include "code\modules\mob\living\basic\bots\honkbots\honkbot_ai.dm"
 #include "code\modules\mob\living\basic\bots\repairbot\repairbot.dm"
 #include "code\modules\mob\living\basic\bots\repairbot\repairbot.dm"
 #include "code\modules\mob\living\basic\bots\repairbot\repairbot.dm"

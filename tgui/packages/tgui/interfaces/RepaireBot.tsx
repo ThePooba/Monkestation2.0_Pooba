@@ -1,14 +1,7 @@
 import React from 'react';
 import { useBackend } from '../backend';
-import {
-  Button,
-  DmIcon,
-  Flex,
-  NoticeBox,
-  Section,
-  Stack,
-} from 'tgui/components';
-import { BotControl, BotSettings } from 'tgui/interfaces/SimpleBot';
+import { Button, DmIcon, Flex, NoticeBox, Section, Stack } from '../components';
+import { BotControl, BotSettings } from '../interfaces/SimpleBot';
 import { Window } from '../layouts';
 
 type Data = {
