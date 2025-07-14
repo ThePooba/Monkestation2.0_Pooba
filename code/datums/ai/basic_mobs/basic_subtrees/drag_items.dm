@@ -1,4 +1,4 @@
-
+/*
 ///simple behavior to make mobs randomly drag things around
 /datum/ai_planning_subtree/steal_items/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
 	var/mob/living/living_pawn = controller.pawn
@@ -27,7 +27,7 @@
 			continue
 		if(can_see(living_pawn, possible_item))
 			return possible_item
-
+*/
 
 /datum/ai_behavior/stop_dragging
 	behavior_flags = AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION

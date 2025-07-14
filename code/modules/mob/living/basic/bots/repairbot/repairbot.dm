@@ -185,7 +185,7 @@
 	//tool interactions
 	var/list/our_tools = list(our_welder, our_crowbar)
 	for(var/obj/item/tool in our_tools)
-		if(is_type_in_typecache(target, possible_tool_interactions[tool.type]) && (user.istate & ISTATE_HARM))
+		if(is_type_in_typecache(target, possible_tool_interactions[tool.type]) && (src.istate & ISTATE_HARM))
 			tool.melee_attack_chain(src, target)
 			return
 
@@ -281,12 +281,13 @@
 	var/list/data = ..()
 	data["repairbot_materials"] = list()
 	if(!(bot_access_flags & BOT_COVER_LOCKED) || issilicon(user) || isAdminGhostAI(user))
-		data["custom_controls"]["fix_breaches"] = repairbot_flags & REPAIRBOT_FIX_BREACHES
-		data["custom_controls"]["replace_windows"] = repairbot_flags & REPAIRBOT_REPLACE_WINDOWS
-		data["custom_controls"]["replace_tiles"] = repairbot_flags & REPAIRBOT_REPLACE_TILES
-		data["custom_controls"]["fix_girders"] = repairbot_flags & REPAIRBOT_FIX_GIRDERS
-		data["custom_controls"]["build_girders"] = repairbot_flags & REPAIRBOT_BUILD_GIRDERS
-	return data
+		return data
+	data["custom_controls"]["fix_breaches"] = repairbot_flags & REPAIRBOT_FIX_BREACHES
+	data["custom_controls"]["replace_windows"] = repairbot_flags & REPAIRBOT_REPLACE_WINDOWS
+	data["custom_controls"]["replace_tiles"] = repairbot_flags & REPAIRBOT_REPLACE_TILES
+	data["custom_controls"]["fix_girders"] = repairbot_flags & REPAIRBOT_FIX_GIRDERS
+	data["custom_controls"]["build_girders"] = repairbot_flags & REPAIRBOT_BUILD_GIRDERS
+
 
 	for(var/data_path in retrievable_types)
 		var/atom/to_retrieve = locate(data_path) in src

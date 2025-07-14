@@ -40,7 +40,7 @@
 	AddElement(/datum/element/death_drops, death_loot)
 	var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(aggro_tantrum))
 	AddComponent(/datum/component/connect_range, tracked = src, connections = connections, range = 1, works_in_containers = FALSE)
-	AddElement(TRAIT_WADDLING)
+	AddElement(/datum/element/waddling)
 	ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_PACIFISM, TRAIT_GENERIC)
 	name_calm = name

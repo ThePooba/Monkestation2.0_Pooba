@@ -114,7 +114,6 @@
 // Actions received from TGUI
 /mob/living/basic/bot/firebot/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	var/mob/user = ui.user
 	if(. || (bot_access_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
 		return
 
