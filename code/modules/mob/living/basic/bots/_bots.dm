@@ -849,6 +849,9 @@ GLOBAL_LIST_INIT(command_strings, list(
 	if(attack_flags & ATTACKER_DAMAGING_ATTACK)
 		do_sparks(number = 5, cardinal_only = TRUE, source = src)
 
+/mob/living/basic/bot/proc/emag_effects(user)
+	return
+
 /mob/living/basic/bot/spawn_gibs(drop_bitflags = NONE)
 	new /obj/effect/gibspawner/robot(drop_location(), src)
 

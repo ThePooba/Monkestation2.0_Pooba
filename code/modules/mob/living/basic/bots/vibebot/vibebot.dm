@@ -6,7 +6,7 @@
 	base_icon_state = "vibebot"
 	pass_flags = PASSMOB | PASSFLAPS
 	light_system = OVERLAY_LIGHT
-	light_range = 6
+	light_outer_range = 6
 	ai_controller = /datum/ai_controller/basic_controller/bot/vibebot
 	light_power = 2
 
@@ -14,7 +14,7 @@
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE
 	bot_type = VIBE_BOT
-	data_hud_type = DATA_HUD_DIAGNOSTIC
+	data_hud_type = DATA_HUD_DIAGNOSTIC_BASIC
 	path_image_color = "#2cac12"
 	possessed_message = "You are a vibebot! Maintain the station's vibes to the best of your ability!"
 

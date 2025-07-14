@@ -18,11 +18,10 @@
 	faction = list(ROLE_SYNDICATE)
 	ai_controller = /datum/ai_controller/basic_controller/cybersun_ai_core
 	unsuitable_atmos_damage = 0
-	combat_mode = TRUE
 	move_resist = INFINITY
 	damage_coeff = list(BRUTE = 1.5, BURN = 1, TOX = 0, STAMINA = 0, OXY = 0)
 	light_system = OVERLAY_LIGHT
-	light_range = 2
+	light_outer_range = 2
 	light_power = 0.6
 	light_color = "#eb1809"
 	/// Ability which fires da lightning bolt
@@ -48,9 +47,6 @@ GLOBAL_LIST_EMPTY(selfdestructs_when_boss_dies)
 
 /mob/living/basic/cybersun_ai_core/death(gibbed)
 	if(donk_ai_master == TRUE)
-		//disable all the tripwire traps
-		for (var/obj/item/pressure_plate/puzzle/invisible_tripwire as anything in GLOB.selfdestructs_when_boss_dies)
-			qdel(invisible_tripwire)
 		//and the electric overload traps
 		for (var/obj/effect/overloader_trap as anything in GLOB.selfdestructs_when_boss_dies)
 			qdel(overloader_trap)

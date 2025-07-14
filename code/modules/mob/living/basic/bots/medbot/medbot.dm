@@ -136,10 +136,18 @@
 		pre_tipped_callback = CALLBACK(src, PROC_REF(pre_tip_over)), \
 		post_tipped_callback = CALLBACK(src, PROC_REF(after_tip_over)), \
 		post_untipped_callback = CALLBACK(src, PROC_REF(after_righted)))
-	var/static/list/hat_offsets = list(4,-9)
-	AddElement(/datum/element/hat_wearer, offsets = hat_offsets)
-	RegisterSignal(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(pre_attack))
 
+	var/static/list/hat_offsets = list(4,-9)
+	var/static/list/remove_hat = list(SIGNAL_ADDTRAIT(TRAIT_MOB_TIPPED))
+	RegisterSignal(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(pre_attack))
+	var/static/list/prevent_checks = list(TRAIT_MOB_TIPPED)
+	AddElement(/datum/element/hat_wearer,\
+		offsets = hat_offsets,\
+		remove_hat_signals = remove_hat,\
+		traits_prevent_checks = prevent_checks,\
+	)
+
+	RegisterSignal(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(pre_attack))
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_MEDBOT_MANIA) && mapload && is_station_level(z))
 		skin = "advanced"
 		update_appearance(UPDATE_OVERLAYS)
@@ -162,6 +170,7 @@
 	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
 		icon_state = "[base_icon_state]a"
 		return
+	var/stationary_mode = !!(medical_mode_flags & MEDBOT_STATIONARY_MODE)
 	if(mode == BOT_HEALING)
 		icon_state = "[base_icon_state]s[medical_mode_flags & MEDBOT_STATIONARY_MODE ? 1 : 0]"
 		return
@@ -280,6 +289,11 @@
 	if(prob(10))
 		speak("PSYCH ALERT: Crewmember [user.name] recorded displaying antisocial tendencies torturing bots in [get_area(src)]. Please schedule psych evaluation.", radio_channel)
 
+/mob/living/basic/bot/medbot/explode()
+	var/atom/our_loc = drop_location()
+	drop_part(medkit_type, our_loc)
+	drop_part(health_analyzer, our_loc)
+	return ..()
 /*
  * Proc used in a callback for after this medibot is righted, either by themselves or by a mob, by the tippable component.
  *

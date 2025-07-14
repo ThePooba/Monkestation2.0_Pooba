@@ -185,20 +185,14 @@
 	//tool interactions
 	var/list/our_tools = list(our_welder, our_crowbar)
 	for(var/obj/item/tool in our_tools)
-		if(is_type_in_typecache(target, possible_tool_interactions[tool.type]) && !combat_mode)
+		if(is_type_in_typecache(target, possible_tool_interactions[tool.type]) && (user.istate & ISTATE_HARM))
 			tool.melee_attack_chain(src, target)
 			return
 
 /mob/living/basic/bot/repairbot/proc/emagged_interactions(atom/target, modifiers)
 	if(!istype(target, /mob/living/silicon/robot))
-		deconstruction_device?.interact_with_atom_secondary(target, src, modifiers)
+		deconstruction_device.afterattack_secondary(target, src)
 		return
-	if(HAS_TRAIT(target, TRAIT_MOB_TIPPED))
-		return
-	var/old_combat_mode = combat_mode
-	set_combat_mode(TRUE)
-	target.attack_hand_secondary(src, modifiers) //tip the guy!
-	set_combat_mode(old_combat_mode)
 
 /mob/living/basic/bot/repairbot/start_pulling(atom/movable/movable_pulled, state, force, supress_message)
 	. = ..()
@@ -363,9 +357,9 @@
 	desc = "A most robust bot!"
 	attack_verb_continuous = list("robusts")
 	attack_verb_simple = list("robust")
-	hitsound = 'sound/items/weapons/smash.ogg'
-	drop_sound = 'sound/items/handling/toolbox/toolbox_drop.ogg'
-	pickup_sound = 'sound/items/handling/toolbox/toolbox_pickup.ogg'
+	hitsound = 'sound/weapons/smash.ogg'
+	drop_sound = 'sound/items/handling/toolbox_drop.ogg'
+	pickup_sound = 'sound/items/handling/toolbox_pickup.ogg'
 	///the bot we own
 	var/atom/movable/our_bot
 

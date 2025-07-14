@@ -8,7 +8,6 @@
 	icon_state = "calm"
 	mob_size = MOB_SIZE_HUGE
 	move_resist = INFINITY
-	combat_mode = TRUE
 	faction = list(FACTION_HOSTILE, FACTION_TURRET)
 	maxHealth = 120
 	health = 120
@@ -41,7 +40,7 @@
 	AddElement(/datum/element/death_drops, death_loot)
 	var/static/list/connections = list(COMSIG_ATOM_ENTERED = PROC_REF(aggro_tantrum))
 	AddComponent(/datum/component/connect_range, tracked = src, connections = connections, range = 1, works_in_containers = FALSE)
-	AddElementTrait(TRAIT_WADDLING, INNATE_TRAIT, /datum/element/waddling)
+	AddElement(TRAIT_WADDLING)
 	ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_PACIFISM, TRAIT_GENERIC)
 	name_calm = name
