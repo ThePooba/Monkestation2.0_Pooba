@@ -85,7 +85,7 @@
 
 /datum/action/repairbot_resources/ui_static_data(mob/user)
 	var/list/data = list()
-	data["repairbot_icon"] = 'icons/ui/repairbotmanagement/repairbot_smile.dmi'
+	data["repairbot_icon"] = 'icons/ui_icons/repairbotmanagement/repairbot_smile.dmi'
 	data["repairbot_icon_state"] = "repairbot_smile"
 	return data
 

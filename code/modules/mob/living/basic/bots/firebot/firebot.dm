@@ -105,7 +105,7 @@
 // Variables sent to TGUI
 /mob/living/basic/bot/firebot/ui_data(mob/user)
 	var/list/data = ..()
-	if(!(bot_cover_flags & BOT_COVER_LOCKED) || issilicon(user) || isAdminGhostAI(user))
+	if(!(bot_access_flags & BOT_COVER_LOCKED) || issilicon(user) || isAdminGhostAI(user))
 		data["custom_controls"]["extinguish_fires"] = firebot_mode_flags & FIREBOT_EXTINGUISH_FLAMES
 		data["custom_controls"]["extinguish_people"] = firebot_mode_flags & FIREBOT_EXTINGUISH_PEOPLE
 		data["custom_controls"]["stationary_mode"] = firebot_mode_flags & FIREBOT_STATIONARY_MODE
@@ -115,7 +115,7 @@
 /mob/living/basic/bot/firebot/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	var/mob/user = ui.user
-	if(. || (bot_cover_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
+	if(. || (bot_access_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
 		return
 
 	switch(action)

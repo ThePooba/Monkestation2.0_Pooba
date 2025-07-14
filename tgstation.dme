@@ -4576,8 +4576,6 @@
 #include "code\modules\mob\living\basic\bots\honkbots\honkbot_abilities.dm"
 #include "code\modules\mob\living\basic\bots\honkbots\honkbot_ai.dm"
 #include "code\modules\mob\living\basic\bots\repairbot\repairbot.dm"
-#include "code\modules\mob\living\basic\bots\repairbot\repairbot.dm"
-#include "code\modules\mob\living\basic\bots\repairbot\repairbot.dm"
 #include "code\modules\mob\living\basic\bots\firebot\firebot.dm"
 #include "code\modules\mob\living\basic\bots\firebot\firebot_ai.dm"
 #include "code\modules\mob\living\basic\bots\honkbots\honkbot.dm"

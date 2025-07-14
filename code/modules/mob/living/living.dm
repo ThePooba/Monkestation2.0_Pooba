@@ -538,7 +538,7 @@
 /mob/living/build_incapacitated(flags)
 	// Holds a set of flags that describe how we are currently incapacitated
 	var/incap_status = NONE
-	if(HAS_TRAIT(src, TRAIT_CRITICAL_CONDITION) && ((stat >= SOFT_CRIT && (stat != DEAD && stat != UNCONSCIOUS && stat != HARD_CRIT)) && !src.pulledby)))
+	if(HAS_TRAIT(src, TRAIT_CRITICAL_CONDITION) && ((stat >= SOFT_CRIT && (stat != DEAD && stat != UNCONSCIOUS && stat != HARD_CRIT)) && !src.pulledby))
 		incap_status |= INCAPABLE_CRIT
 	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
 		incap_status |= TRADITIONAL_INCAPACITATED

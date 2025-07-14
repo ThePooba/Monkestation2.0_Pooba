@@ -88,7 +88,7 @@
 
 /mob/living/basic/bot/honkbot/ui_data(mob/user)
 	var/list/data = ..()
-	if(!(bot_cover_flags & BOT_COVER_LOCKED) || issilicon(user) || isAdminGhostAI(user))
+	if(!(bot_access_flags & BOT_COVER_LOCKED) || issilicon(user) || isAdminGhostAI(user))
 		data["custom_controls"]["slip_people"] = honkbot_flags & HONKBOT_MODE_SLIP
 		data["custom_controls"]["fake_cuff"] = honkbot_flags & HONKBOT_HANDCUFF_TARGET
 		data["custom_controls"]["check_ids"] = honkbot_flags & HONKBOT_CHECK_IDS
@@ -97,7 +97,7 @@
 
 /mob/living/basic/bot/honkbot/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	if(. || (bot_cover_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
+	if(. || (bot_access_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
 		return
 	switch(action)
 		if("slip_people")
