@@ -228,6 +228,7 @@
  */
 /mob/living/proc/update_succumb_action()
 	SIGNAL_HANDLER
+	update_incapacitated()
 	if (CAN_SUCCUMB(src) || HAS_TRAIT(src, TRAIT_SUCCUMB_OVERRIDE))
 		throw_alert(ALERT_SUCCUMB, /atom/movable/screen/alert/succumb)
 	else

@@ -139,7 +139,6 @@
 
 	var/static/list/hat_offsets = list(4,-9)
 	var/static/list/remove_hat = list(SIGNAL_ADDTRAIT(TRAIT_MOB_TIPPED))
-	RegisterSignal(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(pre_attack))
 	var/static/list/prevent_checks = list(TRAIT_MOB_TIPPED)
 	AddElement(/datum/element/hat_wearer,\
 		offsets = hat_offsets,\
