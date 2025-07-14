@@ -77,9 +77,9 @@
 	 * unless there is a flag being used to check if it's ignored
 	 *
 	 * * bitflags: (see code/__DEFINES/status_effects.dm)
-	 * * IGNORE_RESTRAINTS - if our mob is in a restraint (handcuffs)
-	 * * IGNORE_STASIS - if our mob is in stasis (stasis bed, etc.)
-	 * * IGNORE_GRAB - if our mob is being agressively grabbed
+	 * * INCAPABLE_RESTRAINTS - if our mob is in a restraint (handcuffs)
+	 * * INCAPABLE_STASIS - if our mob is in stasis (stasis bed, etc.)
+	 * * INCAPABLE_GRAB - if our mob is being agressively grabbed
 	 *
 	**/
 	VAR_FINAL/incapacitated = NONE

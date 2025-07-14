@@ -1,7 +1,7 @@
-import React from 'react';
+import { BooleanLike } from '../../common/react';
 import { useBackend } from '../backend';
 import { Button, DmIcon, Flex, NoticeBox, Section, Stack } from '../components';
-import { BotControl, BotSettings } from '../interfaces/SimpleBot';
+import { BotControl, BotSettings } from './SimpleBot';
 import { Window } from '../layouts';
 
 type Data = {

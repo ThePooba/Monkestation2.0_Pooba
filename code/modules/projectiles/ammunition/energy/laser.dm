@@ -40,7 +40,7 @@
 
 /obj/item/ammo_casing/energy/lasergun/carbine/cybersun
 	projectile_type = /obj/projectile/beam/laser/carbine/cybersun
-	e_cost = LASER_SHOTS(54, STANDARD_CELL_CHARGE)
+	e_cost = 54
 	select_name = "rapid fire"
 	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser2.ogg'
 

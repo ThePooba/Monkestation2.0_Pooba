@@ -138,7 +138,7 @@
 	if(!riposte_ready)
 		return
 
-	if(INCAPACITATED_IGNORING(source, IGNORE_GRAB))
+	if(INCAPACITATED_IGNORING(source, INCAPABLE_GRAB))
 
 		return
 

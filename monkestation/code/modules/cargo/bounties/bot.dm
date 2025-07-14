@@ -14,7 +14,7 @@
 	name = "Honkbot"
 	description = "Mr. Gigglesworth birthday is around the corner and we didn't get a present. Ship us off a honkbot to giftwrap please."
 	reward = CARGO_CRATE_VALUE * 5
-	wanted_types = list(/mob/living/basic/bot/secbot/honkbot = TRUE)
+	wanted_types = list(/mob/living/basic/bot/honkbot = TRUE)
 
 /datum/bounty/item/bot/firebot
 	name = "Firebot"

@@ -964,7 +964,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		parent.balloon_alert(to_show, "can't reach!")
 		return FALSE
 
-	if(!isliving(to_show) || INCAPACITATED_IGNORING(to_show, IGNORE_CRIT))
+	if(!isliving(to_show) || INCAPACITATED_IGNORING(to_show, INCAPABLE_CRIT))
 		return FALSE
 
 	if(locked)
