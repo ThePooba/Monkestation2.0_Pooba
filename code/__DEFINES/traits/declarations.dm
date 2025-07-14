@@ -1276,7 +1276,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /* #define TRAIT_ON_CLIMBABLE "on_climbable" */
 
 ///Trait given to the birthday boy
-/* #define TRAIT_BIRTHDAY_BOY "birthday_boy" */
+#define TRAIT_BIRTHDAY_BOY "birthday_boy"
 
 ///Trait given to a turf that should not be allowed to be terraformed, such as turfs holding ore vents.
 /* #define TRAIT_NO_TERRAFORM "no_terraform" */
