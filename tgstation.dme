@@ -996,6 +996,7 @@
 #include "code\datums\ai\basic_mobs\basic_subtrees\call_reinforcements.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\capricious_retaliate.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\climb_tree.dm"
+#include "code\datums\ai\basic_mobs\basic_subtrees\drag_items.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\find_food.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\find_paper_and_write.dm"
 #include "code\datums\ai\basic_mobs\basic_subtrees\find_parent.dm"
