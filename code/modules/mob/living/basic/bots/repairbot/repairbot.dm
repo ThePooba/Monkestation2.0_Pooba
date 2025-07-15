@@ -304,7 +304,7 @@
 
 /mob/living/basic/bot/repairbot/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	if(. || (bot_access_flags & BOT_COVER_LOCKED && !user.has_unlimited_silicon_privilege))
+	if(. || (bot_access_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
 		return
 	switch(action)
 		if("fix_breaches")
