@@ -59,7 +59,8 @@
 		RegisterSignal(parent, COMSIG_ATOM_ENTERED, PROC_REF(Slip))
 
 /datum/component/slippery/Destroy(force)
-	callback = null
+	on_slip_callback = null
+	can_slip_callback = null
 	holder = null
 	return ..()
 
