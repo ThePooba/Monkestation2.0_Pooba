@@ -610,13 +610,13 @@ GLOBAL_LIST_INIT(command_strings, list(
 
 /mob/living/basic/bot/ui_data(mob/user)
 	var/list/data = list()
-	data["can_hack"] = (issilicon(user) || isAdminGhostAI(user))
+	data["can_hack"] = (user.has_unlimited_silicon_privilege)
 	data["custom_controls"] = list()
 	data["emagged"] = bot_access_flags & BOT_COVER_EMAGGED
 	data["has_access"] = check_access(user)
 	data["locked"] = (bot_access_flags & BOT_COVER_LOCKED)
 	data["settings"] = list()
-	if((bot_access_flags & BOT_COVER_LOCKED) || issilicon(user) || isAdminGhostAI(user))
+	if(!(bot_access_flags & BOT_COVER_LOCKED) || user.has_unlimited_silicon_privilege)
 		data["settings"]["pai_inserted"] = !isnull(paicard)
 		data["settings"]["allow_possession"] = bot_mode_flags & BOT_MODE_GHOST_CONTROLLABLE
 		data["settings"]["possession_enabled"] = can_be_possessed

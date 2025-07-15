@@ -40,8 +40,6 @@
 //Incapacitated status effect flags
 /// If the incapacitated status effect is being caused by being in crit
 #define INCAPABLE_CRIT (1<<0)
-//Traditional incapacitate - probably dont need
-#define TRADITIONAL_INCAPACITATED (1<<1)
 /// If the incapacitated status effect is being caused by restraints (handcuffs)
 #define INCAPABLE_RESTRAINTS (1<<2)
 /// If the incapacitated status effect is being caused by stasis (stasis beds)

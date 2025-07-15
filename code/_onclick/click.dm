@@ -126,7 +126,7 @@
 	else if(LAZYACCESS(modifiers, ALT_CLICK)) // monke edit: ensure alt-secondary works
 		alt_click_on_secondary(A)
 		return
-
+	var/checker = INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS|INCAPABLE_STASIS|INCAPABLE_CRIT)
 	if(INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS|INCAPABLE_STASIS|INCAPABLE_CRIT)) //ignore crit allows using in crit
 		return
 
