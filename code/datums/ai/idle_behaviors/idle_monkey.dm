@@ -3,6 +3,7 @@
 	var/list/common_emotes = list(
 		"screech",
 		"roar",
+		"fart",
 	)
 	///Emotes that will be played rarely during idle behavior.
 	var/list/rare_emotes = list(
@@ -14,7 +15,7 @@
 
 /datum/idle_behavior/idle_monkey/perform_idle_behavior(seconds_per_tick, datum/ai_controller/controller)
 	var/mob/living/living_pawn = controller.pawn
-
+	. = ..()
 	if(SPT_PROB(25, seconds_per_tick) && (living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
 		var/move_dir = pick(GLOB.alldirs)
 		living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
