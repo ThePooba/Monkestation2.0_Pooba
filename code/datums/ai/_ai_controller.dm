@@ -23,8 +23,6 @@ multiple modular subtrees with behaviors
 	var/list/planned_behaviors = list()
 	///Current actions being performed by the AI.
 	var/list/behavior_cooldowns = list()
-	///Current actions and their respective last time ran as an assoc list.
-	var/list/behavior_cooldowns = list()
 	///Current status of AI (OFF/ON)
 	var/ai_status
 	///Current movement target of the AI, generally set by decision making.
@@ -326,7 +324,7 @@ multiple modular subtrees with behaviors
 	var/run_flags = get_able_to_run()
 	if(run_flags & AI_UNABLE_TO_RUN)
 		able_to_run = FALSE
-		GLOB.move_manager.stop_looping(pawn) //stop moving
+		SSmove_manager.stop_looping(pawn) //stop moving
 	else
 		able_to_run = TRUE
 	set_ai_status(get_expected_ai_status(), run_flags)
@@ -560,11 +558,11 @@ multiple modular subtrees with behaviors
 		fail_behavior(current_behavior)
 
 /datum/ai_controller/proc/fail_behavior(datum/ai_behavior/current_behavior)
-		var/list/arguments = list(src, FALSE)
-		var/list/stored_arguments = behavior_args[current_behavior.type]
-		if(stored_arguments)
-			arguments += stored_arguments
-		current_behavior.finish_action(arglist(arguments))
+	var/list/arguments = list(src, FALSE)
+	var/list/stored_arguments = behavior_args[current_behavior.type]
+	if(stored_arguments)
+		arguments += stored_arguments
+	current_behavior.finish_action(arglist(arguments))
 
 /// Turn the controller on or off based on if you're alive, we only register to this if the flag is present so don't need to check again
 /datum/ai_controller/proc/on_stat_changed(mob/living/source, new_stat)
