@@ -1,7 +1,7 @@
 /obj/machinery/barsign // All Signs are 64 by 32 pixels, they take two tiles
 	name = "bar sign"
 	desc = "A bar sign which has not been initialized, somehow. Complain at a coder!"
-	icon = 'icons/obj/machines/barsigns.dmi'
+	icon = 'icons/obj/barsigns.dmi'
 	icon_state = "empty"
 	req_access = list(ACCESS_BAR)
 	max_integrity = 500
@@ -102,9 +102,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 /obj/machinery/barsign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
-			playsound(src.loc, 'sound/effects/glass/glasshit.ogg', 75, TRUE)
+			playsound(src.loc, 'sound/effects/glasshit.ogg', 75, TRUE)
 		if(BURN)
-			playsound(src.loc, 'sound/items/tools/welder.ogg', 100, TRUE)
+			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/machinery/barsign/attack_ai(mob/user)
 	return attack_hand(user)
@@ -127,7 +127,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	if(panel_open)
 		balloon_alert(user, "panel opened")
 		set_sign(new /datum/barsign/hiddensigns/signoff)
-		return ITEM_INTERACT_SUCCESS
+		return TOOL_ACT_TOOLTYPE_SUCCESS
 
 	balloon_alert(user, "panel closed")
 
@@ -136,24 +136,24 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	else
 		set_sign(chosen_sign)
 
-	return ITEM_INTERACT_SUCCESS
+	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/barsign/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
 		balloon_alert(user, "open the panel first!")
-		return ITEM_INTERACT_BLOCKING
+		return TOOL_ACT_SIGNAL_BLOCKING
 
 	tool.play_tool_sound(src)
 	if(!do_after(user, (10 SECONDS), target = src))
-		return ITEM_INTERACT_BLOCKING
+		return TOOL_ACT_SIGNAL_BLOCKING
 
 	tool.play_tool_sound(src)
 	deconstruct(disassembled = TRUE)
-	return ITEM_INTERACT_SUCCESS
+	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/barsign/attackby(obj/item/attacking_item, mob/user)
 
-	if(istype(attacking_item, /obj/item/blueprints) && !change_area_name)
+	if(istype(attacking_item, /obj/item/areaeditor/blueprints) && !change_area_name)
 		if(!panel_open)
 			balloon_alert(user, "open the panel first!")
 			return TRUE
