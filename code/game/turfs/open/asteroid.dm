@@ -29,17 +29,14 @@
 	var/broken_state = "asteroid_dug"
 	/// Percentage chance of receiving a bonus worm
 	var/worm_chance = 30
+	/// Set to TRUE to call ex_act parent
+	var/explodable = FALSE
+	var/changes_icon = TRUE
 
 /turf/open/misc/asteroid/broken_states()
 	if(initial(dug))
 		return list(icon_state)
 	return list("[base_icon_state]_dug")
-
-	/// Set to TRUE to call ex_act parent
-	var/explodable = FALSE
-	var/changes_icon = TRUE
-
-
 
 /turf/open/misc/asteroid/break_tile()
 	. = ..()

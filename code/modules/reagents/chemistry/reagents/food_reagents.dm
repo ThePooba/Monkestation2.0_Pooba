@@ -1023,7 +1023,7 @@
 	icon = 'icons/obj/drinks/shakes.dmi'
 	icon_state = "vanillapudding"
 
-/datum/reagent/consumable/Flan
+/datum/reagent/consumable/flan
 	name = "Flan"
 	description = "A carefully constructed caramel pudding."
 	color = "#ce6f30"
