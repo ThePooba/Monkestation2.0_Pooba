@@ -1016,6 +1016,22 @@
 	icon = 'icons/obj/drinks/shakes.dmi'
 	icon_state = "vanillapudding"
 
+/datum/glass_style/drinking_glass/flan
+	required_drink_type = /datum/reagent/consumable/flan
+	name = "flan"
+	desc = "Tasty and caramelly."
+	icon = 'icons/obj/drinks/shakes.dmi'
+	icon_state = "vanillapudding"
+
+/datum/reagent/consumable/Flan
+	name = "Flan"
+	description = "A carefully constructed caramel pudding."
+	color = "#ce6f30"
+	quality = DRINK_FANTASTIC
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	taste_description = "caramel custard"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
 /datum/reagent/consumable/laughsyrup
 	name = "Laughin' Syrup"
 	description = "The product of juicing Laughin' Peas. Fizzy, and seems to change flavour based on what it's used with!"
