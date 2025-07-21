@@ -429,10 +429,6 @@
 /*
  * Chemistry bag
  */
-	name = "construction bag"
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "construction_bag"
-	worn_icon_state = "construction_bag"
 
 /obj/item/storage/bag/chemistry
 	name = "chemistry bag"
@@ -441,7 +437,6 @@
 	worn_icon_state = "chembag"
 	desc = "A bag for storing pills, patches, and bottles."
 	resistance_flags = FLAMMABLE
-	storage_type = /datum/storage/bag/chemistry
 
 /obj/item/storage/bag/chemistry/Initialize(mapload)
 	. = ..()
