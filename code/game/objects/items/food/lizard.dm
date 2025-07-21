@@ -830,11 +830,10 @@
 	icon_state = "rootchicken"
 	icon = 'icons/obj/food/lizard.dmi'
 	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 3,
-		/datum/reagent/consumable/mayonnaise = 3,
-		/datum/reagent/consumable/nutriment/protein = 7,
+		/datum/reagent/consumable/nutriment = 4,
+		/datum/reagent/consumable/mayonnaise = 4,
+		/datum/reagent/consumable/nutriment/protein = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
-		/datum/reagent/consumable/nutriment/fat/oil = 2,
 	)
 	tastes = list("bun" = 2, "chicken" = 4, "God's covenant" = 1)
 	foodtypes = NUTS | MEAT | FRIED

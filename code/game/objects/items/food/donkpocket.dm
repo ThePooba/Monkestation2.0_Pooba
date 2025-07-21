@@ -224,7 +224,6 @@
 	)
 	tastes = list("quality meat" = 2, "dough" = 2, "raw fanciness" = 1)
 	foodtypes = GRAIN | MEAT
-	crafting_complexity = FOOD_COMPLEXITY_4
 
 	warm_type = /obj/item/food/donkpocket/warm/deluxe
 	var/static/list/deluxe_added_reagents = list(

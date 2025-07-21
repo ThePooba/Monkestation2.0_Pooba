@@ -426,8 +426,7 @@
 	name = "Meatsicle"
 	desc = "A horrific abomination of raw meat, glazed with sugar on a stick, then frozen."
 	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 4,
-		/datum/reagent/consumable/nutriment/fat = 2,
+		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/consumable/sugar = 4,
 	)
