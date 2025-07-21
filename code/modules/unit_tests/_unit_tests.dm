@@ -236,6 +236,7 @@
 #include "timer_sanity.dm"
 #include "trait_addition_and_removal.dm"
 #include "traitor.dm"
+#include "turf_icons.dm"
 #include "trick_weapon_icons.dm"
 #include "tutorial_sanity.dm"
 #include "unit_test.dm"
