@@ -21,6 +21,7 @@
 /obj/item/storage/bag
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_NORMAL
+	storage_type = /datum/storage/bag
 
 /obj/item/storage/bag/Initialize(mapload)
 	. = ..()
@@ -428,6 +429,10 @@
 /*
  * Chemistry bag
  */
+	name = "construction bag"
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "construction_bag"
+	worn_icon_state = "construction_bag"
 
 /obj/item/storage/bag/chemistry
 	name = "chemistry bag"
@@ -436,6 +441,7 @@
 	worn_icon_state = "chembag"
 	desc = "A bag for storing pills, patches, and bottles."
 	resistance_flags = FLAMMABLE
+	storage_type = /datum/storage/bag/chemistry
 
 /obj/item/storage/bag/chemistry/Initialize(mapload)
 	. = ..()
