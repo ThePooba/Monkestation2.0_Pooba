@@ -870,6 +870,14 @@
 	taste_description = "chocolate milk"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
+/datum/reagent/consumable/bogril
+	name = "Hot Coco"
+	description = "Made with love! And coco beans."
+	nutriment_factor = 4 * REAGENTS_METABOLISM
+	color = "#403010" // rgb: 64, 48, 16
+	taste_description = "creamy chocolate"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
 /datum/reagent/consumable/hot_coco
 	name = "Hot Coco"
 	description = "Made with love! And coco beans."
