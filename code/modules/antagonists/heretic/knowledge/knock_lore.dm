@@ -98,7 +98,7 @@
 	required_atoms = list(
 		/obj/item/storage/box = 1, //monkestation edit wallet ==> box (leather is too hard to get due to botany changes)
 		/obj/item/stack/rods = 1,
-		/obj/item/card/id = 1,
+		/obj/item/card/id/advanced = 1,
 	)
 	result_atoms = list(/obj/item/card/id/advanced/heretic)
 	next_knowledge = list(
