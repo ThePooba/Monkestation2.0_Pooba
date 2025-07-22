@@ -175,6 +175,15 @@
 	resistance_flags = FREEZE_PROOF
 	custom_price = PAYCHECK_CREW * 1.2
 
+/obj/item/reagent_containers/cup/glass/mug/bogril
+	name = "Bogril"
+	desc = "A piping hot meaty drink, reminiscent of broth."
+	icon_state = "britcup"
+	list_reagents = list(/datum/reagent/consumable/bogril = 15, /datum/reagent/consumable/nutriment/protein = 5)
+	drink_type = MEAT
+	resistance_flags = FREEZE_PROOF
+	custom_price = PAYCHECK_CREW * 1.2
+
 /obj/item/reagent_containers/cup/glass/mug/nanotrasen
 	name = "\improper Nanotrasen mug"
 	desc = "A mug to display your corporate pride."
