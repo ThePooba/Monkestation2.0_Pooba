@@ -871,12 +871,18 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/bogril
-	name = "Hot Coco"
-	description = "Made with love! And coco beans."
+	name = "Bogril"
+	description = "A savoury meat broth for drinking."
 	nutriment_factor = 4 * REAGENTS_METABOLISM
 	color = "#403010" // rgb: 64, 48, 16
-	taste_description = "creamy chocolate"
+	taste_description = "savoury broth"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/bogril/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	affected_mob.adjust_bodytemperature(WARM_DRINK * REM * seconds_per_tick, max_temp = affected_mob.standard_body_temperature)
+	if(affected_mob.getFireLoss() && SPT_PROB(10, seconds_per_tick))
+		affected_mob.heal_bodypart_damage(0, 1)
+		. = TRUE
 
 /datum/reagent/consumable/hot_coco
 	name = "Hot Coco"
