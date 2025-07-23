@@ -1021,7 +1021,7 @@
 	name = "flan"
 	desc = "Tasty and caramelly."
 	icon = 'icons/obj/drinks/shakes.dmi'
-	icon_state = "vanillapudding"
+	icon_state = "flan"
 
 /datum/reagent/consumable/flan
 	name = "Flan"
