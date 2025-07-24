@@ -33,8 +33,8 @@
 	)
 	initial_language_holder = /datum/language_holder/syndicate
 	refill_canister = /obj/item/vending_refill/donksnackvendor
-	default_price = PAYCHECK_CREW * 1.4
-	extra_price = PAYCHECK_CREW * 5
+	default_price = PAYCHECK_CREW
+	extra_price = PAYCHECK_CREW * 2
 	payment_department = NO_FREEBIES
 
 /obj/item/vending_refill/donksnackvendor
