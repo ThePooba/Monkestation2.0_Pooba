@@ -33,7 +33,7 @@
 	name = "tactical hotdog deployer"
 	desc = "For the glizzy guzzler in us all."
 	icon_state = "hotdog_beacon"
-	spawnables = list(/obj/item/food/hotdog, /obj/item/food/hotdog, /obj/vehicle/ridden/wienermobile)
+	spawnables = list(/obj/item/food/hotdog, /obj/item/food/hotdog)
 
 /obj/item/generic_beacon/grill
 	name = "grill beacon"
