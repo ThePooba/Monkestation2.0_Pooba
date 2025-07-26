@@ -119,6 +119,11 @@
 	required_reagents = list (/datum/reagent/consumable/ethanol/beer = 1, /datum/reagent/consumable/ethanol/ale = 2)
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
+/datum/chemical_reaction/drink/honeybee_mead
+	results = list(/datum/reagent/consumable/ethanol/honeybee_mead = 3)
+	required_reagents = list (/datum/reagent/consumable/ethanol/mead = 1, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/sugar = 1)
+	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
+
 /datum/chemical_reaction/drink/greenbeer
 	results = list(/datum/reagent/consumable/ethanol/beer/green = 10)
 	required_reagents = list(/datum/reagent/colorful_reagent/powder/green = 1, /datum/reagent/consumable/ethanol/beer = 10)

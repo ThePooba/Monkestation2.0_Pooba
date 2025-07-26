@@ -74,6 +74,10 @@
 	results = list(/datum/reagent/consumable/flan = 20)
 	required_reagents = list(/datum/reagent/consumable/caramel = 5, /datum/reagent/consumable/cream = 5, /datum/reagent/consumable/eggyolk = 2)
 
+/datum/chemical_reaction/food/cherrypudding
+	results = list(/datum/reagent/consumable/cherrypudding = 20)
+	required_reagents = list(/datum/reagent/consumable/cherryjelly = 5, /datum/reagent/consumable/cream = 5, /datum/reagent/consumable/eggyolk = 2)
+
 /datum/chemical_reaction/food/chocolate_bar
 	required_reagents = list(/datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/coco = 2, /datum/reagent/consumable/sugar = 2)
 
