@@ -1129,7 +1129,7 @@
 
 
 /datum/reagent/consumable/ook_monkey
-	name = "funky monkey smoothie?"
+	name = "ook monkey smoothie?"
 	description = "What the hell is this?"
 	color = "#663300"
 	nutriment_factor = 1

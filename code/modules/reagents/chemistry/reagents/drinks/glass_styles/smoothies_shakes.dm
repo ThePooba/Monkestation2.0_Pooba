@@ -87,7 +87,7 @@
 
 /datum/glass_style/drinking_glass/ook_monkey
 	required_drink_type = /datum/reagent/consumable/ook_monkey
-	name = "funky monkey smoothie?"
+	name = "ook monkey smoothie?"
 	desc = "Who's this guy?"
 	icon = 'icons/obj/drinks/shakes.dmi'
 	icon_state = "ook_monkey"
