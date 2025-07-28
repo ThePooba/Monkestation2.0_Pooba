@@ -164,7 +164,7 @@
 
 /datum/chemical_reaction/drink/ook_monkey
 	results = list(/datum/reagent/consumable/ook_monkey = 4)
-	required_reagents = list(/datum/reagent/consumable/coco = 1, /datum/reagent/consumable/milk = 1, /datum/reagent/consumable/banana = 1, /datum/reagent/consumable/monkey_energy = 1)
+	required_reagents = list(/datum/reagent/consumable/funky_monkey = 3, /datum/reagent/consumable/monkey_energy = 1)
 
 /datum/chemical_reaction/drink/green_giant
 	results = list(/datum/reagent/consumable/green_giant = 3)
