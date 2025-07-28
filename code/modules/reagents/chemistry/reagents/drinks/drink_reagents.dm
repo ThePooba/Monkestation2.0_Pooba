@@ -810,11 +810,12 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	glass_price = DRINK_PRICE_MEDIUM
 
-/datum/reagent/consumable/maltshake
+/datum/reagent/consumable/ethanol/maltshake
 	name = "Malt Milkshake"
 	description = "A slightly alcoholic but sweet milkshake"
 	color = "#886a3f"
 	quality = DRINK_VERYGOOD
+	boozepwr = 25
 	nutriment_factor = 7 * REAGENTS_METABOLISM
 	taste_description = "Slight hint of malt within a creamy milkshake and happiness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

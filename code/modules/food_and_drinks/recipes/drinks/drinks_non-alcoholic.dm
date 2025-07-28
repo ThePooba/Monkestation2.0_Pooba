@@ -56,7 +56,7 @@
 	required_reagents = list(/datum/reagent/consumable/banana = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/consumable/cream = 1)
 
 /datum/chemical_reaction/drink/maltshake
-	results = list(/datum/reagent/consumable/maltshake = 3)
+	results = list(/datum/reagent/consumable/ethanol/maltshake = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/beer/maltliquor = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/consumable/cream = 1)
 
 /datum/chemical_reaction/drink/pumpkin_latte

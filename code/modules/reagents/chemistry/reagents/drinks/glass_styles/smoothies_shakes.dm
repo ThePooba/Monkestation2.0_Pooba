@@ -38,7 +38,7 @@
 
 /datum/glass_style/drinking_glass/strawberryshake
 	required_drink_type = /datum/reagent/consumable/strawberryshake
-	name = "strawberry shake"
+	name = "Strawberry shake"
 	desc = "A strawberry flavored milkshake."
 	icon = 'icons/obj/drinks/shakes.dmi'
 	icon_state = "strawberryshake"
@@ -51,8 +51,8 @@
 	icon_state = "bananashake"
 
 /datum/glass_style/drinking_glass/maltshake
-	required_drink_type = /datum/reagent/consumable/maltshake
-	name = "Malt Shake"
+	required_drink_type = /datum/reagent/consumable/ethanol/maltshake
+	name = "malt milkshake"
 	desc = "A slightly alcoholic but sweet milkshake with biscuits decorating the top in the shape of a mothroach. No mothroaches were hurt in the making of this drink."
 	icon = 'icons/obj/drinks/shakes.dmi'
 	icon_state = "maltshake"
