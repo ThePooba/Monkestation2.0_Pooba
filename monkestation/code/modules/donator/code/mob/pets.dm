@@ -346,3 +346,15 @@
 	ai_controller = /datum/ai_controller/basic_controller/
 	ckeywhitelist = list("Mrsmall_theclown")
 
+/mob/living/basic/pet/cyber_husky
+	name = "Cyber Husky"
+	desc = "Whos a good cyber dog? You are!"
+	icon = 'monkestation/code/modules/donator/icons/mob/pets.dmi'
+	icon_state = "robodoggo"
+	icon_living = "robodoggo"
+	icon_dead = "robodoggo-dead"
+	icon_gib = null
+	gold_core_spawnable = NO_SPAWN
+	ai_controller = /datum/ai_controller/basic_controller/
+	ckeywhitelist = list("AdamCoal")
+

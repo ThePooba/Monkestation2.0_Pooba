@@ -913,3 +913,11 @@
 	item_path = /obj/item/clothing/suit/old_lab_coat
 	donator_only = TRUE
 	requires_purchase = FALSE
+
+//AdamCoal
+/datum/loadout_item/pocket_items/donator/cyber_huskey
+	name = "Pet Delivery Beacon - Cyber Huskey"
+	item_path = /obj/item/choice_beacon/pet/donator/cyber_husky
+	donator_only = TRUE
+	requires_purchase = FALSE
+	ckeywhitelist = list("AdamCoal")
