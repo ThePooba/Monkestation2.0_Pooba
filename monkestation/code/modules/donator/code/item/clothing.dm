@@ -803,7 +803,7 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "aviators-diagnostic"
 
-/obj/item/clothing/glasses/hud/meson/aviators
+/obj/item/clothing/glasses/meson/aviators
 	name = "Meson Aviators"
 	desc = "Cyberneticly enhanced aviators with a MESON scanner."
 	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
@@ -816,6 +816,7 @@
 	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "aviators-science"
+	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
 
 /obj/item/clothing/suit/robo_trenchcoat
 	name = "Robotics trench Coat"

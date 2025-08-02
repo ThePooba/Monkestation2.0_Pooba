@@ -945,7 +945,7 @@
 
 /datum/loadout_item/glasses/diagnostic_aviators
 	name = "Meson Aviators"
-	item_path = /obj/item/clothing/glasses/hud/meson/aviators
+	item_path = /obj/item/clothing/glasses/meson/aviators
 	donator_only = TRUE
 	requires_purchase = FALSE
 	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
