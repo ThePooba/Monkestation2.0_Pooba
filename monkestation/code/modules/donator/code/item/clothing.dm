@@ -815,7 +815,7 @@
 	desc = "Cyberneticly enhanced aviators with a science HUD."
 	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
-	icon_state = "aviators-meson"
+	icon_state = "aviators-science"
 
 /obj/item/clothing/suit/robo_trenchcoat
 	name = "Robotics trench Coat"

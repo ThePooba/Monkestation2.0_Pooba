@@ -355,6 +355,9 @@
 	icon_dead = "robodoggo-dead"
 	icon_gib = null
 	gold_core_spawnable = NO_SPAWN
+	hud_type = /datum/hud/dextrous/cyber_husky
 	ai_controller = /datum/ai_controller/basic_controller/
 	ckeywhitelist = list("AdamCoal")
 
+/mob/living/basic/pet/cyber_husky/Initialize(mapload)
+	. = ..()

@@ -917,7 +917,7 @@
 //AdamCoal
 /datum/loadout_item/pocket_items/donator/cyber_huskey
 	name = "Pet Delivery Beacon - Cyber Huskey"
-	item_path = /obj/item/choice_beacon/pet/donator/cyber_ husky
+	item_path = /obj/item/choice_beacon/pet/donator/cyber_husky
 	donator_only = TRUE
 	requires_purchase = FALSE
 	ckeywhitelist = list("AdamCoal")
@@ -927,28 +927,28 @@
 	item_path = /obj/item/clothing/glasses/hud/security/aviators
 	donator_only = TRUE
 	requires_purchase = FALSE
-	restricted_roles = list(JOB_SECURITY_OFFICER,JOB_SECURITY_ASSISTANT,JOB_HEAD_OF_SECURITY,JOB_WARDEN)
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_SECURITY_ASSISTANT, JOB_HEAD_OF_SECURITY, JOB_WARDEN)
 
 /datum/loadout_item/glasses/health_aviators
 	name = "Medical Aviators"
 	item_path = /obj/item/clothing/glasses/hud/health/aviators
 	donator_only = TRUE
 	requires_purchase = FALSE
-	restricted_roles = list(JOB_MEDICAL_DOCTOR,JOB_PARAMEDIC,JOB_VIROLOGIST, JOB_CHIEF_MEDICAL_OFFICER)
+	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_PARAMEDIC, JOB_VIROLOGIST, JOB_CHIEF_MEDICAL_OFFICER)
 
 /datum/loadout_item/glasses/diagnostic_aviators
 	name = "Diagnostic Aviators"
 	item_path = /obj/item/clothing/glasses/hud/diagnostic/aviators
 	donator_only = TRUE
 	requires_purchase = FALSE
-	restricted_roles = list(JOB_ROBOTICISTS, JOB_RESEARCH_DIRECTOR)
+	restricted_roles = list(JOB_ROBOTICIST, JOB_RESEARCH_DIRECTOR)
 
 /datum/loadout_item/glasses/diagnostic_aviators
 	name = "Meson Aviators"
 	item_path = /obj/item/clothing/glasses/hud/meson/aviators
 	donator_only = TRUE
 	requires_purchase = FALSE
-	restricted_roles = list(JOB_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
+	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
 
 /datum/loadout_item/glasses/science_aviators
 	name = "Science Aviators"
