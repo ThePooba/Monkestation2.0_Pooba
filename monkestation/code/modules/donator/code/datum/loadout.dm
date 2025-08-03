@@ -869,8 +869,8 @@
 	requires_purchase = FALSE
 
 /datum/loadout_item/head/ironhammer_commander_hat
-	name = "Grand Clown King Crown"
-	item_path = /obj/item/clothing/head/costume/clown_king_crown
+	name = "Ironhammer Commander Hat"
+	item_path = /obj/item/clothing/head/costume/ironhammer_commander_hat
 	donator_only = TRUE
 	requires_purchase = FALSE
 
@@ -960,5 +960,32 @@
 /datum/loadout_item/suit/robo_trenchcoat
 	name = "Robotics trench Coat"
 	item_path = /obj/item/clothing/suit/robo_trenchcoat
+	donator_only = TRUE
+	requires_purchase = FALSE
+
+//hunterowl17
+/datum/loadout_item/mask/hunter_owl
+	name = "Hunter Owl Mask"
+	item_path = /obj/item/clothing/mask/gas/owl_mask/hunter_owl
+	donator_only = TRUE
+	requires_purchase = FALSE
+
+//TheBoneZone66
+/datum/loadout_item/mask/gaster
+	name = "Gaster Mask"
+	item_path = /obj/item/clothing/mask/gas/gaster
+	donator_only = TRUE
+	requires_purchase = FALSE
+
+//SomeDogo
+/datum/loadout_item/head/flower_wreath_blue
+	name = "Pink Flower Wreath"
+	item_path = /obj/item/clothing/head/costume/flower_wreath_pink
+	donator_only = TRUE
+	requires_purchase = FALSE
+
+/datum/loadout_item/head/flower_wreath_pink
+	name = "Blue Flower Wreath"
+	item_path = /obj/item/clothing/head/costume/flower_wreath_blue
 	donator_only = TRUE
 	requires_purchase = FALSE

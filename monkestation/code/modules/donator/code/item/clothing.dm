@@ -825,3 +825,65 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "robo-trenchcoat"
 	worn_icon_state = "robo-trenchcoat"
+
+/obj/item/clothing/mask/gas/owl_mask/hunter_owl
+	name = "hunter owl mask"
+	desc = "An owl masked styled like a hunter owl, with some artistic liberties taken."
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing_32x48.dmi'
+	icon_state = "hunterowlmask"
+	inhand_icon_state = null
+	visor_vars_to_toggle = null
+	actions_types = list(/datum/action/item_action/toggle)
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDESNOUT
+	flags_cover = MASKCOVERSEYES
+	visor_flags_inv = HIDEEYES
+	visor_flags_cover = MASKCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
+	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/mask/gas/owl_mask/hunter_owl/attack_self(mob/user)
+	weldingvisortoggle(user)
+
+/obj/item/clothing/mask/gas/owl_mask/hunter_owl/up
+
+/obj/item/clothing/mask/gas/owl_mask/hunter_owl/up/Initialize(mapload)
+	. = ..()
+	visor_toggling()
+
+/obj/item/clothing/mask/gas/gaster
+	name = "gaster mask"
+	desc = "Written on the inside is: Beware of the man who came from the other world."
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing_32x48.dmi'
+	icon_state = "gastermask"
+	inhand_icon_state = null
+	visor_vars_to_toggle = null
+	actions_types = list(/datum/action/item_action/toggle)
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDESNOUT
+	flags_cover = MASKCOVERSEYES
+	visor_flags_inv = HIDEEYES
+	visor_flags_cover = MASKCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
+	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/mask/gas/gaster/attack_self(mob/user)
+	weldingvisortoggle(user)
+
+/obj/item/clothing/mask/gas/gaster/up
+
+/obj/item/clothing/mask/gas/gaster/up/Initialize(mapload)
+	. = ..()
+	visor_toggling()
+
+/obj/item/clothing/head/costume/flower_wreath_blue
+	name = "Blue Flower Wreath"
+	desc = "A wreath of pastel blue flowers."
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing_32x48.dmi'
+	icon_state = "pastelflowers-blue"
+
+/obj/item/clothing/head/costume/flower_wreath_pink
+	name = "Pink Flower Wreath"
+	desc = "A wreath of pastel pink flowers."
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing_32x48.dmi'
+	icon_state = "pastelflowers-pink"
