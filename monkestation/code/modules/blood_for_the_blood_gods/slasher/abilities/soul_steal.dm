@@ -99,7 +99,7 @@
 		var/datum/color_palette/generic_colors/located = human_target.dna.color_palettes[/datum/color_palette/generic_colors]
 		located.mutant_color = "#FFFFFF"
 
-x	human_target.update_body(is_creating = TRUE)
+	human_target.update_body(is_creating = TRUE)
 	human_target.maxHealth -= 20
 	slasherdatum.souls_sucked++
 
