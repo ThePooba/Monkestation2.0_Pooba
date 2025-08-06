@@ -134,7 +134,7 @@
 
 	var/mob/living/carbon/human/human = current_mob
 	if(istype(human))
-		human.equipOutfit(/datum/outfit/slasher/slasher2)
+		human.equipOutfit(/datum/outfit/slasher/slasher)
 		linked_apron = human.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	cached_brute_mod = human.dna.species.brutemod
 	current_mob.alpha = 150

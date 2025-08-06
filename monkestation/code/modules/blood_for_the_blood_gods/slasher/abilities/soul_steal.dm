@@ -99,7 +99,7 @@
 		var/datum/color_palette/generic_colors/located = human_target.dna.color_palettes[/datum/color_palette/generic_colors]
 		located.mutant_color = "#FFFFFF"
 
-	human_target.update_body(is_creating = TRUE)
+x	human_target.update_body(is_creating = TRUE)
 	human_target.maxHealth -= 20
 	slasherdatum.souls_sucked++
 
@@ -108,11 +108,10 @@
 	slasherdatum.linked_machette.force += 2
 	slasherdatum.linked_machette.throwforce += 2
 
-	if(slasherdatum.souls_sucked > 17)
-		slasherdatum.linked_apron.armor_type = /datum/armor/slasher/level3
-	else if(slasherdatum.souls_sucked > 11)
-		slasherdatum.linked_apron.armor_type = /datum/armor/slasher/level2
-	else if(slasherdatum.souls_sucked > 5)
-		slasherdatum.linked_apron.armor_type = /datum/armor/slasher/level1
-
+	if(slasherdatum.souls_sucked == 18)
+		slasherdatum.linked_apron.set_armor(/datum/armor/slasher/level3)
+	else if(slasherdatum.souls_sucked == 12)
+		slasherdatum.linked_apron.set_armor(/datum/armor/slasher/level2)
+	else if(slasherdatum.souls_sucked == 6)
+		slasherdatum.linked_apron.set_armor(/datum/armor/slasher/level1)
 	return COMPONENT_HOSTILE_NO_ATTACK

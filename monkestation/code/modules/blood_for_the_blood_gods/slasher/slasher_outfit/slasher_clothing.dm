@@ -19,6 +19,8 @@
 /obj/item/clothing/mask/gas/slasher/adjustmask()
 	return
 
+
+
 /obj/item/clothing/suit/apron/slasher
 	name = "butcher's apron"
 	desc = "A brown butcher's apron, you can feel an aura of something dark radiating off of it."
@@ -27,9 +29,9 @@
 	worn_icon = 'monkestation/icons/mob/slasher/slasher_wornstates.dmi'
 	icon_state = "slasher_apron"
 	inhand_icon_state = null
-	armor_type = /datum/armor/slasher/level1
+	armor_type = /datum/armor/slasher/level0
 
-/datum/armor/slasher // start
+/datum/armor/slasher/level0 // start
 	melee = 10
 	bullet = 10
 	laser = 10
@@ -48,22 +50,22 @@
 	bio = 66
 
 /datum/armor/slasher/level2 // after 12 claimed souls
-	melee = 45
-	bullet = 45
-	laser = 45
-	energy = 45
-	fire = 45
-	acid = 45
-	bio = 66
+	melee = 50
+	bullet = 50
+	laser = 50
+	energy = 50
+	fire = 50
+	acid = 50
+	bio = 50
 
 /datum/armor/slasher/level3 //after 18 claimed souls
-	melee = 66
-	bullet = 66
-	laser = 66
-	energy = 66
-	fire = 66
-	acid = 66
-	bio = 66
+	melee = 70
+	bullet = 70
+	laser = 70
+	energy = 70
+	fire = 70
+	acid = 70
+	bio = 70
 
 /obj/item/clothing/suit/apron/slasher/Initialize(mapload)
 	. = ..()
