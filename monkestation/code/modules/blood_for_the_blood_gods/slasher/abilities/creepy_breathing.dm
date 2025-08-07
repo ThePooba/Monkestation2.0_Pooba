@@ -1,7 +1,8 @@
 /datum/action/cooldown/slasher/creepy_breathing
 	name = "Creepy Breathing"
 	desc = "Breath Creepily. (bind this to a key for quick access to being a creep)"
-	button_icon_state = "trail_blood"
+	button_icon = 'icons/obj/medical/organs/organs.dmi'
+	button_icon_state = "lungs-ashwalker"
 	cooldown_time = 5 SECONDS
 
 /datum/action/cooldown/slasher/creepy_breathing/Activate(atom/target)
