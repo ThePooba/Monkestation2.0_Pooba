@@ -40,6 +40,9 @@
 	var/turf/T = loc
 	if(isturf(T))
 		T.hotspot_expose(1000,100)
+		if(T.is_type_on_turf(/obj/structure/reagent_dispensers/fueltank))
+			/var/obj/structure/reagent_dispensers/fueltank/sparky = T.get_atom_on_turf(/obj/structure/reagent_dispensers/fueltank)
+			sparky.boom()
 	return ..()
 
 /obj/effect/particle_effect/sparks/Move()
@@ -47,6 +50,9 @@
 	var/turf/T = loc
 	if(isturf(T))
 		T.hotspot_expose(1000,100)
+		if(T.is_type_on_turf(/obj/structure/reagent_dispensers/fueltank))
+			/var/obj/structure/reagent_dispensers/fueltank/sparky = T.get_atom_on_turf(/obj/structure/reagent_dispensers/fueltank)
+			sparky.boom()
 
 /datum/effect_system/spark_spread
 	effect_type = /obj/effect/particle_effect/sparks
