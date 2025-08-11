@@ -93,7 +93,7 @@
 	if(default_change_direction_wrench(user, I) || default_deconstruction_crowbar(I))
 		return
 
-	if(!(user.istate)
+	if(!(user.istate))
 		return ..()
 
 	// For adding stamp upgrades to component_parts
@@ -143,7 +143,8 @@
 		if(HAS_TRAIT(I, TRAIT_IRRADIATED))
 			safe = TRUE
 			to_chat(user, span_warning("\The [src] quickly cleans off the irradiated [I]!"))
-			I.irradiated.Destroy()
+			var/datum/component/irradiated/rad = I.GetComponent(/datum/component/irradiated)
+			rad.Destroy()
 	return safe
 
 /obj/machinery/inspector_booth/can_interact(mob/user)
@@ -177,9 +178,9 @@
 	for (var/key in item_list)
 		var/inserted = item_list[key]["item"]
 
-		if(istype(item, /obj/item/paper))
+		if(istype(inserted, /obj/item/paper))
 			var/obj/item/paper/paper = inserted
-			var/text = inserted.paper_info.raw_text
+			var/text = paper.dsraw_text_inputs
 			items["papers"] += list(list("id" = key, "text" = text, "stamps" = paper.raw_stamp_data,
 				"x" = item_list[key]["x"], "y" = item_list[key]["y"], "z" = item_list[key]["z"]))
 
@@ -198,9 +199,9 @@
 	if(name_index > 0)
 		for (var/record in GLOB.manifest.get_manifest())
 			var/datum/record/crew/R = record
-			var/name = R.fields["name"]
-			if((name in names) && (istype(R.fields["photo_front"], /obj/item/photo)))
-				var/obj/item/photo/P = R.fields["photo_front"]
+			var/name = R.name
+			if((name in names) && (istype(R.get_front_photo(), /obj/item/photo)))
+				var/obj/item/photo/P = R.get_front_photo()
 				var/icon/picture = icon(P.picture.picture_image)
 				picture.Crop(10, 32, 22, 22)
 				var/md5 = md5(fcopy_rsc(picture))
@@ -248,13 +249,13 @@
 					var/obj/item/paper/P = item
 					// This was copied from Paper.dm and should probably be moved into its own proc there
 					var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/simple/paper)
-					if(isnull(P.stamps))
-						P.stamps = sheet.css_tag()
-					P.stamps += sheet.icon_tag(type)
+					if(isnull(P.raw_stamp_data))
+						P.raw_stamp_data = sheet.css_tag()
+					P.raw_stamp_data += sheet.icon_tag(type)
 					var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_[type]")
 					stampoverlay.pixel_x = rand(-2, 2)
 					stampoverlay.pixel_y = rand(-3, 2)
-					LAZYADD(P.stamped, type)
+					LAZYADD(P.stamp_cache, type)
 					P.add_overlay(stampoverlay)
 					. = TRUE
 		if("move_item")
@@ -330,7 +331,8 @@
 	"Security Officer" = list("security","red"),
 	"Detective" = list("security","brown"),
 	"Brig Physician" = list("security","blue"),
-	"Lawyer" = list("security","purple")
+	"Lawyer" = list("security","purple"),
+	"Blueshield" = list("centcom", "silver")
 	)
 	if(real_job in idfluff)
 		return idfluff[real_job]
