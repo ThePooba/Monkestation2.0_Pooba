@@ -180,7 +180,7 @@
 
 		if(istype(inserted, /obj/item/paper))
 			var/obj/item/paper/paper = inserted
-			var/text = paper.dsraw_text_inputs
+			var/text = paper.raw_text_inputs
 			items["papers"] += list(list("id" = key, "text" = text, "stamps" = paper.raw_stamp_data,
 				"x" = item_list[key]["x"], "y" = item_list[key]["y"], "z" = item_list[key]["z"]))
 
