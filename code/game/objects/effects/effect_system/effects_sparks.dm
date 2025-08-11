@@ -32,7 +32,7 @@
 	if(isturf(T))
 		T.hotspot_expose(1000,100)
 		if(T.is_type_on_turf(/obj/structure/reagent_dispensers/fueltank))
-			/var/obj/structure/reagent_dispensers/fueltank/sparky = T.get_atom_on_turf(/obj/structure/reagent_dispensers/fueltank)
+			var/obj/structure/reagent_dispensers/fueltank/sparky = T.get_atom_on_turf(/obj/structure/reagent_dispensers/fueltank)
 			sparky.boom()
 	QDEL_IN(src, 20)
 
@@ -41,7 +41,7 @@
 	if(isturf(T))
 		T.hotspot_expose(1000,100)
 		if(T.is_type_on_turf(/obj/structure/reagent_dispensers/fueltank))
-			/var/obj/structure/reagent_dispensers/fueltank/sparky = T.get_atom_on_turf(/obj/structure/reagent_dispensers/fueltank)
+			var/obj/structure/reagent_dispensers/fueltank/sparky = T.get_atom_on_turf(/obj/structure/reagent_dispensers/fueltank)
 			sparky.boom()
 	return ..()
 
@@ -51,7 +51,7 @@
 	if(isturf(T))
 		T.hotspot_expose(1000,100)
 		if(T.is_type_on_turf(/obj/structure/reagent_dispensers/fueltank))
-			/var/obj/structure/reagent_dispensers/fueltank/sparky = T.get_atom_on_turf(/obj/structure/reagent_dispensers/fueltank)
+			var/obj/structure/reagent_dispensers/fueltank/sparky = T.get_atom_on_turf(/obj/structure/reagent_dispensers/fueltank)
 			sparky.boom()
 
 /datum/effect_system/spark_spread

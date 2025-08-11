@@ -144,7 +144,7 @@
 	breaktape(W, user)
 
 /obj/structure/barrier_tape/attack_hand(mob/living/user)
-	if (!user.combat_mode)
+	if(!(istate & ISTATE_HARM))
 		user.visible_message(span_notice("[user] lifts [src], allowing passage."))
 		crumple()
 		lift_tape()
@@ -156,7 +156,7 @@
 	addtimer(VARSET_CALLBACK(src, lifted, FALSE), 2 SECONDS)
 
 /obj/structure/barrier_tape/proc/breaktape(obj/item/W, mob/living/user)
-	if(!user.combat_mode && W && !W.is_sharp() && allowed(user))
+	if(!(istate & ISTATE_HARM) && W && !W.sharpness && allowed(user))
 		to_chat(user, span_warning("You can't break the [src] with that!"))
 		return
 	user.visible_message(span_notice("[user] breaks the [src]!"))

@@ -1213,4 +1213,4 @@
 	id = "inspector_booth"
 	build_path = /obj/item/circuitboard/machine/inspector_booth
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ALL
+	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIEJCE | DEPARTMENT_BITFLAG_SECURITY

@@ -58,47 +58,49 @@
 	update_icon()
 
 /obj/machinery/inspector_booth/update_icon()
-	if (stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "booth_off"
-	else if (panel_open || stat & MAINT)
+	else if(panel_open || machine_stat & MAINT)
 		icon_state = "booth_maintenance"
 	else
 		icon_state = "booth"
+	return ..()
 
 /obj/machinery/inspector_booth/RefreshParts()
-	var/b
-	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
-		b += B.rating
-	var/m
-	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		m += M.rating
-	max_items = 3 + 2*b
-	max_stamps = 2 + m
+	. = ..()
+	var/bin
+	for(var/obj/item/stock_parts/matter_bin/new_bin in component_parts)
+		bin += new_bin.rating
+	var/manip
+	for(var/obj/item/stock_parts/manipulator/new_manip in component_parts)
+		manip += new_manip.rating
+	max_items = 3 + 2*bin
+	max_stamps = 2 + manip
 
 /obj/machinery/inspector_booth/examine(mob/user)
 	. = ..()
 	var/item_capacity = max_items - contents.len
 	var/stamp_capacity = max_stamps - stamp_upgrades.len
-	if (in_range(user, src) || isobserver(user))
+	if(in_range(user, src) || isobserver(user))
 		. += span_notice("It looks like there is room for [item_capacity] more items and [stamp_capacity] more stamps.")
-	if (panel_open)
+	if(panel_open)
 		. += span_notice("[src]'s maintenance panel is open!")
 
 /obj/machinery/inspector_booth/attackby(obj/item/I, mob/user, params)
 	// Normal tool interactions
-	if ((get_dir(user, src) == src.dir || get_dist_chebyshev(src, user) == 0) && default_deconstruction_screwdriver(user, "booth_maintenance", "booth", I))
+	if((get_dir(user, src) == src.dir || get_dist_chebyshev(src, user) == 0) && default_deconstruction_screwdriver(user, "booth_maintenance", "booth", I))
 		return
-	if (default_change_direction_wrench(user, I) || default_deconstruction_crowbar(I))
+	if(default_change_direction_wrench(user, I) || default_deconstruction_crowbar(I))
 		return
 
-	if (user.a_intent != INTENT_HELP)
+	if(!(user.istate)
 		return ..()
 
 	// For adding stamp upgrades to component_parts
-	if (istype(I, /obj/item/stamp))
-		if (stamp_upgrades.len < max_stamps)
-			if (!(I.icon_state in stamp_upgrades))
-				if (is_item_safe(user, I))
+	if(istype(I, /obj/item/stamp))
+		if(stamp_upgrades.len < max_stamps)
+			if(!(I.icon_state in stamp_upgrades))
+				if(is_item_safe(user, I))
 					component_parts += I
 					stamp_upgrades += I.icon_state
 					I.moveToNullspace()
@@ -111,20 +113,18 @@
 		return
 
 	// Adding to src
-	if (contents.len >= max_items)
+	if(contents.len >= max_items)
 		to_chat(user, span_warning("\The [src] is full!"))
 		return
 
 	var/valid = FALSE
-	if (istype(I, /obj/item/paper))
+	if(istype(I, /obj/item/paper))
 		valid = TRUE
-	else if (istype(I, /obj/item/card/id))
-		if (!istype(I, /obj/item/card/id/captains_spare/temporary))
-			valid = TRUE
-
-	if (valid)
-		if (is_item_safe(user, I))
-			if (user.transferItemToLoc(I, src))
+	else if(istype(I, /obj/item/card/id/))
+		valid = TRUE
+	if(valid)
+		if(is_item_safe(user, I))
+			if(user.transferItemToLoc(I, src))
 				user.visible_message("[user] inserts \the [I] into \the [src].", \
 				span_notice("You insert \the [I] into \the [src]."))
 				item_list["item"+ num2text(++item_ids)] = list("item" = I, "x" = 0, "y" = 0, "z" = -1)
@@ -136,29 +136,29 @@
 // TODO: Add auto extinguishing/decontam for part upgrades
 /obj/machinery/inspector_booth/proc/is_item_safe(mob/user, obj/item/I)
 	var/safe = TRUE
-	if (I.resistance_flags & ON_FIRE)
+	if(I.resistance_flags & ON_FIRE)
 		safe = FALSE
 		to_chat(user, span_warning("\The [src] rejects the burning [I]!"))
 	else
-		var/datum/component/radioactive/radiation = I.GetComponent(/datum/component/radioactive)
-		if (radiation && radiation.strength > 50)
-			safe = FALSE
-			to_chat(user, span_warning("\The [src] rejects the irradiated [I]!"))
+		if(HAS_TRAIT(I, TRAIT_IRRADIATED))
+			safe = TRUE
+			to_chat(user, span_warning("\The [src] quickly cleans off the irradiated [I]!"))
+			I.irradiated.Destroy()
 	return safe
 
 /obj/machinery/inspector_booth/can_interact(mob/user)
 	. = ..()
-	if (get_dist_chebyshev(src, user) == 0)
+	if(get_dist_chebyshev(src, user) == 0)
 		return TRUE
 	if((get_dir(user, src) != src.dir && !isobserver(user)))
 		return FALSE
 
 /obj/machinery/inspector_booth/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
-	if (!ui)
+	if(!ui)
 		var/user_ref = REF(user)
 		var/is_living = isliving(user)
-		if (is_living)
+		if(is_living)
 			concurrent_users += user_ref
 		ui = new(user, src, "InspectorBooth", name)
 		ui.open()
@@ -175,40 +175,36 @@
 	var/list/names = list()
 	var/name_index = 0
 	for (var/key in item_list)
-		var/I = item_list[key]["item"]
+		var/inserted = item_list[key]["item"]
 
-		if (istype(I, /obj/item/paper))
-			var/obj/item/paper/P = I
-			var/text = P.info
-			for (var/i = 1; i <= P.written.len; ++i)
-				if (istype(P.written[i] ,/datum/langtext))
-					var/datum/langtext/L = P.written[i]
-					text += "\n" + L.text
-			items["papers"] += list(list("id" = key, "text" = text, "stamps" = P.stamps,
+		if(istype(item, /obj/item/paper))
+			var/obj/item/paper/paper = inserted
+			var/text = inserted.paper_info.raw_text
+			items["papers"] += list(list("id" = key, "text" = text, "stamps" = paper.raw_stamp_data,
 				"x" = item_list[key]["x"], "y" = item_list[key]["y"], "z" = item_list[key]["z"]))
 
-		if (istype(I, /obj/item/card/id))
-			var/obj/item/card/id/D = I
-			names[D.registered_name] = ++name_index
-			var/colors = get_colors_by_job(D.originalassignment)
-			items["idcards"] += list(list("id" = key, "name" = D.registered_name, "age" = D.registered_age,
-				"job" = D.assignment, "bg" = D.icon_state, "department" = colors[1], "color" = colors[2],
+		if(istype(inserted, /obj/item/card/id))
+			var/obj/item/card/id/id = inserted
+			names[id.registered_name] = ++name_index
+			var/colors = get_colors_by_job(id.assignment)
+			items["idcards"] += list(list("id" = key, "name" = id.registered_name, "age" = id.registered_age,
+				"job" = id.assignment, "bg" = id.icon_state, "department" = colors[1], "color" = colors[2],
 				"x" = item_list[key]["x"], "y" = item_list[key]["y"], "z" = item_list[key]["z"]))
 
 	// Retroactively add profile pictures to ids
 	// The reason why we want to store all the names we want to search
 	// first is so that we only have to loop through the data core once
 	// This could be improved by caching the datum/record on item insert
-	if (name_index > 0)
-		for (var/record in GLOB.data_core.general)
-			var/datum/data/record/R = record
+	if(name_index > 0)
+		for (var/record in GLOB.manifest.get_manifest())
+			var/datum/record/crew/R = record
 			var/name = R.fields["name"]
-			if ((name in names) && (istype(R.fields["photo_front"], /obj/item/photo)))
+			if((name in names) && (istype(R.fields["photo_front"], /obj/item/photo)))
 				var/obj/item/photo/P = R.fields["photo_front"]
 				var/icon/picture = icon(P.picture.picture_image)
 				picture.Crop(10, 32, 22, 22)
 				var/md5 = md5(fcopy_rsc(picture))
-				if (!SSassets.cache["photo_[md5]_cropped.png"])
+				if(!SSassets.cache["photo_[md5]_cropped.png"])
 					SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
 				SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
 				items["idcards"][names[name]] += list("picture" = SSassets.transport.get_asset_url("photo_[md5]_cropped.png"))
@@ -219,7 +215,7 @@
 	var/list/stamps = list()
 	for (var/obj/item/stamp/S in component_parts)
 		var/name = S.icon_state
-		if (name in stamp_types)
+		if(name in stamp_types)
 			stamps += list(list("type" = name, "icon" = stamp_types[name]))
 		else
 			stamps += list(list("type" = name, "icon" = "stamp_unknown.png"))
@@ -228,31 +224,31 @@
 	return data
 
 /obj/machinery/inspector_booth/ui_act(action, list/params)
-	if (..())
+	if(..())
 		return
 
 	var/mob/living/user = params["ckey"] ? get_mob_by_key(params["ckey"]) : null
-	if (user != null && get_dist_chebyshev(src, user) > sqrt(2))
+	if(user != null && get_dist_chebyshev(src, user) > sqrt(2))
 		user = null
 	var/obj/item = (params["id"] in item_list) ? item_list[params["id"]]["item"] : null
 
 	switch(action)
-		if ("play_sfx")
+		if("play_sfx")
 			var/name = params["name"]
-			if (name in sfx)
+			if(name in sfx)
 				var/volume = params["volume"] ? params["volume"] : 50
 				var/vary = params["vary"] ? params["vary"] > 0 : TRUE
 				var/extra_range = params["extrarange"] ? params["extrarange"] : -3
 				playsound(user ? user : src, sfx[name], volume, vary, extra_range)
 				. = TRUE
-		if ("stamp_item")
+		if("stamp_item")
 			var/type = params["type"] ? params["type"] : "stamp-mime"
-			if (item != null)
-				if (istype(item, /obj/item/paper))
+			if(item != null)
+				if(istype(item, /obj/item/paper))
 					var/obj/item/paper/P = item
 					// This was copied from Paper.dm and should probably be moved into its own proc there
 					var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/simple/paper)
-					if (isnull(P.stamps))
+					if(isnull(P.stamps))
 						P.stamps = sheet.css_tag()
 					P.stamps += sheet.icon_tag(type)
 					var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_[type]")
@@ -261,20 +257,20 @@
 					LAZYADD(P.stamped, type)
 					P.add_overlay(stampoverlay)
 					. = TRUE
-		if ("move_item")
-			if (params["id"] in item_list)
+		if("move_item")
+			if(params["id"] in item_list)
 				var/id = params["id"]
 				item_list[id]["x"] = params["x"]
 				item_list[id]["y"] = params["y"]
 				item_list[id]["z"] = params["z"]
 				. = TRUE
-		if ("take_item")
-			if (user && item && !QDELETED(item))
+		if("take_item")
+			if(user && item && !QDELETED(item))
 				user.put_in_hands(item)
 				item_list -= params["id"]
 				. = TRUE
-		if ("drop_item")
-			if (item && !QDELETED(item))
+		if("drop_item")
+			if(item && !QDELETED(item))
 				item.forceMove(drop_location())
 				item_list -= params["id"]
 				. = TRUE
@@ -286,6 +282,7 @@
 	)
 
 // Should probably be moved into game.dm
+//what the fuck is this -pooba
 /proc/get_dist_chebyshev(atom/Loc1 as turf|mob|obj,atom/Loc2 as turf|mob|obj)
 	var/dx = Loc1.x - Loc2.x
 	var/dy = Loc1.y - Loc2.y
@@ -335,7 +332,7 @@
 	"Brig Physician" = list("security","blue"),
 	"Lawyer" = list("security","purple")
 	)
-	if (real_job in idfluff)
+	if(real_job in idfluff)
 		return idfluff[real_job]
 	else
 		return idfluff["Assistant"]
