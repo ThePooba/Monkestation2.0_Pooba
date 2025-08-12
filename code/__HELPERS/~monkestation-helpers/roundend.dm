@@ -52,7 +52,7 @@
 	if(!ckey)
 		return
 	var/datum/persistent_client/details = client.persistent_client
-	var/round_end_bonus = 75
+	var/round_end_bonus = 100
 
 	// Patreon Flat Roundend Bonus
 	if((details?.patreon?.has_access(ACCESS_ASSISTANT_RANK)))
