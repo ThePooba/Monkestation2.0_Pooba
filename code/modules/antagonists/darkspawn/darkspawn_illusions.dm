@@ -22,7 +22,7 @@
 	lighting_cutoff_blue = 50
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	faction = list(ROLE_DARKSPAWN)
-	
+
 /mob/living/simple_animal/hostile/illusion/darkspawn/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/light_eater)
@@ -61,6 +61,7 @@
 	if(!current_mob)
 		return //sanity check
 
+	add_team_hud(current_mob, /datum/antagonist/thrall)
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 
 	current_mob.grant_language(/datum/language/darkspawn)

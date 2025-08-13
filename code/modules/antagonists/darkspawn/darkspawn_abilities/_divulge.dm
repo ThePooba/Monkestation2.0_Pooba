@@ -40,7 +40,7 @@
 
 	if(isethereal(user))//disable the light for long enough to start divulge
 		user.dna.species.spec_emp_act(user, EMP_HEAVY)
-			
+
 	if(spot.get_lumcount() > SHADOW_SPECIES_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
 		return
@@ -106,8 +106,8 @@
 
 	user.Shake(5, 5, 11 SECONDS)
 	var/list/spooky = list(
-		"I- I- I-", "Mind-", "Sigils-", "Can't think-", 
-		"<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-", 
+		"I- I- I-", "Mind-", "Sigils-", "Can't think-",
+		"<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-",
 		"<i>THINK-</i>", "EMBRACE-", "BECOME-")
 	for(var/i in 1 to 40)
 		to_chat(user, span_progenitor("[pick(spooky)]"))

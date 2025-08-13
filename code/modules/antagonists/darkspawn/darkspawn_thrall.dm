@@ -34,6 +34,8 @@
 	if(!team)
 		team = new
 		stack_trace("thrall made without darkspawns")
+	add_team_hud(owner, /datum/antagonist/thrall)
+	add_team_hud(owner, /datum/antagonist/darkspawn)
 	return ..()
 
 /datum/antagonist/thrall/on_removal()
