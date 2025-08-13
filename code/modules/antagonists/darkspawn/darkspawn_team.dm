@@ -5,7 +5,7 @@
 	///The name of the "converted" players
 	var/thrall_name = "thrall"
 	///The list containing all converted players
-	var/list/datum/mind/thralls = list()
+	var/list/datum/mind/thralls_darkspawn = list()
 	///The number of drains required to perform the sacrament
 	var/required_succs = 10 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
 	///How much progress towards generating a willpower via tumors
@@ -39,10 +39,10 @@
 	. = ..()
 	thralls -= member
 
-/datum/team/darkspawn/proc/add_thrall(datum/mind/new_member) //thralls are treated differently than darkspawns
+/datum/team/darkspawn/proc/add_thrall_darkspawn(datum/mind/new_member) //thralls are treated differently than darkspawns
 	thralls |= new_member
 
-/datum/team/darkspawn/proc/remove_thrall(datum/mind/member)
+/datum/team/darkspawn/proc/remove_thrall_darkspawn(datum/mind/member)
 	thralls -= member
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,7 @@
 			continue
 		return FALSE //they aren't all dead
 	return TRUE //they're all dead
-	
+
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Team Objective----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////

@@ -54,14 +54,14 @@
 	antag_hud_name = "thrall"
 	roundend_category = "thralls"
 	antagpanel_category = "Darkspawn"
-	antag_moodlet = /datum/mood_event/thrall
+	antag_moodlet = /datum/mood_event/thrall_darkspawn
 
 /datum/antagonist/psyche/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
 
-	add_team_hud(current_mob, /datum/antagonist/thrall)
+	add_team_hud(current_mob, /datum/antagonist/thrall_darkspawn)
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 
 	current_mob.grant_language(/datum/language/darkspawn)

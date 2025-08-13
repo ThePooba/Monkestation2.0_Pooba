@@ -68,7 +68,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	team.add_member(owner)
 	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_psi))
 	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_psi))
-	add_team_hud(owner, /datum/antagonist/thrall)
+	add_team_hud(owner, /datum/antagonist/thrall_darkspawn)
 	add_team_hud(owner, /datum/antagonist/darkspawn)
 	return ..()
 
@@ -724,12 +724,12 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		return FALSE
 	return mind.remove_antag_datum(/datum/antagonist/darkspawn)
 
-/mob/living/proc/add_thrall()
+/mob/living/proc/add_thrall_darkspawn()
 	if(!istype(mind))
 		return FALSE
-	return mind.add_antag_datum(/datum/antagonist/thrall)
+	return mind.add_antag_datum(/datum/antagonist/thrall_darkspawn)
 
-/mob/living/proc/remove_thrall()
+/mob/living/proc/remove_thrall_darkspawn()
 	if(!istype(mind))
 		return FALSE
-	return mind.remove_antag_datum(/datum/antagonist/thrall)
+	return mind.remove_antag_datum(/datum/antagonist/thrall_darkspawn)

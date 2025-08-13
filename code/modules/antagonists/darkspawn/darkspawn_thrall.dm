@@ -10,22 +10,22 @@
 	return tumor
 
 
-/datum/antagonist/thrall
+/datum/antagonist/thrall_darkspawn
 	name = "Darkspawn Thrall"
 	job_rank = ROLE_DARKSPAWN
 	antag_hud_name = "thrall"
 	roundend_category = "thralls"
 	antagpanel_category = "Darkspawn"
-	antag_moodlet = /datum/mood_event/thrall
+	antag_moodlet = /datum/mood_event/thrall_darkspawn
 	///The abilities granted to the thrall
 	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall)
 	///The darkspawn team that the thrall is on
 	var/datum/team/darkspawn/team
 
-/datum/antagonist/thrall/get_team()
+/datum/antagonist/thrall_darkspawn/get_team()
 	return team
 
-/datum/antagonist/thrall/on_gain()
+/datum/antagonist/thrall_darkspawn/on_gain()
 	owner.special_role = "thrall"
 	message_admins("[key_name_admin(owner.current)] was thralled by a darkspawn!")
 	log_game("[key_name(owner.current)] was thralled by a darkspawn!")
@@ -34,11 +34,11 @@
 	if(!team)
 		team = new
 		stack_trace("thrall made without darkspawns")
-	add_team_hud(owner, /datum/antagonist/thrall)
+	add_team_hud(owner, /datum/antagonist/thrall_darkspawn)
 	add_team_hud(owner, /datum/antagonist/darkspawn)
 	return ..()
 
-/datum/antagonist/thrall/on_removal()
+/datum/antagonist/thrall_darkspawn/on_removal()
 	message_admins("[key_name_admin(owner.current)] was dethralled!")
 	log_game("[key_name(owner.current)] was dethralled!")
 	owner.special_role = null
@@ -52,13 +52,13 @@
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
 	return ..()
 
-/datum/antagonist/thrall/apply_innate_effects(mob/living/mob_override)
+/datum/antagonist/_darkspawn/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
 
 	if(team)
-		team.add_thrall(current_mob.mind)
+		team.add_thrall_darkspawn(current_mob.mind)
 
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 
@@ -87,13 +87,13 @@
 			if(team)
 				ST.antag_team = team
 
-/datum/antagonist/thrall/remove_innate_effects(mob/living/mob_override)
+/datum/antagonist/thrall_darkspawn/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
 
 	if(team)
-		team.remove_thrall(current_mob.mind)
+		team.remove_thrall_darkspawn(current_mob.mind)
 
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
 	UnregisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS)
@@ -114,7 +114,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Antag hud---------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/thrall/add_team_hud(mob/target, antag_to_check)
+/datum/antagonist/thrall_darksapwn/add_team_hud(mob/target, antag_to_check)
 	QDEL_NULL(team_hud_ref)
 
 	team_hud_ref = WEAKREF(target.add_alt_appearance(
@@ -132,7 +132,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Body Sigil--------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/thrall/proc/update_owner_overlay(atom/source, list/overlays)
+/datum/antagonist/thrall_darkspawn/proc/update_owner_overlay(atom/source, list/overlays)
 	SIGNAL_HANDLER
 
 	if(!ishuman(source))
@@ -146,16 +146,16 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //-----------Check if the thrall has a tumor, if not, dethrall them---------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/thrall/proc/thrall_life(mob/living/source, seconds_per_tick, times_fired)
+/datum/antagonist/thrall_darkspawn/proc/thrall_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
 		return
 	if(!get_shadow_tumor(source)) //if they somehow lose their tumor in an unusual way
-		source.remove_thrall()
+		source.remove_thrall_darkspawn()
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Antag greet--------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/thrall/greet()
+/datum/antagonist/thrall_darkspawn/greet()
 	to_chat(owner, span_progenitor("Krx'lna tyhx graha xthl'kap" ))
 
 	var/list/flavour = list()
@@ -173,5 +173,5 @@
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
 	flash_color(owner, flash_color = COLOR_VELVET, flash_time = 10 SECONDS)
 
-/datum/antagonist/thrall/roundend_report()
+/datum/antagonist/thrall_darkspawn/roundend_report()
 	return "[printplayer(owner)]"
