@@ -375,6 +375,7 @@
 				BAN_OPFOR,
 				ROLE_ASSAULT_OPERATIVE,
 				ROLE_BINGLE,
+				ROLE_DARKSPAWN,
 			),
 		)
 		for(var/department in long_job_lists)

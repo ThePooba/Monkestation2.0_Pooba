@@ -47,6 +47,26 @@
 		to_chat(ghost, "[FOLLOW_LINK(ghost, user)] [msg]")
 	return FALSE
 
+/datum/saymode/darkspawn/handle_message(mob/living/user, message, datum/language/language)
+	if(!user.mind)
+		return FALSE
+	if(!IS_DARKSPAWN_OR_VEIL(user))
+		return FALSE
+	user.log_talk(message, LOG_SAY, tag="darkspawn")
+	var/msg = "<span class='velvet'><b>\[Mindlink\] [user.real_name]:</b> \"[message]\"</span>"
+
+	for(var/mob/listener_mob in GLOB.player_list)
+		if(listener_mob in GLOB.dead_mob_list)
+			var/link = FOLLOW_LINK(M, user)
+			to_chat(M, "[link] [msg]")
+		else if(IS_DARKSPAWN_OR_VEIL(listener_mob))
+			if(listener_mob.z != user.z)
+				if(prob(25))
+					to_chat(M, "<span class='warning'>Your mindlink trembles with words, but they are too far to make out...</span>")
+				continue
+			to_chat(M, msg)
+	return FALSE //yogs end
+
 /datum/saymode/xeno
 	key = "a"
 	mode = MODE_ALIEN
@@ -110,3 +130,7 @@
 		return TRUE
 	MF.send_message(span_changeling("<b>[R.body.real_name]:</b> [message]"), "mafia")
 	return FALSE
+
+/datum/saymode/darkspawn //yogs: darkspawn
+	key = "a"
+	mode = MODE_DARKSPAWN

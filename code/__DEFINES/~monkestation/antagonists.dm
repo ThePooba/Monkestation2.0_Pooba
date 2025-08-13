@@ -12,6 +12,7 @@
 
 #define IS_DARKSPAWN(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/darkspawn))
 #define IS_VEIL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/veil))
+#define IS_DARKSPAWN_OR_VEIL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/veil) || mob?.mind?.has_antag_datum(/datum/antagonist/darkspawn))
 
 
 /// List of areas blacklisted from area based traitor objectives
