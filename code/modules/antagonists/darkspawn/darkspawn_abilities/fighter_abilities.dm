@@ -20,7 +20,7 @@
 	if(istype(target, /datum/mind))
 		RegisterSignal(target, COMSIG_DARKSPAWN_UPGRADE_ABILITY, PROC_REF(handle_upgrade))
 		RegisterSignal(target, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, PROC_REF(handle_downgrade))
-	
+
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/handle_upgrade(atom/source, flag)
 	ability_flags |= flag
 	if(flag & TENDRIL_UPGRADE_TWIN)
@@ -109,7 +109,7 @@
 	if(isliving(victim))
 		var/mob/living/target = victim
 		target.extinguish_mob()
-		if(is_team_darkspawn(target) && ispreternis(target)) //don't make preterni allies wet
+		if(IS_TEAM_DARKSPAWN(target) && ispreternis(target)) //don't make preterni allies wet
 			return
 		target.adjust_wet_stacks(20)
 		target.adjust_wet_stacks(20)
@@ -140,12 +140,12 @@
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_IMPACTIMMUNE, type)
 	RegisterSignal(owner, COMSIG_MOVABLE_IMPACT, PROC_REF(impact))
-	
+
 /datum/action/cooldown/spell/pointed/shadow_crash/Remove(mob/living/remove_from)
 	UnregisterSignal(owner, COMSIG_MOVABLE_IMPACT)
 	REMOVE_TRAIT(owner, TRAIT_IMPACTIMMUNE, type)
 	return ..()
-	
+
 /datum/action/cooldown/spell/pointed/shadow_crash/cast(atom/cast_on)
 	. = ..()
 	if(!isliving(owner))
@@ -163,7 +163,7 @@
 /datum/action/cooldown/spell/pointed/shadow_crash/proc/impact(atom/source, atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!charging)
 		return
-	
+
 	if(isturf(hit_atom))
 		return
 
@@ -181,7 +181,7 @@
 		var/mob/living/carbon/human/H = target
 		if(H.check_shields(src, 0, "[source]", attack_type = LEAP_ATTACK))
 			blocked = TRUE
-	
+
 	var/destination = get_ranged_target_turf(get_turf(target), throwingdatum.init_dir, 5)
 	if(blocked)
 		target.throw_at(destination, 3, 2)
@@ -280,7 +280,7 @@
 		return
 	if(isliving(victim))
 		var/mob/living/dude = victim
-		if(is_team_darkspawn(dude))
+		if(IS_TEAM_DARKSPAWN(dude))
 			return
 	var/distance = get_dist(owner, victim)
 	var/turf/target = get_edge_target_turf(owner, get_dir(owner, get_step_away(victim, owner)))
@@ -301,7 +301,7 @@
 		R.visible_message(span_warning("The blast sends [R] flying!"), span_userdanger("The force sends you flying!"))
 		R.Paralyze(10 SECONDS) //fuck borgs
 		R.soundbang_act(1, 5, 15, 5)
-		
+
 //////////////////////////////////////////////////////////////////////////
 //----------------Complete Protection from light at a cost--------------//
 //////////////////////////////////////////////////////////////////////////
@@ -319,7 +319,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 1)
-		
+
 /datum/action/cooldown/spell/toggle/creep/process()
 	if(active)
 		if(!SEND_SIGNAL(owner.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, resource_costs[ANTAG_RESOURCE_DARKSPAWN]))
@@ -365,7 +365,7 @@
 	var/was_running
 	///List of traits applied during the effect
 	var/list/traits = list(TRAIT_STUNIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_NODEATH, TRAIT_IGNOREDAMAGESLOWDOWN)
-		
+
 /datum/action/cooldown/spell/toggle/indomitable/process()
 	if(active)
 		if(!SEND_SIGNAL(owner.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, resource_costs[ANTAG_RESOURCE_DARKSPAWN]))
@@ -434,6 +434,6 @@
 	if(!isliving(victim) || !can_see(caster, victim))
 		return
 	var/mob/living/target = victim
-	if(is_team_darkspawn(target))
+	if(IS_TEAM_DARKSPAWN(target))
 		return
 	target.apply_status_effect(STATUS_EFFECT_TAUNT, owner)

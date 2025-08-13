@@ -93,5 +93,5 @@
 
 	// Add HUDs that they couldn't see before
 	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
-		if (is_team_darkspawn(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
+		if (IS_TEAM_DARKSPAWN(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
 			antag_hud.show_to(owner.current)

@@ -62,7 +62,7 @@
 /obj/item/gun/magic/darkspawn/proc/on_projectile_hit(datum/source, atom/movable/firer, atom/target, angle)
 	if(isliving(target))
 		var/mob/living/M = target
-		if(is_team_darkspawn(M))
+		if(IS_TEAM_DARKSPAWN(M))
 			if(effect_flags & STAFF_UPGRADE_HEAL)
 				M.heal_ordered_damage(30, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
@@ -104,10 +104,10 @@
 /obj/item/gun/magic/darkspawn/process_chamber()
 	. = ..()
 	charges = max_charges //infinite charges
-	
+
 ////////////////////////OTHER STUFF//////////////////////////
 /obj/item/ammo_casing/magic/darkspawn
-	projectile_type = /obj/projectile/magic/darkspawn	
+	projectile_type = /obj/projectile/magic/darkspawn
 	firing_effect_type = null
 
 /obj/projectile/magic/darkspawn

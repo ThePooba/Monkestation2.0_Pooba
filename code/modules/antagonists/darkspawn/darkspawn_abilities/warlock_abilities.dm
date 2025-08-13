@@ -22,7 +22,7 @@
 	if(istype(target, /datum/mind))
 		RegisterSignal(target, COMSIG_DARKSPAWN_UPGRADE_ABILITY, PROC_REF(handle_upgrade))
 		RegisterSignal(target, COMSIG_DARKSPAWN_DOWNGRADE_ABILITY, PROC_REF(handle_downgrade))
-	
+
 /datum/action/cooldown/spell/toggle/dark_staff/proc/handle_upgrade(atom/source, flag)
 	effect_flags |= flag
 	if(staff)
@@ -92,7 +92,7 @@
 /datum/action/cooldown/spell/aoe/extinguish/Grant(mob/grant_to)
 	. = ..()
 	bopper = new(src)
-	
+
 /datum/action/cooldown/spell/aoe/extinguish/Remove(mob/living/remove_from)
 	QDEL_NULL(bopper)
 	return ..()
@@ -156,7 +156,7 @@
 	if(target.stat & BROKEN)
 		to_chat(owner, span_danger("This [target] no longer functions enough for access to the power grid."))
 		return FALSE
-	return TRUE	
+	return TRUE
 
 /datum/action/cooldown/spell/touch/null_charge/cast_on_hand_hit(obj/item/melee/touch_attack/hand, obj/machinery/power/apc/target, mob/living/carbon/human/caster)
 	if(!target || !istype(target))//sanity check
@@ -189,7 +189,7 @@
 	to_chat(caster, span_velvet("You return the APC's power to the void, destroying it and disabling all others."))
 	target.set_broken()
 	return TRUE
-		
+
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Drain enemy, heal ally-------------------------//
 //////////////////////////////////////////////////////////////////////////
@@ -281,7 +281,7 @@
 	if(cancel())
 		return FALSE
 	. = ..()
-	
+
 /obj/effect/ebeam/darkspawn
 	name = "void beam"
 
@@ -290,8 +290,8 @@
 	owner.balloon_alert(owner, "Qokxlez")
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/darkspawn.dmi' , INFINITY, cast_range)
 	channeled = cast_on
-	healing = is_team_darkspawn(channeled)
-	
+	healing = IS_TEAM_DARKSPAWN(channeled)
+
 /datum/action/cooldown/spell/pointed/extract/proc/cancel()
 	balloon_counter = 0
 	if(visual)
@@ -347,7 +347,7 @@
 	if(!isliving(victim))
 		return
 	var/mob/living/target = victim
-	if(is_team_darkspawn(target)) //don't fuck with allies
+	if(IS_TEAM_DARKSPAWN(target)) //don't fuck with allies
 		return
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
@@ -390,7 +390,7 @@
 	if(istype(target) && target.stat)
 		to_chat(owner, span_warning("[target] must be conscious!"))
 		return . | SPELL_CANCEL_CAST
-	if(is_team_darkspawn(target))
+	if(IS_TEAM_DARKSPAWN(target))
 		to_chat(owner, span_warning("You cannot seize allies!"))
 		return . | SPELL_CANCEL_CAST
 
@@ -409,7 +409,7 @@
 	var/mob/living/target = cast_on
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
-		
+
 	var/distance = get_dist(target, owner)
 	if (distance <= 2)
 		target.visible_message(span_danger("[target] suddenly collapses..."))
@@ -489,7 +489,7 @@
 	. = ..()
 	if(charging)
 		return
-	
+
 	targets_from = get_turf(owner)
 	targets_to = get_turf(cast_on)
 
@@ -573,7 +573,7 @@
 /obj/effect/temp_visual/darkspawn/chasm/proc/on_entered(datum/source, atom/movable/AM, ...)
 	if(isliving(AM))
 		var/mob/living/target = AM
-		if(!is_team_darkspawn(target))
+		if(!IS_TEAM_DARKSPAWN(target))
 			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 3, 1 SECONDS, type) //slow field, makes it harder to escape
 
 /obj/effect/temp_visual/darkspawn/chasm/Destroy()
@@ -589,13 +589,13 @@
 /obj/effect/temp_visual/darkspawn/detonate/Destroy()
 	var/turf/tile_location = get_turf(src)
 	for(var/mob/living/victim in tile_location.contents)
-		if(is_team_darkspawn(victim))
+		if(IS_TEAM_DARKSPAWN(victim))
 			victim.heal_ordered_damage(90, list(BURN, BRUTE, TOX, OXY, CLONE, STAMINA), BODYPART_ANY)
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
 			victim.take_overall_damage(10, 50, 200) //skill issue if you don't dodge it (won't crit if you're full hp)
 			victim.emote("scream")
 	return ..()
-	
+
 //////////////////////////////////////////////////////////////////////////
 //-------------------I stole heirophant's burst ability-----------------//
 //////////////////////////////////////////////////////////////////////////
@@ -639,7 +639,7 @@
 	. = ..()
 	if(charging)
 		return
-	
+
 	targets_to = get_turf(cast_on)
 
 	owner.balloon_alert(owner, "Qwo...")

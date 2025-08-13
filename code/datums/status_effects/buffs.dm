@@ -561,37 +561,6 @@
 /datum/status_effect/jump_jet/on_remove()
 	owner.RemoveElement(/datum/element/forced_gravity, 0)
 
-/datum/status_effect/creep //allows darkspawn to move through lights without lightburn damage //yogs start: darkspawn
-	id = "creep"
-	duration = -1
-	alert_type = /obj/screen/alert/status_effect/creep
-	var/datum/antagonist/darkspawn/darkspawn
-
-/datum/status_effect/creep/get_examine_text()
-	return span_notice("[owner.p_they(TRUE)] seem[owner.p_s()] is surrounded by velvety, gently-waving black shadows!")
-
-/datum/status_effect/creep/on_creation(mob/living/owner, datum/antagonist/darkspawn)
-	. = ..()
-	if(!.)
-		return
-	src.darkspawn = darkspawn
-
-/datum/status_effect/creep/process()
-	if(!darkspawn)
-		qdel(src)
-		return
-	if(!darkspawn.has_psi(1)) //ticks 5 times per second, 5 Psi lost per second
-		to_chat(owner, "<span class='warning'>Without the Psi to maintain it, your protective aura vanishes!</span>")
-		qdel(src)
-		return
-	darkspawn.use_psi(1)
-
-/obj/screen/alert/status_effect/creep
-	name = "Creep"
-	desc = "You are immune to lightburn. Drains 1 Psi per second."
-	icon = 'icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "creep"
-
 /datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
 	id = "time_dilation"
 	duration = 600

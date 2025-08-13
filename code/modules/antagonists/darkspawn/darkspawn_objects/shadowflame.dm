@@ -32,7 +32,7 @@
 		qdel(src)
 		return
 
-	if(is_team_darkspawn(owner) || !ishuman(owner))
+	if(IS_TEAM_DARKSPAWN(owner) || !ishuman(owner))
 		return
 
 	var/mob/living/carbon/human/victim = owner

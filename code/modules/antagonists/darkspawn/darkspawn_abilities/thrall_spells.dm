@@ -184,7 +184,7 @@
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 
 	///how far the projectile can shoot from a body
-	var/body_range = 9 
+	var/body_range = 9
 	///mob to shoot the projectile from
 	var/mob/shoot_from
 
@@ -195,7 +195,7 @@
 	var/closest_dude_dist = body_range
 	if(get_dist(owner, cast_on) > body_range)
 		for(var/mob/living/dude in range(body_range, cast_on))
-			if(is_team_darkspawn(dude))
+			if(IS_TEAM_DARKSPAWN(dude))
 				if(!isturf(dude.loc))
 					continue
 				if(get_dist(cast_on, dude) < closest_dude_dist)//always only get the closest dude
@@ -251,7 +251,7 @@
 /obj/projectile/magic/mindblast/can_hit_target(atom/target, list/passthrough, direct_target, ignore_loc)
 	if(isliving(target))
 		var/mob/living/victim = target
-		if(is_team_darkspawn(victim))
+		if(IS_TEAM_DARKSPAWN(victim))
 			return FALSE
 	return ..()
 
@@ -303,14 +303,14 @@
 	for(var/mob/living/carbon/target in range(buff_range, cast_on))
 		if(target == owner) //no buffing yourself
 			continue
-		if(!is_team_darkspawn(target))
+		if(!IS_TEAM_DARKSPAWN(target))
 			continue
 		if(!darkspawns_too && isdarkspawn(target)) //doesn't buff allied darkspawns unless it's upgraded
 			continue
 		empower(target)
 		if(outline_colour)
 			add_outline(target)
-	
+
 /datum/action/cooldown/spell/pointed/thrallbuff/proc/add_outline(mob/living/carbon/target)
 	target.add_filter(name, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 0, "size" = 1))
 	var/filter = target.get_filter(name)
@@ -382,7 +382,7 @@
 	if(!iscarbon(cast_on))
 		return FALSE
 	var/mob/living/carbon/target = cast_on
-	if(!is_team_darkspawn(target))
+	if(!IS_TEAM_DARKSPAWN(target))
 		return FALSE
 	if(target.stat == DEAD && get_dist(target, owner) > 2)
 		to_chat(owner, span_velvet("This one is beyond our help at such a range"))
@@ -409,7 +409,7 @@
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 	if(darkspawn)
 		darkspawn.block_psi(1 MINUTES, type)
-	
+
 //////////////////////////////////////////////////////////////////////////
 //--------------------Places a camera for panopticon use----------------//
 //////////////////////////////////////////////////////////////////////////

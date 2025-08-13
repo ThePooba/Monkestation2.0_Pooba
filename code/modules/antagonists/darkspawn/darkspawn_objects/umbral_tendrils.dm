@@ -110,7 +110,7 @@
 	. = TRUE
 	if(isliving(target))
 		var/mob/living/L = target
-		if(is_team_darkspawn(L))
+		if(IS_TEAM_DARKSPAWN(L))
 			return BULLET_ACT_FORCE_PIERCE //ignore allies
 		if(iscarbon(target))
 			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)

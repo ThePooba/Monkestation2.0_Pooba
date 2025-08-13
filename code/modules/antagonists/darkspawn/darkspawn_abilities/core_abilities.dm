@@ -53,7 +53,7 @@
 	if(!target.mind)
 		to_chat(caster, span_warning("You cannot drain the mindless."))
 		return
-	if(is_team_darkspawn(target))
+	if(IS_TEAM_DARKSPAWN(target))
 		to_chat(caster, span_warning("You cannot drain allies."))
 		return
 	if(!istype(target))
@@ -94,15 +94,15 @@
 	if(get_shadow_tumor(target))
 		to_chat(owner, span_danger("[target] already has a dark bead lodged within their psyche."))
 		return FALSE
-		
+
 	//put the victim to sleep before the visible_message proc so the victim doesn't see it
 	to_chat(target, span_progenitor("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
 	playsound(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
 	target.playsound_local(target, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
 
 	//format the text output to the darkspawn
-	var/list/self_text = list() 
-	
+	var/list/self_text = list()
+
 	caster.balloon_alert(caster, "...akkraup'dej")
 
 	var/obj/item/organ/shadowtumor/bead = target.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
@@ -159,17 +159,17 @@
 
 /datum/action/cooldown/spell/touch/silver_tongue/is_valid_target(atom/cast_on)
 	return istype(cast_on, /obj/machinery/computer/communications)
-	
+
 /datum/action/cooldown/spell/touch/silver_tongue/cast_on_hand_hit(obj/item/melee/touch_attack/hand, obj/machinery/computer/communications/target, mob/living/carbon/caster)
 	if(in_use)
 		return
 	if(target.stat)
 		to_chat(owner, span_warning("[target] is depowered."))
 		return FALSE
-		
+
 	caster.balloon_alert(caster, "[pick("Pda ykw'lpwe skwo h'kccaz ej.", "Pda aiank'cajyu eo kran.", "Oknnu, bkn swop'ejc ukqn pkza.", "Wke swo kxn'znaz xu hws psk.")]")
 	owner.visible_message(span_warning("[owner] briefly touches [target]'s screen, and the keys begin to move by themselves!"), span_velvet("You begin transmitting a recall message to Central Command..."))
-	in_use = TRUE	
+	in_use = TRUE
 	play_recall_sounds(target, (duration/10)-1)
 	if(!do_after(owner, duration, target))
 		in_use = FALSE
@@ -192,7 +192,7 @@
 	if(prob(25))
 		playsound(C, 'sound/machines/terminal_alert.ogg', 50, FALSE)
 		do_sparks(5, TRUE, get_turf(C))
-	
+
 	if(iterations <= 0)
 		addtimer(CALLBACK(src, PROC_REF(end_recall_sounds), C), 0.4 SECONDS)
 	else
@@ -262,7 +262,7 @@
 			casting = FALSE
 			return . | SPELL_CANCEL_CAST
 		casting = FALSE
-	
+
 /datum/action/cooldown/spell/pointed/darkspawn_build/cast(atom/cast_on)
 	. = ..()
 	if(!object_type) //sanity check
@@ -286,7 +286,7 @@
 	button_icon_state = "sacrament(old)"
 	antimagic_flags = NONE
 	spell_requirements = SPELL_CASTABLE_AS_BRAIN
-	
+
 /datum/action/cooldown/spell/reform_body/cast(atom/cast_on)
 	. = ..()
 	if(isdarkspawn(owner))

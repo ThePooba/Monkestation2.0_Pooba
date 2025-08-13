@@ -61,6 +61,8 @@
 #define MODE_CUSTOM_SAY_ERASE_INPUT "erase_input"
 
 #define MODE_DARKSPAWN "mindlink"
+#define MODE_KEY_DARKSPAWN  "w"
+#define MODE_TOKEN_DARKSPAWN  ":w"
 
 //Spans. Robot speech, italics, etc. Applied in compose_message().
 #define SPAN_ROBOT "robot"

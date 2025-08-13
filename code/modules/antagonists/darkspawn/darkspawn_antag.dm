@@ -140,7 +140,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 	// Add HUDs that they couldn't see before
 	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
-		if (is_team_darkspawn(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
+		if (IS_TEAM_DARKSPAWN(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
 			antag_hud.show_to(owner.current)
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -264,7 +264,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 			var/processed_message = span_velvet("<b>\[Mindlink\] [owner.current] has selected [picked_class.name] as their class.</b>")
 			for(var/T in GLOB.alive_mob_list)
 				var/mob/M = T
-				if(is_team_darkspawn(M))
+				if(IS_TEAM_DARKSPAWN(M))
 					to_chat(M, processed_message)
 
 /datum/antagonist/darkspawn/ui_status(mob/user, datum/ui_state/state)
@@ -416,7 +416,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	for(var/mob/M as anything in GLOB.alive_mob_list)
 		if(M == user)
 			continue
-		if(is_team_darkspawn(M))
+		if(IS_TEAM_DARKSPAWN(M))
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, user)
 
@@ -455,7 +455,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	H.do_jitter_animation(1000)
 	var/processed_message = span_progenitor("\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.")
 	for(var/mob/M in GLOB.player_list)
-		if(M.stat != DEAD && is_team_darkspawn(M))
+		if(M.stat != DEAD && IS_TEAM_DARKSPAWN(M))
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, H)
 	addtimer(CALLBACK(src, PROC_REF(divulge), TRUE), 2.5 SECONDS)
@@ -566,7 +566,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	var/processed_message = span_progenitor("<b>\[Mindlink\] [returner] has reformed their body.</b>")
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
-		if(is_team_darkspawn(M))
+		if(IS_TEAM_DARKSPAWN(M))
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, returner)
 

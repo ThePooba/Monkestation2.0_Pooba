@@ -32,7 +32,7 @@
 		if(possessing)
 			return //only return if the user is actually still hiding
 	return ..()
-	
+
 /datum/action/cooldown/spell/touch/umbral_trespass/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
 	tagalong = caster.apply_status_effect(STATUS_EFFECT_TAGALONG, target)
 	caster.balloon_alert(caster, "Iahz")
@@ -74,7 +74,7 @@
 	if(!isliving(target))
 		return
 	var/mob/living/victim = target
-	if(is_team_darkspawn(victim)) //no friendly fire
+	if(IS_TEAM_DARKSPAWN(victim)) //no friendly fire
 		return
 	to_chat(victim, span_userdanger("A wave of shockingly cold air engulfs you!"))
 	victim.apply_damage(10, BURN)
@@ -127,7 +127,7 @@
 			to_chat(owner, span_warning("There isn't enough room to release your transformation"))
 		return FALSE
 	return ..()
-	
+
 //////////////////////////////////////////////////////////////////////////
 //------------------------Summon a distraction--------------------------//
 //////////////////////////////////////////////////////////////////////////
@@ -159,7 +159,7 @@
 	var/mob/living/simple_animal/hostile/illusion/darkspawn/M = new(get_turf(L))
 	M.Copy_Parent(L, duration, 100, 10) //closely follows regular player stats so it's not painfully obvious (still sorta is)
 	M.move_to_delay = L.movement_delay()
-	
+
 //////////////////////////////////////////////////////////////////////////
 //--------------------Summon a sentient distraction---------------------//
 //////////////////////////////////////////////////////////////////////////
@@ -206,7 +206,7 @@
 ///Attempt to spawn the sentient ghost mob
 /datum/action/cooldown/spell/fray_self/proc/fray()
 	var/mob/living/caster = owner
-	
+
 	to_chat(caster, span_velvet("You attempt to split a piece of your psyche."))
 	searching = TRUE
 	var/mob/dead/observer/chosen_ghost

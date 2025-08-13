@@ -24,12 +24,12 @@
 	return ..()
 
 /datum/status_effect/broken_will/tick()
-	if(is_team_darkspawn(owner) || owner.stat == DEAD)
+	if(IS_TEAM_DARKSPAWN(owner) || owner.stat == DEAD)
 		qdel(src)
 		return
 	owner.Unconscious(15)
 	if(owner.health <= HEALTH_THRESHOLD_CRIT)
-		owner.heal_ordered_damage(3, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
+		owner.heal_ordered_damage(3, list(BURN, BRUTE)) //so if they're left to bleed out, they'll survive, probably?
 		if(prob(10))
 			to_chat(owner, span_velvet("sleep... bliss...")) //give a notice that they're probably healing because of the sleep
 
@@ -39,8 +39,6 @@
 	owner.visible_message(span_warning("[owner] is jolted awake by the impact!") , span_boldannounce("Something hits you, pulling you towards wakefulness!"))
 	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, type)
 	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_NOSOFTCRIT, type), 20 SECONDS)
-	ADD_TRAIT(owner, TRAIT_RESISTDAMAGESLOWDOWN, type)
-	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_RESISTDAMAGESLOWDOWN, type), 20 SECONDS)
 	qdel(src)
 
 /atom/movable/screen/alert/status_effect/broken_will

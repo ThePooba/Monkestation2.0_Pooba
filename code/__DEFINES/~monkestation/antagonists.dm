@@ -11,9 +11,9 @@
 #define IS_BINGLE(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/bingle))
 
 #define IS_DARKSPAWN(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/darkspawn))
-#define IS_VEIL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/veil))
-#define IS_DARKSPAWN_OR_VEIL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/veil) || mob?.mind?.has_antag_datum(/datum/antagonist/darkspawn))
-#define IS_TEAM_DARKSPAWN(mob) ((mob?.mind && IS_DARKSPAWN(mob) || IS_VEIL(mob)) || ispsyche(A) || (ROLE_DARKSPAWN in A.faction)) //also checks factions, so things can be immune to darkspawn spells without needing an antag datum
+#define IS_THRALL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/thrall_darkspawn))
+#define IS_DARKSPAWN_OR_THRALL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/thrall_darkspawn) || mob?.mind?.has_antag_datum(/datum/antagonist/darkspawn))
+#define IS_TEAM_DARKSPAWN(mob) ((mob?.mind && IS_DARKSPAWN(mob) || IS_THRALL(mob)) || ispsyche(A) || (ROLE_DARKSPAWN in A.faction)) //also checks factions, so things can be immune to darkspawn spells without needing an antag datum
 
 
 /// List of areas blacklisted from area based traitor objectives

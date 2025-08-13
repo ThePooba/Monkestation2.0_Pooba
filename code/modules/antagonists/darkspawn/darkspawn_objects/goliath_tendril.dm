@@ -18,11 +18,11 @@
 			break
 		var/turf/T = pick_n_take(turfs)
 		new /obj/effect/temp_visual/goliath_tentacle/darkspawn(T, spawner)
-	
+
 /obj/effect/temp_visual/goliath_tentacle/darkspawn/trip()
 	var/latched = 0
 	for(var/mob/living/L in loc)
-		if(is_team_darkspawn(L) || L.stat == DEAD)
+		if(IS_TEAM_DARKSPAWN(L) || L.stat == DEAD)
 			continue
 		visible_message(span_danger("[src] grabs hold of [L]!"))
 		if(!L.IsStun())
@@ -35,4 +35,4 @@
 		retract()
 	else
 		deltimer(timerid)
-		timerid = addtimer(CALLBACK(src, PROC_REF(retract)), latched, TIMER_STOPPABLE) 
+		timerid = addtimer(CALLBACK(src, PROC_REF(retract)), latched, TIMER_STOPPABLE)

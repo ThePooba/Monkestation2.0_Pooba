@@ -47,7 +47,7 @@
 
 	var/processed_message = span_progenitor("\[Mindlink\] [user] has begun performing the sacrament.")
 	for(var/mob/M as anything in GLOB.alive_mob_list)
-		if(is_team_darkspawn(M))
+		if(IS_TEAM_DARKSPAWN(M))
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, user)
 
@@ -97,7 +97,7 @@
 
 	soundloop.stage = 3
 	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
-	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"))	
+	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"))
 
 	for(var/turf/T in range(10, owner))
 		if(prob(35))
