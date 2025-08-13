@@ -251,7 +251,7 @@
 	med_hud.hide_from(owner)
 
 /datum/status_effect/hippocratic_oath/get_examine_text()
-	return span_notice("[owner.p_they(TRUE)] seem[owner.p_s()] to have an aura of healing and helpfulness about [owner.p_them()].")
+	return span_warning("[owner.p_are(TRUE)] to have an aura of healing and helpfulness about [owner.p_them()].")
 
 /datum/status_effect/hippocratic_oath/tick()
 	if(owner.stat == DEAD)
@@ -560,3 +560,57 @@
 
 /datum/status_effect/jump_jet/on_remove()
 	owner.RemoveElement(/datum/element/forced_gravity, 0)
+
+/datum/status_effect/creep //allows darkspawn to move through lights without lightburn damage //yogs start: darkspawn
+	id = "creep"
+	duration = -1
+	alert_type = /obj/screen/alert/status_effect/creep
+	var/datum/antagonist/darkspawn/darkspawn
+
+/datum/status_effect/creep/get_examine_text()
+	return span_notice("[owner.p_they(TRUE)] seem[owner.p_s()] is surrounded by velvety, gently-waving black shadows!")
+
+/datum/status_effect/creep/on_creation(mob/living/owner, datum/antagonist/darkspawn)
+	. = ..()
+	if(!.)
+		return
+	src.darkspawn = darkspawn
+
+/datum/status_effect/creep/process()
+	if(!darkspawn)
+		qdel(src)
+		return
+	if(!darkspawn.has_psi(1)) //ticks 5 times per second, 5 Psi lost per second
+		to_chat(owner, "<span class='warning'>Without the Psi to maintain it, your protective aura vanishes!</span>")
+		qdel(src)
+		return
+	darkspawn.use_psi(1)
+
+/obj/screen/alert/status_effect/creep
+	name = "Creep"
+	desc = "You are immune to lightburn. Drains 1 Psi per second."
+	icon = 'icons/mob/actions/actions_darkspawn.dmi'
+	icon_state = "creep"
+
+/datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
+	id = "time_dilation"
+	duration = 600
+	alert_type = /obj/screen/alert/status_effect/time_dilation
+
+/datum/status_effect/time_dilation/get_examine_text()
+	return span_notice("[owner.p_they(TRUE)] seem[owner.p_s()] is moving jerkily and unpredictably!")
+
+/datum/status_effect/time_dilation/on_apply()
+	owner.add_movespeed_modifier(/datum/status_effect/time_dilation)
+	owner.next_move_modifier *= 0.5 // For the duration of this you move and attack faster
+	return TRUE
+
+/datum/status_effect/time_dilation/on_remove()
+	our_guy.remove_movespeed_modifier(/datum/status_effect/time_dilation)
+	our_guy.next_move_modifier *= 2
+
+/obj/screen/alert/status_effect/time_dilation
+	name = "Time Dilation"
+	desc = "Your actions are twice as fast, and the delay between them is halved."
+	icon = 'icons/mob/actions/actions_darkspawn.dmi'
+	icon_state = "time_dilation"
