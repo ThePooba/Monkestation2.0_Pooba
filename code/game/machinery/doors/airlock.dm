@@ -1078,27 +1078,30 @@
 				return
 			open(2)
 		var/obj/item/umbral_tendrils/tendrils = C
-		if(!tendrtils.darkspawn)
+		if(!IS_DARKSPAWN(user))
 			return ..()
 		else if((user.istate & ISTATE_SECONDARY) && density)
 			if(!locked && !welded)
-				if(!tendrils.darkspawn.has_psi(15))
-					to_chat(user, "<span class='warning'>You need at least 15 Psi to force open an airlock!</span>")
+				if(!hasPower())
+					open(2)
+					return
+				if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 15)))
+					to_chat(user, span_warning("You need at least 15 Psi to force open an airlock!"))
 					return
 				user.visible_message("<span class='warning'>[user] starts forcing open [src]!</span>", "<span class='velvet'><b>ueahz</b><br>You begin forcing open [src]...</span>")
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 				if(!tendrils.twin)
-					if(!do_after(user, 75, target = src))
+					if(!do_after(user, 7.5 SECONDS, target = src))
 						return
 				else
-					if(!do_after(user, 50, target = src))
+					if(!do_after(user, 5 SECONDS , target = src))
 						return
 				open(2)
 				if(density && !open(2))
 					to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open!</span>")
-				tendrils.darkspawn.use_psi(15)
+				SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 15))
 			else
-				if(!tendrils.darkspawn.has_psi(30))
+				if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 30)))
 					to_chat(user, "<span class='warning'>You need at least 30 Psi to smash down an airlock!</span>")
 					return
 				user.visible_message("<span class='boldwarning'>[user] starts slamming [T] into [src]!</span>", \
@@ -1106,20 +1109,18 @@
 				while(obj_integrity > max_integrity * 0.25)
 					if(tendrils.twin)
 						if(!do_after(user, rand(4, 6), target = src))
-							tendrils.darkspawn.use_psi(30)
-							qdel(tendrils)
+							SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 							return
 					else
 						if(!do_after(user, rand(8, 10), target = src))
-							tendrils.darkspawn.use_psi(30)
-							qdel(tendrils)
+							SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 							return
-					playsound(src, 'yogstation/sound/magic/pass_smash_door.ogg', 50, TRUE)
+					playsound(src, 'sound/magic/darkspawn/pass_smash_door.ogg', 50, TRUE)
 					take_damage(max_integrity / rand(8, 15))
 					to_chat(user, "<span class='velvet bold'>klaj.</span>")
 				ex_act(EXPLODE_DEVASTATE)
 				user.visible_message("<span class='boldwarning'>[user] slams down [src]!</span>", "<span class='velvet bold'>KLAJ.</span>")
-				tendrils.darkspawn.use_psi(30)
+				SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
 				qdel(tendrils)
 		return ..()
 

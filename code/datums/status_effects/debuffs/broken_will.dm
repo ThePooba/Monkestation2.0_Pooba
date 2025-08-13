@@ -3,29 +3,48 @@
 	id = "broken_will"
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5
-	duration = 300
-	examine_text = "<span class='deadsay'>SUBJECTPRONOUN is in a deep, deathlike sleep, with no signs of awareness to anything around them.</span>"
-	alert_type = /obj/screen/alert/status_effect/broken_will
-	var/old_health
+	duration = 30 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/broken_will
+	var/wake_threshold = 5
 
 /datum/status_effect/creep/get_examine_text()
 	return span_notice("[owner.p_are(TRUE)] is in a deep, deathlike sleep, with no signs of awareness to anything around them.")
 
-/datum/status_effect/broken_will/tick()
-	owner.Unconscious(15)
-	if(!old_health)
-		old_health = owner.health
-	var/health_difference = old_health - owner.health
-	if(!health_difference)
-		return
-	owner.visible_message("<span class='warning'>[owner] jerks in their sleep as they're harmed!</span>")
-	to_chat(owner, "<span class='boldannounce'>Something hits you, pulling you towards wakefulness!</span>")
-	health_difference *= 10 //1 point of damage = 1 second = 10 deciseconds
-	duration -= health_difference
-	old_health = owner.health
+/datum/status_effect/broken_will/on_apply()
+	if(owner)
+		RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_take_damage))
+		ADD_TRAIT(owner, TRAIT_NOCRITDAMAGE, type)
+	return ..()
 
-/obj/screen/alert/status_effect/broken_will
+/datum/status_effect/broken_will/on_remove()
+	if(owner)
+		UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE)
+		REMOVE_TRAIT(owner, TRAIT_NOCRITDAMAGE, type)
+		owner.SetUnconscious(0) //wake them up
+	return ..()
+
+/datum/status_effect/broken_will/tick()
+	if(is_team_darkspawn(owner) || owner.stat == DEAD)
+		qdel(src)
+		return
+	owner.Unconscious(15)
+	if(owner.health <= HEALTH_THRESHOLD_CRIT)
+		owner.heal_ordered_damage(3, list(BURN, BRUTE), BODYPART_ANY) //so if they're left to bleed out, they'll survive, probably?
+		if(prob(10))
+			to_chat(owner, span_velvet("sleep... bliss...")) //give a notice that they're probably healing because of the sleep
+
+/datum/status_effect/broken_will/proc/on_take_damage(datum/source, damage, damagetype)
+	if(damage < wake_threshold)
+		return
+	owner.visible_message(span_warning("[owner] is jolted awake by the impact!") , span_boldannounce("Something hits you, pulling you towards wakefulness!"))
+	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, type)
+	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_NOSOFTCRIT, type), 20 SECONDS)
+	ADD_TRAIT(owner, TRAIT_RESISTDAMAGESLOWDOWN, type)
+	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_RESISTDAMAGESLOWDOWN, type), 20 SECONDS)
+	qdel(src)
+
+/atom/movable/screen/alert/status_effect/broken_will
 	name = "Broken Will"
 	desc = "..."
 	icon_state = "broken_will"
-	alerttooltipstyle = "alien" //yogs end
+	alerttooltipstyle = "alien"

@@ -525,7 +525,6 @@
 
 /datum/status_effect/tagalong //applied to darkspawns while they accompany someone //yogs start: darkspawn
 	id = "tagalong"
-	duration = 3000
 	tick_interval = 1 //as fast as possible
 	alert_type = /obj/screen/alert/status_effect/tagalong
 	var/mob/living/shadowing
@@ -540,10 +539,10 @@
 /datum/status_effect/tagalong/on_remove()
 	if(owner.loc == shadowing)
 		owner.forceMove(cached_location ? cached_location : get_turf(owner))
-		shadowing.visible_message("<span class='warning'>[owner] breaks away from [shadowing]'s shadow!</span>", \
-		"<span class='userdanger'>You feel a sense of freezing cold pass through you!</span>")
-		to_chat(owner, "<span class='velvet'>You break away from [shadowing].</span>")
-	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
+		shadowing.visible_message(span_warning("[owner] breaks away from [shadowing]'s shadow!"), \
+		span_userdanger("You feel a sense of freezing cold pass through you!"))
+		to_chat(owner, span_velvet("You break away from [shadowing]."))
+	playsound(owner, 'sound/magic/darkspawn/devour_will_form.ogg', 50, TRUE)
 	owner.setDir(SOUTH)
 
 /datum/status_effect/tagalong/process()
@@ -554,8 +553,8 @@
 	cached_location = get_turf(shadowing)
 	if(cached_location.get_lumcount() < DARKSPAWN_DIM_LIGHT)
 		owner.forceMove(cached_location)
-		shadowing.visible_message("<span class='warning'>[owner] suddenly appears from the dark!</span>")
-		to_chat(owner, "<span class='warning'>You are forced out of [shadowing]'s shadow!</span>")
+		shadowing.visible_message(span_warning("[owner] suddenly appears from the dark!"))
+		to_chat(owner, span_warning("You are forced out of [shadowing]'s shadow!"))
 		owner.Knockdown(30)
 		qdel(src)
 	var/obj/item/I = owner.get_active_held_item()

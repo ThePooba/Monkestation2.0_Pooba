@@ -603,11 +603,13 @@
 /datum/status_effect/time_dilation/on_apply()
 	owner.add_movespeed_modifier(/datum/status_effect/time_dilation)
 	owner.next_move_modifier *= 0.5 // For the duration of this you move and attack faster
+	owner.ignore_slowdown(id)
 	return TRUE
 
 /datum/status_effect/time_dilation/on_remove()
-	our_guy.remove_movespeed_modifier(/datum/status_effect/time_dilation)
-	our_guy.next_move_modifier *= 2
+	owner.remove_movespeed_modifier(/datum/status_effect/time_dilation)
+	owner.next_move_modifier *= 2
+	owner.unignore_slowdown(id)
 
 /obj/screen/alert/status_effect/time_dilation
 	name = "Time Dilation"
