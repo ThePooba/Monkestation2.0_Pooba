@@ -180,7 +180,7 @@
 		return FALSE
 
 	//We did it
-	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(owner)
 	if(darkspawn)
 		darkspawn.block_psi(60 SECONDS, type)
 	owner.balloon_alert(owner, "...SHWOOH!")
@@ -445,7 +445,7 @@
 
 /datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
 	. = ..()
-	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(owner)
 	if(. && darkspawn)
 		owner.balloon_alert(owner, "KSH SHOL'NAXHAR!")
 		darkspawn.block_psi(20 SECONDS, type)
@@ -527,8 +527,8 @@
 	if(!targets_from || !targets_to) //sanity check
 		return
 	user.balloon_alert(user, "...GX'KSHA!")
-	if(isdarkspawn(user))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+	if(IS_DARKSPAWN(user))
+		var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(user)
 		darkspawn.block_psi(30 SECONDS, type)
 
 	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 30)
@@ -674,8 +674,8 @@
 		return
 
 	user.balloon_alert(user, "...GWO'KSHA!")
-	if(isdarkspawn(user))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
+	if(IS_DARKSPAWN(user))
+		var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(user)
 		darkspawn.block_psi(30 SECONDS, type)
 
 	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 30)

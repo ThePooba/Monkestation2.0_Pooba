@@ -42,7 +42,7 @@
 
 /obj/item/umbral_tendrils/examine(mob/user)
 	. = ..()
-	if(isobserver(user) || isdarkspawn(user))
+	if(isobserver(user) || IS_DARKSPAWN(user))
 		. += span_velvet("<b>Functions:</b>")
 		. += span_velvet("<b>Airlock Forcing:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)")
 		. += span_velvet("<b>Tendril Swing:</b> Right click to consume 30 psi to a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.")
@@ -60,7 +60,7 @@
 		target.attackby(twin, user)
 
 /obj/item/umbral_tendrils/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
-	if(!isdarkspawn(user))
+	if(!IS_DARKSPAWN(user))
 		return ..()
 	tendril_swing(user, target) //Note that airlock interactions can be found in airlock.dm.
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN

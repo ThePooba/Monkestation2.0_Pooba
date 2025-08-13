@@ -47,7 +47,7 @@
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 
 /datum/action/cooldown/spell/touch/devour_will/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/target, mob/living/carbon/caster)
-	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
+	var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(caster)
 	if(!darkspawn || eating || target == caster)
 		return
 	if(!target.mind)
@@ -289,8 +289,8 @@
 
 /datum/action/cooldown/spell/reform_body/cast(atom/cast_on)
 	. = ..()
-	if(isdarkspawn(owner))
-		var/datum/antagonist/darkspawn/darkmind = isdarkspawn(owner)
+	if(IS_DARKSPAWN(owner))
+		var/datum/antagonist/darkspawn/darkmind = IS_DARKSPAWN(owner)
 		if(darkmind)//sanity check
 			darkmind.reform_body()
 

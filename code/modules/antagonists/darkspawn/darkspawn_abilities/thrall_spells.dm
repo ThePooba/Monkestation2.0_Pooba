@@ -26,7 +26,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/touch/thrall_mind/can_cast_spell(feedback)
-	var/datum/antagonist/darkspawn/master = isdarkspawn(owner)
+	var/datum/antagonist/darkspawn/master = IS_DARKSPAWN(owner)
 	if(master && master.willpower < willpower_cost)
 		if(feedback)
 			to_chat(owner, span_danger("You do not have enough will to thrall [target]."))
@@ -37,7 +37,7 @@
 	return ishuman(cast_on)
 
 /datum/action/cooldown/spell/touch/thrall_mind/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
-	if(!isdarkspawn(caster))//sanity check
+	if(!IS_DARKSPAWN(caster))//sanity check
 		return
 	if(!(target.mind || target.ckey))
 		to_chat(owner, "This mind is too feeble to even be worthy of thralling.")
@@ -45,12 +45,12 @@
 	if(!target.getorganslot(ORGAN_SLOT_BRAIN))
 		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control them."))
 		return FALSE
-	if(isdarkspawn(target))
+	if(IS_DARKSPAWN(target))
 		to_chat(owner, span_velvet("You will never be strong enough to control the will of another."))
 		return
-	var/datum/antagonist/darkspawn/master = isdarkspawn(caster)
+	var/datum/antagonist/darkspawn/master = IS_DARKSPAWN(caster)
 
-	if(!isthrall(target))
+	if(!IS_THRALL(target))
 		if(master.willpower < willpower_cost)
 			to_chat(owner, span_danger("You do not have enough will to thrall [target]."))
 			return FALSE
@@ -64,7 +64,7 @@
 	if(!do_after(owner, 2 SECONDS, target))
 		return FALSE
 
-	if(!isthrall(target))
+	if(!IS_THRALL(target))
 		var/list/flavour = list()
 
 		flavour += "Your mind goes numb. Your thoughts go blank. You feel utterly empty."
@@ -97,7 +97,7 @@
 		return FALSE
 
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
-	if(isthrall(target))
+	if(IS_THRALL(target))
 		owner.balloon_alert(owner, "...tia")
 		to_chat(owner, span_velvet("You revitalize your thrall [target.real_name]."))
 		target.revive(TRUE, TRUE)
@@ -126,10 +126,10 @@
  * Release a thrall if right click
  */
 /datum/action/cooldown/spell/touch/thrall_mind/proc/release_thrall()
-	if(!isdarkspawn(owner))
+	if(!IS_DARKSPAWN(owner))
 		return
 
-	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
+	var/datum/antagonist/darkspawn/dude = IS_DARKSPAWN(owner)
 	if(!dude.get_team())
 		return
 
@@ -291,7 +291,7 @@
 
 /datum/action/cooldown/spell/pointed/thrallbuff/before_cast(atom/cast_on)
 	. = ..()
-	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
+	var/datum/antagonist/darkspawn/dude = IS_DARKSPAWN(owner)
 	if(dude)
 		darkspawns_too = HAS_TRAIT(dude, TRAIT_DARKSPAWN_BUFFALLIES)
 
@@ -305,7 +305,7 @@
 			continue
 		if(!IS_TEAM_DARKSPAWN(target))
 			continue
-		if(!darkspawns_too && isdarkspawn(target)) //doesn't buff allied darkspawns unless it's upgraded
+		if(!darkspawns_too && IS_DARKSPAWN(target)) //doesn't buff allied darkspawns unless it's upgraded
 			continue
 		empower(target)
 		if(outline_colour)
@@ -406,7 +406,7 @@
 		target.clear_cuffs(cuffs, TRUE, TRUE)
 		target.clear_cuffs(legcuffs, TRUE, TRUE)
 	playsound(get_turf(target),'yogstation/sound/creatures/darkspawn_death.ogg', 80, 1)
-	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+	var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(owner)
 	if(darkspawn)
 		darkspawn.block_psi(1 MINUTES, type)
 

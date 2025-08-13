@@ -24,7 +24,7 @@
 
 /datum/action/cooldown/spell/sacrament/cast(atom/cast_on)
 	. = ..()
-	darkspawn = isdarkspawn(owner)
+	darkspawn = IS_DARKSPAWN(owner)
 	if(!darkspawn)
 		to_chat(owner, span_warning("Error with non darkspawn using sacrament spell"))
 		return

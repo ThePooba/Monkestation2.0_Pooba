@@ -24,7 +24,7 @@
 
 /obj/item/gun/magic/darkspawn/examine(mob/user)
 	. = ..()
-	if(isobserver(user) || isdarkspawn(user))
+	if(isobserver(user) || IS_DARKSPAWN(user))
 		. += span_velvet("<b>Functions:</b>")
 		if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
 			. += span_velvet("The staff will devour any lights hit.")

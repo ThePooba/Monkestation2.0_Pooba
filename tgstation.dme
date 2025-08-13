@@ -5882,6 +5882,7 @@
 #include "code\modules\surgery\organs\internal\liver\liver_plasmamen.dm"
 #include "code\modules\surgery\organs\internal\liver\liver_skeleton.dm"
 #include "code\modules\surgery\organs\internal\tongue\_tongue.dm"
+#include "code\modules\surgery\organs\internal\tumor\tumors.dm"
 #include "code\modules\surgery\organs\stomach\_stomach.dm"
 #include "code\modules\surgery\organs\stomach\stomach_ethereal.dm"
 #include "code\modules\tgchat\message.dm"

@@ -24,12 +24,12 @@
 
 /datum/reagent/darkspawn_darkness_smoke/on_mob_add(mob/living/L)
 	. = ..()
-	var/datum/antagonist/darkspawn/dude = isdarkspawn(L)
+	var/datum/antagonist/darkspawn/dude = IS_DARKSPAWN(L)
 	if(dude)
 		ADD_TRAIT(dude, TRAIT_DARKSPAWN_CREEP, type)
 
 /datum/reagent/darkspawn_darkness_smoke/on_mob_delete(mob/living/L)
-	var/datum/antagonist/darkspawn/dude = isdarkspawn(L)
+	var/datum/antagonist/darkspawn/dude = IS_DARKSPAWN(L)
 	if(dude)
 		REMOVE_TRAIT(dude, TRAIT_DARKSPAWN_CREEP, type)
 	return ..()

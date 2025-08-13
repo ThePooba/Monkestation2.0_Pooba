@@ -53,7 +53,7 @@
 	var/cooldown_length = 15 SECONDS
 
 /obj/item/organ/shadowtumor/thrall/process()
-	if(!isthrall(owner))
+	if(!IS_THRALL(owner))
 		qdel(src)
 		return
 	return ..()
@@ -63,7 +63,7 @@
 		return FALSE
 	if(!(M.stat == CONSCIOUS))//Thralls cannot be deconverted while awake
 		return FALSE
-	if(!isthrall(M))//non thralls don't resist
+	if(!IS_THRALL(M))//non thralls don't resist
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, resist_cooldown))//adds a cooldown to the resist so a thrall ipc or preternis can't weaponize it
 		return FALSE

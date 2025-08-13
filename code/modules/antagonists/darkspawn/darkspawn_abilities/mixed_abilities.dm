@@ -229,8 +229,8 @@
 	dude.ckey = chosen_ghost.ckey
 	dude.name = caster.name
 	dude.real_name = caster.real_name
-	if(isdarkspawn(caster))
-		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
+	if(IS_DARKSPAWN(caster))
+		var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(caster)
 		darkspawn.block_psi(30 SECONDS, type)
 
 ///Make sure to properly reset the ability when the ghost mob dies
