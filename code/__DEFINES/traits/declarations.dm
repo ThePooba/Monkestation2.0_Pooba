@@ -1312,4 +1312,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Can either be applied to the attacker or an individual limb.
 #define TRAIT_BORG_PUNCHER "borg_puncher"
 
+/// Lightburn Immunity for Darkspawn
+#define TRAIT_LIGHTBURN_IMMUNE "lightburn_immunity"
+/// Immunity to slowdown and halves click delay/action times
+#define TRAIT_TIME_DILATION "time_dilation"
+/// Broken will Sleep effect
+#define TRAIT_BROKEN_WILL "broken_will"
+/// Shadow Tagalong - Darkspawn chilling in peoples shadows
+#define TRAIT_TAGALONG "shadow_tagalong"
+
 // END TRAIT DEFINES

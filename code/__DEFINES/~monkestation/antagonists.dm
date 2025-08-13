@@ -10,6 +10,10 @@
 /// Checks if the given mob is a Bingle
 #define IS_BINGLE(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/bingle))
 
+#define IS_DARKSPAWN(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/darkspawn))
+#define IS_VEIL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/veil))
+
+
 /// List of areas blacklisted from area based traitor objectives
 #define TRAITOR_OBJECTIVE_BLACKLISTED_AREAS list(/area/station/engineering/hallway, \
 		/area/station/engineering/lobby, \
