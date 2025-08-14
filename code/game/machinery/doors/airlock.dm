@@ -1104,9 +1104,9 @@
 				if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 30)))
 					to_chat(user, "<span class='warning'>You need at least 30 Psi to smash down an airlock!</span>")
 					return
-				user.visible_message("<span class='boldwarning'>[user] starts slamming [T] into [src]!</span>", \
+				user.visible_message("<span class='boldwarning'>[user] starts slamming [tendrils] into [src]!</span>", \
 				"<span class='velvet italics'>You loudly begin smashing down [src].</span>")
-				while(obj_integrity > max_integrity * 0.25)
+				while(atom_integrity > max_integrity * 0.25)
 					if(tendrils.twin)
 						if(!do_after(user, rand(4, 6), target = src))
 							SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))

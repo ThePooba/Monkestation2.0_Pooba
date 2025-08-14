@@ -44,7 +44,7 @@
 
 /mob/living/simple_animal/hostile/illusion/darkspawn/psyche/Login()
 	. = ..()
-	if(mind	&& !ispsyche(src))
+	if(mind	&& !IS_PSYCHE(src))
 		mind.add_antag_datum(/datum/antagonist/psyche)
 
 ///special antagonist used to give an internal camera and antag hud to non-thrall darkspawn teammates
