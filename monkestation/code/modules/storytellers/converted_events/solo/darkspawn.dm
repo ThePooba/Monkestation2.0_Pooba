@@ -1,46 +1,56 @@
 /datum/round_event_control/antagonist/solo/darkspawn
-	name = "Darkspawn"
-	tags = list(TAG_COMBAT, TAG_TEAM_ANTAG, TAG_SPOOKY, TAG_MAGICAL, TAG_CREW_ANTAG)
-	antag_flag = ROLE_BLOODLING
+	name = "Darkspawns"
+	tags = list(TAG_SPOOKY, TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_MAGICAL)
+	antag_flag = ROLE_DARKSPAWN
 	antag_datum = /datum/antagonist/darkspawn
 	typepath = /datum/round_event/antagonist/solo/darkspawn
-	protected_roles = list(
-		JOB_CAPTAIN,
-		JOB_HEAD_OF_PERSONNEL,
-		JOB_CHIEF_ENGINEER,
-		JOB_CHIEF_MEDICAL_OFFICER,
-		JOB_RESEARCH_DIRECTOR,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_PRISONER,
-		JOB_SECURITY_OFFICER,
-		JOB_SECURITY_ASSISTANT,
-		JOB_WARDEN,
-	)
+	shared_occurence_type = SHARED_HIGH_THREAT
 	restricted_roles = list(
 		JOB_AI,
+		JOB_CAPTAIN,
+		JOB_CHAPLAIN,
 		JOB_CYBORG,
+		JOB_DETECTIVE,
+		JOB_HEAD_OF_PERSONNEL,
+		JOB_HEAD_OF_SECURITY,
+		JOB_SECURITY_OFFICER,
+		JOB_WARDEN,
+		JOB_BRIG_PHYSICIAN,
+		JOB_CHIEF_ENGINEER,
+		JOB_RESEARCH_DIRECTOR
 	)
+	required_enemies = 3
 	enemy_roles = list(
 		JOB_CAPTAIN,
-		JOB_HEAD_OF_SECURITY,
 		JOB_DETECTIVE,
-		JOB_WARDEN,
+		JOB_HEAD_OF_SECURITY,
 		JOB_SECURITY_OFFICER,
-		JOB_SECURITY_ASSISTANT,
+		JOB_WARDEN,
+		JOB_CHAPLAIN,
+		JOB_CHIEF_ENGINEER
 	)
-	required_enemies = 5
-	weight = 4
-	max_occurrences = 0
-	maximum_antags = 3
-	min_players = 45
-
-/datum/round_event_control/antagonist/solo/bloodling/roundstart
-	name = "Darkspawn"
+	base_antags = 2
+	maximum_antags = 4
+	min_players = 25
 	roundstart = TRUE
+	title_icon = "darkspawn"
 	earliest_start = 0 SECONDS
+	denominator = 30 //slightly more people for additional darkspawns
+	weight = 8
 	max_occurrences = 1
 
-/datum/round_event/antagonist/solo/darkspawn/add_datum_to_mind(datum/mind/antag_mind)
-	antag_mind.special_role = ROLE_DARKSPAWN
-	antag_mind.add_antag_datum(antag_datum)
+/datum/round_event/antagonist/solo/darkspawn
+	excute_round_end_reports = TRUE
+	end_when = 60000
+	var/static/datum/team/darkspawn/dark_team
+
+/datum/round_event/antagonist/solo/darkspawn/setup()
+	. = ..()
+	if(!dark_team)
+		dark_team = new()
+		dark_team.update_objectives()
+	GLOB.thrallnet.name = "Thrall net"
+
+/datum/round_event/antagonist/solo/darkspawn/start()
+	. = ..()
+	dark_team.update_objectives()

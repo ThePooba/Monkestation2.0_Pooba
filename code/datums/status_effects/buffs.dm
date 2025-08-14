@@ -585,3 +585,5 @@
 	desc = "Your actions are twice as fast, and the delay between them is halved."
 	icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	icon_state = "time_dilation"
+
+/datum/status_effect/speedboost

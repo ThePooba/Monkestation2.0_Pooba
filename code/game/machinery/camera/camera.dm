@@ -18,10 +18,14 @@
 	var/status = TRUE
 	var/start_active = FALSE //If it ignores the random chance to start broken on round start
 	var/invuln = null
+	///Boolean, if this camera uses special icon states rather than the default
+	var/special_camera = FALSE
 	var/datum/weakref/assembly_ref = null
 	var/area/myarea = null
 
 	//OTHER
+
+var/datum/cameranet/camnet
 
 	var/view_range = 7
 	var/short_range = 2
@@ -92,8 +96,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 		assembly = new(src)
 		assembly.state = 4 //STATE_FINISHED
 		assembly_ref = WEAKREF(assembly)
-	GLOB.cameranet.cameras += src
-	GLOB.cameranet.addCamera(src)
+	camnet = GLOB.cameranet
+	camnet.cameras += src
+	camnet.addCamera(src)
 	myarea = get_room_area()
 
 	LAZYADD(myarea.cameras, src)
@@ -109,6 +114,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 	for(var/i in network)
 		network -= i
 		network += "[port.shuttle_id]_[i]"
+
+/obj/machinery/camera/proc/change_camnet(datum/cameranet/newnet)
+	if(newnet && istype(newnet))
+		camnet.cameras -= src
+		camnet.removeCamera(src)
+		camnet = newnet
+		camnet.cameras += src
+		camnet.addCamera(src)
 
 /obj/machinery/camera/proc/create_prox_monitor()
 	if(!proximity_monitor)
@@ -137,8 +150,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 /obj/machinery/camera/Destroy()
 	if(can_use())
 		toggle_cam(null, 0) //kick anyone viewing out and remove from the camera chunks
-	GLOB.cameranet.removeCamera(src)
-	GLOB.cameranet.cameras -= src
+	camnet.cameras -= src
+	camnet = null
 	cancelCameraAlarm()
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
@@ -179,7 +192,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 		if(prob(150/severity))
 			update_appearance()
 			network = list()
-			GLOB.cameranet.removeCamera(src)
+			camnet.removeCamera(src)
 			set_machine_stat(machine_stat | EMPED)
 			set_light(0)
 			emped = emped+1  //Increase the number of consecutive EMP's
@@ -208,7 +221,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 	set_machine_stat(machine_stat & ~EMPED)
 	update_appearance()
 	if(can_use())
-		GLOB.cameranet.addCamera(src)
+		camnet.addCamera(src)
 	emped = 0 //Resets the consecutive EMP count
 	addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 10 SECONDS)
 
@@ -226,7 +239,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	src.view_range = num
-	GLOB.cameranet.updateVisibility(src, 0)
+	camnet.updateVisibility(src, 0)
 
 /obj/machinery/camera/proc/shock(mob/living/user)
 	if(!istype(user))
@@ -469,7 +482,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 			new /obj/item/stack/cable_coil(loc, 2)
 	qdel(src)
 
-/obj/machinery/camera/update_icon_state() //TO-DO: Make panel open states, xray camera, and indicator lights overlays instead.
+/obj/machinery/camera/update_icon
+
+	if(special_camera)
+		return //TO-DO: Make panel open states, xray camera, and indicator lights overlays instead.
 	var/xray_module
 	if(isXRay(TRUE))
 		xray_module = "xray"
@@ -486,7 +502,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 /obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
 	status = !status
 	if(can_use())
-		GLOB.cameranet.addCamera(src)
+		camnet.addCamera(src)
 		if (isturf(loc))
 			myarea = get_area(src)
 			LAZYADD(myarea.cameras, src)
@@ -494,12 +510,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 			myarea = null
 	else
 		set_light(0)
-		GLOB.cameranet.removeCamera(src)
+		camnet.removeCamera(src)
 		if (isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
 	// We are not guarenteed that the camera will be on a turf. account for that
 	var/turf/our_turf = get_turf(src)
-	GLOB.cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
+	camnet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
 	var/change_msg = "deactivates"
 	if(status)
 		change_msg = "reactivates"

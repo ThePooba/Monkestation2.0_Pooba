@@ -39,7 +39,7 @@
 	SIGNAL_HANDLER
 	var/turf/dodge_turf = source.loc
 	SEND_SIGNAL(source, COMSIG_NIGHTMARE_SNUFF_CHECK, dodge_turf) // monkestation edit
-	if(!istype(dodge_turf) || dodge_turf.get_lumcount() >= SHADOW_SPECIES_LIGHT_THRESHOLD)
+	if(!istype(dodge_turf) || dodge_turf.get_lumcount() >= SHADOW_SPECIES_DIM_LIGHT)
 		return NONE
 	source.visible_message(
 		span_danger("[source] dances in the shadows, evading [hitting_projectile]!"),
@@ -103,7 +103,7 @@
 	var/turf/T = get_turf(owner)
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			respawn_progress += seconds_per_tick SECONDS
 			playsound(owner, 'sound/effects/singlebeat.ogg', 40, TRUE)
 	if(respawn_progress < HEART_RESPAWN_THRESHHOLD)

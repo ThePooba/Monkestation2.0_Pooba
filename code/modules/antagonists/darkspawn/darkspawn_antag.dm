@@ -552,7 +552,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(darkspawn_state >= DARKSPAWN_DIVULGED)//set them back to being a darkspawn
 		returner.set_species(/datum/species/shadow/darkspawn)
 
-	var/new_name = darkspawn_name || darkspawn_name()
+	var/new_name = darkspawn_name || pick(GLOB.nightmare_names)
 	returner.fully_replace_character_name(null, new_name)
 	owner.transfer_to(returner)
 	returner.update_appearance(UPDATE_OVERLAYS)

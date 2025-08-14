@@ -11,6 +11,7 @@
 	light_inner_range = 0.1
 	light_outer_range = 2
 	light_power = 0.8
+	clicksound = SFX_KEYBOARD
 	/// Icon_state of the keyboard overlay.
 	var/icon_keyboard = "generic_key"
 	/// Should we render an unique icon for the keyboard when off?

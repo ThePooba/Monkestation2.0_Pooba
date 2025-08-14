@@ -7,9 +7,6 @@
 	alert_type = /atom/movable/screen/alert/status_effect/broken_will
 	var/wake_threshold = 5
 
-/datum/status_effect/creep/get_examine_text()
-	return span_notice("[owner.p_are(TRUE)] is in a deep, deathlike sleep, with no signs of awareness to anything around them.")
-
 /datum/status_effect/broken_will/on_apply()
 	if(owner)
 		RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_take_damage))

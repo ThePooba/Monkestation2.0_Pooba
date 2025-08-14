@@ -96,7 +96,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	change_camnet(GLOB.thrallnet)
 	setViewRange(10)
 
-/obj/machinery/camera/darkspawn/emp_act(severity)
+/obj/machinery/camera/darkspawn/emp_act(severity, reset_time = 10)
 	return
 
 /obj/machinery/camera/darkspawn/screwdriver_act(mob/living/user, obj/item/I)
