@@ -114,7 +114,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Antag hud---------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/thrall_darksapwn/add_team_hud(mob/target, antag_to_check)
+/datum/antagonist/thrall_darkspawn/add_team_hud(mob/target, antag_to_check)
 	QDEL_NULL(team_hud_ref)
 
 	team_hud_ref = WEAKREF(target.add_alt_appearance(

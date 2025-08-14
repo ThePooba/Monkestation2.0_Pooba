@@ -87,6 +87,7 @@
 	var/smoke_type
 	/// The amount of smoke to create on cast. This is a range, so a value of 5 will create enough smoke to cover everything within 5 steps.
 	var/smoke_amt = 0
+	var/psi_amt = 0
 
 /datum/action/cooldown/spell/Grant(mob/grant_to)
 	// If our spell is mind-bound, we only wanna grant it to our mind
@@ -172,6 +173,19 @@
 		if(feedback)
 			to_chat(owner, span_warning("You must dedicate yourself to silence first!"))
 		return FALSE
+
+	//used for darkspawn spells
+	if(psi_cost)
+		if(isdarkspawn(owner))
+			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+			if(!darkspawn.has_psi(psi_cost))
+				if(feedback)
+					owner.balloon_alert(owner, span_warning("Not enough psi!"))
+				return FALSE
+		else
+			if(feedback)
+				to_chat(owner, span_warning("Your mind is incapable of comprehending this ability!"))
+			return FALSE
 
 	// If the spell requires the user has no antimagic equipped, and they're holding antimagic
 	// that corresponds with the spell's antimagic, then they can't actually cast the spell
@@ -275,6 +289,7 @@
 	if(!(precast_result & SPELL_NO_IMMEDIATE_COOLDOWN))
 		// The entire spell is done, start the actual cooldown at its set duration
 		StartCooldown()
+		consume_resource()
 
 	// And then proceed with the aftermath of the cast
 	// Final effects that happen after all the casting is done can go here
@@ -342,6 +357,12 @@
 	// Send signals last in case they delete the spell
 	SEND_SIGNAL(owner, COMSIG_MOB_AFTER_SPELL_CAST, src, cast_on)
 	SEND_SIGNAL(src, COMSIG_SPELL_AFTER_CAST, cast_on)
+
+/// Called after the effect happens, whether that's after the button press or after hitting someone with a touch ability
+/datum/action/cooldown/spell/proc/consume_resource() //to-do: rework vampire blood use into using this proc
+	if(psi_cost && isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+		darkspawn.use_psi(psi_cost)
 
 /// Provides feedback after a spell cast occurs, in the form of a cast sound and/or invocation
 /datum/action/cooldown/spell/proc/spell_feedback()

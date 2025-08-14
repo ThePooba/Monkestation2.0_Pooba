@@ -1121,7 +1121,9 @@
 				ex_act(EXPLODE_DEVASTATE)
 				user.visible_message("<span class='boldwarning'>[user] slams down [src]!</span>", "<span class='velvet bold'>KLAJ.</span>")
 				SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
-				qdel(tendrils)
+		else
+			return ..()
+	else
 		return ..()
 
 

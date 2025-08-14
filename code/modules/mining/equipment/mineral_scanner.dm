@@ -1,6 +1,6 @@
 /**********************Mining Scanners**********************/
 /obj/item/mining_scanner
-	desc = "A scanner that checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations. \nIt has a speaker that can be toggled with <b>alt+click</b>""
+	desc = "A scanner that checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations. \nIt has a speaker that can be toggled with <b>alt+click</b>"
 	name = "manual mining scanner"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "manual_mining"
