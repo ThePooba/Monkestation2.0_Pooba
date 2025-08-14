@@ -486,7 +486,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 
 	if(special_camera)
 		return //TO-DO: Make panel open states, xray camera, and indicator lights overlays instead.
-	var/xray_module
+	/var/xray_module
 	if(isXRay(TRUE))
 		xray_module = "xray"
 
