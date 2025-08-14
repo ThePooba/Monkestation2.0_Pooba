@@ -3207,7 +3207,6 @@
 #include "code\modules\antagonists\nightmare\nightmare_abilities.dm"
 #include "code\modules\antagonists\nightmare\nightmare_equipment.dm"
 #include "code\modules\antagonists\nightmare\nightmare_organs.dm"
-#include "code\modules\antagonists\nightmare\nightmare_species.dm"
 #include "code\modules\antagonists\ninja\energy_katana.dm"
 #include "code\modules\antagonists\ninja\energy_net_nets.dm"
 #include "code\modules\antagonists\ninja\ninja_clothing.dm"
