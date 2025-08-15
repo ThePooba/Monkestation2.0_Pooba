@@ -367,23 +367,16 @@
 /// Incorporeal move check: blocked by holy-watered tiles and salt piles.
 /mob/living/basic/revenant/proc/incorporeal_move_check(atom/destination)
 	var/turf/open/floor/step_turf = get_turf(destination)
-	if(isnull(step_turf))
-		return TRUE // what? whatever let it happen
-
-	if((SSticker.current_state < GAME_STATE_FINISHED) && (step_turf.turf_flags & NOJAUNT)) // monkestation edit: allow jaunts to work after roundend
-		to_chat(src, span_warning("Some strange aura is blocking the way."))
+	var/movein = GetComponent(/datum/component/walk/jaunt).can_walk(owner, destination)
+	if(movein == MOVE_NOT_ALLOWED)
 		return FALSE
 
-	if(locate(/obj/effect/decal/cleanable/food/salt) in step_turf)
-		balloon_alert(src, "blocked by salt!")
-		apply_status_effect(/datum/status_effect/revenant/revealed, 2 SECONDS)
-		apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
+	for(var/obj/effect/decal/cleanable/food/salt/S in destination)
+		to_chat(user, span_warning("[S] bars your passage!"))
+		var/mob/living/basic/revenant/R = user
+		R.reveal(20)
+		R.stun(20)
 		return FALSE
-
-	if(locate(/obj/effect/blessing) in step_turf)
-		to_chat(src, span_warning("Holy energies block your path!"))
-		return FALSE
-
 	return TRUE
 
 /mob/living/basic/revenant/proc/cast_check(essence_cost)
@@ -427,7 +420,7 @@
 	remove_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant)
 	remove_status_effect(/datum/status_effect/revenant/inhibited)
 	if(!GetComponent(/datum/component/walk/jaunt))
-		AddComponent(/datum/component/walk/jaunt)
+		owner.AddComponent(/datum/component/walk/jaunt)
 	draining = FALSE
 	dormant = FALSE
 	incorporeal_move = INCORPOREAL_MOVE_JAUNT

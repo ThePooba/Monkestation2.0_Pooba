@@ -592,20 +592,19 @@
 	tick_interval = -1
 	status_type = STATUS_EFFECT_MULTIPLE
 	alert_type = null //might not even be a speedbuff, so don't show it
-	var/speedstrength
 	var/identifier //id for the speed boost
+	var/multiplicative_slowdown
 
 /datum/status_effect/speedboost/on_creation(mob/living/new_owner, strength, length, identifier)
 	duration = length
-	speedstrength = strength
+	multiplicative_slowdown = strength
 	src.identifier = identifier
 	. = ..()
 
 /datum/status_effect/speedboost/on_apply()
 	. = ..()
-	if(. && speedstrength && identifier)
-		owner.add_movespeed_modifier(identifier, TRUE, 101, override=TRUE,  multiplicative_slowdown = speedstrength)
+	if(. && multiplicitive_slowdown && identifier)
+		owner.add_movespeed_modifier(identifier, multiplicative_slowdown)
 
 /datum/status_effect/speedboost/on_remove()
 	owner.remove_movespeed_modifier(identifier)
-

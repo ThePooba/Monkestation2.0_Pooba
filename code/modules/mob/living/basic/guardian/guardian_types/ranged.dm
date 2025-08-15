@@ -97,7 +97,7 @@
 	owner.incorporeal_move = INCORPOREAL_MOVE_BASIC
 	var/datum/component/walk/incorp = GetComponent(incorp, /datum/component/walk) //yogs start
 	if(incorp)
-		incorp.enabled = TRUE //yogs end
+		incorp.signal_enabled = TRUE //yogs end
 
 /// Stop having incorporeal move when we recall so that we can't move
 /datum/status_effect/guardian_scout_mode/proc/on_recall()
@@ -105,7 +105,7 @@
 	owner.incorporeal_move = FALSE
 	var/datum/component/walk/incorp = GetComponent(incorp, /datum/component/walk) //yogs start
 	if(incorp)
-		incorp.enabled = FALSE //yogs end
+		incorp.signal_enabled = FALSE //yogs end
 
 /// While this is active we can't click anything
 /datum/status_effect/guardian_scout_mode/proc/on_click()

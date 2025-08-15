@@ -250,7 +250,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 65)
 	cooldown_time = 60 SECONDS
-	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
+	sound = 'sound/ambience/antag/darkspawn/veil_mind_scream.ogg'
 	aoe_radius = 3
 
 /datum/action/cooldown/spell/aoe/permafrost/cast(atom/cast_on)

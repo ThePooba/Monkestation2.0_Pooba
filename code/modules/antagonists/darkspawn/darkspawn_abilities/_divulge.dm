@@ -76,7 +76,7 @@
 
 	for(var/stage in 1 to 3)
 		if(isethereal(user))//keep the light disabled
-			user.dna.species.spec_emp_act(user, EMP_HEAVY)
+			user.dna.species.on_emp_act(user, EMP_HEAVY)
 		switch(stage)
 			if(1)
 				user.visible_message(span_userdanger("Vibrations pass through the air. [user]'s eyes begin to glow a deep violet."), \
@@ -98,7 +98,7 @@
 			in_use = FALSE
 			return
 	if(isethereal(user))//keep the light disabled
-		user.dna.species.spec_emp_act(user, EMP_HEAVY)
+		user.dna.species.on_emp_act(user, EMP_HEAVY)
 	playsound(user, 'sound/magic/darkspawn/divulge_ending.ogg', 50, 0)
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), span_progenitor("Your mind...! can't--- THINK--"))
 	animate(user, pixel_y = user.pixel_y + 8, time = 6 SECONDS)

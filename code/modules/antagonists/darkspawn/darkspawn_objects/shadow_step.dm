@@ -22,6 +22,6 @@
 	var/turf/T = get_turf(owner)
 	var/light_amount = T.get_lumcount()
 	if(light_amount < SHADOW_SPECIES_BRIGHT_LIGHT)
-		owner.add_movespeed_modifier(type, update=TRUE, priority=100, override = TRUE, multiplicative_slowdown=speedboost)
+		owner.add_movespeed_modifier(type, speedboost)
 	else
 		owner.remove_movespeed_modifier(type)
