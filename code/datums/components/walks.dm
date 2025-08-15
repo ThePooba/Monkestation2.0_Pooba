@@ -60,12 +60,15 @@
 	if(!T)
 		return
 
-	//copied from mob_movement.dm to add proper movement delay to shadow walking
-	var/old_move_delay = move_delay
-	move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
-	var/add_delay = L.movement_delay()
-	L.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay * (((direction & 3) && (direction & 12)) ? 2 : 1))) // set it now in case of pulled objects
-	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
+	//We are now going to move
+	var/add_delay = mob.cached_multiplicative_slowdown
+	var/new_glide_size = DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direct) && EWCOMPONENT(direct)) ? sqrt(2) : 1 ) )
+	mob.set_glide_size(new_glide_size) // set it now in case of pulled objects
+	//If the move was recent, count using old_move_delay
+	//We want fractional behavior and all
+	if(old_move_delay + world.tick_lag > world.time)
+		//Yes this makes smooth movement stutter if add_delay is too fractional
+		//Yes this is better then the alternative
 		move_delay = old_move_delay
 	else
 		move_delay = world.time
@@ -81,7 +84,7 @@
 			L.forceMove(T)
 			finalize_move(L, T)
 			if(direction & (direction - 1)) //extra delay for diagonals
-				add_delay *= SQRT_2 // sqrt(2)
+				add_delay *= sqrt(2)
 			L.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
 			move_delay += add_delay
 			return TRUE
@@ -113,13 +116,6 @@
 /datum/component/walk/jaunt
 
 /datum/component/walk/jaunt/can_walk(mob/living/user, turf/destination)
-	for(var/obj/effect/decal/cleanable/food/salt/S in destination)
-		to_chat(user, span_warning("[S] bars your passage!"))
-		if(isrevenant(user))
-			var/mob/living/basic/revenant/R = user
-			R.reveal(20)
-			R.stun(20)
-		return MOVE_NOT_ALLOWED
 	if(destination.turf_flags & NOJAUNT || is_secret_level(destination.z))
 		to_chat(user, span_warning("Some strange aura is blocking the way."))
 		return MOVE_NOT_ALLOWED

@@ -593,7 +593,7 @@
 	status_type = STATUS_EFFECT_MULTIPLE
 	alert_type = null //might not even be a speedbuff, so don't show it
 	var/identifier //id for the speed boost
-	var/multiplicative_slowdown
+	var/multiplicative_slowdown = null
 
 /datum/status_effect/speedboost/on_creation(mob/living/new_owner, strength, length, identifier)
 	duration = length

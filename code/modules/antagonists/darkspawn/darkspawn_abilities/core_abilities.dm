@@ -4,15 +4,16 @@
 /obj/item/melee/touch_attack/darkspawn
 	name = "Psionic hand"
 	desc = "Concentrated psionic power, primed to toy with mortal minds."
+	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "flagellation"
-	item_state = "hivemind"
+	inhand_icon_state = "hivehand"
 
 /obj/item/melee/touch_attack/devour_will
 	name = "Psionic hand"
 	desc = "Concentrated psionic power, primed to toy with mortal minds."
 	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "dark_bead"
-	item_state = "hivemind"
+	inhand_icon_state = "hivehand"
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Main progression ability-----------------------//
 //////////////////////////////////////////////////////////////////////////
@@ -72,7 +73,7 @@
 
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
 	target.Immobilize(10 SECONDS) //we remove this if it's canceled early
-	target.silent += 5
+	target.adjust_silence(5 SECONDS, )
 
 	caster.balloon_alert(caster, "cera ko...")
 	to_chat(caster, span_velvet("You begin siphoning [target]'s will..."))
@@ -105,12 +106,11 @@
 
 	caster.balloon_alert(caster, "...akkraup'dej")
 
-	var/obj/item/organ/shadowtumor/bead = target.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	var/obj/item/organ/shadowtumor/bead = target.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
 	if(!bead || !istype(bead))
 		bead = new
 		bead.Insert(target, FALSE, FALSE)
 		bead.antag_team = team
-
 	//pass out the willpower and lucidity to the darkspawns
 	if(!HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
 		ADD_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED, type)
@@ -126,7 +126,7 @@
 	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
 
 	//apply the long-term debuff to the victim
-	target.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
+	target.apply_status_effect(/datum/status_effect/broken_will)
 	return TRUE
 
 //////////////////////////////////////////////////////////////////////////
@@ -163,7 +163,7 @@
 /datum/action/cooldown/spell/touch/silver_tongue/cast_on_hand_hit(obj/item/melee/touch_attack/hand, obj/machinery/computer/communications/target, mob/living/carbon/caster)
 	if(in_use)
 		return
-	if(target.stat)
+	if(target.machine_stat)
 		to_chat(owner, span_warning("[target] is depowered."))
 		return FALSE
 
@@ -177,7 +177,7 @@
 	in_use = FALSE
 	if(!target)
 		return
-	if(target.stat)
+	if(target.macine_stat)
 		to_chat(owner, span_warning("[target] has lost power."))
 		return
 	SSshuttle.emergency.cancel()
@@ -186,7 +186,7 @@
 
 /datum/action/cooldown/spell/touch/silver_tongue/proc/play_recall_sounds(obj/machinery/C, iterations) //neato sound effects
 	set waitfor = FALSE
-	if(!C || C.stat || !in_use)
+	if(!C || C.machine_stat || !in_use)
 		return
 	playsound(C, "terminal_type", 50, TRUE)
 	if(prob(25))
@@ -200,11 +200,11 @@
 
 /datum/action/cooldown/spell/touch/silver_tongue/proc/end_recall_sounds(obj/machinery/C) //end the neato sound effects
 	set waitfor = FALSE
-	if(!C || C.stat || !in_use)
+	if(!C || C.machine_stat || !in_use)
 		return
 	playsound(C, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 	sleep(0.4 SECONDS)
-	if(!C || C.stat || !in_use)
+	if(!C || C.machine_stat || !in_use)
 		return
 	playsound(C, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 

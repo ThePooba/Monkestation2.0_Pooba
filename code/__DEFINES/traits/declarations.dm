@@ -140,6 +140,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_GENELESS "geneless"
 #define TRAIT_PIERCEIMMUNE "pierce_immunity"
 #define TRAIT_NODISMEMBER "dismember_immunity"
+/// protects the holder from throw_impact
+#define TRAIT_IMPACTIMMUNE "impact_immunity"
 /// This carbon doesn't show an overlay when they have no brain
 #define TRAIT_NO_DEBRAIN_OVERLAY "no_debrain_overlay"
 #define TRAIT_NOFIRE "nonflammable"

@@ -366,16 +366,15 @@
 
 /// Incorporeal move check: blocked by holy-watered tiles and salt piles.
 /mob/living/basic/revenant/proc/incorporeal_move_check(atom/destination)
-	var/turf/open/floor/step_turf = get_turf(destination)
-	var/movein = GetComponent(/datum/component/walk/jaunt).can_walk(owner, destination)
-	if(movein == MOVE_NOT_ALLOWED)
+	var/movein = GetComponent(/datum/component/walk/jaunt).can_walk(src, destination)
+	if(movein == 3)
 		return FALSE
 
 	for(var/obj/effect/decal/cleanable/food/salt/S in destination)
-		to_chat(user, span_warning("[S] bars your passage!"))
-		var/mob/living/basic/revenant/R = user
-		R.reveal(20)
-		R.stun(20)
+		to_chat(src, span_warning("[S] bars your passage!"))
+		var/mob/living/basic/revenant/R = src
+		apply_status_effect(/datum/status_effect/revenant/revealed, 2 SECONDS)
+		apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 		return FALSE
 	return TRUE
 

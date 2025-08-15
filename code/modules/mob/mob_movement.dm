@@ -89,7 +89,7 @@
 
 	var/mob/living/L = mob //Already checked for isliving earlier
 	/*if(L.incorporeal_move && !is_secret_level(mob.z)) //Move though walls
-		Process_Incorpmove(direct) - Moved into a walking component why didnt we have this
+		Process_Incorpmove(direct) - Moved into a walking component for darkspawn
 		return FALSE */
 
 	if(mob.remote_control) //we're controlling something, our movement is relayed to it

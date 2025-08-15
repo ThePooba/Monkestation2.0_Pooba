@@ -115,4 +115,4 @@
 	if(!in_use)
 		return
 	playsound(T, 'sound/magic/darkspawn/divulge_end.ogg', 25, FALSE)
-	new/obj/effect/temp_visual/revenant/cracks/glow(T)
+	new /obj/effect/temp_visual/revenant/cracks/glow(T)

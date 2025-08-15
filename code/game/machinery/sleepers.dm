@@ -241,7 +241,7 @@
 	. = ..()
 	if(.)
 		return
-	playsound(src, pick('sound/items/hypospray.ogg','sound/items/hypospray2.ogg'), 50, TRUE, 2)
+	playsound(src, 'sound/items/hypospray.ogg', 50, TRUE, 2)
 
 	var/mob/living/mob_occupant = occupant
 	check_nap_violations()

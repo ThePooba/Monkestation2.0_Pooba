@@ -251,6 +251,7 @@
 		return
 	glow_color = get_glow_color()
 	glow = owner.mob_light()
+	modify()
 	RegisterSignal(glow, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 
 /datum/mutation/glow/modify()
@@ -270,7 +271,7 @@
 	SIGNAL_HANDLER
 	if(!glow)
 		return
-	glow_power = 0
+	glow.set_light_on(FALSE)
 	addtimer(CALLBACK(src, PROC_REF(modify)), 20 SECONDS * GET_MUTATION_SYNCHRONIZER(src), TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds (reduced by sychronizer)
 	return COMPONENT_BLOCK_LIGHT_EATER
 
