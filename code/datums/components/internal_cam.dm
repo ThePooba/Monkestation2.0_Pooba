@@ -17,8 +17,7 @@
 	bodcam.name = parent
 	bodcam.network = networks
 	bodcam.setViewRange(10)//standard mob viewrange
-	bodcam.internal_light = FALSE
-	ADD_TRAIT(bodcam, TRAIT_EMPPROOF_SELF, type)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /datum/component/internal_cam/RegisterWithParent()
 	bodcam.status = TRUE

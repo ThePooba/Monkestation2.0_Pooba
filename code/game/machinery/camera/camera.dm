@@ -25,7 +25,7 @@
 
 	//OTHER
 
-var/datum/cameranet/camnet
+	var/datum/cameranet/camnet
 
 	var/view_range = 7
 	var/short_range = 2
@@ -45,6 +45,8 @@ var/datum/cameranet/camnet
 
 	/// A copy of the last paper object that was shown to this camera.
 	var/obj/item/paper/last_shown_paper
+	//Reference to the obj/mob we're built into
+	var/built_in
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera, 0)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname, 0)
@@ -482,8 +484,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/old, 0)
 			new /obj/item/stack/cable_coil(loc, 2)
 	qdel(src)
 
-/obj/machinery/camera/update_icon
-
+/obj/machinery/camera/update_icon_state()
 	if(special_camera)
 		return //TO-DO: Make panel open states, xray camera, and indicator lights overlays instead.
 	var/xray_module

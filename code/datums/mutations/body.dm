@@ -270,7 +270,7 @@
 	SIGNAL_HANDLER
 	if(!glow)
 		return
-	glow.set_light_on(FALSE)
+	glow_power = 0
 	addtimer(CALLBACK(src, PROC_REF(modify)), 20 SECONDS * GET_MUTATION_SYNCHRONIZER(src), TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds (reduced by sychronizer)
 	return COMPONENT_BLOCK_LIGHT_EATER
 

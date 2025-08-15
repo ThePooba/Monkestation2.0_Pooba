@@ -16,7 +16,7 @@
 	var/regeneration = FALSE //if limbs are regenerating
 	var/datum/symptom/tumor/owner_symptom //what symptom of the disease it comes from
 
-/obj/item/organ/tumor/Insert(mob/living/carbon/M, special = 0)
+/obj/item/organ/tumor/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

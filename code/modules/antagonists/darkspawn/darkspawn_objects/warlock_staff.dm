@@ -101,7 +101,7 @@
 	if(. && user.mind)
 		SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = psi_cost))
 
-/obj/item/gun/magic/darkspawn/process_chamber()
+/obj/item/gun/magic/darkspawn/process_chamber(/mob/living/user)
 	. = ..()
 	charges = max_charges //infinite charges
 

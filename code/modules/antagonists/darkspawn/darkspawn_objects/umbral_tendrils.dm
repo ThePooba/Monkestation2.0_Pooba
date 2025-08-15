@@ -7,7 +7,7 @@
 	item_state = "umbral_tendrils"
 	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
-	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
+	hitsound = 'sound/magic/darkspawn/pass_attack.ogg'
 	attack_verb = list("impaled", "tentacled", "torn")
 	item_flags = ABSTRACT | DROPDEL
 	sharpness = SHARP_EDGED
@@ -87,7 +87,7 @@
 /obj/projectile/umbral_tendrils
 	name = "umbral tendrils"
 	icon_state = "cursehand0"
-	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
+	hitsound = 'sound/magic/darkspawn/pass_attack.ogg'
 	layer = LARGE_MOB_LAYER
 	damage = 0
 	nodamage = TRUE
@@ -104,7 +104,7 @@
 	qdel(beam)
 	. = ..()
 
-/obj/projectile/umbral_tendrils/on_hit(atom/movable/target, blocked = FALSE)
+/obj/projectile/umbral_tendrils/on_hit(atom/movable/target, blocked = FALSE, pierce_hit)
 	if(blocked >= 100)
 		return
 	. = TRUE
@@ -113,7 +113,7 @@
 		if(IS_TEAM_DARKSPAWN(L))
 			return BULLET_ACT_FORCE_PIERCE //ignore allies
 		if(iscarbon(target))
-			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)
+			playsound(target, 'sound/magic/darkspawn/pass_attack.ogg', 50, TRUE)
 			L.Knockdown(6 SECONDS)
 			if(!twinned)
 				target.visible_message(span_warning("[firer]'s [name] slam into [target], knocking them off their feet!"), \
@@ -123,7 +123,7 @@
 				target.throw_at(get_step_towards(firer, target), 7, 2) //pull them towards us!
 				target.visible_message(span_warning("[firer]'s [name] slam into [target] and drag them across the ground!"), \
 				span_userdanger("You're suddenly dragged across the floor!"))
-				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), target, 'sound/magic/darkspawn/pass_attack.ogg', 50, TRUE), 1)
 		else if(issilicon(target))
 			var/mob/living/silicon/robot/R = target
 			target.visible_message(span_warning("[firer]'s [name] smashes into [target]'s chassis!"), \

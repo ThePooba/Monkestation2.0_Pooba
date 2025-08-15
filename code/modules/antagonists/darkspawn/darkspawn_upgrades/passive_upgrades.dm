@@ -29,18 +29,18 @@
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = ALL_DARKSPAWN_CLASSES
-	var/obj/item/organ/eyes/eyes
+	var/obj/item/organ/internal/eyes/eyes
 
 /datum/psi_web/xray/on_gain()
 	eyes = shadowhuman.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
-		eyes.sight_flags |= SEE_OBJS | SEE_TURFS
-		shadowhuman.update_sight()
+		ADD_TRAIT(eyes.owner, TRAIT_XRAY_VISION, ORGAN_TRAIT)
+		eyes.refresh()
 
 /datum/psi_web/xray/on_loss()
 	if(eyes)
-		eyes.sight_flags &= ~(SEE_OBJS | SEE_TURFS)
-		shadowhuman.update_sight()
+		ADD_TRAIT(eyes.owner, TRAIT_XRAY_VISION, ORGAN_TRAIT)
+		eyes.refresh()
 
 //Increases max Psi by 100.
 /datum/psi_web/psi_cap
@@ -73,7 +73,7 @@
 
 /datum/psi_web/stamina_res/on_loss()
 	darkspawn.stam_mod /= 0.5
-	
+
 //Increases healing in darkness.
 /datum/psi_web/dark_healing
 	name = "Mending Sigil"
@@ -106,7 +106,7 @@
 
 /datum/psi_web/low_light_resistance/on_loss()
 	REMOVE_TRAIT(darkspawn, TRAIT_DARKSPAWN_LIGHTRES, src)
-	
+
 /datum/psi_web/noslip
 	name = "Stability Sigil"
 	desc = "Unlocking this sigil prevents loss of footing."
@@ -155,7 +155,7 @@
 
 /datum/psi_web/sunglasses/on_loss()
 	REMOVE_TRAIT(shadowhuman, TRAIT_NOFLASH, type)
-		
+
 //Halves lightburn damage.
 /datum/psi_web/light_resistance
 	name = "Shadowskin Sigil"

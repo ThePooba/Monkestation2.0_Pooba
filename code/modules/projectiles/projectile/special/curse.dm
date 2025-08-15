@@ -73,9 +73,9 @@
 	range = 20
 	color = "#ff7e7e"//Tint it slightly
 
-/obj/projectile/curse_hand/progenitor/on_hit(atom/target, blocked)
+/obj/projectile/curse_hand/progenitor/on_hit(atom/target, blocked, pierce_hit)
 	if(isliving(target))
 		var/mob/living/victim = target
-		if(is_darkspawn_or_thrall(victim))
+		if(IS_DARKSPAWN_OR_THRALL(victim))
 			return BULLET_ACT_FORCE_PIERCE
 	return ..()

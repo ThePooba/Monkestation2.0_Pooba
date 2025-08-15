@@ -51,7 +51,7 @@
 /datum/action/cooldown/spell/toggle/dark_staff/Enable()
 	owner.balloon_alert(owner, "Shhouna")
 	owner.visible_message(span_warning("[owner] knits shadows together into a staff!"), span_velvet("You summon your staff. Examine it to see what it does."))
-	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
+	playsound(owner, 'sound/magic/darkspawn/pass_create.ogg', 50, 1)
 	if(!staff)
 		staff = new (owner)
 	if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
@@ -62,7 +62,7 @@
 /datum/action/cooldown/spell/toggle/dark_staff/Disable()
 	owner.balloon_alert(owner, "Haoo")
 	owner.visible_message(span_warning("[owner]'s staff dissipates!"), span_velvet("You dispel the staff."))
-	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
+	playsound(owner, 'sound/magic/darkspawn/pass_dispel.ogg', 50, 1)
 	staff.moveToNullspace()
 
 //////////////////////////////////////////////////////////////////////////
@@ -513,7 +513,7 @@
 	var/power = charge_ticks - times //grow in sound volume and added sound range as it charges
 	var/volume = min(10 + (power * 20), 60)
 	playsound(user, 'sound/effects/magic.ogg', volume, TRUE, power)
-	playsound(user, 'yogstation/sound/magic/devour_will_begin.ogg', volume, TRUE, power)
+	playsound(user, 'sound/magic/darkspawn/devour_will_begin.ogg', volume, TRUE, power)
 	if(first)
 		new /obj/effect/temp_visual/cult/rune_spawn/rune1(user.loc, 2 SECONDS, "#21007F")
 	else
@@ -531,7 +531,7 @@
 		var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(user)
 		darkspawn.block_psi(30 SECONDS, type)
 
-	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 30)
+	playsound(user, 'sound/magic/darkspawn/devour_will_end.ogg', 100, FALSE, 30)
 	//split in two so the targeted tile is always in the center of the beam
 	for(var/turf/step_target in getline(targets_from, targets_to))
 		spawn_ground(step_target)
@@ -590,7 +590,7 @@
 	var/turf/tile_location = get_turf(src)
 	for(var/mob/living/victim in tile_location.contents)
 		if(IS_TEAM_DARKSPAWN(victim))
-			victim.heal_ordered_damage(90, list(BURN, BRUTE, TOX, OXY, CLONE, STAMINA), BODYPART_ANY)
+			victim.heal_ordered_damage(90, list(BURN, BRUTE, TOX, OXY, CLONE, STAMINA))
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
 			victim.take_overall_damage(10, 50, 200) //skill issue if you don't dodge it (won't crit if you're full hp)
 			victim.emote("scream")
@@ -662,7 +662,7 @@
 	var/power = charge_ticks - times //grow in sound volume and added sound range as it charges
 	var/volume = min(10 + (power * 20), 60)
 	playsound(user, 'sound/effects/magic.ogg', volume, TRUE, power)
-	playsound(user, 'yogstation/sound/magic/devour_will_begin.ogg', volume, TRUE, power)
+	playsound(user, 'sound/magic/darkspawn/devour_will_begin.ogg', volume, TRUE, power)
 	if(first)
 		new /obj/effect/temp_visual/cult/rune_spawn/rune1(user.loc, 2 SECONDS, "#21007F")
 	else
@@ -678,8 +678,8 @@
 		var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(user)
 		darkspawn.block_psi(30 SECONDS, type)
 
-	playsound(user, 'yogstation/sound/magic/devour_will_end.ogg', 100, FALSE, 30)
-	playsound(targets_to,'yogstation/sound/magic/divulge_end.ogg', 70, TRUE, burst_range)
+	playsound(user, 'sound/magic/darkspawn/devour_will_end.ogg', 100, FALSE, 30)
+	playsound(targets_to,'sound/magic/darkspawn/divulge_end.ogg', 70, TRUE, burst_range)
 
 	var/last_dist = 0
 	var/real_delay = 0

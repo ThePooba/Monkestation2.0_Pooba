@@ -302,7 +302,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 				deadguy.revive(TRUE)
 				revive_notice = FALSE
 				deadguy.visible_message(span_progenitor("[deadguy]'s sigils flare brightly as they are once again in the realm of the living!"), span_progenitor("You rise once more!"))
-				playsound(deadguy, 'yogstation/sound/magic/demented_outburst_scream.ogg', 40, FALSE)
+				playsound(deadguy, 'sound/magic/darkspawn/demented_outburst_scream.ogg', 40, FALSE)
 		else if(revive_notice)
 			revive_notice = FALSE
 			deadguy.visible_message(span_notice("[deadguy]'s body stills."), span_velvet("Your body stills once more."))
@@ -435,7 +435,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(owner.current.stat == DEAD)
 		return
 	to_chat(owner.current, span_userdanger("You feel the skin you're wearing crackling like paper - you will forcefully divulge soon! Get somewhere hidden and dark!"))
-	owner.current.playsound_local(owner.current, 'yogstation/sound/magic/divulge_01.ogg', 50, FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(owner.current, 'sound/magic/darkspawn/divulge_01.ogg', 50, FALSE, pressure_affected = FALSE)
 	addtimer(CALLBACK(src, PROC_REF(force_divulge), 5 MINUTES))
 
 /datum/antagonist/darkspawn/proc/force_divulge()
@@ -560,7 +560,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(picked_class) //should bring back all powers, might be something i'm overlooking
 		picked_class.refresh_powers()
 
-	playsound(returner, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
+	playsound(returner, 'sound/magic/darkspawn/divulge_end.ogg', 50, 0)
 	playsound(returner, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, 0)
 
 	var/processed_message = span_progenitor("<b>\[Mindlink\] [returner] has reformed their body.</b>")

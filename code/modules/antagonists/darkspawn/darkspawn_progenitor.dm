@@ -179,7 +179,7 @@
 /mob/living/simple_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
 	return
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/gib(no_brain, no_organs, no_bodyparts, no_items) //no shuttlegib either
+/mob/living/simple_animal/hostile/darkspawn_progenitor/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE) //no shuttlegib either
 	return
 
 //////////////////////////////////////////////////////////////////////////

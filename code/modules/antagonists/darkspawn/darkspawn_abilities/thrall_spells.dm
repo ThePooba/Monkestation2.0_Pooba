@@ -63,7 +63,7 @@
 
 	owner.balloon_alert(owner, "Krx'lna tyhx graha...")
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
-	playsound(owner, 'yogstation/sound/magic/devour_will_victim.ogg', 50)
+	playsound(owner, 'sound/magic/darkspawn/devour_will_victim.ogg', 50)
 	if(!do_after(owner, 2 SECONDS, target))
 		return FALSE
 

@@ -116,7 +116,7 @@
 	for(var/obj/effect/decal/cleanable/food/salt/S in destination)
 		to_chat(user, span_warning("[S] bars your passage!"))
 		if(isrevenant(user))
-			var/mob/living/simple_animal/revenant/R = user
+			var/mob/living/basic/revenant/R = user
 			R.reveal(20)
 			R.stun(20)
 		return MOVE_NOT_ALLOWED

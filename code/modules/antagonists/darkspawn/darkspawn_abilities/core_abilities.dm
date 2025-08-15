@@ -44,7 +44,7 @@
 
 /datum/action/cooldown/spell/touch/devour_will/cast(mob/living/carbon/cast_on)
 	. = ..()
-	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
+	playsound(owner, 'sound/magic/darkspawn/devour_will_form.ogg', 50, 1)
 
 /datum/action/cooldown/spell/touch/devour_will/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/target, mob/living/carbon/caster)
 	var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(caster)
@@ -78,7 +78,7 @@
 	to_chat(caster, span_velvet("You begin siphoning [target]'s will..."))
 	target.emote("scream")
 	target.visible_message(span_danger("<i>[target] suddenly howls and clutches their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
-	playsound(target, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
+	playsound(target, 'sound/magic/darkspawn/devour_will_long.ogg', 65, FALSE)
 
 	eating = TRUE
 	if(!do_after(caster, 5 SECONDS, target))
@@ -97,8 +97,8 @@
 
 	//put the victim to sleep before the visible_message proc so the victim doesn't see it
 	to_chat(target, span_progenitor("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
-	playsound(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
-	target.playsound_local(target, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
+	playsound(target, 'sound/magic/darkspawn/devour_will_end.ogg', 75, FALSE)
+	target.playsound_local(target, 'sound/magic/darkspawn/devour_will_victim.ogg', 50, FALSE)
 
 	//format the text output to the darkspawn
 	var/list/self_text = list()
@@ -257,7 +257,7 @@
 	if(cast_time)
 		casting = TRUE
 		owner.balloon_alert(owner, "Xkla'thra...")
-		playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
+		playsound(get_turf(owner), 'sound/magic/darkspawn/devour_will_begin.ogg', 50, TRUE)
 		if(!do_after(owner, cast_time, cast_on))
 			casting = FALSE
 			return . | SPELL_CANCEL_CAST
@@ -267,7 +267,7 @@
 	. = ..()
 	if(!object_type) //sanity check
 		return
-	playsound(get_turf(cast_on), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
+	playsound(get_turf(cast_on), 'sound/magic/darkspawn/devour_will_end.ogg', 50, TRUE)
 	var/obj/thing = new object_type(get_turf(cast_on))
 	owner.balloon_alert(owner, "...[language_final]")
 	owner.visible_message(span_warning("[owner] knits shadows together into [thing]!"), span_velvet("You create [thing]"))

@@ -40,7 +40,7 @@ var/speaker = TRUE // Speaker that plays a sound when pulsed.
 
 /obj/item/t_scanner/adv_mining_scanner
 	desc = "A scanner that automatically checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations. This one has an extended range."
-	name = "advanced automatic mining scanner \nIt has a speaker that can be toggled with <b>alt+click</b>""
+	name = "advanced automatic mining scanner \nIt has a speaker that can be toggled with <b>alt+click</b>"
 	icon_state = "advmining0"
 	inhand_icon_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'

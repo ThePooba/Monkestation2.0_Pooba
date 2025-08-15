@@ -13,7 +13,7 @@
 	ventcrawler = TRUE
 
 	attack_sound = 'sound/magic/voidblink.ogg'
-	deathsound = 'yogstation/sound/magic/devour_will_victim.ogg'
+	deathsound = 'sound/magic/darkspawn/devour_will_victim.ogg'
 	attacktext = "gores"
 	bubble_icon = BUBBLE_DARKSPAWN
 

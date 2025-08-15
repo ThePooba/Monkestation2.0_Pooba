@@ -29,7 +29,7 @@
 /datum/action/cooldown/spell/toggle/light_eater/Enable()
 	owner.balloon_alert(owner, "Akna")
 	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), span_velvet("You transform your arm into a blade."))
-	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
+	playsound(owner, 'sound/magic/darkspawn/pass_create.ogg', 50, 1)
 	if(!armblade)
 		armblade = new(owner)
 	owner.put_in_hands(armblade)
@@ -37,7 +37,7 @@
 /datum/action/cooldown/spell/toggle/light_eater/Disable()
 	owner.balloon_alert(owner, "Haoo")
 	owner.visible_message(span_warning("[owner]'s blade transforms back!"), span_velvet("You dispel the blade."))
-	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
+	playsound(owner, 'sound/magic/darkspawn/pass_dispel.ogg', 50, 1)
 	if(armblade)
 		armblade.moveToNullspace()
 
@@ -72,7 +72,7 @@
 /datum/action/cooldown/spell/toggle/shadow_caster/Enable()
 	owner.balloon_alert(owner, "Crxkna")
 	owner.visible_message(span_warning("[owner]'s arm contorts into a bow!"), span_velvet("You transform your arm into a bow."))
-	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
+	playsound(owner, 'sound/magic/darkspawn/pass_create.ogg', 50, 1)
 	if(!bow)
 		bow = new (owner)
 	owner.put_in_hands(bow)
@@ -80,7 +80,7 @@
 /datum/action/cooldown/spell/toggle/shadow_caster/Disable()
 	owner.balloon_alert(owner, "Haoo")
 	owner.visible_message(span_warning("[owner]'s bow transforms back!"), span_velvet("You dispel the bow."))
-	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
+	playsound(owner, 'sound/magic/darkspawn/pass_dispel.ogg', 50, 1)
 	if(bow)
 		bow.moveToNullspace()
 
@@ -193,7 +193,7 @@
 	cooldown_time = 90 SECONDS
 
 	sound = 'sound/effects/bamf.ogg'
-	exit_jaunt_sound = 'yogstation/sound/magic/devour_will_begin.ogg'
+	exit_jaunt_sound = 'sound/magic/darkspawn/devour_will_begin.ogg'
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ninja/cloak
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ninja
 

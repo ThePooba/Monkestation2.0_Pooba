@@ -122,7 +122,7 @@
 	stored_item = null
 	return ..()
 
-/obj/structure/trap/stun/hunter/on_entered(datum/source, atom/movable/victim)
+/obj/structure/trap/stun/hunter/on_trap_entered(datum/source, atom/movable/victim)
 	if(isliving(victim))
 		var/mob/living/living_victim = victim
 		if(!living_victim.mind?.has_antag_datum(/datum/antagonist/fugitive))

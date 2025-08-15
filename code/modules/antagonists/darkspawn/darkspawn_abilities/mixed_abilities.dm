@@ -102,7 +102,7 @@
 	die_with_shapeshifted_form = FALSE
 	convert_damage = TRUE
 	convert_damage_type = STAMINA
-	sound = 'yogstation/sound/magic/devour_will_end.ogg'
+	sound = 'sound/magic/darkspawn/devour_will_end.ogg'
 	possible_shapes = list(/mob/living/simple_animal/hostile/crawling_shadows)
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/do_shapeshift(mob/living/caster)
@@ -154,7 +154,7 @@
 	var/mob/living/L = owner
 	L.balloon_alert(L, "Zkxa'ya")
 	L.visible_message(span_warning("[L] breaks away from [L]'s shadow!"), span_velvet("You create an illusion of yourself."))
-	playsound(L, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
+	playsound(L, 'sound/magic/darkspawn/devour_will_form.ogg', 50, 1)
 
 	var/mob/living/simple_animal/hostile/illusion/darkspawn/M = new(get_turf(L))
 	M.Copy_Parent(L, duration, 100, 10) //closely follows regular player stats so it's not painfully obvious (still sorta is)
@@ -220,7 +220,7 @@
 
 	caster.balloon_alert(caster, "Zkxa'yaera Hohef'era!")
 	caster.visible_message(span_warning("[caster] breaks away from [caster]'s shadow!"), span_velvet("The piece of your psyche creates a form for itself."))
-	playsound(caster, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
+	playsound(caster, 'sound/magic/darkspawn/devour_will_form.ogg', 50, 1)
 
 	if(!dude)
 		dude = new(get_turf(caster))

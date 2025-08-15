@@ -42,7 +42,8 @@
 /datum/reagent/darkspawn_darkness_smoke/on_mob_life(mob/living/M)
 	if(!IS_TEAM_DARKSPAWN(M))
 		to_chat(M, span_warning("<b>The pitch black smoke irritates your eyes horribly!</b>"))
-		M.blind_eyes(2 SECONDS)
+
+		M.adjust_temp_blindness(2 SECONDS)
 		if(prob(25))
 			M.visible_message("<b>[M]</b> claws at their eyes!")
 			M.Stun(3)
