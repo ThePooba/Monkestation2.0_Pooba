@@ -26,7 +26,7 @@
 /datum/action/cooldown/spell/touch/umbral_trespass/cast(mob/living/carbon/cast_on)
 	if(tagalong)
 		var/possessing = FALSE
-		if(cast_on.has_status_effect(STATUS_EFFECT_TAGALONG))
+		if(cast_on.has_status_effect(/datum/status_effect/tagalong))
 			possessing = TRUE
 		QDEL_NULL(tagalong)
 		if(possessing)
@@ -34,7 +34,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/touch/umbral_trespass/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
-	tagalong = caster.apply_status_effect(STATUS_EFFECT_TAGALONG, target)
+	tagalong = caster.apply_status_effect(/datum/status_effect/tagalong, target)
 	caster.balloon_alert(caster, "iahz")
 	to_chat(caster, span_velvet("You slip into [target]'s shadow. This will last five minutes, until canceled, or you are forced out by darkness."))
 	caster.forceMove(target)
@@ -120,7 +120,7 @@
 		bypass_cost = TRUE
 	else
 		bypass_cost = FALSE
-	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
+	if(owner.has_status_effect(/datum/status_effect/tagalong))
 		return FALSE
 	if(owner.movement_type & VENTCRAWLING) //don't let them smoosh themselves
 		if(feedback)
@@ -158,7 +158,7 @@
 
 	var/mob/living/simple_animal/hostile/illusion/darkspawn/M = new(get_turf(L))
 	M.Copy_Parent(L, duration, 100, 10) //closely follows regular player stats so it's not painfully obvious (still sorta is)
-	M.move_to_delay = L.movement_delay()
+	M.cached_multiplicative_slowdown = L.cached_multiplicative_slowdown
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------Summon a sentient distraction---------------------//
@@ -210,7 +210,7 @@
 	to_chat(caster, span_velvet("You attempt to split a piece of your psyche."))
 	searching = TRUE
 	var/mob/dead/observer/chosen_ghost
-	var/list/consenting_candidates = pollGhostCandidates("Would you like to play as piece of [caster]'s psyche?", "Darkspawn", null, ROLE_DARKSPAWN, 10 SECONDS, POLL_IGNORE_DARKSPAWN_PSYCHE)
+	var/list/consenting_candidates = SSpolling.poll_ghosts_for_target("Would you like to play as piece of [caster]'s psyche?", check_jobban = ROLE_DARKSPAWN, role = ROLE_DARKSPAWN, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_DARKSPAWN_PSYCHE, jump_target = caster, alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi', "creep"))
 	if(consenting_candidates.len)
 		chosen_ghost = pick(consenting_candidates)
 	searching = FALSE

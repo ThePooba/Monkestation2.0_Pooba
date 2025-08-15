@@ -73,7 +73,7 @@
 
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
 	target.Immobilize(10 SECONDS) //we remove this if it's canceled early
-	target.adjust_silence(5 SECONDS, )
+	target.adjust_silence(5 SECONDS)
 
 	caster.balloon_alert(caster, "cera ko...")
 	to_chat(caster, span_velvet("You begin siphoning [target]'s will..."))

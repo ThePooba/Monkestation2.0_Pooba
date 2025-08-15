@@ -61,8 +61,8 @@
 
 	for(var/i in 1 to num_tendrils)
 		var/obj/item/umbral_tendrils/T = new(owner)
-		if(ability_flags & TENDRIL_UPGRADE_CLEAVE)
-			T.AddComponent(/datum/component/cleave_attack, arc_size=180)
+		//if(ability_flags & TENDRIL_UPGRADE_CLEAVE)
+		//	T.AddComponent(/datum/component/cleave_attack, arc_size=180) ill fuckin do it later
 		owner.put_in_hands(T)
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/echo()
@@ -109,7 +109,7 @@
 	if(isliving(victim))
 		var/mob/living/target = victim
 		target.extinguish_mob()
-		if(IS_TEAM_DARKSPAWN(target) && ispreternis(target)) //don't make preterni allies wet
+		if(IS_TEAM_DARKSPAWN(target) && isoozeling(target)) //don't make preterni allies wet
 			return
 		target.adjust_wet_stacks(20)
 		target.adjust_wet_stacks(20)
@@ -207,7 +207,7 @@
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 75)
 
 /datum/action/cooldown/spell/time_dilation/can_cast_spell(feedback)
-	if(owner.has_status_effect(STATUS_EFFECT_TIME_DILATION))
+	if(owner.has_status_effect(/datum/status_effect/time_dilation))
 		if(feedback)
 			to_chat(owner, span_notice("You still have time dilation in effect."))
 		return FALSE
@@ -216,7 +216,7 @@
 /datum/action/cooldown/spell/time_dilation/cast(atom/cast_on)
 	. = ..()
 	var/mob/living/L = owner
-	L.apply_status_effect(STATUS_EFFECT_TIME_DILATION)
+	L.apply_status_effect(/datum/status_effect/time_dilation)
 	L.balloon_alert(L, "quix'thra ZYXAR!")
 	L.visible_message(span_warning("[L] howls as their body sigils begin to scream light in every direction!"), span_velvet("Your sigils howl out light as your body moves at incredible speed!"))
 
@@ -373,7 +373,7 @@
 		else
 			SEND_SIGNAL(owner.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, resource_costs)
 	if(active && owner.m_intent != MOVE_INTENT_WALK)
-		owner.toggle_move_intent()
+		owner.toggle_walk_run()
 	return ..()
 
 /datum/action/cooldown/spell/toggle/indomitable/Enable()
@@ -384,7 +384,7 @@
 	owner.move_resist = INFINITY
 	was_running = (owner.m_intent == MOVE_INTENT_RUN)
 	if(was_running)
-		owner.toggle_move_intent()
+		owner.toggle_walk_run()
 
 /datum/action/cooldown/spell/toggle/indomitable/Disable()
 	owner.balloon_alert(owner, "phwo")
@@ -393,7 +393,7 @@
 	owner.remove_traits(traits, type)
 	owner.move_resist = initial(owner.move_resist)
 	if(was_running && owner.m_intent == MOVE_INTENT_WALK)
-		owner.toggle_move_intent()
+		owner.toggle_walk_run()
 
 //////////////////////////////////////////////////////////////////////////
 //-------------------AOE forced movement towards user-------------------//
@@ -436,4 +436,4 @@
 	var/mob/living/target = victim
 	if(IS_TEAM_DARKSPAWN(target))
 		return
-	target.apply_status_effect(STATUS_EFFECT_TAUNT, owner)
+	target.apply_status_effect(/datum/status_effect/taunt, owner)
