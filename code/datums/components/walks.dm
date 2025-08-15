@@ -52,6 +52,8 @@
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return TRUE
 
+
+
 	var/mob/living/L = parent
 	if(!isshadowperson(L))
 		return FALSE
@@ -60,10 +62,12 @@
 	if(!T)
 		return
 
+	var/old_move_delay = move_delay
+	move_delay = world.time + world.tick_lag
 	//We are now going to move
-	var/add_delay = mob.cached_multiplicative_slowdown
-	var/new_glide_size = DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direct) && EWCOMPONENT(direct)) ? sqrt(2) : 1 ) )
-	mob.set_glide_size(new_glide_size) // set it now in case of pulled objects
+	var/add_delay = L.cached_multiplicative_slowdown
+	var/new_glide_size = DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direction) && EWCOMPONENT(direction)) ? sqrt(2) : 1 ) )
+	L.set_glide_size(new_glide_size) // set it now in case of pulled objects
 	//If the move was recent, count using old_move_delay
 	//We want fractional behavior and all
 	if(old_move_delay + world.tick_lag > world.time)

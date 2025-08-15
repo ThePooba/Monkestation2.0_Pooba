@@ -243,6 +243,7 @@
 	var/glow_power = 2.5
 	var/glow_range = 2.5
 	var/glow_color
+
 	var/obj/effect/dummy/lighting_obj/moblight/glow
 
 /datum/mutation/glow/on_acquiring(mob/living/carbon/human/owner)
@@ -252,7 +253,7 @@
 	glow_color = get_glow_color()
 	glow = owner.mob_light()
 	modify()
-	RegisterSignal(glow, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 
 /datum/mutation/glow/modify()
 	if(!glow)
