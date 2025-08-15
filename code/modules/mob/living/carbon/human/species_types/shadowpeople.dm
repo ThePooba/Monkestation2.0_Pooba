@@ -13,8 +13,6 @@
 	plural_form = "Shadowpeople"
 	id = SPECIES_SHADOW
 	sexes = 0
-	bubble_icon = BUBBLE_DARKSPAWN
-	meat = /obj/item/food/meat/slab/human/mutant/shadow
 	inherent_traits = list(
 		TRAIT_NOBREATH,
 		TRAIT_RADIMMUNE,
@@ -53,6 +51,7 @@
 	shadow_charges = min(shadow_charges++, initial(shadow_charges))
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
+	. = ..()
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
@@ -63,7 +62,7 @@
 					healing_types |= list(STAMINA, TOX, OXY, BRAIN) //heal additional damage types
 					H.AdjustAllImmobility(-dark_healing * 40)
 					H.SetSleeping(0)
-				H.heal_ordered_damage(dark_healing, healing_types, BODYPART_ANY)
+				H.heal_ordered_damage(dark_healing, healing_types)
 			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim
 				var/datum/antagonist/darkspawn/dude = IS_DARKSPAWN(H)
 				if(dude)
@@ -211,33 +210,20 @@
 	name = "Darkspawn"
 	id = SPECIES_DARKSPAWN
 	limbs_id = SPECIES_DARKSPAWN
-	possible_genders = list(PLURAL)
-	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN //never put this in the pride pool because they look super valid and can never be changed off of
 	siemens_coeff = 0
 	armor = 10
 	burnmod = 1.2
 	heatmod = 1.5
-	no_equip = list(
-		ITEM_SLOT_MASK,
-		ITEM_SLOT_OCLOTHING,
-		ITEM_SLOT_GLOVES,
-		ITEM_SLOT_FEET,
-		ITEM_SLOT_ICLOTHING,
-		ITEM_SLOT_SUITSTORE,
-		ITEM_SLOT_HEAD,
-		ITEM_SLOT_EYES
-		)
-	species_traits = list(
-		NOBLOOD,
-		NO_UNDERWEAR,
-		NO_DNA_COPY,
-		NOTRANSSTING,
-		NOEYESPRITES,
-		NOHUSK
-		)
+	no_equip_flags = ITEM_SLOT_MASK | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_ICLOTHING | ITEM_SLOT_SUITSTORE | ITEM_SLOT_HEAD | ITEM_SLOT_EYES
 	inherent_traits = list(
+		TRAIT_NO_TRANSFORMATION_STING,
+		TRAIT_NO_DNA_COPY,
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_NO_HUSK,
+		TRAIT_NOBLOOD,
 		TRAIT_NOGUNS,
+		TRAIT_NO_JUMPSUIT
 		TRAIT_RESISTCOLD,
 		TRAIT_RESISTHIGHPRESSURE,
 		TRAIT_RESISTLOWPRESSURE,

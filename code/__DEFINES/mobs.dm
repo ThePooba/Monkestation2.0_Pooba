@@ -114,6 +114,7 @@
 #define SPECIES_PLASMAMAN "plasmaman"
 #define SPECIES_PODPERSON "pod"
 #define SPECIES_SHADOW "shadow"
+#define SPECIES_DARKSPAWN "darkspawn"
 #define SPECIES_SKELETON "skeleton"
 #define SPECIES_SNAIL "snail"
 #define SPECIES_TALLBOY "tallboy"
@@ -140,6 +141,7 @@
 #define BODYPART_ID_DIGITIGRADE "digitigrade"
 #define BODYPART_ID_LARVA "larva"
 #define BODYPART_ID_PSYKER "psyker"
+#define BODYPART_ID_DARKSPAWN "darkspawn"
 
 //See: datum/species/var/digitigrade_customization
 ///The species does not have digitigrade legs in generation.
