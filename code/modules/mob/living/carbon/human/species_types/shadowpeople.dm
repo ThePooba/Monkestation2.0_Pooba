@@ -65,7 +65,7 @@
 					H.SetSleeping(0)
 				H.heal_ordered_damage(dark_healing, healing_types, BODYPART_ANY)
 			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim
-				var/datum/antagonist/darkspawn/dude = isdarkspawn(H)
+				var/datum/antagonist/darkspawn/dude = IS_DARKSPAWN(H)
 				if(dude)
 					if(HAS_TRAIT(dude, TRAIT_DARKSPAWN_LIGHTRES))
 						return
@@ -75,7 +75,7 @@
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
 				H.adjustCloneLoss(light_burning * 0.2)
 			if(SHADOW_SPECIES_BRIGHT_LIGHT to INFINITY) //but quick death in the light
-				var/datum/antagonist/darkspawn/dude = isdarkspawn(H)
+				var/datum/antagonist/darkspawn/dude = IS_DARKSPAWN(H)
 				if(dude)
 					if(HAS_TRAIT(dude, TRAIT_DARKSPAWN_CREEP))
 						return
@@ -267,7 +267,7 @@
 	C.fully_replace_character_name(null, darkspawn_name())
 
 /datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
-	var/datum/antagonist/darkspawn/antag = isdarkspawn(H)
+	var/datum/antagonist/darkspawn/antag = IS_DARKSPAWN(H)
 	if(antag)
 		dark_healing = antag.dark_healing
 		light_burning = antag.light_burning
