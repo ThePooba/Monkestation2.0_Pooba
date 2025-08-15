@@ -48,6 +48,9 @@
 	if(IS_DARKSPAWN(target))
 		to_chat(owner, span_velvet("You will never be strong enough to control the will of another."))
 		return
+	if(HAS_MIND_TRAIT(target, TRAIT_UNCONVERTABLE))
+		to_chat(owner, span_velvet("This one is something else entirely. They cannot be controlled"))
+		return
 	var/datum/antagonist/darkspawn/master = IS_DARKSPAWN(caster)
 
 	if(!IS_THRALL(target))

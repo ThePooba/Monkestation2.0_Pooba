@@ -22,6 +22,7 @@
 		projectile_sound = 'sound/effects/hit_on_shattered_glass.ogg',\
 		cooldown_time = 0.1 SECONDS, \
 	)
+	LoadComponent(/datum/component/walk)
 	AddComponent(/datum/component/ranged_mob_full_auto, autofire_shot_delay = 0.1 SECONDS)
 	var/datum/action/cooldown/mob_cooldown/guardian_alarm_snare/snare = new (src)
 	snare.Grant(src)
@@ -94,11 +95,17 @@
 /datum/status_effect/guardian_scout_mode/proc/on_manifest()
 	SIGNAL_HANDLER
 	owner.incorporeal_move = INCORPOREAL_MOVE_BASIC
+	var/datum/component/walk/incorp = GetComponent(incorp, /datum/component/walk) //yogs start
+	if(incorp)
+		incorp.enabled = TRUE //yogs end
 
 /// Stop having incorporeal move when we recall so that we can't move
 /datum/status_effect/guardian_scout_mode/proc/on_recall()
 	SIGNAL_HANDLER
 	owner.incorporeal_move = FALSE
+	var/datum/component/walk/incorp = GetComponent(incorp, /datum/component/walk) //yogs start
+	if(incorp)
+		incorp.enabled = FALSE //yogs end
 
 /// While this is active we can't click anything
 /datum/status_effect/guardian_scout_mode/proc/on_click()

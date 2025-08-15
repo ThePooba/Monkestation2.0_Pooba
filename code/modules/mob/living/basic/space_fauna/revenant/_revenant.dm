@@ -105,6 +105,7 @@
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_move))
 	RegisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	set_random_revenant_name()
+	LoadComponent(/datum/component/walk/jaunt)
 
 	GLOB.revenant_relay_mobs |= src
 
@@ -425,6 +426,8 @@
 	remove_status_effect(/datum/status_effect/revenant/revealed)
 	remove_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant)
 	remove_status_effect(/datum/status_effect/revenant/inhibited)
+	if(!GetComponent(/datum/component/walk/jaunt))
+		AddComponent(/datum/component/walk/jaunt)
 	draining = FALSE
 	dormant = FALSE
 	incorporeal_move = INCORPOREAL_MOVE_JAUNT
