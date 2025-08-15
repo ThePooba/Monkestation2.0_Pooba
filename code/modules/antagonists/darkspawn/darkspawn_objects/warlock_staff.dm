@@ -4,7 +4,7 @@
 /obj/item/gun/magic/darkspawn
 	name = "channeling staff"
 	desc = "A staff made from pure darkness."
-	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "shadow_staff"
 	item_state = "shadow_staff0"
 	base_icon_state = "shadow_staff"
@@ -112,7 +112,7 @@
 
 /obj/projectile/magic/darkspawn
 	name = "bolt of nothingness"
-	icon = 'yogstation/icons/obj/darkspawn_projectiles.dmi'
+	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "staff_blast"
 	damage = 0
 	pass_flags = PASSTABLE | PASSMACHINES | PASSCOMPUTER

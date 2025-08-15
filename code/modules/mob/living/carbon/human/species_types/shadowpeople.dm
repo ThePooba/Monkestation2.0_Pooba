@@ -425,7 +425,7 @@
 //Weapon
 /obj/item/light_eater
 	name = "light eater" //as opposed to heavy eater
-	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "light_eater"
 	item_state = "light_eater"
 	force = 18

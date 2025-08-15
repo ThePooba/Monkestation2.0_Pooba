@@ -10,7 +10,7 @@
 /obj/item/melee/touch_attack/devour_will
 	name = "Psionic hand"
 	desc = "Concentrated psionic power, primed to toy with mortal minds."
-	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "dark_bead"
 	item_state = "hivemind"
 //////////////////////////////////////////////////////////////////////////
@@ -21,7 +21,7 @@
 	desc = "Creates a dark bead that can be used on a human to begin draining the lucidity and willpower from a living target, knocking them unconscious for a time.\
 			<br>Being interrupted will knock you down for a time."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	sound = null
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -136,7 +136,7 @@
 	name = "Silver Tongue"
 	desc = "When used near a communications console, allows you to forcefully transmit a message to Central Command, initiating a shuttle recall. Only usable if the shuttle is inbound. Costs 60 Psi."
 	button_icon_state = "silver_tongue"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -215,7 +215,7 @@
 	name = "Darkspawn building thing"
 	desc = "You shouldn't be able to see this."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -279,7 +279,7 @@
 	name = "Reform body"
 	desc = "You may have lost your body, but it matters not."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"

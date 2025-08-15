@@ -5,7 +5,7 @@
 	name = "Umbral Tendril"
 	desc = "Twists an active arm into a mass of tendrils with many uses."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -82,7 +82,7 @@
 /datum/action/cooldown/spell/aoe/deluge
 	name = "Deluge"
 	desc = "Calls upon the endless depths to douse all with the beyond."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -123,7 +123,7 @@
 /datum/action/cooldown/spell/pointed/shadow_crash
 	name = "Shadow crash"
 	desc = "Charge in a direction."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -194,7 +194,7 @@
 /datum/action/cooldown/spell/time_dilation
 	name = "Time Dilation"
 	desc = "Greatly increases reaction times and action speed, and provides immunity to slowdown. This lasts for 1 minute. Costs 75 Psi."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -226,7 +226,7 @@
 /datum/action/cooldown/spell/aoe/demented_outburst
 	name = "Demented Outburst"
 	desc = "Deafens and confuses listeners after a five-second charge period, knocking away everyone nearby. Costs 50 Psi."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -309,7 +309,7 @@
 /datum/action/cooldown/spell/toggle/creep
 	name = "Encroach"
 	desc = "Grants immunity to lightburn while active. Can be toggled on and off. Drains 5 Psi per second."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -350,7 +350,7 @@
 /datum/action/cooldown/spell/toggle/indomitable
 	name = "Indomitable"
 	desc = "Grants immunity to all CC effects, but locks the user into walking."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -401,7 +401,7 @@
 /datum/action/cooldown/spell/aoe/taunt
 	name = "Incite"
 	desc = "Force everyone nearby to walk towards you, but disables your ability to attack for a time."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"

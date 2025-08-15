@@ -4,7 +4,7 @@
 /datum/action/cooldown/spell/touch/thrall_mind
 	name = "Thrall mind"
 	desc = "Consume 1 willpower to thrall a target's mind.<br>To be eligible, they must be alive and recently drained by Devour Will.<br>Can also be used to revive deceased thralls.<br>Right-click to release thralls from your control."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -170,7 +170,7 @@
 /datum/action/cooldown/spell/pointed/mindblast
 	name = "Mind blast"
 	desc = "Focus your psionic energy into a blast that deals physical damage. Can also be projected from the minds of allies."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "mind_blast"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -237,7 +237,7 @@
 
 /obj/projectile/magic/mindblast
 	name ="mindbolt"
-	icon = 'yogstation/icons/obj/darkspawn_projectiles.dmi'
+	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "mind_blast"
 	damage = 35
 	armour_penetration = 100
@@ -269,7 +269,7 @@
 	name = "Empower thrall"
 	desc = "buffs all thralls within a certain range of the target with some sort of effect."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -365,7 +365,7 @@
 	name = "Elucidate"
 	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost. Able to revive any ally in close range."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -436,7 +436,7 @@
 	name = "Nightvision"
 	desc = "Grants sight in the dark."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"

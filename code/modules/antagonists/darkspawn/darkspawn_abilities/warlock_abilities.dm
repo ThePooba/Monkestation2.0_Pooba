@@ -5,7 +5,7 @@
 	name = "Channeling Staff"
 	desc = "Pull darkness from the void, knitting it into a staff."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -71,7 +71,7 @@
 /datum/action/cooldown/spell/aoe/extinguish
 	name = "Extinguish"
 	desc = "Extinguish all light around you."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "extinguish"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -134,7 +134,7 @@
 /datum/action/cooldown/spell/touch/null_charge
 	name = "Null Charge"
 	desc = "Meddle with the powergrid via a functioning APC, causing a temporary stationwide power outage. Breaks the APC in the process."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -196,7 +196,7 @@
 /datum/action/cooldown/spell/pointed/extract
 	name = "Extract"
 	desc = "Drain a target's life force or bestow it to an ally."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "extract"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -288,7 +288,7 @@
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
 	owner.balloon_alert(owner, "qokxlez")
-	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/darkspawn.dmi' , INFINITY, cast_range)
+	visual = owner.Beam(cast_on, "slingbeam", 'icons/mob/simple/darkspawn.dmi' , INFINITY, cast_range)
 	channeled = cast_on
 	healing = IS_TEAM_DARKSPAWN(channeled)
 
@@ -323,7 +323,7 @@
 /datum/action/cooldown/spell/aoe/mass_hallucination
 	name = "Mass Hallucination"
 	desc = "Forces brief delirium on all nearby enemies."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "mass_hallucination"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -368,7 +368,7 @@
 	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
 	panel = "Darkspawn"
 	button_icon_state = "seize"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -430,7 +430,7 @@
 /datum/action/cooldown/spell/erase_time/darkspawn
 	name = "Quantum disruption"
 	desc = "Disrupt the flow of possibilities, where you are, where you could be."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -457,7 +457,7 @@
 /datum/action/cooldown/spell/pointed/shadow_beam
 	name = "Void beam"
 	desc = "After a short delay, fire a huge beam of void terrain across the entire station."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "shadow_beam"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -602,7 +602,7 @@
 /datum/action/cooldown/spell/pointed/null_burst
 	name = "Null Burst"
 	desc = "After a short delay, create an explosion of void terrain at the targeted location."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "null_burst"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -702,7 +702,7 @@
 /datum/action/cooldown/spell/cone/staggered/shadowflame
 	name = "Shadowflame Gout"
 	desc = "Release a burst of shadowflame, rapidly sapping the heat of any individual."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"

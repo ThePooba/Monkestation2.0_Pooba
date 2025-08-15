@@ -7,7 +7,7 @@
 /datum/action/cooldown/spell/touch/umbral_trespass
 	name = "Umbral trespass"
 	desc = "Melds with a target's shadow, causing you to invisibly follow them. Only works in lit areas, and you will be forced out if you hold any items. Costs 30 Psi."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -46,7 +46,7 @@
 /datum/action/cooldown/spell/aoe/icyveins //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
 	desc = "Instantly freezes the blood of nearby people, slowing them and rapidly chilling their body."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "icy_veins"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -88,7 +88,7 @@
 /datum/action/cooldown/spell/shapeshift/crawling_shadows
 	name = "Crawling Shadows"
 	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -134,7 +134,7 @@
 /datum/action/cooldown/spell/simulacrum
 	name = "Simulacrum"
 	desc = "Creates an illusion that closely resembles you. The illusion will fight nearby enemies in your stead for 10 seconds. Costs 40 Psi."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -166,7 +166,7 @@
 /datum/action/cooldown/spell/fray_self
 	name = "Fray self"
 	desc = "Attemps to split a piece of your psyche into a sentient copy of yourself that lasts until destroyed. Costs 80 Psi."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"

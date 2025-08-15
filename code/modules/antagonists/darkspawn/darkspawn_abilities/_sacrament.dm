@@ -3,7 +3,7 @@
 	name = "Sacrament"
 	desc = "Ascends into a progenitor. You must have drained lucidity from a certain number of different people for this to work."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -64,7 +64,7 @@
 			continue
 		new/obj/structure/psionic_barrier(T, 340)
 
-	var/image/alert_overlay = image('yogstation/icons/mob/actions/actions_darkspawn.dmi', "sacrament")
+	var/image/alert_overlay = image('icons/mob/actions/actions_darkspawn.dmi', "sacrament")
 	notify_ghosts("Darkspawn [user.real_name] has begun the Sacrament at [get_area(user)]! ", source = user, ghost_sound = 'sound/magic/darkspawn/devour_will_victim.ogg', alert_overlay = alert_overlay, action = NOTIFY_ORBIT)
 	soundloop = new(GLOB.player_list, TRUE, TRUE)
 

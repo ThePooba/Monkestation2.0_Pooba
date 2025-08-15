@@ -2,7 +2,7 @@
 /obj/item/umbral_tendrils
 	name = "umbral tendrils"
 	desc = "A mass of pulsing, chitonous tendrils with exposed violet flesh."
-	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
 	item_state = "umbral_tendrils"
 	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'

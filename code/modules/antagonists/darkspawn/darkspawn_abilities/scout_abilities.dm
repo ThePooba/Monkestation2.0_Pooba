@@ -5,7 +5,7 @@
 	name = "Light Eater"
 	desc = "Twists an active arm into a blade of all-consuming shadow."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -48,7 +48,7 @@
 	name = "Shadow caster"
 	desc = "Twists an active arm into a bow that shoots arrows made of solid darkness."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -92,7 +92,7 @@
 	desc = "Spews a cloud of smoke which will blind enemies and provide cover from light."
 	panel = "Darkspawn"
 	button_icon_state = "blinding_miasma"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -179,7 +179,7 @@
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt
 	name = "Void Jaunt"
 	desc = "Move through the veil for a time, avoiding mortal eyes and lights."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -210,7 +210,7 @@
 /datum/action/cooldown/spell/pointed/phase_jump/void_jump
 	name = "Void jump"
 	desc = "A short range targeted teleport."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -239,7 +239,7 @@
 /datum/action/cooldown/spell/aoe/permafrost
 	name = "Permafrost"
 	desc = "Banish heat from the surrounding terrain, freezing it instantly."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "permafrost"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -274,7 +274,7 @@
 	desc = "Restrain a target's mental faculties, preventing speech and actions of any kind for a moderate duration."
 	panel = "Darkspawn"
 	button_icon_state = "glare"
-	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'icons/mob/actions.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"

@@ -3,7 +3,7 @@
 	name = "Divulge"
 	desc = "Sheds your human disguise. This is obvious and so should be done in a secluded area. You cannot reverse this."
 	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -67,7 +67,7 @@
 		new/obj/structure/psionic_barrier(T, 35 SECONDS)
 	user.visible_message(span_warning("A vortex of violet energies surrounds [user]!"), span_velvet("Your barrier will keep you shielded to a point.."))
 
-	var/image/alert_overlay = image('yogstation/icons/mob/actions/actions_darkspawn.dmi', "divulge")
+	var/image/alert_overlay = image('icons/mob/actions/actions_darkspawn.dmi', "divulge")
 	notify_ghosts("Darkspawn [user.real_name] has begun divulging at [get_area(user)]! ", source = user, ghost_sound = 'sound/magic/darkspawn/devour_will_victim.ogg', alert_overlay = alert_overlay, action = NOTIFY_ORBIT)
 
 	user.visible_message(span_danger("[user] slowly rises into the air, their belongings falling away, and begins to shimmer..."), span_progenitor("You begin the removal of your human disguise. You will be completely vulnerable during this time."))
