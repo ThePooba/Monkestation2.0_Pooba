@@ -293,7 +293,7 @@
 	var/datum/controller/subsystem/processing/subsystem = locate(subsystem_type) in Master.subsystems
 	START_PROCESSING(subsystem, src)
 
-/obj/machinery/proc/play_click_sound(var/custom_clicksound)
+/obj/machinery/proc/play_click_sound(custom_clicksound)
 	if((custom_clicksound ||= clicksound) && world.time > next_clicksound)
 		next_clicksound = world.time + CLICKSOUND_INTERVAL
 		playsound(src, custom_clicksound, clickvol)

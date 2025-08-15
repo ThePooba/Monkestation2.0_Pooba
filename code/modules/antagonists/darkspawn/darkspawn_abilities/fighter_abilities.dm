@@ -53,7 +53,7 @@
 
 	owner.visible_message(span_warning("[owner]'s arm[num_tendrils > 1 ? "s" : ""] contort into tentacles!"), \
 		span_velvet("You transform your arm[num_tendrils > 1 ? "s" : ""] into umbral tendrils. Examine them to see possible uses."))
-	owner.balloon_alert(owner, "Ikna")
+	owner.balloon_alert(owner, "ikna")
 	playsound(owner, 'sound/magic/darkspawn/pass_create.ogg', 50, TRUE)
 
 	if(num_tendrils > 1) //add an additional sound and balloon alert for the extra tendril
@@ -66,11 +66,11 @@
 		owner.put_in_hands(T)
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/echo()
-	owner.balloon_alert(owner, "Ikna")
+	owner.balloon_alert(owner, "ikna")
 	playsound(owner, 'sound/magic/darkspawn/pass_create.ogg', 50, TRUE)
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/Disable()
-	owner.balloon_alert(owner, "Haoo")
+	owner.balloon_alert(owner, "haoo")
 	owner.visible_message(span_warning("[owner]'s tentacles transform back!"), span_notice("You dispel the tendrils."))
 	playsound(owner, 'sound/magic/darkspawn/pass_dispel.ogg', 50, 1)
 	for(var/obj/item/umbral_tendrils/T in owner)
@@ -97,7 +97,7 @@
 /datum/action/cooldown/spell/aoe/deluge/cast(atom/cast_on)
 	. = ..()
 	if(isliving(owner))
-		owner.balloon_alert(owner, "Wyrmul")
+		owner.balloon_alert(owner, "wyrmul")
 		var/mob/living/target = owner
 		target.extinguish_mob()
 		target.adjust_wet_stacks(20)
@@ -151,7 +151,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/thing = owner
-	owner.balloon_alert(owner, "Vorl'ax")
+	owner.balloon_alert(owner, "vorl'ax")
 	charging = TRUE
 	thing.SetImmobilized(1 SECONDS, TRUE, TRUE) //to prevent walking out of your charge
 	thing.throw_at(cast_on, 4, 1, thing, FALSE, callback = CALLBACK(src, PROC_REF(end_dash), thing))
@@ -217,7 +217,7 @@
 	. = ..()
 	var/mob/living/L = owner
 	L.apply_status_effect(STATUS_EFFECT_TIME_DILATION)
-	L.balloon_alert(L, "Quix'thra ZYXAR!")
+	L.balloon_alert(L, "quix'thra ZYXAR!")
 	L.visible_message(span_warning("[L] howls as their body sigils begin to scream light in every direction!"), span_velvet("Your sigils howl out light as your body moves at incredible speed!"))
 
 //////////////////////////////////////////////////////////////////////////
@@ -255,7 +255,7 @@
 	if(. & SPELL_CANCEL_CAST)
 		return .
 	casting = TRUE
-	owner.balloon_alert(owner, "Kap...")
+	owner.balloon_alert(owner, "kap...")
 	owner.visible_message(span_boldwarning("[owner] begins to growl as their chitin hardens..."), span_velvet("You begin focusing your power..."))
 	playsound(owner, 'sound/magic/darkspawn/demented_outburst_charge.ogg', 50, 0)
 	if(!do_after(owner, cast_time, cast_on))
@@ -329,7 +329,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/creep/Enable()
-	owner.balloon_alert(owner, "Odeahz")
+	owner.balloon_alert(owner, "odeahz")
 	owner.visible_message(span_warning("Velvety shadows coalesce around [owner]!"), span_velvet("You begin using Psi to shield yourself from lightburn."))
 	playsound(owner, 'sound/magic/darkspawn/devour_will_victim.ogg', 50, TRUE)
 	var/datum/antagonist/darkspawn/dude = IS_DARKSPAWN(owner)
@@ -337,7 +337,7 @@
 		ADD_TRAIT(dude, TRAIT_DARKSPAWN_CREEP, type)
 
 /datum/action/cooldown/spell/toggle/creep/Disable()
-	owner.balloon_alert(owner, "Phwo")
+	owner.balloon_alert(owner, "phwo")
 	to_chat(owner, span_velvet("You release your grip on the shadows."))
 	playsound(owner, 'sound/magic/darkspawn/devour_will_end.ogg', 50, TRUE)
 	var/datum/antagonist/darkspawn/dude = IS_DARKSPAWN(owner)
@@ -377,7 +377,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/indomitable/Enable()
-	owner.balloon_alert(owner, "Zhaedo")
+	owner.balloon_alert(owner, "zhaedo")
 	owner.visible_message(span_warning("Shadows stitch [owner]'s legs to the ground!"), span_velvet("You begin using Psi to defend yourself from disruption."))
 	playsound(owner, 'sound/magic/darkspawn/devour_will_form.ogg', 50, TRUE)
 	owner.add_traits(traits, type)
@@ -387,7 +387,7 @@
 		owner.toggle_move_intent()
 
 /datum/action/cooldown/spell/toggle/indomitable/Disable()
-	owner.balloon_alert(owner, "Phwo")
+	owner.balloon_alert(owner, "phwo")
 	to_chat(owner, span_velvet("You release your grip on the shadows."))
 	playsound(owner, 'sound/magic/darkspawn/devour_will_end.ogg', 50, TRUE)
 	owner.remove_traits(traits, type)

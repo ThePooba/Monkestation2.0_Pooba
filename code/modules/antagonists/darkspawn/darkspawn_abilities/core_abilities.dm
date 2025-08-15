@@ -74,7 +74,7 @@
 	target.Immobilize(10 SECONDS) //we remove this if it's canceled early
 	target.silent += 5
 
-	caster.balloon_alert(caster, "Cera ko...")
+	caster.balloon_alert(caster, "cera ko...")
 	to_chat(caster, span_velvet("You begin siphoning [target]'s will..."))
 	target.emote("scream")
 	target.visible_message(span_danger("<i>[target] suddenly howls and clutches their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
@@ -167,7 +167,7 @@
 		to_chat(owner, span_warning("[target] is depowered."))
 		return FALSE
 
-	caster.balloon_alert(caster, "[pick("Pda ykw'lpwe skwo h'kccaz ej.", "Pda aiank'cajyu eo kran.", "Oknnu, bkn swop'ejc ukqn pkza.", "Wke swo kxn'znaz xu hws psk.")]")
+	caster.balloon_alert(caster, "[pick("pda ykw'lpwe skwo h'kccaz ej.", "pda aiank'cajyu eo kran.", "oknnu, bkn swop'ejc ukqn pkza.", "wke swo kxn'znaz xu hws psk.")]")
 	owner.visible_message(span_warning("[owner] briefly touches [target]'s screen, and the keys begin to move by themselves!"), span_velvet("You begin transmitting a recall message to Central Command..."))
 	in_use = TRUE
 	play_recall_sounds(target, (duration/10)-1)
@@ -256,7 +256,7 @@
 		return .
 	if(cast_time)
 		casting = TRUE
-		owner.balloon_alert(owner, "Xkla'thra...")
+		owner.balloon_alert(owner, "xkla'thra...")
 		playsound(get_turf(owner), 'sound/magic/darkspawn/devour_will_begin.ogg', 50, TRUE)
 		if(!do_after(owner, cast_time, cast_on))
 			casting = FALSE

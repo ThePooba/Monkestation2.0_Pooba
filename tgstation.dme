@@ -87,6 +87,7 @@
 #include "code\__DEFINES\crushing.dm"
 #include "code\__DEFINES\ctf.dm"
 #include "code\__DEFINES\cult.dm"
+#include "code\__DEFINES\darkspawn.dm"
 #include "code\__DEFINES\database.dm"
 #include "code\__DEFINES\deadchat_control.dm"
 #include "code\__DEFINES\devices.dm"

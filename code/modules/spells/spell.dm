@@ -180,7 +180,7 @@
 			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 			if(!darkspawn.has_psi(psi_cost))
 				if(feedback)
-					owner.balloon_alert(owner, span_warning("Not enough psi!"))
+					owner.balloon_alert(owner, "Not enough psi!")
 				return FALSE
 		else
 			if(feedback)

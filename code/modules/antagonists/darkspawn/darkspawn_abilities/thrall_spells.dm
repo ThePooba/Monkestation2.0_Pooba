@@ -61,7 +61,7 @@
 			to_chat(owner, span_danger("[target] does not have a shadow bead for you to enhance."))
 			return FALSE
 
-	owner.balloon_alert(owner, "Krx'lna tyhx graha...")
+	owner.balloon_alert(owner, "krx'lna tyhx graha...")
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'sound/magic/darkspawn/devour_will_victim.ogg', 50)
 	if(!do_after(owner, 2 SECONDS, target))
@@ -149,7 +149,7 @@
 	if(!unveiled.current)
 		return
 	if(unveiled.current.remove_thrall())
-		owner.balloon_alert(owner, "Fk'koht")
+		owner.balloon_alert(owner, "fk'koht")
 		to_chat(owner, span_velvet("You release your control over [unveiled]"))
 
 //////////////////////////////////////////////////////////////////////////
@@ -215,7 +215,7 @@
 	if(!shoot_from)
 		return
 	fire_projectile(cast_on, shoot_from)
-	owner.balloon_alert(owner, "Vyk'thunak")
+	owner.balloon_alert(owner, "vyk'thunak")
 	if(shoot_from != owner)
 		playsound(get_turf(shoot_from), 'sound/weapons/resonator_blast.ogg', 50, 1)
 	shoot_from = null

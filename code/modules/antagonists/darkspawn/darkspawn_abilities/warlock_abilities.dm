@@ -49,7 +49,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/dark_staff/Enable()
-	owner.balloon_alert(owner, "Shhouna")
+	owner.balloon_alert(owner, "shhouna")
 	owner.visible_message(span_warning("[owner] knits shadows together into a staff!"), span_velvet("You summon your staff. Examine it to see what it does."))
 	playsound(owner, 'sound/magic/darkspawn/pass_create.ogg', 50, 1)
 	if(!staff)
@@ -60,7 +60,7 @@
 	owner.put_in_hands(staff)
 
 /datum/action/cooldown/spell/toggle/dark_staff/Disable()
-	owner.balloon_alert(owner, "Haoo")
+	owner.balloon_alert(owner, "haoo")
 	owner.visible_message(span_warning("[owner]'s staff dissipates!"), span_velvet("You dispel the staff."))
 	playsound(owner, 'sound/magic/darkspawn/pass_dispel.ogg', 50, 1)
 	staff.moveToNullspace()
@@ -100,7 +100,7 @@
 /datum/action/cooldown/spell/aoe/extinguish/cast(atom/cast_on)
 	seen_things = view(owner) //cash all things you can see
 	. = ..()
-	owner.balloon_alert(owner, "Shwooh")
+	owner.balloon_alert(owner, "shwooh")
 	to_chat(owner, span_velvet("You extinguish all lights."))
 
 /datum/action/cooldown/spell/aoe/extinguish/cast_on_thing_in_aoe(atom/victim, atom/caster)
@@ -163,7 +163,7 @@
 		return FALSE
 
 	//Turn it off for the time being
-	owner.balloon_alert(owner, "Xlahwa")
+	owner.balloon_alert(owner, "xlahwa")
 	target.set_light(0)
 	target.visible_message(span_warning("The [target] flickers and begins to grow dark."))
 
@@ -287,7 +287,7 @@
 
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
-	owner.balloon_alert(owner, "Qokxlez")
+	owner.balloon_alert(owner, "qokxlez")
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/darkspawn.dmi' , INFINITY, cast_range)
 	channeled = cast_on
 	healing = IS_TEAM_DARKSPAWN(channeled)
@@ -341,7 +341,7 @@
 
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast(atom/cast_on)
 	. = ..()
-	owner.balloon_alert(owner, "H'ellekth'ele")
+	owner.balloon_alert(owner, "h'ellekth'ele")
 
 /datum/action/cooldown/spell/aoe/mass_hallucination/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isliving(victim))
@@ -404,7 +404,7 @@
 		if(!(user.check_obscured_slots() & ITEM_SLOT_EYES)) //only show if the eyes are visible
 			user.visible_message(span_warning("<b>[user]'s eyes flash a deep purple</b>"))
 
-	owner.balloon_alert(owner, "Sskr'aya")
+	owner.balloon_alert(owner, "sskr'aya")
 
 	var/mob/living/target = cast_on
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
@@ -447,7 +447,7 @@
 	. = ..()
 	var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(owner)
 	if(. && darkspawn)
-		owner.balloon_alert(owner, "KSH SHOL'NAXHAR!")
+		owner.balloon_alert(owner, "ksh SHOL'NAXHAR!")
 		darkspawn.block_psi(20 SECONDS, type)
 
 
@@ -493,7 +493,7 @@
 	targets_from = get_turf(owner)
 	targets_to = get_turf(cast_on)
 
-	owner.balloon_alert(owner, "Qwo...")
+	owner.balloon_alert(owner, "qwo...")
 	to_chat(owner, span_velvet("You start building up psionic energy."))
 	charging = TRUE
 	INVOKE_ASYNC(src, PROC_REF(start_beam), owner) //so the reticle doesn't continue to show even after clicking
@@ -642,7 +642,7 @@
 
 	targets_to = get_turf(cast_on)
 
-	owner.balloon_alert(owner, "Qwo...")
+	owner.balloon_alert(owner, "qwo...")
 	to_chat(owner, span_velvet("You start building up psionic energy."))
 	charging = TRUE
 	INVOKE_ASYNC(src, PROC_REF(start_beam), owner) //so the reticle doesn't continue to show even after clicking

@@ -36,7 +36,7 @@
 	QDEL_NULL(bodcam)
 
 ///Changes the camera net used by the interal camera, currently only used for the darkspawn cameranet
-/datum/component/internal_cam/proc/change_cameranet(var/datum/cameranet/newnet)
+/datum/component/internal_cam/proc/change_cameranet(/datum/cameranet/newnet)
 	if(!newnet)
 		return
 	bodcam.change_camnet(newnet)

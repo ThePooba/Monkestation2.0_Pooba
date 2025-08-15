@@ -27,7 +27,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/light_eater/Enable()
-	owner.balloon_alert(owner, "Akna")
+	owner.balloon_alert(owner, "akna")
 	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), span_velvet("You transform your arm into a blade."))
 	playsound(owner, 'sound/magic/darkspawn/pass_create.ogg', 50, 1)
 	if(!armblade)
@@ -35,7 +35,7 @@
 	owner.put_in_hands(armblade)
 
 /datum/action/cooldown/spell/toggle/light_eater/Disable()
-	owner.balloon_alert(owner, "Haoo")
+	owner.balloon_alert(owner, "haoo")
 	owner.visible_message(span_warning("[owner]'s blade transforms back!"), span_velvet("You dispel the blade."))
 	playsound(owner, 'sound/magic/darkspawn/pass_dispel.ogg', 50, 1)
 	if(armblade)
@@ -70,7 +70,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/shadow_caster/Enable()
-	owner.balloon_alert(owner, "Crxkna")
+	owner.balloon_alert(owner, "crxkna")
 	owner.visible_message(span_warning("[owner]'s arm contorts into a bow!"), span_velvet("You transform your arm into a bow."))
 	playsound(owner, 'sound/magic/darkspawn/pass_create.ogg', 50, 1)
 	if(!bow)
@@ -78,7 +78,7 @@
 	owner.put_in_hands(bow)
 
 /datum/action/cooldown/spell/toggle/shadow_caster/Disable()
-	owner.balloon_alert(owner, "Haoo")
+	owner.balloon_alert(owner, "haoo")
 	owner.visible_message(span_warning("[owner]'s bow transforms back!"), span_velvet("You dispel the bow."))
 	playsound(owner, 'sound/magic/darkspawn/pass_dispel.ogg', 50, 1)
 	if(bow)
@@ -108,7 +108,7 @@
 
 /datum/action/cooldown/spell/darkness_smoke/cast(mob/living/carbon/human/user) //Extremely hacky ---- (oh god, it really is)
 	. = ..()
-	owner.balloon_alert(owner, "Hwlok'krotho")
+	owner.balloon_alert(owner, "hwlok'krotho")
 	owner.visible_message(span_warning("[owner] bends over and bellows out a cloud of black smoke!"), span_velvet("You expel a vast cloud of blinding smoke."))
 	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(get_turf(owner)) //hacky
 	B.reagents.clear_reagents() //Just in case!
@@ -138,7 +138,7 @@
 	var/turf/target_loc = get_turf(cast_on)
 	var/obj/structure/trap/darkspawn/trap = locate() in target_loc
 	if(trap)
-		owner.balloon_alert(owner, "There is already a trap there")
+		owner.balloon_alert(owner, "there is already a trap there")
 		return . | SPELL_CANCEL_CAST
 
 //Reskinned punji sticks that don't stun for as long
@@ -202,7 +202,7 @@
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt/cast(mob/living/cast_on)
 	. = ..()
-	owner.balloon_alert(owner, "Vxklu'wop sla'txhaka")
+	owner.balloon_alert(owner, "vxklu'wop sla'txhaka")
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Targeted Teleport---------------------------//
@@ -231,7 +231,7 @@
 /datum/action/cooldown/spell/pointed/phase_jump/void_jump/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
 	if(.)
-		owner.balloon_alert(owner, "Vxklu'wop")
+		owner.balloon_alert(owner, "vxklu'wop")
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------------AOE ice field----------------------------//
@@ -255,7 +255,7 @@
 
 /datum/action/cooldown/spell/aoe/permafrost/cast(atom/cast_on)
 	. = ..()
-	owner.balloon_alert(owner, "Syn'thxklp")
+	owner.balloon_alert(owner, "syn'thxklp")
 	if(isliving(owner))
 		var/mob/living/target = owner
 		target.extinguish_mob()

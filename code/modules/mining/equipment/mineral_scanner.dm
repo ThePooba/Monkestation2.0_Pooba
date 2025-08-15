@@ -51,7 +51,6 @@ var/speaker = TRUE // Speaker that plays a sound when pulsed.
 	var/cooldown = 35
 	var/current_cooldown = 0
 	var/range = 7
-	var/speaker = TRUE // Speaker that plays a sound when pulsed.
 
 /obj/item/t_scanner/adv_mining_scanner/AltClick(mob/user)
 	speaker = !speaker

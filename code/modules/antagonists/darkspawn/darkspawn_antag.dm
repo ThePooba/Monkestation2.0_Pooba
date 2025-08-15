@@ -36,7 +36,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	///Used to prevent duplicate regen proc calls
 	var/psi_regenerating = FALSE
 
- 	///Willpower is used to buy abilities and is gained by using Devour Will
+	///Willpower is used to buy abilities and is gained by using Devour Will
 	var/willpower = 6
 
 	///Default amount healed in darkness
