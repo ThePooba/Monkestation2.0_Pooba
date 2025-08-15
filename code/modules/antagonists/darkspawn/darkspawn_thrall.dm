@@ -4,7 +4,7 @@
 /proc/get_shadow_tumor(mob/living/source)
 	if(!istype(source))
 		return
-	var/obj/item/organ/tumor = source.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	var/obj/item/organ/tumor = source.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
 	if(!tumor || !istype(tumor, /obj/item/organ/shadowtumor)) //if they somehow lose their tumor in an unusual way
 		return
 	return tumor
@@ -52,13 +52,13 @@
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
 	return ..()
 
-/datum/antagonist/_darkspawn/apply_innate_effects(mob/living/mob_override)
+/datum/antagonist/thrall_darkspawn/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return //sanity check
 
 	if(team)
-		team.add_thrall_darkspawn(current_mob.mind)
+		team.add_thrall(current_mob.mind)
 
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 
@@ -74,18 +74,18 @@
 		cam.change_cameranet(GLOB.thrallnet)
 
 	for(var/spell in abilities)
-		if(ispreternis(current_mob) && ispath(spell, /datum/action/cooldown/spell/toggle/nightvision))
-			continue //preterni are already designed for it
+		if(isarachnid(current_mob) && ispath(spell, /datum/action/cooldown/spell/toggle/nightvision))
+			continue //arachnids dont need it really.
 		var/datum/action/cooldown/spell/new_spell = new spell(owner)
 		new_spell.Grant(current_mob)
 
 	if(isliving(current_mob))
-		var/obj/item/organ/shadowtumor/thrall/ST = current_mob.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
-		if(!ST || !istype(ST))
-			ST = new
-			ST.Insert(current_mob, FALSE, FALSE)
+		var/obj/item/organ/shadowtumor/thrall/tumor = current_mob.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
+		if(!tumor || !istype(tumor))
+			tumor = new
+			tumor.Insert(current_mob, FALSE, FALSE)
 			if(team)
-				ST.antag_team = team
+				tumor.antag_team = team
 
 /datum/antagonist/thrall_darkspawn/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
@@ -93,7 +93,7 @@
 		return //sanity check
 
 	if(team)
-		team.remove_thrall_darkspawn(current_mob.mind)
+		team.remove_thrall(current_mob.mind)
 
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
 	UnregisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS)
@@ -150,7 +150,7 @@
 	if(!source || source.stat == DEAD)
 		return
 	if(!get_shadow_tumor(source)) //if they somehow lose their tumor in an unusual way
-		source.remove_thrall_darkspawn()
+		source.remove_thrall()
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Antag greet--------------------------------------//

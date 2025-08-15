@@ -268,7 +268,7 @@
 
 	glow.set_light_range_power_color(glow_range * GET_MUTATION_POWER(src), glow_power, glow_color)
 
-/datum/mutation/human/glow/proc/on_light_eater(mob/living/carbon/human/source, datum/light_eater)
+/datum/mutation/glow/proc/on_light_eater(mob/living/carbon/human/source, datum/light_eater)
 	SIGNAL_HANDLER
 	if(!glow)
 		return

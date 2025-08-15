@@ -23,7 +23,7 @@
 /datum/action/cooldown/spell/divulge/cast(atom/cast_on)
 	set waitfor = FALSE
 	. = ..()
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/carbon/human/user = owner
 	var/turf/spot = get_turf(user)
 	if(!ishuman(user))
 		to_chat(user, span_warning("You need to be human-er to do that!"))
@@ -39,7 +39,7 @@
 			return
 
 	if(isethereal(user))//disable the light for long enough to start divulge
-		user.dna.species.ethereal.on_emp_act(user, EMP_HEAVY)
+		user.EMPeffect = TRUE
 
 	if(spot.get_lumcount() > SHADOW_SPECIES_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
@@ -76,7 +76,7 @@
 
 	for(var/stage in 1 to 3)
 		if(isethereal(user))//keep the light disabled
-			user.dna.species.ethereal.on_emp_act(user, EMP_HEAVY)
+			user.EMPeffect = TRUE
 		switch(stage)
 			if(1)
 				user.visible_message(span_userdanger("Vibrations pass through the air. [user]'s eyes begin to glow a deep violet."), \
@@ -98,7 +98,7 @@
 			in_use = FALSE
 			return
 	if(isethereal(user))//keep the light disabled
-		user.dna.species.ethereal.on_emp_act(user, EMP_HEAVY)
+		user.EMPeffect = TRUE
 	playsound(user, 'sound/magic/darkspawn/divulge_ending.ogg', 50, 0)
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), span_progenitor("Your mind...! can't--- THINK--"))
 	animate(user, pixel_y = user.pixel_y + 8, time = 6 SECONDS)

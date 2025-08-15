@@ -110,16 +110,16 @@
 	. = ..()
 	owner.balloon_alert(owner, "hwlok'krotho")
 	owner.visible_message(span_warning("[owner] bends over and bellows out a cloud of black smoke!"), span_velvet("You expel a vast cloud of blinding smoke."))
-	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(get_turf(owner)) //hacky
-	B.reagents.clear_reagents() //Just in case!
-	B.invisibility = INFINITY //This ought to do the trick
-	B.reagents.add_reagent(/datum/reagent/darkspawn_darkness_smoke, 50)
-	var/datum/effect_system/fluid_spread/smoke/chem/darkspawn/S = new //it doesn't actually block light anyways, so let's not block vision either
-	S.attach(B)
-	if(S)
-		S.set_up(range, location = B.loc, carry = B.reagents)
-		S.start()
-	qdel(B)
+	var/obj/item/reagent_containers/cup/beaker/large/beak = new /obj/item/reagent_containers/cup/beaker/large(get_turf(owner)) //hacky
+	beak.reagents.clear_reagents() //Just in case!
+	beak.invisibility = INFINITY //This ought to do the trick
+	beak.reagents.add_reagent(/datum/reagent/darkspawn_darkness_smoke, 50)
+	var/datum/effect_system/fluid_spread/smoke/chem/darkspawn/dudespawn = new //it doesn't actually block light anyways, so let's not block vision either
+	dudespawn.attach(beak)
+	if(dudespawn)
+		dudespawn.set_up(range, location = beak.loc, carry = beak.reagents)
+		dudespawn.start()
+	qdel(beak)
 
 //////////////////////////////////////////////////////////////////////////
 //----------------------------Trap abilities----------------------------//

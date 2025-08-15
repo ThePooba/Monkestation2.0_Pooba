@@ -1956,3 +1956,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(HAS_TRAIT(holder, TRAIT_DWARF))
 		return HUMAN_HEIGHT_DWARF
 	return null
+
+/datum/species/proc/on_emp_act(mob/living/carbon/human/H, severity)
+	return

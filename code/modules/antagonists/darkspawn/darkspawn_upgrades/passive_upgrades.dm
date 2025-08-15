@@ -32,7 +32,7 @@
 	var/obj/item/organ/internal/eyes/eyes
 
 /datum/psi_web/xray/on_gain()
-	eyes = shadowhuman.getorganslot(ORGAN_SLOT_EYES)
+	eyes = shadowhuman.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		ADD_TRAIT(eyes.owner, TRAIT_XRAY_VISION, ORGAN_TRAIT)
 		eyes.refresh()
@@ -117,10 +117,10 @@
 	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
 
 /datum/psi_web/noslip/on_gain()
-	ADD_TRAIT(shadowhuman, TRAIT_NOSLIPALL, type)
+	ADD_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
 
 /datum/psi_web/noslip/on_loss()
-	REMOVE_TRAIT(shadowhuman, TRAIT_NOSLIPALL, type)
+	REMOVE_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
 
 //reduces spell cooldowns
 /datum/psi_web/fast_cooldown

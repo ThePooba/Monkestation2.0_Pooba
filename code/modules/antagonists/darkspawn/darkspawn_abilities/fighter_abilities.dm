@@ -373,7 +373,7 @@
 		else
 			SEND_SIGNAL(owner.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, resource_costs)
 	if(active && owner.m_intent != MOVE_INTENT_WALK)
-		owner.toggle_walk_run()
+		owner.set_move_intent(MOVE_INTENT_WALK)
 	return ..()
 
 /datum/action/cooldown/spell/toggle/indomitable/Enable()
@@ -384,7 +384,7 @@
 	owner.move_resist = INFINITY
 	was_running = (owner.m_intent == MOVE_INTENT_RUN)
 	if(was_running)
-		owner.toggle_walk_run()
+		owner.set_move_intent(MOVE_INTENT_WALK)
 
 /datum/action/cooldown/spell/toggle/indomitable/Disable()
 	owner.balloon_alert(owner, "phwo")
@@ -393,7 +393,7 @@
 	owner.remove_traits(traits, type)
 	owner.move_resist = initial(owner.move_resist)
 	if(was_running && owner.m_intent == MOVE_INTENT_WALK)
-		owner.toggle_walk_run()
+		owner.set_move_intent(MOVE_INTENT_RUN)
 
 //////////////////////////////////////////////////////////////////////////
 //-------------------AOE forced movement towards user-------------------//

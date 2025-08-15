@@ -177,7 +177,7 @@
 	in_use = FALSE
 	if(!target)
 		return
-	if(target.macine_stat)
+	if(target.machine_stat)
 		to_chat(owner, span_warning("[target] has lost power."))
 		return
 	SSshuttle.emergency.cancel()
