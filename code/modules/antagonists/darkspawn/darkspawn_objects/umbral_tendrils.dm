@@ -5,8 +5,8 @@
 	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
 	item_state = "umbral_tendrils"
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
 	hitsound = 'sound/magic/darkspawn/pass_attack.ogg'
 	attack_verb = list("impaled", "tentacled", "torn")
 	item_flags = ABSTRACT | DROPDEL

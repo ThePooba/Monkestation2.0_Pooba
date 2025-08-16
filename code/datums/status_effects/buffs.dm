@@ -585,26 +585,3 @@
 	desc = "Your actions are twice as fast, and the delay between them is halved."
 	icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	icon_state = "time_dilation"
-
-/datum/status_effect/speedboost
-	id = "speedboost"
-	duration = 30 SECONDS
-	tick_interval = -1
-	status_type = STATUS_EFFECT_MULTIPLE
-	alert_type = null //might not even be a speedbuff, so don't show it
-	var/identifier //id for the speed boost
-	var/multiplicative_slowdown = null
-
-/datum/status_effect/speedboost/on_creation(mob/living/new_owner, strength, length, identifier)
-	duration = length
-	multiplicative_slowdown = strength
-	src.identifier = identifier
-	. = ..()
-
-/datum/status_effect/speedboost/on_apply()
-	. = ..()
-	if(. && multiplicative_slowdown && identifier)
-		owner.add_movespeed_modifier(identifier, multiplicative_slowdown)
-
-/datum/status_effect/speedboost/on_remove()
-	owner.remove_movespeed_modifier(identifier)

@@ -425,8 +425,8 @@
 	icon_state = "light_eater"
 	inhand_icon_state  = "light_eater"
 	force = 18
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	item_flags = ABSTRACT
 	w_class = WEIGHT_CLASS_HUGE

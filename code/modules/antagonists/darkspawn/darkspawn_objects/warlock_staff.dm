@@ -8,8 +8,8 @@
 	icon_state = "shadow_staff"
 	item_state = "shadow_staff0"
 	base_icon_state = "shadow_staff"
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
 
 	fire_sound = 'sound/weapons/emitter2.ogg'
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL

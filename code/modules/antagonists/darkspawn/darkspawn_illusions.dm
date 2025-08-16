@@ -9,11 +9,11 @@
 	bodytemp_heat_damage_limit = INFINITY
 
 	speed = -1
-	pass_flags_self =  = PASSTABLE | PASSMOB | PASSDOOR | PASSMACHINES | PASSMECH | PASSCOMPUTER | PASSGRILLE | PASSGLASS
+	pass_flags_self = PASSTABLE | PASSMOB | PASSDOORS | PASSMACHINE | PASSMECH | PASSCOMPUTER | PASSGRILLE | PASSGLASS
 
 	attack_sound = 'sound/magic/voidblink.ogg'
 	death_sound = 'sound/magic/darkspawn/devour_will_victim.ogg'
-	attack_text = "gores"
+	attack_verb_simple = "gores"
 	bubble_icon = "darkspawn"
 
 	lighting_cutoff_red = 12

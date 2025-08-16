@@ -3,11 +3,11 @@
 	desc = "A bow made of solid darkness. The arrows it shoots seem to suck light out of the surroundings."
 	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "shadow_caster"
-	item_state = "shadow_caster"
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
-	mag_type = /obj/item/ammo_box/magazine/internal/bow/shadow
-	no_pin_required = TRUE
+	worn_icon_state = "shadow_caster"
+	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/bow/shadow
+	pin = /obj/item/firing_pin/magic
 	recharge_time = 2 SECONDS
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
@@ -17,23 +17,19 @@
 
 // the thing that holds the ammo inside the bow
 /obj/item/ammo_box/magazine/internal/bow/shadow
-	ammo_type = /obj/item/ammo_casing/reusable/arrow/shadow
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/shadow
 
 //the object that appears when the arrow finishes flying
-/obj/item/ammo_casing/reusable/arrow/shadow
+/obj/item/ammo_casing/caseless/arrow/shadow
 	name = "shadow arrow"
 	desc = "it seem to suck light out of the surroundings."
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
-	item_state = "caster_arrow"
-	light_system = MOVABLE_LIGHT
-	light_power = -1
-	light_color = COLOR_VELVET
-	light_range = 2
+	inhand_icon_state = "caster_arrow"
 	embedding = list("embed_chance" = 100, "embedded_fall_chance" = 0) //always embeds if it hits someone
 	projectile_type = /obj/projectile/bullet/reusable/arrow/shadow
 
-/obj/item/ammo_casing/reusable/arrow/shadow/on_land(obj/projectile/old_projectile)
+/obj/item/ammo_casing/caseless/arrow/shadow/despawning(obj/projectile/old_projectile)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(dissipate)), 10 SECONDS, TIMER_UNIQUE)
 
@@ -56,7 +52,6 @@
 	light_power = -1
 	light_color = COLOR_VELVET
 	light_range = 2
-	embed_chance = 1 //always embeds if it hits someone
 
 /obj/projectile/bullet/reusable/arrow/shadow/Initialize(mapload)
 	. = ..()

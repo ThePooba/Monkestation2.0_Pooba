@@ -243,8 +243,7 @@
 	armour_penetration = 100
 	speed = 1
 	damage_type = BRUTE
-	nodamage = FALSE
-	pass_flags = PASSMACHINES | PASSCOMPUTER | PASSTABLE
+	pass_flags_self = PASSMACHINES | PASSCOMPUTER | PASSTABLE
 	range = 10
 
 /obj/projectile/magic/mindblast/Initialize(mapload)
@@ -341,7 +340,7 @@
 
 /datum/action/cooldown/spell/pointed/thrallbuff/heal/empower(mob/living/carbon/target)
 	to_chat(target, span_velvet("You feel healed."))
-	if(target.heal_ordered_damage(heal_amount, list(BURN, BRUTE, TOX, OXY, STAMINA, CLONE, BRAIN), BODYPART_ANY))
+	if(target.heal_ordered_damage(heal_amount, list(BURN, BRUTE, TOX, OXY, STAMINA, CLONE, BRAIN)))
 		new /obj/effect/temp_visual/heal(get_turf(target), COLOR_GREEN) //if it does any healing, spawn a heal visual, maybe it won't blow the cover of a thrall that happens to be full health
 
 ////////////////////////////Temporary speed boost//////////////////////////

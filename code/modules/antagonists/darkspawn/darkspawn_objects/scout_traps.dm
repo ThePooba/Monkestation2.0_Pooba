@@ -4,14 +4,12 @@
 	armed = 1
 	icon_state = "e_snare"
 	trap_damage = 0
-	breakouttime = 30
+	breakouttime = 30 SECONDS
 	item_flags = DROPDEL
 	flags_1 = NONE
-	break_strength = 2
 	slowdown = 4
 	anchored = TRUE
-	gender = FEMALE //lol examine text? (this actually matters, don't change it)
-	trap_damage = 5
+	trap_damage = 7
 
 /obj/item/restraints/legcuffs/beartrap/dark/Initialize(mapload)
 	. = ..()
