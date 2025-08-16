@@ -587,6 +587,7 @@
 	duration = 2
 
 /obj/effect/temp_visual/darkspawn/detonate/Destroy()
+	 . = ..()
 	var/turf/tile_location = get_turf(src)
 	for(var/mob/living/victim in tile_location.contents)
 		if(IS_TEAM_DARKSPAWN(victim))
@@ -594,7 +595,6 @@
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
 			victim.take_overall_damage(10, 50, 200) //skill issue if you don't dodge it (won't crit if you're full hp)
 			victim.emote("scream")
-	return ..()
 
 //////////////////////////////////////////////////////////////////////////
 //-------------------I stole heirophant's burst ability-----------------//

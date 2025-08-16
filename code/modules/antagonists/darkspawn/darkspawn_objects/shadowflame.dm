@@ -19,12 +19,19 @@
 	var/temperature = 0
 
 /datum/status_effect/fire_handler/shadowflame/on_apply()
+	var/obj/effect/dummy/lighting_obj/moblight/shadowflame/mob_light_obj = living_holder.mob_light(2)
+	LAZYSET(mobs_affected, living_holder, mob_light_obj)
+	RegisterSignal(living_holder, COMSIG_QDELETING, PROC_REF(on_living_holder_deletion), override = TRUE)
 	. = ..()
-	owner.add_emitter(/obj/emitter/fire/shadow, "shadowflame")
 
 /datum/status_effect/fire_handler/shadowflame/on_remove()
-	owner.remove_emitter("shadowflame")
+	UnregisterSignal(living_holder, COMSIG_QDELETING)
+	var/obj/effect/dummy/lighting_obj/moblight/shadowflame/mob_light_obj = LAZYACCESS(mobs_affected, living_holder)
+	LAZYREMOVE(mobs_affected, living_holder)
+	if(mob_light_obj)
+		qdel(mob_light_obj)
 	return ..()
+
 
 /datum/status_effect/fire_handler/shadowflame/tick(delta_time, times_fired)
 	adjust_stacks(-0.75 * delta_time SECONDS) //change this number to make it last a shorter duration
