@@ -26,6 +26,13 @@
 	addtimer(CALLBACK(src, PROC_REF(recharge_bolt)), recharge_time)
 	recharge_time = initial(recharge_time)
 
+/// Recharges a bolt, done after the delay in shoot_live_shot
+/obj/item/gun/ballistic/bow/shadow_caster/proc/recharge_bolt()
+	var/obj/item/ammo_casing/caseless/arrow/shadow/bolt = new
+	magazine.give_round(bolt)
+	chambered = bolt
+	update_icon()
+
 // the thing that holds the ammo inside the bow
 /obj/item/ammo_box/magazine/internal/bow/shadow
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/shadow
@@ -39,10 +46,6 @@
 	inhand_icon_state = "caster_arrow"
 	embedding = list("embed_chance" = 100, "embedded_fall_chance" = 0) //always embeds if it hits someone
 	projectile_type = /obj/projectile/energy/shadow_arrow
-
-/obj/item/ammo_casing/caseless/arrow/shadow/despawning(obj/projectile/old_projectile)
-	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(dissipate)), 10 SECONDS, TIMER_UNIQUE)
 
 /obj/item/ammo_casing/reusable/arrow/shadow/proc/dissipate()
 	if(QDELETED(src))

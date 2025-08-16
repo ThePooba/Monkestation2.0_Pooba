@@ -19,7 +19,7 @@
 			return INITIALIZE_HINT_QDEL
 	deltimer(action_timer)
 	action_timer = addtimer(CALLBACK(src, PROC_REF(animate_grab)), 0.7 SECONDS, TIMER_STOPPABLE)
-	.()
+	..()
 
 /obj/effect/goliath_tentacle/darkspawn/grab()
 	for (var/mob/living/victim in loc)

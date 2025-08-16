@@ -17,7 +17,7 @@
 	//movement variables
 	movement_type = FLYING
 	speed = 0
-	pass_flags = PASSTABLE | PASSMOB | PASSDOORS | PASSMACHINES | PASSMECH | PASSCOMPUTER
+	pass_flags = PASSTABLE | PASSMOB | PASSDOORS | PASSMACHINE | PASSMECH | PASSCOMPUTER
 
 	//combat variables
 	harm_intent_damage = 5

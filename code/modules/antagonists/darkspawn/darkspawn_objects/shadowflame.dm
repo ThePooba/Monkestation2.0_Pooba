@@ -52,9 +52,6 @@
 	icon_state = "white_big"
 	layer = GASFIRE_LAYER
 	light_system = MOVABLE_LIGHT //we make it a movable light because static lights colour is handled weirdly
-	light_power = -1
-	light_range = LIGHT_RANGE_FIRE
-	light_color = COLOR_VELVET
 	color = COLOR_DARKSPAWN_PSI
 	mouse_opacity = FALSE
 	duration = 10 SECONDS
@@ -62,6 +59,7 @@
 /obj/effect/temp_visual/darkspawn/shadowflame/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
+	src.set_light(l_outer_range = -1, l_power = -1, l_color = COLOR_VELVET)
 
 /obj/effect/temp_visual/darkspawn/shadowflame/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)

@@ -290,9 +290,9 @@
 			if(D)
 				qdel(D)
 		else if(D)
-				D.duration = world.time + amount
-			else
-				D = apply_status_effect(STATUS_EFFECT_DAZED, amount, updating)
+			D.duration = world.time + amount
+		else
+			D = apply_status_effect(STATUS_EFFECT_DAZED, amount, updating)
 		return D
 
 /mob/living/proc/AdjustDaze(amount, updating = TRUE, ignore_canstun = FALSE) //Adds to remaining duration

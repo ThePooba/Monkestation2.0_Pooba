@@ -38,7 +38,7 @@
 /obj/item/umbral_tendrils/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()
 	if(isinhands)
-		. += emissive_appearance(icon_file, "[item_state]_emissive", src)
+		. += emissive_appearance(icon_file, "[inhand_icon_state]_emissive", src)
 
 /obj/item/umbral_tendrils/examine(mob/user)
 	. = ..()

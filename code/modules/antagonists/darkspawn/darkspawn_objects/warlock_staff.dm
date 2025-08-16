@@ -50,6 +50,7 @@
 	AddComponent(/datum/component/two_handed, \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+		icon_wielded="[base_icon_state]1"
 	)
 
 /obj/item/gun/magic/darkspawn/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
@@ -73,19 +74,14 @@
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_wield() //guns do weird things to some of the icon procs probably, and i can't find which ones, so i need to do this all again
-	inhand_icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
-	if(ishuman(loc))
-		var/mob/living/carbon/human/C = loc
-		C.update_inv_hands()
 	block_chance = 40
 
 /obj/item/gun/magic/darkspawn/proc/on_unwield()
-	inhand_icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
-	if(ishuman(loc))
-		var/mob/living/carbon/human/C = loc
-		C.update_inv_hands()
 	block_chance = 20
 
+/obj/item/gun/magic/darkspawn/update_icon_state()
+	icon_state = "[base_icon_state]0"
+	return ..()
 ////////////////////////INFINITE AMMO////////////////////////// (some psi required)
 /obj/item/gun/magic/darkspawn/can_shoot()
 	psi_cost = initial(psi_cost)
