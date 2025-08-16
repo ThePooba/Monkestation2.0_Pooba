@@ -44,24 +44,15 @@
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
 	inhand_icon_state = "caster_arrow"
-	embedding = list("embed_chance" = 100, "embedded_fall_chance" = 0) //always embeds if it hits someone
+	embedding = list("embed_chance" = 20, "embedded_fall_chance" = 0) //always embeds if it hits someone
 	projectile_type = /obj/projectile/energy/shadow_arrow
-
-/obj/item/ammo_casing/reusable/arrow/shadow/proc/dissipate()
-	if(QDELETED(src))
-		return
-	if(iscarbon(loc)) //if it's embedded, remove the embedding properly or it'll cause funkiness
-		var/mob/living/carbon/holder = loc
-		if(holder.get_embedded_part(src))
-			holder.remove_embedded_object(src, get_turf(holder), TRUE, TRUE, FALSE)
-	qdel(src)
 
 //the projectile being shot from the bow
 /obj/projectile/energy/shadow_arrow
 	name = "shadow arrow"
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
-	damage = 25 //reduced damage per arrow compared to regular ones
+	damage = 20 //reduced damage per arrow compared to regular ones
 
 /obj/projectile/bullet/reusable/arrow/shadow/Initialize(mapload)
 	. = ..()

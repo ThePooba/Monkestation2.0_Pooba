@@ -323,12 +323,12 @@
 				cooling = -rand(5,20)
 		if(15 to 25)
 			cooling *= 2
-				if(isslime())
-					cooling = -rand(10,20)
+			if(isslime())
+				cooling = -rand(10,20)
 		if(25 to 35)
 			cooling *= 3
-				if(isslime())
-					cooling = -rand(15,20)
+			if(isslime())
+				cooling = -rand(15,20)
 			if(prob(1))
 				affected_mob.emote("shiver")
 		if(35 to INFINITY)

@@ -56,10 +56,10 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	///the bow spawned by the ability
-	var/obj/item/gun/ballistic/bow/energy/shadow_caster/bow
+	var/obj/item/gun/ballistic/bow/shadow_caster/bow
 
 /datum/action/cooldown/spell/toggle/shadow_caster/process()
-	active = owner.is_holding_item_of_type(/obj/item/gun/ballistic/bow/energy/shadow_caster)
+	active = owner.is_holding_item_of_type(/obj/item/gun/ballistic/bow/shadow_caster)
 	return ..()
 
 /datum/action/cooldown/spell/toggle/shadow_caster/can_cast_spell(feedback)

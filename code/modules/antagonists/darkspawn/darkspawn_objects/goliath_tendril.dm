@@ -7,7 +7,6 @@
 	light_power = -1
 	light_outer_range = 1
 	light_color = COLOR_VELVET
-	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
 
 /obj/effect/goliath_tentacle/darkspawn/original/proc/Initialize(mapload)
 	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)

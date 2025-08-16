@@ -243,7 +243,7 @@
 	armour_penetration = 100
 	speed = 1
 	damage_type = BRUTE
-	pass_flags_self = PASSMACHINE | PASSCOMPUTER | PASSTABLE
+	pass_flags_self = PASSMACHINE | PASSTABLE
 	range = 10
 
 /obj/projectile/magic/mindblast/Initialize(mapload)
@@ -400,7 +400,7 @@
 	target.revive(TRUE)
 	target.SetAllImmobility(0, TRUE)
 	target.resting = FALSE
-	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 15 SECONDS, type)
+	target.apply_status_effect(/datum/status_effect/speed_boost, -0.5, 15 SECONDS, type)
 	target.visible_message(span_danger("Streaks of velvet light crack out of [target]'s skin."), span_velvet("Power roars through you like a raging storm, pushing you to your absolute limits."))
 	var/obj/item/cuffs = target.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/item/legcuffs = target.get_item_by_slot(ITEM_SLOT_LEGCUFFED)

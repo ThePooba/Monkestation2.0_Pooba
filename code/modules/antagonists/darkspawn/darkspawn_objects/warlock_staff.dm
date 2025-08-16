@@ -50,8 +50,7 @@
 	AddComponent(/datum/component/two_handed, \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
-		icon_wielded="[base_icon_state]1"
-	)
+		icon_wielded ="[base_icon_state]1")
 
 /obj/item/gun/magic/darkspawn/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()
@@ -112,7 +111,7 @@
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "staff_blast"
 	damage = 0
-	pass_flags = PASSTABLE | PASSMACHINE | PASSCOMPUTER
+	pass_flags = PASSTABLE | PASSMACHINE
 	damage_type = STAMINA
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	speed = 2 //watch out, it fucks you up
