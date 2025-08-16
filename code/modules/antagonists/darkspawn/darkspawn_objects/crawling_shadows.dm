@@ -17,7 +17,7 @@
 	//movement variables
 	movement_type = FLYING
 	speed = 0
-	pass_flags = PASSTABLE | PASSMOB | PASSDOOR | PASSMACHINES | PASSMECH | PASSCOMPUTER
+	pass_flags = PASSTABLE | PASSMOB | PASSDOORS | PASSMACHINES | PASSMECH | PASSCOMPUTER
 
 	//combat variables
 	harm_intent_damage = 5
@@ -37,7 +37,7 @@
 
 	//attack flavour
 	speak_emote = list("whispers")
-	attack_text_simple = "assails"
+	attack_verb_simple = "assails"
 	attack_sound = 'sound/magic/voidblink.ogg'
 	response_help_simple = "disturbs"
 	response_harm_simple = "flails at"

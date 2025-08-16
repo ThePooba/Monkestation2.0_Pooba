@@ -243,7 +243,7 @@
 	armour_penetration = 100
 	speed = 1
 	damage_type = BRUTE
-	pass_flags_self = PASSMACHINES | PASSCOMPUTER | PASSTABLE
+	pass_flags_self = PASSMACHINE | PASSCOMPUTER | PASSTABLE
 	range = 10
 
 /obj/projectile/magic/mindblast/Initialize(mapload)
@@ -355,7 +355,7 @@
 
 /datum/action/cooldown/spell/pointed/thrallbuff/speed/empower(mob/living/carbon/target)
 	to_chat(target, span_velvet("You feel fast."))
-	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, speed_strength, buff_duration, type)
+	target.apply_status_effect(/datum/status_effect/speed_boost, speed_strength, buff_duration, type)
 
 //////////////////////////////////////////////////////////////////////////
 //----------------Single target global ally giga buff-------------------//
@@ -449,7 +449,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/nightvision/Enable()
-	var/obj/item/organ/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/internal/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.color_cutoffs = list(12, 0, 50)
 		eyes.lighting_cutoff = LIGHTING_CUTOFF_HIGH
@@ -458,7 +458,7 @@
 		owner.lighting_cutoff = LIGHTING_CUTOFF_HIGH
 
 /datum/action/cooldown/spell/toggle/nightvision/Disable()
-	var/obj/item/organ/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/internal/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.color_cutoffs = list(0, 0, 0)
 		eyes.lighting_cutoff = 0

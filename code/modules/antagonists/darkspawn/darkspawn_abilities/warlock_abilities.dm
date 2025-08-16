@@ -153,7 +153,7 @@
 	if(!istype(cast_on, /obj/machinery/power/apc))
 		return FALSE
 	var/obj/machinery/power/apc/target = cast_on
-	if(target.stat_machine & BROKEN)
+	if(target.machine_stat & BROKEN)
 		to_chat(owner, span_danger("This [target] no longer functions enough for access to the power grid."))
 		return FALSE
 	return TRUE
@@ -175,7 +175,7 @@
 		target.visible_message(span_warning("The [target] begins glowing brightly!"))
 		return FALSE
 
-	if(target.stat_machine & BROKEN)
+	if(target.machine_stat & BROKEN)
 		to_chat(owner, span_danger("This [target] no longer functions enough for access to the power grid."))
 		return FALSE
 

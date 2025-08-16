@@ -13,7 +13,6 @@
 	plural_form = "Shadowpeople"
 	id = SPECIES_SHADOW
 	sexes = 0
-	bubble_icon = "darkspawn"
 	inherent_traits = list(
 		TRAIT_NOBREATH,
 		TRAIT_RADIMMUNE,

@@ -159,7 +159,7 @@
 	to_chat(owner, span_progenitor("Krx'lna tyhx graha xthl'kap" ))
 
 	var/list/flavour = list()
-	if(ispreternis(owner.current))
+	if(isipc(owner.current))
 		flavour += "You feel the warm consciousness welcome your own. Realization spews forth as the veil recedes."
 	else
 		flavour += "You feel the vast consciousness slowly consume your own and the veil falls away."

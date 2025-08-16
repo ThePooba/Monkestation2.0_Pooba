@@ -1,4 +1,4 @@
-/obj/item/gun/ballistic/bow/energy/shadow_caster
+/obj/item/gun/ballistic/bow/shadow_caster
 	name = "shadow caster"
 	desc = "A bow made of solid darkness. The arrows it shoots seem to suck light out of the surroundings."
 	icon = 'icons/obj/darkspawn_items.dmi'
@@ -8,12 +8,23 @@
 	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/bow/shadow
 	pin = /obj/item/firing_pin/magic
-	recharge_time = 2 SECONDS
+	var/recharge_time = 2 SECONDS
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
-/obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
+/obj/item/gun/ballistic/bow/shadow_caster/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+
+/obj/item/gun/ballistic/bow/shadow_caster/afterattack(atom/target, mob/living/user, flag, params, passthrough)
+	if(!drawn || !chambered)
+		to_chat(user, span_notice("[src] must be drawn to fire a shot!"))
+		return
+	return ..()
+
+/obj/item/gun/ballistic/bow/shadow_caster/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(recharge_bolt)), recharge_time)
+	recharge_time = initial(recharge_time)
 
 // the thing that holds the ammo inside the bow
 /obj/item/ammo_box/magazine/internal/bow/shadow
@@ -27,7 +38,7 @@
 	icon_state = "caster_arrow"
 	inhand_icon_state = "caster_arrow"
 	embedding = list("embed_chance" = 100, "embedded_fall_chance" = 0) //always embeds if it hits someone
-	projectile_type = /obj/projectile/bullet/reusable/arrow/shadow
+	projectile_type = /obj/projectile/energy/shadow_arrow
 
 /obj/item/ammo_casing/caseless/arrow/shadow/despawning(obj/projectile/old_projectile)
 	. = ..()
@@ -43,15 +54,11 @@
 	qdel(src)
 
 //the projectile being shot from the bow
-/obj/projectile/bullet/reusable/arrow/shadow
+/obj/projectile/energy/shadow_arrow
 	name = "shadow arrow"
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
 	damage = 25 //reduced damage per arrow compared to regular ones
-	light_system = MOVABLE_LIGHT
-	light_power = -1
-	light_color = COLOR_VELVET
-	light_range = 2
 
 /obj/projectile/bullet/reusable/arrow/shadow/Initialize(mapload)
 	. = ..()

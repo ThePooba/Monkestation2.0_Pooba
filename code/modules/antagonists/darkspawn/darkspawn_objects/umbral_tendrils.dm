@@ -4,11 +4,11 @@
 	desc = "A mass of pulsing, chitonous tendrils with exposed violet flesh."
 	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
-	item_state = "umbral_tendrils"
+	inhand_icon_state = "umbral_tendrils"
 	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
 	hitsound = 'sound/magic/darkspawn/pass_attack.ogg'
-	attack_verb = list("impaled", "tentacled", "torn")
+	attack_verb_simple = list("impaled", "tentacled", "torn")
 	item_flags = ABSTRACT | DROPDEL
 	sharpness = SHARP_EDGED
 	force = 25
@@ -70,7 +70,7 @@
 		return
 	if(!(user.mind && SEND_SIGNAL(user.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, 30)))
 		return
-	if(isliving(target) && target.lying)
+	if(isliving(target) && (target.body_position== LYING_DOWN))
 		to_chat(user, span_warning("[target] is already knocked down!"))
 		return
 	SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = 30))
@@ -90,7 +90,6 @@
 	hitsound = 'sound/magic/darkspawn/pass_attack.ogg'
 	layer = LARGE_MOB_LAYER
 	damage = 0
-	nodamage = TRUE
 	speed = 1
 	range = 5
 	var/twinned = FALSE
@@ -105,6 +104,7 @@
 	. = ..()
 
 /obj/projectile/umbral_tendrils/on_hit(atom/movable/target, blocked = FALSE, pierce_hit)
+	..()
 	if(blocked >= 100)
 		return
 	. = TRUE

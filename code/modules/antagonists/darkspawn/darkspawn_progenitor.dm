@@ -41,7 +41,7 @@
 
 	//flavour
 	attack_sound = 'sound/creatures/darkspawn/progenitor_attack.ogg'
-	attack_simple= "rends"
+	attack_verb_simple = "rends"
 	friendly_verb_simple = "stares down"
 	speech_span = SPAN_PROGENITOR //pretty sure this is how i'd go about doing this, hopefully
 	faction = list("darkspawn")
@@ -213,4 +213,4 @@
 		return
 	var/zoinks = rand(1, 50) / 100 //like, this isn't even my final form!
 	owner.visible_message(span_warning("[owner]'s sigils flare as it glances at [target]!"), span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!"))
-	target.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)
+	target.apply_status_effect(/datum/status_effect/progenitor_curse)

@@ -4,7 +4,7 @@
 /obj/effect/dummy/lighting_obj/moblight/shadowflame
 	name = "fire"
 	light_power = -1
-	light_range = LIGHT_RANGE_FIRE
+	light_outer_range = LIGHT_RANGE_FIRE
 	light_color = COLOR_VELVET
 
 /datum/status_effect/fire_handler/shadowflame
@@ -36,15 +36,15 @@
 		return
 
 	var/mob/living/carbon/human/victim = owner
-	var/thermal_multiplier = 1 - victim.get_cold_protection(temperature)
+	var/thermal_multiplier = 1 - victim.get_insulation(temperature)
 
-	var/calculated_cooling = (BODYTEMP_COOLING_MAX - (stacks * 12)) * 0.5 * (delta_time SECONDS) * thermal_multiplier
+	var/calculated_cooling = (BODYTEMP_ENVIRONMENT_COOLING_MAX  - (stacks * 12)) * 0.5 * (delta_time SECONDS) * thermal_multiplier
 	victim.adjust_bodytemperature(calculated_cooling, temperature)
 
 	if(HAS_TRAIT(victim, TRAIT_RESISTCOLD) || !calculated_cooling)
-		SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
+		victim.add_mood_event("on_fire", /datum/mood_event/on_fire)
 	else
-		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
+		victim.clear_mood_event("on_fire")
 
 /// Cold purple turf fire
 /obj/effect/temp_visual/darkspawn/shadowflame
@@ -71,7 +71,3 @@
 	var/turf/placement = get_turf(src)
 	for(var/mob/living/target_mob in placement.contents)
 		target_mob.set_wet_stacks(20, /datum/status_effect/fire_handler/shadowflame)
-
-/obj/emitter/fire/shadow
-	pixel_y = -16 //so it aligns with the floor
-	fire_colour = COLOR_VELVET

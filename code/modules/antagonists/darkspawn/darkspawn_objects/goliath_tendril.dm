@@ -9,7 +9,7 @@
 	light_color = COLOR_VELVET
 	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
 
-/obj/effect/goliath_tentacle/darkspawn/original/Initialize(mapload)
+/obj/effect/goliath_tentacle/darkspawn/original/proc/Initialize(mapload)
 	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 	if (!isopenturf(loc) || isspaceturf(loc) || isopenspaceturf(loc))
 		return INITIALIZE_HINT_QDEL
@@ -19,6 +19,7 @@
 			return INITIALIZE_HINT_QDEL
 	deltimer(action_timer)
 	action_timer = addtimer(CALLBACK(src, PROC_REF(animate_grab)), 0.7 SECONDS, TIMER_STOPPABLE)
+	.()
 
 /obj/effect/goliath_tentacle/darkspawn/grab()
 	for (var/mob/living/victim in loc)
