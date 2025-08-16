@@ -94,12 +94,12 @@
 			for(var/obj/item/implant/mindshield/L in target)
 				qdel(L)
 
-	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
+	playsound(owner, 'sound/ambience/antag/darkspawn/veil_mind_gasp.ogg', 25)
 
 	if(!do_after(owner, 2 SECONDS, target))
 		return FALSE
 
-	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
+	playsound(owner, 'sound/ambience/antag/darkspawn/veil_mind_scream.ogg', 100)
 	if(IS_THRALL(target))
 		owner.balloon_alert(owner, "...tia")
 		to_chat(owner, span_velvet("You revitalize your thrall [target.real_name]."))
@@ -408,7 +408,7 @@
 	if(target.handcuffed || target.legcuffed)
 		target.clear_cuffs(cuffs, TRUE, TRUE)
 		target.clear_cuffs(legcuffs, TRUE, TRUE)
-	playsound(get_turf(target),'yogstation/sound/creatures/darkspawn_death.ogg', 80, 1)
+	playsound(get_turf(target),'sound/creatures/darkspawn/darkspawn_death.ogg', 80, 1)
 	var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(owner)
 	if(darkspawn)
 		darkspawn.block_psi(1 MINUTES, type)

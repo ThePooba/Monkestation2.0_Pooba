@@ -82,7 +82,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 60)
 	cooldown_time = 30 SECONDS
-	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
+	sound = 'sound/ambience/antag/darkspawn/veil_mind_gasp.ogg'
 	aoe_radius = 6
 	///Secret item stored in the ability to hit things with to trigger light eater
 	var/obj/item/darkspawn_extinguish/bopper
@@ -334,7 +334,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 30)
 	cooldown_time = 30 SECONDS
-	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
+	sound = 'sound/ambience/antag/darkspawn/veil_mind_scream.ogg'
 	aoe_radius = 7
 	///how many times it hallucinates (1 per second)
 	var/hallucination_triggers = 3

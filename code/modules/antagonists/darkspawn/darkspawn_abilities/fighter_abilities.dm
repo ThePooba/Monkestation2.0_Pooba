@@ -203,7 +203,7 @@
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	sound = 'yogstation/sound/creatures/darkspawn_howl.ogg'
+	sound = 'sound/creatures/darkspawn/darkspawn_howl.ogg'
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 75)
 
 /datum/action/cooldown/spell/time_dilation/can_cast_spell(feedback)
@@ -406,7 +406,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "incite"
-	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
+	sound = 'sound/ambience/antag/darkspawn/veil_mind_scream.ogg'
 	panel = "Darkspawn"
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS

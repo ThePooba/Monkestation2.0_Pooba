@@ -603,7 +603,7 @@
 
 /datum/status_effect/speedboost/on_apply()
 	. = ..()
-	if(. && multiplicitive_slowdown && identifier)
+	if(. && multiplicative_slowdown && identifier)
 		owner.add_movespeed_modifier(identifier, multiplicative_slowdown)
 
 /datum/status_effect/speedboost/on_remove()

@@ -9,13 +9,12 @@
 	bodytemp_heat_damage_limit = INFINITY
 
 	speed = -1
-	pass_flags = PASSTABLE | PASSMOB | PASSDOOR | PASSMACHINES | PASSMECH | PASSCOMPUTER | PASSGRILLE | PASSGLASS
-	ventcrawler = TRUE
+	pass_flags_self =  = PASSTABLE | PASSMOB | PASSDOOR | PASSMACHINES | PASSMECH | PASSCOMPUTER | PASSGRILLE | PASSGLASS
 
 	attack_sound = 'sound/magic/voidblink.ogg'
-	deathsound = 'sound/magic/darkspawn/devour_will_victim.ogg'
-	attacktext = "gores"
-	bubble_icon = BUBBLE_DARKSPAWN
+	death_sound = 'sound/magic/darkspawn/devour_will_victim.ogg'
+	attack_text = "gores"
+	bubble_icon = "darkspawn"
 
 	lighting_cutoff_red = 12
 	lighting_cutoff_green = 0
@@ -26,6 +25,7 @@
 /mob/living/simple_animal/hostile/illusion/darkspawn/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/light_eater)
+	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 	grant_language(/datum/language/darkspawn)
 
 /mob/living/simple_animal/hostile/illusion/darkspawn/Life(seconds_per_tick, times_fired)

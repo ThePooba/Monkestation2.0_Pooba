@@ -151,7 +151,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(!user) //sanity check
 		return
 
-	user.playsound_local(get_turf(user), 'yogstation/sound/ambience/antag/darkspawn.ogg', 50, FALSE)
+	user.playsound_local(get_turf(user), 'sound/ambience/antag/darkspawn/darkspawn.ogg', 50, FALSE)
 
 	var/list/report = list()
 	report += span_progenitor("You are a darkspawn!")
@@ -296,7 +296,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 			if(!revive_notice)
 				deadguy.visible_message(span_notice("[deadguy]'s body twitches."), span_progenitor("Your body lurches as it refuses to be stopped by death."))
 				revive_notice = TRUE
-			deadguy.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN), BODYPART_ANY)
+			deadguy.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE, BRAIN))
 			if(deadguy.health >= deadguy.maxHealth)
 				deadguy.grab_ghost()
 				deadguy.revive(TRUE)
@@ -451,7 +451,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		owner.current.gib(TRUE)
 	H.visible_message(span_boldwarning("[H]'s skin begins to slough off in sheets!"), \
 	span_userdanger("You can't maintain your disguise any more! It begins sloughing off!"))
-	playsound(H, 'yogstation/sound/creatures/darkspawn_force_divulge.ogg', 50, FALSE)
+	playsound(H, 'sound/creatures/darkspawn/darkspawn_force_divulge.ogg', 50, FALSE)
 	H.do_jitter_animation(1000)
 	var/processed_message = span_progenitor("\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.")
 	for(var/mob/M in GLOB.player_list)
@@ -469,7 +469,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(!user || !istype(user))//sanity check
 		return
 
-	user.status_flags |= GODMODE
+	user.status_flags |= TRAIT_GODMODE
 
 	if(!GLOB.sacrament_done)
 		GLOB.sacrament_done = TRUE
@@ -477,12 +477,10 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 		shatter_lights()
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
-		set_starlight(COLOR_VELVET) //i wanna change power and range, but that causes immense lag
+	//	set_starlight(COLOR_VELVET) //i wanna change power and range, but that causes immense lag
 		to_chat(world, span_velvet("Reality begins to quake and crack at the seams."))
 		addtimer(CALLBACK(src, PROC_REF(start_overlay)), 15 SECONDS)
 		SEND_GLOBAL_SIGNAL(COMSIG_DARKSPAWN_ASCENSION)
-
-	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
 
 	for(var/datum/action/cooldown/spell/spells in user.actions) //they'll have progenitor specific abilities
 		spells.Remove(user)
@@ -561,7 +559,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		picked_class.refresh_powers()
 
 	playsound(returner, 'sound/magic/darkspawn/divulge_end.ogg', 50, 0)
-	playsound(returner, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, 0)
+	playsound(returner, 'sound/creatures/darkspawn/darkspawn_death.ogg', 50, 0)
 
 	var/processed_message = span_progenitor("<b>\[Mindlink\] [returner] has reformed their body.</b>")
 	for(var/T in GLOB.alive_mob_list)
@@ -724,12 +722,12 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		return FALSE
 	return mind.remove_antag_datum(/datum/antagonist/darkspawn)
 
-/mob/living/proc/add_thrall_darkspawn()
+/mob/living/proc/add_thrall()
 	if(!istype(mind))
 		return FALSE
 	return mind.add_antag_datum(/datum/antagonist/thrall_darkspawn)
 
-/mob/living/proc/remove_thrall_darkspawn()
+/mob/living/proc/remove_thrall()
 	if(!istype(mind))
 		return FALSE
 	return mind.remove_antag_datum(/datum/antagonist/thrall_darkspawn)
