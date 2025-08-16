@@ -8,11 +8,10 @@
 	light_outer_range = 1
 	light_color = COLOR_VELVET
 
-/obj/effect/goliath_tentacle/darkspawn/original/proc/Initialize(mapload)
+/obj/effect/goliath_tentacle/darkspawn/original/Initialize(mapload)
 	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 	if (!isopenturf(loc) || isspaceturf(loc) || isopenspaceturf(loc))
 		return INITIALIZE_HINT_QDEL
-	var/list/turf/turfs = circle_range_turfs(get_turf(src), 2)
 	for (var/obj/effect/goliath_tentacle/tentacle in loc)
 		if (tentacle != src)
 			return INITIALIZE_HINT_QDEL

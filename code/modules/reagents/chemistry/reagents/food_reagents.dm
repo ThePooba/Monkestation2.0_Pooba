@@ -319,15 +319,15 @@
 	var/cooling = -10 * TEMPERATURE_DAMAGE_COEFFICIENT
 	switch(current_cycle)
 		if(1 to 15)
-			if(isslime())
+			if(isslime(affected_mob))
 				cooling = -rand(5,20)
 		if(15 to 25)
 			cooling *= 2
-			if(isslime())
+			if(isslime(affected_mob))
 				cooling = -rand(10,20)
 		if(25 to 35)
 			cooling *= 3
-			if(isslime())
+			if(isslime(affected_mob))
 				cooling = -rand(15,20)
 			if(prob(1))
 				affected_mob.emote("shiver")

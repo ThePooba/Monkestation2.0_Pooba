@@ -312,7 +312,7 @@
 	button_icon_state = "abyssal_call"
 	cast_range = 10
 	cast_time = 0
-	object_type = /obj/effect/temp_visual/goliath_tentacle/darkspawn/original
+	object_type = /obj/effect/goliath_tentacle/darkspawn/original
 	cooldown_time = 10 SECONDS
 	can_density = TRUE
 	language_final = "Xylt'he kkxla'thamara"
@@ -441,7 +441,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 80)
 	cooldown_time = 60 SECONDS
-	length = 5 SECONDS
+	//length = 5 SECONDS
 
 /datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
 	. = ..()
@@ -587,14 +587,13 @@
 	duration = 2
 
 /obj/effect/temp_visual/darkspawn/detonate/Destroy()
-	 . = ..()
+	. = ..()
 	var/turf/tile_location = get_turf(src)
 	for(var/mob/living/victim in tile_location.contents)
 		if(IS_TEAM_DARKSPAWN(victim))
 			victim.heal_ordered_damage(90, list(BURN, BRUTE, TOX, OXY, CLONE, STAMINA))
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
 			victim.take_overall_damage(10, 50, 200) //skill issue if you don't dodge it (won't crit if you're full hp)
-			victim.emote("scream")
 
 //////////////////////////////////////////////////////////////////////////
 //-------------------I stole heirophant's burst ability-----------------//

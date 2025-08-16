@@ -246,12 +246,12 @@
 	mutantears = /obj/item/organ/internal/ears/darkspawn
 
 	bodypart_overrides = list(
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/darkspawn,
-		BODY_ZONE_CHEST = /obj/item/bodypart/chest/darkspawn,
-		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/darkspawn,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/darkspawn,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/darkspawn,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/darkspawn,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/shadow/darkspawn,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/shadow/darkspawn,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/shadow/darkspawn,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/shadow/darkspawn,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/shadow/darkspawn,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/shadow/darkspawn,
 	)
 
 	powerful_heal = TRUE
@@ -272,7 +272,7 @@
 			H.physiology.stamina_mod = antag.stam_mod
 
 /datum/species/shadow/darkspawn/spec_death(gibbed, mob/living/carbon/human/H)
-	playsound(H, '/sound/creatures/darkspawn/darkspawn_death.ogg', 50, FALSE)
+	playsound(H, 'sound/creatures/darkspawn/darkspawn_death.ogg', 50, FALSE)
 
 /datum/species/shadow/darkspawn/check_roundstart_eligible()
 	return FALSE

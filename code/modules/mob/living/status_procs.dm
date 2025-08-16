@@ -262,7 +262,7 @@
 
 ///////////////////////////////// DAZED //////////////////////////////////
 /mob/living/proc/IsDazed() //If we're dazed
-	return has_status_effect(/datum/status_effect/dazed)
+	return has_status_effect(/datum/status_effect/incapacitating/dazed)
 
 /mob/living/proc/AmountDazed() //How many deciseconds remain in our dazed status effect
 	var/datum/status_effect/incapacitating/dazed/D = IsDazed(FALSE)
@@ -278,7 +278,7 @@
 		if(D)
 			D.duration = max(world.time + amount, D.duration)
 		else if(amount > 0)
-			D = apply_status_effect(/datum/status_effect/dazed, amount, updating)
+			D = apply_status_effect(/datum/status_effect/incapacitating/dazed, amount, updating)
 		return D
 
 /mob/living/proc/SetDaze(amount, updating = TRUE, ignore_canstun = FALSE) //Sets remaining duration
@@ -292,7 +292,7 @@
 		else if(D)
 			D.duration = world.time + amount
 		else
-			D = apply_status_effect(STATUS_EFFECT_DAZED, amount, updating)
+			D = apply_status_effect(/datum/status_effect/incapacitating/dazed, amount, updating)
 		return D
 
 /mob/living/proc/AdjustDaze(amount, updating = TRUE, ignore_canstun = FALSE) //Adds to remaining duration
@@ -303,7 +303,7 @@
 		if(D)
 			D.duration += amount
 		else if(amount > 0)
-			D = apply_status_effect(/datum/status_effect/dazed, amount, updating)
+			D = apply_status_effect(/datum/status_effect/incapacitating/dazed, amount, updating)
 		return D
 
 /* INCAPACITATED */

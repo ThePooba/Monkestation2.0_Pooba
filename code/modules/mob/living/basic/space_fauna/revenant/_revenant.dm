@@ -372,7 +372,6 @@
 
 	for(var/obj/effect/decal/cleanable/food/salt/S in destination)
 		to_chat(src, span_warning("[S] bars your passage!"))
-		var/mob/living/basic/revenant/R = src
 		apply_status_effect(/datum/status_effect/revenant/revealed, 2 SECONDS)
 		apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 		return FALSE
