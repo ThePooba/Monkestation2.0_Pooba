@@ -72,6 +72,7 @@
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_wield() //guns do weird things to some of the icon procs probably, and i can't find which ones, so i need to do this all again
+	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
 	block_chance = 40
 
 /obj/item/gun/magic/darkspawn/proc/on_unwield()
