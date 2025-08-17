@@ -2,8 +2,9 @@
 	name = "shadow caster"
 	desc = "A bow made of solid darkness. The arrows it shoots seem to suck light out of the surroundings."
 	icon = 'icons/obj/darkspawn_items.dmi'
+	inhand_icon_state = "shadow_caster"
+	base_icon_state = "shadow_caster"
 	icon_state = "shadow_caster"
-	worn_icon_state = "shadow_caster"
 	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/bow/shadow
@@ -19,6 +20,8 @@
 	if(!drawn || !chambered)
 		to_chat(user, span_notice("[src] must be drawn to fire a shot!"))
 		return
+	drawn = TRUE
+	playsound(src, 'sound/weapons/draw_bow.ogg', 75, 0) //gets way too high pitched if the freq varies
 	return ..()
 
 /obj/item/gun/ballistic/bow/shadow_caster/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
@@ -31,7 +34,6 @@
 	var/obj/item/ammo_casing/caseless/arrow/shadow/bolt = new
 	magazine.give_round(bolt)
 	chambered = bolt
-	update_icon()
 
 // the thing that holds the ammo inside the bow
 /obj/item/ammo_box/magazine/internal/bow/shadow

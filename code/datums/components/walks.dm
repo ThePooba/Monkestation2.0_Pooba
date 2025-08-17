@@ -48,26 +48,26 @@
 	var/move_delay = 0
 	var/atom/movable/pulled
 
-/datum/component/walk/shadow/handle_move(datum/source, direction)
+/datum/component/walk/shadow/handle_move(datum/source, list/move_args)
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return TRUE
 
-
-
-	var/mob/living/L = parent
-	if(!isshadowperson(L))
+	if(!isshadowperson(source))
 		return FALSE
-	var/turf/T = get_step(L, direction)
-	L.setDir(direction)
-	if(!T)
+	var/mob/living/Livin = source
+
+	var/direction = move_args[MOVE_ARG_DIRECTION]
+	var/turf/Destination = get_step(Livin, direction)
+	Livin.setDir(direction)
+	if(!Destination)
 		return
 
 	var/old_move_delay = move_delay
 	move_delay = world.time + world.tick_lag
 	//We are now going to move
-	var/add_delay = L.cached_multiplicative_slowdown
+	var/add_delay = Livin.cached_multiplicative_slowdown
 	var/new_glide_size = DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direction) && EWCOMPONENT(direction)) ? sqrt(2) : 1 ) )
-	L.set_glide_size(new_glide_size) // set it now in case of pulled objects
+	Livin.set_glide_size(new_glide_size) // set it now in case of pulled objects
 	//If the move was recent, count using old_move_delay
 	//We want fractional behavior and all
 	if(old_move_delay + world.tick_lag > world.time)
@@ -77,24 +77,28 @@
 	else
 		move_delay = world.time
 
-	var/allowed = can_walk(L, T)
+	var/allowed = can_walk(Livin, Destination)
 	switch(allowed)
 		if(DEFER_MOVE)
 			return FALSE
 		if(MOVE_NOT_ALLOWED)
 			return TRUE
 		if(MOVE_ALLOWED)
-			preprocess_move(L, T)
-			L.forceMove(T)
-			finalize_move(L, T)
-			if(direction & (direction - 1)) //extra delay for diagonals
+			preprocess_move(Livin, Destination)
+			Livin.forceMove(Destination)
+			finalize_move(Livin, Destination)
+			if(direction & (direction - 1) && Livin.loc == Destination) //extra delay for diagonals
 				add_delay *= sqrt(2)
-			L.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
+			Livin.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
 			move_delay += add_delay
 			return TRUE
 
 /datum/component/walk/shadow/can_walk(mob/living/user, turf/destination)
-	return ((destination.get_lumcount() <= SHADOW_SPECIES_DIM_LIGHT && !istype(destination, /turf/closed/mineral)) ? MOVE_ALLOWED : DEFER_MOVE)
+	if(istype(destination, /turf/closed/mineral))
+		return DEFER_MOVE // if not asteroid rocks n shit
+//	if(!destination.is_softly_lit())
+//		return MOVE_ALLOWED
+	return (destination.get_lumcount() <= SHADOW_SPECIES_DIM_LIGHT ? MOVE_ALLOWED : DEFER_MOVE)
 
 /datum/component/walk/shadow/preprocess_move(mob/living/user, turf/destination)
 	if(user.pulling)

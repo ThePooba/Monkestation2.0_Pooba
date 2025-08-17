@@ -5,8 +5,7 @@
 	name = "channeling staff"
 	desc = "A staff made from pure darkness."
 	icon = 'icons/obj/darkspawn_items.dmi'
-	icon_state = "shadow_staff"
-	inhand_icon_state = "shadow_staff0"
+	icon_state = "shadow_staff0"
 	base_icon_state = "shadow_staff"
 	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
@@ -97,7 +96,7 @@
 	if(. && user.mind)
 		SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = psi_cost))
 
-/obj/item/gun/magic/darkspawn/process_chamber(/mob/living/user)
+/obj/item/gun/magic/darkspawn/process_chamber(user, empty_chamber, from_firing, chamber_next_round)
 	. = ..()
 	charges = max_charges //infinite charges
 

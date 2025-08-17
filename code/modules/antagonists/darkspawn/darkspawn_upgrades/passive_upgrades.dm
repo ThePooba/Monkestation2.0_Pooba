@@ -88,7 +88,7 @@
 /datum/psi_web/dark_healing/on_gain()
 	darkspawn.dark_healing *= 1.25
 
-/datum/psi_web/dark_healing/on_gain()
+/datum/psi_web/dark_healing/on_loss()
 	darkspawn.dark_healing /= 1.25
 
 //gives resistance to dim light

@@ -4,6 +4,8 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 
+/// If we're inside something inside a mob, display off that mob too
+#define PARTICLE_ATTACH_MOB (1<<0)
 ///objects can only have one particle on them at a time, so we use these abstract effects to hold and display the effects. You know, so multiple particle effects can exist at once.
 ///also because some objects do not display particles due to how their visuals are built
 /obj/effect/abstract/particle_holder
