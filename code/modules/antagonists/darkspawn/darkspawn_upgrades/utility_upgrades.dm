@@ -20,7 +20,7 @@
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/toggle/creep)
-	
+
 /datum/psi_web/time_dilation
 	name = "Time Dilation"
 	desc = "Greatly increases reaction times and action speed, and provides immunity to slowdown."
@@ -30,7 +30,7 @@
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/time_dilation)
-	
+
 /datum/psi_web/indomitable
 	name = "Indomitable"
 	desc = "Grants immunity to all CC effects, but locks the user into walking."
@@ -63,7 +63,7 @@
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt)
-	
+
 /datum/psi_web/darkness_smoke
 	name = "Blinding Miasma"
 	desc = "Spews a cloud of smoke which will blind enemies and provide cover from light."
@@ -96,7 +96,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_HEAL
-	
+
 /datum/psi_web/ability_upgrade/extinguish
 	name = "Stifle Sign"
 	desc = "Empower your staff with the ability to extinguish the fire on allies shot."
@@ -106,7 +106,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	flag_to_add = STAFF_UPGRADE_EXTINGUISH
-	
+
 /datum/psi_web/extinguish
 	name = "Extinguish"
 	desc = "Extinguish all light around you."
@@ -116,7 +116,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/extinguish)
-	
+
 /datum/psi_web/thrall_heal
 	name = "Thrall Recovery"
 	desc = "Target a location, heals all thralls within a 9x9 area."
@@ -126,7 +126,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/thrallbuff/heal)
-	
+
 /datum/psi_web/thrall_speed
 	name = "Thrall Invigorate"
 	desc = "Target a location, gives a temporary speed boost to all thralls within a 9x9 area."
@@ -136,7 +136,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/thrallbuff/speed)
-	
+
 /datum/psi_web/elucidate
 	name = "Elucidate"
 	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost. Able to revive any ally in close range."
@@ -146,7 +146,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/elucidate)
-	
+
 /datum/psi_web/null_charge
 	name = "Null Charge"
 	desc = "Meddle with the powergrid via a functioning APC, causing a temporary stationwide power outage. Breaks the APC in the process."
@@ -165,7 +165,7 @@
 	willpower_cost = 3
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_UTILITY
-	learned_abilities = list(/datum/action/cooldown/spell/erase_time/darkspawn)
+	learned_abilities = list(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/quantum_disruption)
 
 /datum/psi_web/fray_self
 	name = "Fray self"
@@ -199,7 +199,7 @@
 	shadow_flags = ALL_DARKSPAWN_CLASSES
 	menu_tab = STORE_UTILITY
 	learned_abilities = list(/datum/action/cooldown/spell/simulacrum)
-	
+
 /datum/psi_web/crawling_shadows
 	name = "Crawling Shadows"
 	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors."

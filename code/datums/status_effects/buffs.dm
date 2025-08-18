@@ -423,9 +423,12 @@
 	duration = 2 SECONDS
 	status_type = STATUS_EFFECT_REPLACE
 	show_duration = TRUE
+	var/slowdown
 	alert_type = null
 
-/datum/status_effect/speed_boost/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/speed_boost/on_creation(mob/living/new_owner, set_duration, multiplier)
+	if(multiplier)
+		slowdown = multiplier
 	if(isnum(set_duration))
 		duration = set_duration
 	. = ..()

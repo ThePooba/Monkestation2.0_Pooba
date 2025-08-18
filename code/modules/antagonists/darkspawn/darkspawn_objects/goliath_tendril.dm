@@ -8,7 +8,8 @@
 	light_outer_range = 1
 	light_color = COLOR_VELVET
 
-/obj/effect/goliath_tentacle/darkspawn/original/Initialize(mapload)
+/obj/effect/goliath_tentacle/darkspawn/Initialize(mapload)
+	. = ..()
 	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 	if (!isopenturf(loc) || isspaceturf(loc) || isopenspaceturf(loc))
 		return INITIALIZE_HINT_QDEL
@@ -17,7 +18,15 @@
 			return INITIALIZE_HINT_QDEL
 	deltimer(action_timer)
 	action_timer = addtimer(CALLBACK(src, PROC_REF(animate_grab)), 0.7 SECONDS, TIMER_STOPPABLE)
-	..()
+
+/obj/effect/goliath_tentacle/darkspawn/original/Initialize(mapload)
+	. = ..()
+	var/list/turf/turfs = circle_range_turfs(get_turf(src), 2)
+	for(var/i in 1 to 9)
+		if(!LAZYLEN(turfs)) //sanity check
+			break
+		var/turf/T = pick_n_take(turfs)
+		new /obj/effect/goliath_tentacle/darkspawn
 
 /obj/effect/goliath_tentacle/darkspawn/grab()
 	for (var/mob/living/victim in loc)

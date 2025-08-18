@@ -427,7 +427,7 @@
 //////////////////////////////////////////////////////////////////////////
 //----------------------Basically a fancy jaunt-------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/erase_time/darkspawn
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/quantum_disruption
 	name = "Quantum disruption"
 	desc = "Disrupt the flow of possibilities, where you are, where you could be."
 	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
@@ -441,14 +441,48 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 80)
 	cooldown_time = 60 SECONDS
-	//length = 5 SECONDS
+	/// For how long are we jaunting?
+	jaunt_duration = 8 SECONDS
+	/// For how long we become immobilized after exiting the jaunt
+	jaunt_in_time = 0 SECONDS
+	/// For how long we become immobilized when using this spell
+	jaunt_out_time = 0.33 SECONDS
+	//min distance for a decoy to keep away from the hidden jaunter
+	var/decoy_min_distance = 5
+	//effects for going in and out of jaunt
+	jaunt_in_type = /obj/effect/temp_visual/quantum_disruption
+	jaunt_out_type = /obj/effect/temp_visual/quantum_disruption/out
+	/// Sound played when entering the jaunt
+	sound = 'sound/magic/darkspawn/kingcrimson_start.ogg'
+	/// Sound played when exiting the jaunt
+	exit_jaunt_sound = 'sound/magic/darkspawn/kingcrimson_end.ogg'
 
-/datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
+/obj/effect/temp_visual/quantum_disruption
+	name = "warlock jaunt in"
+	icon = 'icons/mob/simple/mob.dmi'
+	icon_state = "blank"
+	duration = 0
+/obj/effect/temp_visual/quantum_disruption/out
+	name = "warlock jaunt out"
+	icon = 'icons/mob/simple/mob.dmi'
+	icon_state = "slasherj_end"
+	duration = 1.3
+
+
+	/**
+ * Begin the jaunt, and the entire jaunt chain.
+ * Puts owner in the phased mob holder here.
+ */
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/quantum_disruption/do_jaunt(mob/living/jaunter)
+	//createes distraction clone
+	var/mob/living/simple_animal/hostile/illusion/darkspawn/decoy = new(get_turf(jaunter))
+	decoy.Copy_Parent(jaunter, jaunt_duration, 100, 20) //closely follows regular player stats so it's not painfully obvious (still sorta is)
+	decoy.cached_multiplicative_slowdown = jaunter.cached_multiplicative_slowdown
+	decoy.GiveTarget(owner) //so it starts running right away
+	decoy.Goto(owner, decoy.move_to_delay, decoy_min_distance)
+
 	. = ..()
-	var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(owner)
-	if(. && darkspawn)
-		owner.balloon_alert(owner, "ksh SHOL'NAXHAR!")
-		darkspawn.block_psi(20 SECONDS, type)
+
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -696,7 +730,7 @@
 	new /obj/effect/temp_visual/darkspawn/chasm(target)
 
 //////////////////////////////////////////////////////////////////////////
-//----------------------I stole genetics fire breath--------------------//
+//----------------------I stole genetics rust wave  --------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/cone/staggered/shadowflame
 	name = "Shadowflame Gout"
@@ -721,15 +755,47 @@
 	cone_levels = 5 //longer cone
 	respect_density = TRUE
 
+/datum/action/cooldown/spell/cone/staggered/shadowflame/cast(atom/cast_on)
+	. = ..()
+	new /obj/effect/temp_visual/dir_setting/shadowflame(get_step(cast_on, cast_on.dir), cast_on.dir)
+
 /datum/action/cooldown/spell/cone/staggered/shadowflame/do_turf_cone_effect(turf/target_turf, atom/caster, level)
 	target_turf.extinguish()
-	new /obj/effect/temp_visual/darkspawn/shadowflame(target_turf) // for style
 
 /datum/action/cooldown/spell/cone/staggered/shadowflame/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
-	target_mob.set_wet_stacks(20, /datum/status_effect/fire_handler/shadowflame)
+	if(IS_TEAM_DARKSPAWN(target_mob)) //no friendly fire
+		return
+	to_chat(target_mob, span_userdanger("A wave of darkness engulfs you!"))
+	if(target_mob.reagents)
+		target_mob.reagents.add_reagent(/datum/reagent/consumable/frostoil, 5)
+		target_mob.reagents.add_reagent(/datum/reagent/shadowfrost, 10)
+		target_mob.reagents.add_reagent(/datum/reagent/fluorine, 10)
 
 /datum/action/cooldown/spell/cone/staggered/shadowflame/calculate_cone_shape(current_level)
-	// This makes the cone shoot out into a 3 wide column of flames.
-	// You may be wondering, "that equation doesn't seem like it'd make a 3 wide column"
-	// well it does, and that's all that matters.
-	return (2 * current_level) - 1
+	// At the first level (that isn't level 1) we will be small
+	if(current_level == 2)
+		return 3
+	// At the max level, we turn small again
+	if(current_level == cone_levels)
+		return 3
+	// Otherwise, all levels in between will be wider
+	return 5
+
+/obj/effect/temp_visual/dir_setting/shadowflame/setDir(dir)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_x = -64
+		if(SOUTH)
+			pixel_x = -64
+			pixel_y = -128
+		if(EAST)
+			pixel_y = -64
+		if(WEST)
+			pixel_y = -64
+			pixel_x = -128
+
+/obj/effect/temp_visual/dir_setting/shadowflame
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "shadow_gout"
+	duration = 3 SECONDS

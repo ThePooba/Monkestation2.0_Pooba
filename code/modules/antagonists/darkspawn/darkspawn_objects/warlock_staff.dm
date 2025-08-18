@@ -6,10 +6,11 @@
 	desc = "A staff made from pure darkness."
 	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "shadow_staff0"
+	inhand_icon_state = "shadow_zstaff"
 	base_icon_state = "shadow_staff"
 	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
-	block_chance = 20
+	block_chance = 5
 	fire_sound = 'sound/weapons/emitter2.ogg'
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	slot_flags = NONE
@@ -66,17 +67,18 @@
 			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
 				M.extinguish_mob()
 		else
-			M.apply_damage(35, STAMINA)
+			M.apply_damage(25, STAMINA)
 			if(effect_flags & STAFF_UPGRADE_CONFUSION)
 				M.adjust_confusion(4 SECONDS)
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_wield() //guns do weird things to some of the icon procs probably, and i can't find which ones, so i need to do this all again
-	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
-	block_chance = 40
+	icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	block_chance = 30
 
 /obj/item/gun/magic/darkspawn/proc/on_unwield()
-	block_chance = 20
+	icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	block_chance = 5
 
 /obj/item/gun/magic/darkspawn/update_icon_state()
 	icon_state = "[base_icon_state]0"
