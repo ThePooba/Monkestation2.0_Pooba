@@ -34,7 +34,7 @@
 		REMOVE_TRAIT(dude, TRAIT_DARKSPAWN_CREEP, type)
 	return ..()
 
-/datum/reagent/darkspawn_darkness_smoke/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+/datum/reagent/darkspawn_darkness_smoke/expose_mob(mob/living/M, methods, reac_volume, show_message, touch_protection)
 	. = ..()
 	if(IS_TEAM_DARKSPAWN(M) && M.reagents) //since darkspawns don't breathe, let's do this
 		M.reagents.add_reagent(type, 5)

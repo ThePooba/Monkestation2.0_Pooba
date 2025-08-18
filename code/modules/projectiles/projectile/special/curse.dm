@@ -45,7 +45,7 @@
 		QDEL_NULL(arm)
 	if((movement_type & PHASING))
 		playsound(src, 'sound/effects/curse3.ogg', 25, TRUE, -1)
-	var/turf/T = get_step(src)
+	var/turf/T = get_turf(src)
 	var/obj/effect/temp_visual/dir_setting/curse/hand/leftover = new(T, dir)
 	leftover.icon_state = icon_state
 	for(var/obj/effect/temp_visual/dir_setting/curse/grasp_portal/G in starting)
@@ -54,7 +54,7 @@
 		return
 	new /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading(starting, dir)
 	starting.Beam(T, icon_state = "curse[handedness]", time = 32, maxdistance = INFINITY, beam_type=/obj/effect/ebeam/curse_arm)
-	animate(D.visuals, alpha = 0, time = 32)
+	animate(T, alpha = 0, time = 32)
 
 /obj/projectile/curse_hand/on_range()
 	finale()

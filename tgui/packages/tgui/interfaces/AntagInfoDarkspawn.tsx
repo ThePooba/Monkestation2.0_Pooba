@@ -1,21 +1,9 @@
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import {
-  Section,
-  Stack,
-  Box,
-  Tabs,
-  Button,
-  BlockQuote,
-  Flex,
-} from '../components';
+import { Section, Stack, Box, Tabs, Button, Flex } from '../components';
 import { Window } from '../layouts';
 import { BooleanLike } from 'common/react';
-import {
-  ObjectivePrintout,
-  Objective,
-  ReplaceObjectivesButton,
-} from './common/Objectives';
+import { ObjectivePrintout, Objective } from './common/Objectives';
 
 const Velvet = {
   fontWeight: 'bold',
@@ -73,11 +61,11 @@ type Info = {
   thrall_names: string[];
 };
 
-export const AntagInfoDarkspawn = (props, context) => {
-  const { data } = useBackend<Info>(context);
+export const AntagInfoDarkspawn = (props) => {
+  const { data } = useBackend<Info>();
   const { divulged, has_class } = data;
 
-  const [currentTab, setTab] = useLocalState(context, 'currentTab', 0);
+  const [currentTab, setTab] = useLocalState('currentTab', 0);
 
   return (
     <Window width={750} height={650}>
@@ -126,8 +114,8 @@ export const AntagInfoDarkspawn = (props, context) => {
   );
 };
 
-const IntroductionSection = (props, context) => {
-  const { data, act } = useBackend<Info>(context);
+const IntroductionSection = (props) => {
+  const { data, act } = useBackend<Info>();
   const { objectives, ascended } = data;
 
   return (
@@ -195,8 +183,8 @@ const FlavorSection = () => {
   );
 };
 
-const GuideSection = (props, context) => {
-  const { data } = useBackend<Info>(context);
+const GuideSection = (props) => {
+  const { data } = useBackend<Info>();
   const { divulged, has_class } = data;
 
   return (
@@ -235,8 +223,8 @@ const GuideSection = (props, context) => {
   );
 };
 
-const InformationSection = (props, context) => {
-  const { data } = useBackend<Info>(context);
+const InformationSection = (props) => {
+  const { data } = useBackend<Info>();
   const {
     willpower,
     lucidity_drained,
@@ -294,12 +282,12 @@ const InformationSection = (props, context) => {
 };
 
 // Research tab
-const ResearchInfo = (props, context) => {
-  const { act, data } = useBackend<Info>(context);
+const ResearchInfo = (props) => {
+  const { act, data } = useBackend<Info>();
   const { willpower, categories = [] } = data;
 
   const [selectedKnowledge, setSelectedKnowledge] =
-    useLocalState<Knowledge | null>(context, 'knowledge', null);
+    useLocalState<Knowledge | null>('knowledge', null);
 
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
@@ -353,18 +341,17 @@ const ResearchInfo = (props, context) => {
 };
 
 // the skills on the left side of the menu
-const MenuTabs = (props, context) => {
-  const { data } = useBackend<Data>(context);
+const MenuTabs = (props) => {
+  const { data } = useBackend<Data>();
   const { categories = [] } = data;
 
   const [selectedCategory, setSelectedCategory] = useLocalState<Category>(
-    context,
     'category',
     categories[0],
   );
 
   const [selectedKnowledge, setSelectedKnowledge] =
-    useLocalState<Knowledge | null>(context, 'knowledge', null);
+    useLocalState<Knowledge | null>('knowledge', null);
 
   return (
     <Section>
@@ -400,13 +387,11 @@ const MenuTabs = (props, context) => {
   );
 };
 
-const KnowledgePreview = (props, context) => {
+const KnowledgePreview = (props) => {
   const [selectedKnowledge] = useLocalState<Knowledge | null>(
-    context,
     'knowledge',
     null,
   );
-
   if (selectedKnowledge !== null) {
     return (
       <Section
@@ -473,12 +458,11 @@ const KnowledgePreview = (props, context) => {
   }
 };
 
-const ClassSelection = (props, context) => {
-  const { act, data } = useBackend<Classes>(context);
+const ClassSelection = (props) => {
+  const { act, data } = useBackend<Classes>();
   const { classData = [] } = data;
 
-  const [currentTab, setTab] = useLocalState(context, 'currentTab', 0);
-
+  const [currentTab, setTab] = useLocalState('currentTab', 0);
   return (
     <Flex
       justify="space-evenly"

@@ -1,38 +1,36 @@
-/obj/effect/temp_visual/goliath_tentacle/darkspawn
+/obj/effect/goliath_tentacle/darkspawn
 	name = "darkspawn tendril"
 	desc = "OOOOOOOOOOOOOOOO spooky"
+	grapple_time = 7 SECONDS
+	min_damage = 15
+	max_damage = 25
 	light_power = -1
-	light_range = 1
+	light_outer_range = 1
 	light_color = COLOR_VELVET
-	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
 
-/obj/effect/temp_visual/goliath_tentacle/darkspawn/Initialize(mapload, mob/living/new_spawner)
-	. = ..()
+/obj/effect/goliath_tentacle/darkspawn/original/Initialize(mapload)
 	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
+	if (!isopenturf(loc) || isspaceturf(loc) || isopenspaceturf(loc))
+		return INITIALIZE_HINT_QDEL
+	for (var/obj/effect/goliath_tentacle/tentacle in loc)
+		if (tentacle != src)
+			return INITIALIZE_HINT_QDEL
+	deltimer(action_timer)
+	action_timer = addtimer(CALLBACK(src, PROC_REF(animate_grab)), 0.7 SECONDS, TIMER_STOPPABLE)
+	..()
 
-/obj/effect/temp_visual/goliath_tentacle/darkspawn/original/Initialize(mapload, mob/living/new_spawner)
-	. = ..()
-	var/list/turf/turfs = circle_range_turfs(get_turf(src), 2)
-	for(var/i in 1 to 9)
-		if(!LAZYLEN(turfs)) //sanity check
-			break
-		var/turf/T = pick_n_take(turfs)
-		new /obj/effect/temp_visual/goliath_tentacle/darkspawn(T, spawner)
-
-/obj/effect/temp_visual/goliath_tentacle/darkspawn/trip()
-	var/latched = 0
-	for(var/mob/living/L in loc)
-		if(IS_TEAM_DARKSPAWN(L) || L.stat == DEAD)
+/obj/effect/goliath_tentacle/darkspawn/grab()
+	for (var/mob/living/victim in loc)
+		if (victim.stat == DEAD || HAS_TRAIT(victim, TRAIT_TENTACLE_IMMUNE) || IS_TEAM_DARKSPAWN(victim))
 			continue
-		visible_message(span_danger("[src] grabs hold of [L]!"))
-		if(!L.IsStun())
-			L.Stun(8 SECONDS)
-		else
-			L.AdjustStun(2 SECONDS)
-		latched = L.AmountStun() //hold on until the stun applied by the tentacle ends
-		L.adjustBruteLoss(rand(15,25))
-	if(!latched)
+		balloon_alert(victim, "grabbed")
+		visible_message(span_danger("[src] grabs hold of [victim]!"))
+		victim.adjustBruteLoss(rand(min_damage, max_damage))
+		if (victim.apply_status_effect(/datum/status_effect/incapacitating/stun/goliath_tentacled, grapple_time, src))
+			buckle_mob(victim, TRUE)
+			SEND_SIGNAL(victim, COMSIG_GOLIATH_TENTACLED_GRABBED)
+	if (!has_buckled_mobs())
 		retract()
-	else
-		deltimer(timerid)
-		timerid = addtimer(CALLBACK(src, PROC_REF(retract)), latched, TIMER_STOPPABLE)
+		return
+	deltimer(action_timer)
+	action_timer = addtimer(CALLBACK(src, PROC_REF(retract)), grapple_time, TIMER_STOPPABLE)

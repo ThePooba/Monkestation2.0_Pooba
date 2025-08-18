@@ -5,12 +5,11 @@
 	name = "channeling staff"
 	desc = "A staff made from pure darkness."
 	icon = 'icons/obj/darkspawn_items.dmi'
-	icon_state = "shadow_staff"
-	item_state = "shadow_staff0"
+	icon_state = "shadow_staff0"
 	base_icon_state = "shadow_staff"
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
-
+	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
+	block_chance = 20
 	fire_sound = 'sound/weapons/emitter2.ogg'
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	slot_flags = NONE
@@ -50,13 +49,12 @@
 	AddComponent(/datum/component/two_handed, \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
-	)
-	AddComponent(/datum/component/blocking, block_force = 20, WEAPON_BLOCK_FLAGS|WIELD_TO_BLOCK)
+		icon_wielded ="[base_icon_state]1")
 
 /obj/item/gun/magic/darkspawn/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()
 	if(isinhands)
-		. += emissive_appearance(icon_file, "[item_state]_emissive", src)
+		. += emissive_appearance(icon_file, "[inhand_icon_state]_emissive", src)
 
 ///////////////////FANCY PROJECTILE EFFECTS//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_projectile_hit(datum/source, atom/movable/firer, atom/target, angle)
@@ -75,16 +73,14 @@
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_wield() //guns do weird things to some of the icon procs probably, and i can't find which ones, so i need to do this all again
 	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
-	if(ishuman(loc))
-		var/mob/living/carbon/human/C = loc
-		C.update_inv_hands()
+	block_chance = 40
 
 /obj/item/gun/magic/darkspawn/proc/on_unwield()
-	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
-	if(ishuman(loc))
-		var/mob/living/carbon/human/C = loc
-		C.update_inv_hands()
+	block_chance = 20
 
+/obj/item/gun/magic/darkspawn/update_icon_state()
+	icon_state = "[base_icon_state]0"
+	return ..()
 ////////////////////////INFINITE AMMO////////////////////////// (some psi required)
 /obj/item/gun/magic/darkspawn/can_shoot()
 	psi_cost = initial(psi_cost)
@@ -101,7 +97,7 @@
 	if(. && user.mind)
 		SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_DARKSPAWN = psi_cost))
 
-/obj/item/gun/magic/darkspawn/process_chamber(/mob/living/user)
+/obj/item/gun/magic/darkspawn/process_chamber(user, empty_chamber, from_firing, chamber_next_round)
 	. = ..()
 	charges = max_charges //infinite charges
 
@@ -115,9 +111,8 @@
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "staff_blast"
 	damage = 0
-	pass_flags = PASSTABLE | PASSMACHINES | PASSCOMPUTER
+	pass_flags = PASSTABLE | PASSMACHINE
 	damage_type = STAMINA
-	nodamage = FALSE
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	speed = 2 //watch out, it fucks you up
 

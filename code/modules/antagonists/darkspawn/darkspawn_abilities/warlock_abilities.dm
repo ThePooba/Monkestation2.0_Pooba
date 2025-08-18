@@ -82,7 +82,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 60)
 	cooldown_time = 30 SECONDS
-	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
+	sound = 'sound/ambience/antag/darkspawn/veil_mind_gasp.ogg'
 	aoe_radius = 6
 	///Secret item stored in the ability to hit things with to trigger light eater
 	var/obj/item/darkspawn_extinguish/bopper
@@ -153,7 +153,7 @@
 	if(!istype(cast_on, /obj/machinery/power/apc))
 		return FALSE
 	var/obj/machinery/power/apc/target = cast_on
-	if(target.stat & BROKEN)
+	if(target.machine_stat & BROKEN)
 		to_chat(owner, span_danger("This [target] no longer functions enough for access to the power grid."))
 		return FALSE
 	return TRUE
@@ -175,7 +175,7 @@
 		target.visible_message(span_warning("The [target] begins glowing brightly!"))
 		return FALSE
 
-	if(target.stat & BROKEN)
+	if(target.machine_stat & BROKEN)
 		to_chat(owner, span_danger("This [target] no longer functions enough for access to the power grid."))
 		return FALSE
 
@@ -269,12 +269,12 @@
 			balloon_counter = 0
 			owner.balloon_alert(owner, "...thum...")
 		if(healing)
-			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE), BODYPART_ANY)
+			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 		else
 			channeled.apply_damage(damage_amount, BURN)
 			if(isliving(owner))
 				var/mob/living/healed = owner
-				healed.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE), BODYPART_ANY)
+				healed.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /datum/action/cooldown/spell/pointed/extract/Trigger(trigger_flags, atom/target)
@@ -312,7 +312,7 @@
 	button_icon_state = "abyssal_call"
 	cast_range = 10
 	cast_time = 0
-	object_type = /obj/effect/temp_visual/goliath_tentacle/darkspawn/original
+	object_type = /obj/effect/goliath_tentacle/darkspawn/original
 	cooldown_time = 10 SECONDS
 	can_density = TRUE
 	language_final = "Xylt'he kkxla'thamara"
@@ -334,7 +334,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 30)
 	cooldown_time = 30 SECONDS
-	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
+	sound = 'sound/ambience/antag/darkspawn/veil_mind_scream.ogg'
 	aoe_radius = 7
 	///how many times it hallucinates (1 per second)
 	var/hallucination_triggers = 3
@@ -356,7 +356,7 @@
 /datum/action/cooldown/spell/aoe/mass_hallucination/proc/hallucinate(mob/living/target, times = hallucination_triggers)
 	if(times <= 0)
 		return
-	var/datum/hallucination/picked_hallucination = pick(GLOB.hallucination_list)//not using weights
+	var/datum/hallucination/picked_hallucination = get_random_valid_hallucination_subtype()//not using weights
 	target.cause_hallucination(picked_hallucination, "mass hallucination")
 	addtimer(CALLBACK(src, PROC_REF(hallucinate), target, times--), 1 SECONDS, TIMER_UNIQUE)
 
@@ -417,10 +417,10 @@
 		target.Paralyze(stun_duration)
 		if(iscarbon(target))
 			var/mob/living/carbon/M = target
-			M.silent += 10
+			M.adjust_silence(10 SECONDS)
 	else //Distant glare
 		var/loss = max(120 - (distance * 10), 0)
-		target.adjustStaminaLoss(loss)
+		target.stamina.adjust(-loss)
 		target.adjust_stutter(loss)
 		to_chat(target, span_userdanger("A purple light flashes through your mind, and exhaustion floods your body..."))
 
@@ -441,7 +441,7 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 80)
 	cooldown_time = 60 SECONDS
-	length = 5 SECONDS
+	//length = 5 SECONDS
 
 /datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
 	. = ..()
@@ -533,13 +533,13 @@
 
 	playsound(user, 'sound/magic/darkspawn/devour_will_end.ogg', 100, FALSE, 30)
 	//split in two so the targeted tile is always in the center of the beam
-	for(var/turf/step_target in getline(targets_from, targets_to))
+	for(var/turf/step_target in get_line(targets_from, targets_to))
 		spawn_ground(step_target)
 
 	//extrapolate a new end target along the line using an angle
 	var/turf/distant_target = get_turf_in_angle(get_angle(targets_from, targets_to), targets_to, 100) //100 tiles past the end point, roughly following the angle of the original line
 
-	for(var/turf/step_target in getline(targets_to, distant_target))
+	for(var/turf/step_target in get_line(targets_to, distant_target))
 		spawn_ground(step_target)
 
 /datum/action/cooldown/spell/pointed/shadow_beam/proc/spawn_ground(turf/target)
@@ -550,7 +550,7 @@
 
 /obj/effect/temp_visual/darkspawn
 	name = "echoing void"
-	icon = 'yogstation/icons/effects/effects.dmi'
+	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	anchored = TRUE
 	move_resist = INFINITY
@@ -574,7 +574,7 @@
 	if(isliving(AM))
 		var/mob/living/target = AM
 		if(!IS_TEAM_DARKSPAWN(target))
-			target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, 3, 1 SECONDS, type) //slow field, makes it harder to escape
+			target.apply_status_effect(/datum/status_effect/speed_boost, 3, 1 SECONDS, type) //slow field, makes it harder to escape
 
 /obj/effect/temp_visual/darkspawn/chasm/Destroy()
 	new/obj/effect/temp_visual/darkspawn/detonate(get_turf(src))
@@ -587,14 +587,13 @@
 	duration = 2
 
 /obj/effect/temp_visual/darkspawn/detonate/Destroy()
+	. = ..()
 	var/turf/tile_location = get_turf(src)
 	for(var/mob/living/victim in tile_location.contents)
 		if(IS_TEAM_DARKSPAWN(victim))
 			victim.heal_ordered_damage(90, list(BURN, BRUTE, TOX, OXY, CLONE, STAMINA))
 		else if(!victim.can_block_magic(MAGIC_RESISTANCE_MIND))
 			victim.take_overall_damage(10, 50, 200) //skill issue if you don't dodge it (won't crit if you're full hp)
-			victim.emote("scream")
-	return ..()
 
 //////////////////////////////////////////////////////////////////////////
 //-------------------I stole heirophant's burst ability-----------------//
@@ -723,7 +722,7 @@
 	respect_density = TRUE
 
 /datum/action/cooldown/spell/cone/staggered/shadowflame/do_turf_cone_effect(turf/target_turf, atom/caster, level)
-	target_turf.extinguish_turf()
+	target_turf.extinguish()
 	new /obj/effect/temp_visual/darkspawn/shadowflame(target_turf) // for style
 
 /datum/action/cooldown/spell/cone/staggered/shadowflame/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)

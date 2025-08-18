@@ -1,62 +1,60 @@
-/obj/item/gun/ballistic/bow/energy/shadow_caster
+/obj/item/gun/ballistic/bow/shadow_caster
 	name = "shadow caster"
 	desc = "A bow made of solid darkness. The arrows it shoots seem to suck light out of the surroundings."
 	icon = 'icons/obj/darkspawn_items.dmi'
+	inhand_icon_state = "shadow_caster"
+	base_icon_state = "shadow_caster"
 	icon_state = "shadow_caster"
-	item_state = "shadow_caster"
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
-	mag_type = /obj/item/ammo_box/magazine/internal/bow/shadow
-	no_pin_required = TRUE
-	recharge_time = 2 SECONDS
+	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
+	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/bow/shadow
+	pin = /obj/item/firing_pin/magic
+	var/recharge_time = 2 SECONDS
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
-/obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
+/obj/item/gun/ballistic/bow/shadow_caster/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
+/obj/item/gun/ballistic/bow/shadow_caster/afterattack(atom/target, mob/living/user, flag, params, passthrough)
+	if(!drawn || !chambered)
+		to_chat(user, span_notice("[src] must be drawn to fire a shot!"))
+		return
+	drawn = TRUE
+	playsound(src, 'sound/weapons/draw_bow.ogg', 75, 0) //gets way too high pitched if the freq varies
+	return ..()
+
+/obj/item/gun/ballistic/bow/shadow_caster/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(recharge_bolt)), recharge_time)
+	recharge_time = initial(recharge_time)
+
+/// Recharges a bolt, done after the delay in shoot_live_shot
+/obj/item/gun/ballistic/bow/shadow_caster/proc/recharge_bolt()
+	var/obj/item/ammo_casing/caseless/arrow/shadow/bolt = new
+	magazine.give_round(bolt)
+	chambered = bolt
+
 // the thing that holds the ammo inside the bow
 /obj/item/ammo_box/magazine/internal/bow/shadow
-	ammo_type = /obj/item/ammo_casing/reusable/arrow/shadow
+	ammo_type = /obj/item/ammo_casing/caseless/arrow/shadow
 
 //the object that appears when the arrow finishes flying
-/obj/item/ammo_casing/reusable/arrow/shadow
+/obj/item/ammo_casing/caseless/arrow/shadow
 	name = "shadow arrow"
 	desc = "it seem to suck light out of the surroundings."
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
-	item_state = "caster_arrow"
-	light_system = MOVABLE_LIGHT
-	light_power = -1
-	light_color = COLOR_VELVET
-	light_range = 2
-	embedding = list("embed_chance" = 100, "embedded_fall_chance" = 0) //always embeds if it hits someone
-	projectile_type = /obj/projectile/bullet/reusable/arrow/shadow
-
-/obj/item/ammo_casing/reusable/arrow/shadow/on_land(obj/projectile/old_projectile)
-	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(dissipate)), 10 SECONDS, TIMER_UNIQUE)
-
-/obj/item/ammo_casing/reusable/arrow/shadow/proc/dissipate()
-	if(QDELETED(src))
-		return
-	if(iscarbon(loc)) //if it's embedded, remove the embedding properly or it'll cause funkiness
-		var/mob/living/carbon/holder = loc
-		if(holder.get_embedded_part(src))
-			holder.remove_embedded_object(src, get_turf(holder), TRUE, TRUE, FALSE)
-	qdel(src)
+	inhand_icon_state = "caster_arrow"
+	embedding = list("embed_chance" = 20, "embedded_fall_chance" = 0) //always embeds if it hits someone
+	projectile_type = /obj/projectile/energy/shadow_arrow
 
 //the projectile being shot from the bow
-/obj/projectile/bullet/reusable/arrow/shadow
+/obj/projectile/energy/shadow_arrow
 	name = "shadow arrow"
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
-	damage = 25 //reduced damage per arrow compared to regular ones
-	light_system = MOVABLE_LIGHT
-	light_power = -1
-	light_color = COLOR_VELVET
-	light_range = 2
-	embed_chance = 1 //always embeds if it hits someone
+	damage = 20 //reduced damage per arrow compared to regular ones
 
 /obj/projectile/bullet/reusable/arrow/shadow/Initialize(mapload)
 	. = ..()

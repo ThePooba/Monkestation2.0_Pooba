@@ -11,14 +11,13 @@
 	health = 10
 	pressure_resistance = INFINITY
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minbodytemp = 0
-	maxbodytemp = INFINITY
+	bodytemp_cold_damage_limit = 0
+	bodytemp_heat_damage_limit = INFINITY
 
 	//movement variables
 	movement_type = FLYING
 	speed = 0
-	ventcrawler = TRUE
-	pass_flags = PASSTABLE | PASSMOB | PASSDOOR | PASSMACHINES | PASSMECH | PASSCOMPUTER
+	pass_flags = PASSTABLE | PASSMOB | PASSDOORS | PASSMACHINE
 
 	//combat variables
 	harm_intent_damage = 5
@@ -33,15 +32,15 @@
 
 	//death variables
 	del_on_death = TRUE
-	deathmessage = "trembles, form rapidly dispersing."
-	deathsound = 'sound/magic/darkspawn/devour_will_victim.ogg'
+	death_message = "trembles, form rapidly dispersing."
+	death_sound = 'sound/magic/darkspawn/devour_will_victim.ogg'
 
 	//attack flavour
 	speak_emote = list("whispers")
-	attacktext = "assails"
+	attack_verb_simple = "assails"
 	attack_sound = 'sound/magic/voidblink.ogg'
-	response_help = "disturbs"
-	response_harm = "flails at"
+	response_help_simple = "disturbs"
+	response_harm_simple = "flails at"
 
 	var/move_count = 0 //For spooky sound effects
 	var/knocking_out = FALSE
@@ -49,6 +48,7 @@
 /mob/living/simple_animal/hostile/crawling_shadows/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/light_eater)
+	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/simple_animal/hostile/crawling_shadows/Move()
 	. = ..()

@@ -27,7 +27,7 @@ var/speaker = TRUE // Speaker that plays a sound when pulsed.
 		current_cooldown = world.time + cooldown
 		mineral_scan_pulse(get_turf(user))
 		if(speaker)
-			playsound(src, 'sound/effects/ping.ogg', 15)
+			playsound(src, 'sound/machines/ping.ogg', 15)
 
 //Debug item to identify all ore spread quickly
 /obj/item/mining_scanner/admin
@@ -73,7 +73,7 @@ var/speaker = TRUE // Speaker that plays a sound when pulsed.
 		var/turf/t = get_turf(src)
 		mineral_scan_pulse(t, range)
 		if(speaker)
-			playsound(src, 'sound/effects/ping.ogg', 15)
+			playsound(src, 'sound/machines/ping.ogg', 15)
 
 /proc/mineral_scan_pulse(turf/T, range = world.view)
 	var/list/minerals = list()

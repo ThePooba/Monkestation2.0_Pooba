@@ -209,7 +209,7 @@
 /datum/species/shadow/darkspawn
 	name = "Darkspawn"
 	id = SPECIES_DARKSPAWN
-	limbs_id = SPECIES_DARKSPAWN
+	examine_limb_id = SPECIES_DARKSPAWN
 	changesource_flags = MIRROR_BADMIN //never put this in the pride pool because they look super valid and can never be changed off of
 	siemens_coeff = 0
 	armor = 10
@@ -245,12 +245,21 @@
 	mutanteyes = /obj/item/organ/internal/eyes/darkspawn
 	mutantears = /obj/item/organ/internal/ears/darkspawn
 
+	bodypart_overrides = list(
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/shadow/darkspawn,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/shadow/darkspawn,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/shadow/darkspawn,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/shadow/darkspawn,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/shadow/darkspawn,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/shadow/darkspawn,
+	)
+
 	powerful_heal = TRUE
 	shadow_charges = 3
 
 /datum/species/shadow/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.fully_replace_character_name(null, darkspawn_name())
+	C.fully_replace_character_name(null, nightmare_name())
 
 /datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
 	var/datum/antagonist/darkspawn/antag = IS_DARKSPAWN(H)
@@ -263,7 +272,7 @@
 			H.physiology.stamina_mod = antag.stam_mod
 
 /datum/species/shadow/darkspawn/spec_death(gibbed, mob/living/carbon/human/H)
-	playsound(H, '/sound/creatures/darkspawn/darkspawn_death.ogg', 50, FALSE)
+	playsound(H, 'sound/creatures/darkspawn/darkspawn_death.ogg', 50, FALSE)
 
 /datum/species/shadow/darkspawn/check_roundstart_eligible()
 	return FALSE
@@ -381,7 +390,7 @@
 		heart_owner.visible_message(span_warning("\The [blade] disintegrates!"))
 		QDEL_NULL(blade)
 
-/obj/item/organ/heart/nightmare/Stop()
+/obj/item/organ/internal/heart/nightmare/Stop()
 	return 0
 
 /obj/item/organ/internal/heart/nightmare/on_death(seconds_per_tick, times_fired)
@@ -413,10 +422,10 @@
 	name = "light eater" //as opposed to heavy eater
 	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "light_eater"
-	item_state = "light_eater"
+	inhand_icon_state  = "light_eater"
 	force = 18
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	item_flags = ABSTRACT
 	w_class = WEIGHT_CLASS_HUGE
@@ -433,7 +442,7 @@
 /obj/item/light_eater/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()
 	if(isinhands)
-		. += emissive_appearance(icon, "[item_state]_emissive", src)
+		. += emissive_appearance(icon, "[inhand_icon_state]_emissive", src)
 
 #undef DARKSPAWN_REFLECT_COOLDOWN
 #undef HEART_SPECIAL_SHADOWIFY

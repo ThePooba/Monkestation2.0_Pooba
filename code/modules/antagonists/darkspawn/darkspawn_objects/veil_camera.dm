@@ -14,7 +14,6 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	integrity_failure = 0
 	light_power = -1
 	light_color = COLOR_VELVET
-	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
 	networks = list(ROLE_DARKSPAWN)
 	clicksound = "crawling_shadows_walk"
 	jump_action = /datum/action/innate/camera_jump/darkspawn
@@ -22,6 +21,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /obj/machinery/computer/camera_advanced/darkspawn/Initialize(mapload)
 	. = ..()
 	camnet = GLOB.thrallnet
+	src.set_light(l_power = light_power, l_color = light_color)
 
 /obj/machinery/computer/camera_advanced/darkspawn/update_overlays()
 	. = ..()
@@ -50,8 +50,6 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		if(length(origin.z_lock) && !(cam.z in origin.z_lock))
 			continue
 		L.Add(cam)
-
-	camera_sort(L)
 
 	var/list/T = list()
 
@@ -87,7 +85,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	icon_state = "camera"
 	special_camera = TRUE
 	internal_light = FALSE
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	armor_type = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	flags_1 = NODECONSTRUCT_1
 
 /obj/machinery/camera/darkspawn/Initialize(mapload, obj/structure/camera_assembly/CA)

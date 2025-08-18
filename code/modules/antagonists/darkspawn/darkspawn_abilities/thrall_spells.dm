@@ -94,12 +94,12 @@
 			for(var/obj/item/implant/mindshield/L in target)
 				qdel(L)
 
-	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
+	playsound(owner, 'sound/ambience/antag/darkspawn/veil_mind_gasp.ogg', 25)
 
 	if(!do_after(owner, 2 SECONDS, target))
 		return FALSE
 
-	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
+	playsound(owner, 'sound/ambience/antag/darkspawn/veil_mind_scream.ogg', 100)
 	if(IS_THRALL(target))
 		owner.balloon_alert(owner, "...tia")
 		to_chat(owner, span_velvet("You revitalize your thrall [target.real_name]."))
@@ -243,8 +243,7 @@
 	armour_penetration = 100
 	speed = 1
 	damage_type = BRUTE
-	nodamage = FALSE
-	pass_flags = PASSMACHINES | PASSCOMPUTER | PASSTABLE
+	pass_flags_self = PASSMACHINE | PASSTABLE
 	range = 10
 
 /obj/projectile/magic/mindblast/Initialize(mapload)
@@ -341,7 +340,7 @@
 
 /datum/action/cooldown/spell/pointed/thrallbuff/heal/empower(mob/living/carbon/target)
 	to_chat(target, span_velvet("You feel healed."))
-	if(target.heal_ordered_damage(heal_amount, list(BURN, BRUTE, TOX, OXY, STAMINA, CLONE, BRAIN), BODYPART_ANY))
+	if(target.heal_ordered_damage(heal_amount, list(BURN, BRUTE, TOX, OXY, STAMINA, CLONE, BRAIN)))
 		new /obj/effect/temp_visual/heal(get_turf(target), COLOR_GREEN) //if it does any healing, spawn a heal visual, maybe it won't blow the cover of a thrall that happens to be full health
 
 ////////////////////////////Temporary speed boost//////////////////////////
@@ -356,7 +355,7 @@
 
 /datum/action/cooldown/spell/pointed/thrallbuff/speed/empower(mob/living/carbon/target)
 	to_chat(target, span_velvet("You feel fast."))
-	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, speed_strength, buff_duration, type)
+	target.apply_status_effect(/datum/status_effect/speed_boost, speed_strength, buff_duration, type)
 
 //////////////////////////////////////////////////////////////////////////
 //----------------Single target global ally giga buff-------------------//
@@ -401,14 +400,14 @@
 	target.revive(TRUE)
 	target.SetAllImmobility(0, TRUE)
 	target.resting = FALSE
-	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 15 SECONDS, type)
+	target.apply_status_effect(/datum/status_effect/speed_boost, -0.5, 15 SECONDS, type)
 	target.visible_message(span_danger("Streaks of velvet light crack out of [target]'s skin."), span_velvet("Power roars through you like a raging storm, pushing you to your absolute limits."))
 	var/obj/item/cuffs = target.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/item/legcuffs = target.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
 	if(target.handcuffed || target.legcuffed)
 		target.clear_cuffs(cuffs, TRUE, TRUE)
 		target.clear_cuffs(legcuffs, TRUE, TRUE)
-	playsound(get_turf(target),'yogstation/sound/creatures/darkspawn_death.ogg', 80, 1)
+	playsound(get_turf(target),'sound/creatures/darkspawn/darkspawn_death.ogg', 80, 1)
 	var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(owner)
 	if(darkspawn)
 		darkspawn.block_psi(1 MINUTES, type)
@@ -450,7 +449,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/toggle/nightvision/Enable()
-	var/obj/item/organ/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/internal/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.color_cutoffs = list(12, 0, 50)
 		eyes.lighting_cutoff = LIGHTING_CUTOFF_HIGH
@@ -459,7 +458,7 @@
 		owner.lighting_cutoff = LIGHTING_CUTOFF_HIGH
 
 /datum/action/cooldown/spell/toggle/nightvision/Disable()
-	var/obj/item/organ/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/internal/eyes/eyes = owner.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes && istype(eyes))
 		eyes.color_cutoffs = list(0, 0, 0)
 		eyes.lighting_cutoff = 0

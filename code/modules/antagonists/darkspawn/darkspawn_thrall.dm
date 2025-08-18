@@ -159,7 +159,7 @@
 	to_chat(owner, span_progenitor("Krx'lna tyhx graha xthl'kap" ))
 
 	var/list/flavour = list()
-	if(ispreternis(owner.current))
+	if(isipc(owner.current))
 		flavour += "You feel the warm consciousness welcome your own. Realization spews forth as the veil recedes."
 	else
 		flavour += "You feel the vast consciousness slowly consume your own and the veil falls away."
@@ -170,7 +170,7 @@
 	to_chat(owner, span_notice("<i>Use <b>.[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink.</i>"))
 	to_chat(owner, span_notice("<i>Blending in with regular crewmembers will generate willpower for your masters.</i>"))
 	to_chat(owner, span_notice("<i>Ask for help from your masters or fellows if you're new to this role.</i>"))
-	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
+	SEND_SOUND(owner.current, sound ('sound/ambience/antag/darkspawn/become_veil.ogg', volume = 50))
 	flash_color(owner, flash_color = COLOR_VELVET, flash_time = 10 SECONDS)
 
 /datum/antagonist/thrall_darkspawn/roundend_report()
