@@ -5,7 +5,7 @@
 	if(!istype(source))
 		return
 	var/obj/item/organ/tumor = source.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
-	if(!tumor || !istype(tumor, /obj/item/organ/shadowtumor)) //if they somehow lose their tumor in an unusual way
+	if(!tumor || !istype(tumor, /obj/item/organ/internal/shadowtumor)) //if they somehow lose their tumor in an unusual way
 		return
 	return tumor
 
@@ -80,7 +80,7 @@
 		new_spell.Grant(current_mob)
 
 	if(isliving(current_mob))
-		var/obj/item/organ/shadowtumor/thrall/tumor = current_mob.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
+		var/obj/item/organ/internal/shadowtumor/thrall/tumor = current_mob.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
 		if(!tumor || !istype(tumor))
 			tumor = new
 			tumor.Insert(current_mob, FALSE, FALSE)

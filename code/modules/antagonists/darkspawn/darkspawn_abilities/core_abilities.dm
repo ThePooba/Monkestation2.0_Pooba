@@ -106,7 +106,7 @@
 
 	caster.balloon_alert(caster, "...akkraup'dej")
 
-	var/obj/item/organ/shadowtumor/bead = target.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
+	var/obj/item/organ/internal/shadowtumor/bead = target.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
 	if(!bead || !istype(bead))
 		bead = new
 		bead.Insert(target, FALSE, FALSE)

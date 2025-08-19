@@ -355,7 +355,7 @@
 	/// How many life ticks in the dark the owner has been dead for. Used for nightmare respawns.
 	var/respawn_progress = 0
 	/// The armblade granted to the host of this heart.
-	var/obj/item/light_eater/blade
+	var/obj/item/light_eater/nightmare/blade
 
 /obj/item/organ/internal/heart/nightmare/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
@@ -380,7 +380,7 @@
 /obj/item/organ/internal/heart/nightmare/on_insert(mob/living/carbon/heart_owner, special)
 	. = ..()
 	if(special != HEART_SPECIAL_SHADOWIFY)
-		blade = new/obj/item/light_eater
+		blade = new/obj/item/light_eater/nightmare
 		heart_owner.put_in_hands(blade)
 
 /obj/item/organ/internal/heart/nightmare/on_remove(mob/living/carbon/heart_owner, special)

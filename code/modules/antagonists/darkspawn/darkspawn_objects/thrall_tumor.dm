@@ -1,5 +1,5 @@
 //Snowflake spot for putting sling organ related stuff
-/obj/item/organ/shadowtumor
+/obj/item/organ/internal/shadowtumor
 	name = "black tumor"
 	desc = "A tiny black mass with red tendrils trailing from it. It seems to shrivel in the light."
 	icon_state = "blacktumor"
@@ -13,15 +13,15 @@
 	///How much willpower is granted by this tumor
 	var/willpower_amount = 1
 
-/obj/item/organ/shadowtumor/New()
+/obj/item/organ/internal/shadowtumor/New()
 	..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/organ/shadowtumor/Destroy()
+/obj/item/organ/internal/shadowtumor/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/organ/shadowtumor/process()
+/obj/item/organ/internal/shadowtumor/process()
 	if(isturf(loc))
 		var/turf/T = loc
 		var/light_count = T.get_lumcount()
@@ -37,14 +37,14 @@
 	if(owner && owner.stat != DEAD && antag_team)
 		antag_team.willpower_progress(willpower_amount)
 
-/obj/item/organ/shadowtumor/on_find(mob/living/finder)
+/obj/item/organ/internal/shadowtumor/on_find(mob/living/finder)
 	. = ..()
 	finder.visible_message(span_danger("[finder] opens up [owner]'s skull, revealing a pulsating black mass, with red tendrils attaching it to [owner.p_their()] brain."))
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Thrall version------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/obj/item/organ/shadowtumor/thrall
+/obj/item/organ/internal/shadowtumor/thrall
 	//provides extra willpower because willpower was spent to thrall someone
 	willpower_amount = 2
 	///adds a cooldown to the resist so a thrall ipc or preternis can't weaponize it
@@ -52,13 +52,13 @@
 	///How long the resist cooldown is
 	var/cooldown_length = 15 SECONDS
 
-/obj/item/organ/shadowtumor/thrall/process()
+/obj/item/organ/internal/shadowtumor/thrall/process()
 	if(!IS_THRALL(owner))
 		qdel(src)
 		return
 	return ..()
 
-/obj/item/organ/shadowtumor/thrall/proc/resist(mob/living/carbon/M)
+/obj/item/organ/internal/shadowtumor/thrall/proc/resist(mob/living/carbon/M)
 	if(QDELETED(src))
 		return FALSE
 	if(!(M.stat == CONSCIOUS))//Thralls cannot be deconverted while awake

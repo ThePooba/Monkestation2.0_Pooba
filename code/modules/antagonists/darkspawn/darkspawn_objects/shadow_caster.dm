@@ -56,10 +56,10 @@
 	icon_state = "caster_arrow"
 	damage = 20 //reduced damage per arrow compared to regular ones
 
-/obj/projectile/bullet/reusable/arrow/shadow/Initialize(mapload)
+/obj/projectile/energy/shadow_arrow/Initialize(mapload)
 	. = ..()
 	update_appearance(UPDATE_OVERLAYS)
 
-/obj/projectile/bullet/reusable/arrow/shadow/update_overlays()
+/obj/projectile/energy/shadow_arrow/update_overlays()
 	. = ..()
 	. += emissive_appearance(icon, "[icon_state]_emissive", src)
