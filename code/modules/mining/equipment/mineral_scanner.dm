@@ -13,8 +13,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	var/cooldown = 35
 	var/current_cooldown = 0
-
-var/speaker = TRUE // Speaker that plays a sound when pulsed.
+	var/speaker = TRUE // Speaker that plays a sound when pulsed.
 
 /obj/item/mining_scanner/AltClick(mob/user)
 	speaker = !speaker
