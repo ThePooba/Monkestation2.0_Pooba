@@ -6,7 +6,7 @@
 	desc = "A staff made from pure darkness."
 	icon = 'icons/obj/darkspawn_items.dmi'
 	icon_state = "shadow_staff0"
-	inhand_icon_state = "shadow_zstaff"
+	inhand_icon_state = "shadow_staff0"
 	base_icon_state = "shadow_staff"
 	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
@@ -73,11 +73,11 @@
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_wield() //guns do weird things to some of the icon procs probably, and i can't find which ones, so i need to do this all again
-	icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	inhand_icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
 	block_chance = 30
 
 /obj/item/gun/magic/darkspawn/proc/on_unwield()
-	icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	inhand_icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
 	block_chance = 5
 
 /obj/item/gun/magic/darkspawn/update_icon_state()
