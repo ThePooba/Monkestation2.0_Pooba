@@ -25,8 +25,8 @@
 	for(var/i in 1 to 9)
 		if(!LAZYLEN(turfs)) //sanity check
 			break
-		var/turf/T = pick_n_take(turfs)
-		new /obj/effect/goliath_tentacle/darkspawn
+		var/turf/extraboi = pick_n_take(turfs)
+		new /obj/effect/goliath_tentacle/darkspawn(extraboi)
 
 /obj/effect/goliath_tentacle/darkspawn/grab()
 	for (var/mob/living/victim in loc)
