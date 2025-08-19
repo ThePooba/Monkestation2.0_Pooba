@@ -392,7 +392,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 		picked_class = owner.AddComponent(chosen)
 
-	owner.assigned_role = picked_class.name //they stop being whatever job they were the moment they divulge
+	owner.special_role = picked_class.name //they stop being whatever job they were the moment they divulge
 
 	if(forced)
 		owner.current.visible_message(

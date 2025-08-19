@@ -108,7 +108,7 @@
 	var/list/spooky = list(
 		"I- I- I-", "Mind-", "Sigils-", "Can't think-",
 		"<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-",
-		"<i>THINK-</i>", "EMBRACE-", "BECOME-")
+		"<i>THINK-</i>", "EMBRACE-", "BECOME-", "Time..", "")
 	for(var/i in 1 to 40)
 		to_chat(user, span_progenitor("[pick(spooky)]"))
 		sleep(0.05 SECONDS) //Spooky flavor message spam
