@@ -40,7 +40,7 @@
 	if(!IS_DARKSPAWN(caster))//sanity check
 		return
 	if(!(target.mind || target.ckey))
-		to_chat(owner, "This mind is too feeble to even be worthy of thralling.")
+		to_chat(owner, span_velvet("This mind is too feeble to even be worthy of thralling."))
 		return
 	if(!target.get_organ_slot(ORGAN_SLOT_BRAIN))
 		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control [target.p_them()]."))
