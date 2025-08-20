@@ -541,8 +541,10 @@
 	deltimer(timerid)
 
 /datum/status_effect/progenitor_curse
+	id= "progenitor_curse"
 	tick_interval = 1.5 SECONDS //how often a hand is shot
 	duration = 30 SECONDS
+	alert_type = null
 
 /datum/status_effect/progenitor_curse/tick()
 	if(owner.stat == DEAD)

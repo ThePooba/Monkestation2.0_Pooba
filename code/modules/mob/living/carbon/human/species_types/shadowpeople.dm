@@ -442,7 +442,8 @@
 /obj/item/light_eater/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()
 	if(isinhands)
-		. += emissive_appearance(icon, "[inhand_icon_state]_emissive", src)
+		if(!istype(src, /obj/item/light_eater/nightmare))
+			. += emissive_appearance(icon, "[inhand_icon_state]_emissive", src)
 
 #undef DARKSPAWN_REFLECT_COOLDOWN
 #undef HEART_SPECIAL_SHADOWIFY

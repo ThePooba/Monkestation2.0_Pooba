@@ -427,6 +427,7 @@
 //----------------------Abilities that thralls get----------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/seize/lesser
+	name = "Lesser Seize"
 	bypass_cost = TRUE //thralls don't have psi
 	cooldown_time = 45 SECONDS
 	stun_duration = 5 SECONDS
@@ -467,5 +468,6 @@
 		owner.lighting_cutoff = 0
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall/thrall
+	name = "Opticial"
 	desc = "Places a floating watchful eye for your masters to observe through."
 	bypass_cost = TRUE

@@ -211,7 +211,7 @@
 	searching = TRUE
 	var/mob/dead/observer/chosen_ghost
 	var/list/consenting_candidates = SSpolling.poll_ghosts_for_target("Would you like to play as piece of [caster]'s psyche?", check_jobban = ROLE_DARKSPAWN, role = ROLE_DARKSPAWN, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_DARKSPAWN_PSYCHE, jump_target = caster, alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi', "creep"))
-	if(consenting_candidates.len)
+	if(consenting_candidates.?len)
 		chosen_ghost = pick(consenting_candidates)
 	searching = FALSE
 	if(!chosen_ghost)

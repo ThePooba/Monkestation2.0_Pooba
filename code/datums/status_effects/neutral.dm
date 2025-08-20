@@ -525,16 +525,18 @@
 
 /datum/status_effect/tagalong //applied to darkspawns while they accompany someone //yogs start: darkspawn
 	id = "tagalong"
-	tick_interval = 1 //as fast as possible
+	tick_interval = 2 //as fast as possible
 	alert_type = /atom/movable/screen/alert/status_effect/tagalong
 	var/mob/living/shadowing
-	var/turf/cached_location //we store this so if the mob is somehow gibbed we aren't put into nullspace
+	//we store this so if the mob is somehow gibbed we aren't put into nullspace
+	var/turf/cached_location
 
 /datum/status_effect/tagalong/on_creation(mob/living/owner, mob/living/tag)
 	. = ..()
 	if(!.)
 		return
 	shadowing = tag
+	RegisterSignal(owner, COMSIG_MOB_EQUIPPED_ITEM, PROC_REF(on_equip))
 
 /datum/status_effect/tagalong/on_remove()
 	if(owner.loc == shadowing)
@@ -545,7 +547,12 @@
 	playsound(owner, 'sound/magic/darkspawn/devour_will_form.ogg', 50, TRUE)
 	owner.setDir(SOUTH)
 
+/datum/status_effect/tagalong/proc/on_equip()
+	to_chat(owner, span_userdanger("Equipping an item forces you out!"))
+	qdel(src)
+
 /datum/status_effect/tagalong/tick()
+	. = ..()
 	if(!shadowing)
 		owner.forceMove(cached_location)
 		qdel(src)

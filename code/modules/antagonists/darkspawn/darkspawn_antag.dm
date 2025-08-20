@@ -134,7 +134,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
 		"antag_team_hud_[REF(src)]",
 		hud_image_on(target),
-		antag_to_check || type,
+		//antag_to_check || type,
 	))
 
 	// Add HUDs that they couldn't see before
