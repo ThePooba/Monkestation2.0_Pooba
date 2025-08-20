@@ -43,13 +43,17 @@
 		to_chat(owner, "This mind is too feeble to even be worthy of thralling.")
 		return
 	if(!target.get_organ_slot(ORGAN_SLOT_BRAIN))
-		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control them."))
+		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control [target.p_them()]."))
 		return FALSE
 	if(IS_DARKSPAWN(target))
 		to_chat(owner, span_velvet("You will never be strong enough to control the will of another."))
 		return
 	if(HAS_MIND_TRAIT(target, TRAIT_UNCONVERTABLE))
-		to_chat(owner, span_velvet("This one is something else entirely. They cannot be controlled"))
+		to_chat(owner, span_velvet("This one is something else entirely. [target.p_They()] cannot be controlled."))
+		return
+	var/mob/living/existing_master = target.mind.enslaved_to?.resolve()
+	if(existing_master && !IS_DARKSPAWN_OR_THRALL(existing_master))
+		to_chat(owner, span_velvet("[target.p_Their()] mind already belongs to someone else."))
 		return
 	var/datum/antagonist/darkspawn/master = IS_DARKSPAWN(caster)
 
