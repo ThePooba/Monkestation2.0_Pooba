@@ -20,7 +20,7 @@
 
 /datum/component/shadow_step/proc/apply_darkness_speed()
 	var/turf/T = get_turf(owner)
-	var/light_amount = T.get_lumcount()
+	var/light_amount = GET_SIMPLE_LUMCOUNT(T)
 	if(light_amount < SHADOW_SPECIES_BRIGHT_LIGHT)
 		owner.add_movespeed_modifier(type, speedboost)
 	else

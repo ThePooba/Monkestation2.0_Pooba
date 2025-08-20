@@ -291,7 +291,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if((owner?.current?.stat == DEAD) && HAS_TRAIT(src, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current) && !QDELETED(owner.current))
 		var/mob/living/carbon/human/deadguy = owner.current
 		var/turf/location = get_turf(owner.current)
-		var/light_amount = location.get_lumcount()
+		var/light_amount = GET_SIMPLE_LUMCOUNT(location)
 		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			if(!revive_notice)
 				deadguy.visible_message(span_notice("[deadguy]'s body twitches."), span_progenitor("Your body lurches as it refuses to be stopped by death."))

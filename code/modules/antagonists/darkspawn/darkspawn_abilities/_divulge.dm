@@ -41,7 +41,7 @@
 	if(isethereal(user))//disable the light for long enough to start divulge
 		user.emp_act(EMP_HEAVY)
 
-	if(spot.get_lumcount() > SHADOW_SPECIES_DIM_LIGHT)
+	if(GET_SIMPLE_LUMCOUNT(spot) > SHADOW_SPECIES_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
 		return
 
