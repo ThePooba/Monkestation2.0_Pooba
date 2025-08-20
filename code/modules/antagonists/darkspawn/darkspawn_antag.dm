@@ -469,8 +469,6 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(!user || !istype(user))//sanity check
 		return
 
-	user.status_flags |= TRAIT_GODMODE
-
 	if(!GLOB.sacrament_done)
 		GLOB.sacrament_done = TRUE
 		team.upon_sacrament()
