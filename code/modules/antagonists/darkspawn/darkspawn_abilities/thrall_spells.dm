@@ -467,7 +467,7 @@
 	else
 		owner.lighting_cutoff = 0
 
-/datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall/thrall
-	name = "Opticial"
+/datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall
+	name = "Lesser Opticial"
 	desc = "Places a floating watchful eye for your masters to observe through."
 	bypass_cost = TRUE

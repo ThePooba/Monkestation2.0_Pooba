@@ -5,6 +5,7 @@
 	tick_interval = 5
 	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/broken_will
+	//the amount of damage needed to wake up the person
 	var/wake_threshold = 5
 
 /datum/status_effect/broken_will/on_apply()
@@ -25,10 +26,11 @@
 		qdel(src)
 		return
 	owner.Unconscious(15)
-	if(owner.health <= HEALTH_THRESHOLD_CRIT)
-		owner.heal_ordered_damage(3, list(BURN, BRUTE)) //so if they're left to bleed out, they'll survive, probably?
-		if(prob(10))
-			to_chat(owner, span_velvet("sleep... bliss...")) //give a notice that they're probably healing because of the sleep
+	if(owner.health > HEALTH_THRESHOLD_CRIT)
+		return
+	owner.heal_ordered_damage(3, list(BURN, BRUTE)) //so if they're left to bleed out, they'll survive, probably?
+	if(prob(10))
+		to_chat(owner, span_velvet("sleep... bliss...")) //give a notice that they're probably healing because of the sleep
 
 /datum/status_effect/broken_will/proc/on_take_damage(datum/source, damage, damagetype)
 	if(damage < wake_threshold)

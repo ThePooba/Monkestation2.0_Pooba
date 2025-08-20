@@ -67,8 +67,6 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	team.add_member(owner)
 	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_psi))
 	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_psi))
-	add_team_hud(owner, /datum/antagonist/thrall_darkspawn)
-	add_team_hud(owner, /datum/antagonist/darkspawn)
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
@@ -89,6 +87,8 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		return
 	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
 	add_team_hud(current_mob)
+	add_team_hud(owner, /datum/antagonist/thrall_darkspawn)
+	add_team_hud(owner, /datum/antagonist/darkspawn)
 	current_mob.grant_language(/datum/language/darkspawn)
 
 	//psi stuff

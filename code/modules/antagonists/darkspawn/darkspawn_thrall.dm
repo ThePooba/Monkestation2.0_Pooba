@@ -34,8 +34,6 @@
 	if(!team)
 		team = new
 		stack_trace("thrall made without darkspawns")
-	add_team_hud(owner, /datum/antagonist/thrall_darkspawn)
-	add_team_hud(owner, /datum/antagonist/darkspawn)
 	return ..()
 
 /datum/antagonist/thrall_darkspawn/on_removal()
@@ -61,6 +59,7 @@
 		team.add_thrall(current_mob.mind)
 
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
+	add_team_hud(current_mob, /datum/antagonist/thrall_darkspawn)
 
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(thrall_life))
 	RegisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))

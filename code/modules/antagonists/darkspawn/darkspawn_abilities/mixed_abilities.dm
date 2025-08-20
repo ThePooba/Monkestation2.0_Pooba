@@ -217,8 +217,8 @@
 	alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi',
 	 "creep"))
 	if(isnull(chosen_one))
-			to_chat(caster, span_danger("You fail to split a piece of your psyche."))
-			return FALSE
+		to_chat(caster, span_danger("You fail to split a piece of your psyche."))
+		return FALSE
 	caster.balloon_alert(caster, "zkxa'yaera Hohef'era!")
 	caster.visible_message(span_warning("[caster] breaks away from [caster]'s shadow!"), span_velvet("The piece of your psyche creates a form for itself."))
 	playsound(caster, 'sound/magic/darkspawn/devour_will_form.ogg', 50, 1)
@@ -227,7 +227,7 @@
 		dude = new(get_turf(caster))
 		RegisterSignal(dude, COMSIG_LIVING_DEATH, PROC_REF(rejoin))
 	dude.Copy_Parent(caster, 100, health, damage)
-	dude.ckey = chosen_ghost.ckey
+	dude.ckey = chosen_one.ckey
 	dude.name = caster.name
 	dude.real_name = caster.real_name
 	if(IS_DARKSPAWN(caster))
