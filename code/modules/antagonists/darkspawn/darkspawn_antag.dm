@@ -475,7 +475,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 		shatter_lights()
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
-		GLOB.starlight_color(COLOR_VELVET)
+		GLOB.starlight_color = COLOR_VELVET
 		to_chat(world, span_velvet("Reality begins to quake and crack at the seams."))
 		addtimer(CALLBACK(src, PROC_REF(start_overlay)), 15 SECONDS)
 		SEND_GLOBAL_SIGNAL(COMSIG_DARKSPAWN_ASCENSION)
