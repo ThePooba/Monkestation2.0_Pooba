@@ -468,7 +468,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(!user || !istype(user))//sanity check
 		return
 
-	user.status_flags |= TRAIT_GODMODE
+	user.max_health += 500
 
 	if(!GLOB.sacrament_done)
 		GLOB.sacrament_done = TRUE
