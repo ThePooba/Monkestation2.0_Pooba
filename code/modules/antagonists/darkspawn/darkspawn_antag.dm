@@ -265,7 +265,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 			for(var/T in GLOB.alive_mob_list)
 				var/mob/M = T
 				if(IS_TEAM_DARKSPAWN(M))
-					to_chat(M, processed_message, type = MESSAGE_TYPE_RADIO)
+					to_chat(M, processed_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = M == owner.current)
 
 /datum/antagonist/darkspawn/ui_status(mob/user, datum/ui_state/state)
 	if(user.stat == DEAD)
@@ -417,7 +417,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		if(M == user)
 			continue
 		if(IS_TEAM_DARKSPAWN(M))
-			to_chat(M, processed_message, type = MESSAGE_TYPE_RADIO)
+			to_chat(M, processed_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = M == user)
 	deadchat_broadcast(processed_message, null, user)
 
 	darkspawn_state = DARKSPAWN_DIVULGED
@@ -456,7 +456,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	var/processed_message = span_progenitor("\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.")
 	for(var/mob/M in GLOB.player_list)
 		if(M.stat != DEAD && IS_TEAM_DARKSPAWN(M))
-			to_chat(M, processed_message, type = MESSAGE_TYPE_RADIO)
+			to_chat(M, processed_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = M == H)
 	deadchat_broadcast(processed_message, null, H)
 	addtimer(CALLBACK(src, PROC_REF(divulge), TRUE), 2.5 SECONDS)
 
@@ -565,7 +565,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
 		if(IS_TEAM_DARKSPAWN(M))
-			to_chat(M, processed_message, type = MESSAGE_TYPE_RADIO)
+			to_chat(M, processed_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = M == returner)
 	deadchat_broadcast(processed_message, null, returner)
 
 	if(isbrain(old_body))

@@ -127,6 +127,6 @@
 				var/link = FOLLOW_LINK(M, user)
 				to_chat(M, "[link] [msg]", type = MESSAGE_TYPE_RADIO)
 			else if(IS_TEAM_DARKSPAWN(M))
-				to_chat(M, msg, type = MESSAGE_TYPE_RADIO)
+				to_chat(M, msg, type = MESSAGE_TYPE_RADIO, avoid_highlighting = M == user)
 	return FALSE //yogs end
 
