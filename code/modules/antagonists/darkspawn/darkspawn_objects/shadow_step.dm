@@ -16,7 +16,7 @@
 
 /datum/component/shadow_step/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE)
-	owner.remove_movespeed_modifier(type)
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/shadow_step)
 
 /datum/component/shadow_step/proc/apply_darkness_speed()
 	var/turf/T = get_turf(owner)
