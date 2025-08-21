@@ -209,13 +209,14 @@
 
 	to_chat(caster, span_velvet("You attempt to split a piece of your psyche."))
 	searching = TRUE
-	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Would you like to play as piece of [caster]'s psyche?",
-	check_jobban = ROLE_DARKSPAWN,
-	role = ROLE_DARKSPAWN, poll_time = 10 SECONDS,
-	ignore_category = POLL_IGNORE_DARKSPAWN_PSYCHE,
-	jump_target = caster,
-	alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi',
-	 "creep"))
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
+		"Would you like to play as piece of [caster]'s psyche?",
+		check_jobban = ROLE_DARKSPAWN,
+		role = ROLE_DARKSPAWN, poll_time = 10 SECONDS,
+		ignore_category = POLL_IGNORE_DARKSPAWN_PSYCHE,
+		jump_target = caster,
+		alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi', "creep"),
+	)
 	if(isnull(chosen_one))
 		to_chat(caster, span_danger("You fail to split a piece of your psyche."))
 		return FALSE
