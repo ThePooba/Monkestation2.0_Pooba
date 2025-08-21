@@ -77,7 +77,7 @@
 
 	caster.balloon_alert(caster, "cera ko...")
 	to_chat(caster, span_velvet("You begin siphoning [target]'s will..."))
-	target.emote("scream")
+	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
 	target.visible_message(span_danger("<i>[target] suddenly howls and clutches their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
 	playsound(target, 'sound/magic/darkspawn/devour_will_long.ogg', 65, FALSE)
 
