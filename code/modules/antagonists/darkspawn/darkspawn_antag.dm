@@ -472,7 +472,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(!GLOB.sacrament_done)
 		GLOB.sacrament_done = TRUE
 		team.upon_sacrament()
-		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
+		SSsecurity_level.set_level(SEC_LEVEL_LAMBDA)
 		shatter_lights()
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
 		GLOB.starlight_color = COLOR_VELVET
@@ -504,8 +504,10 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 ///get rid of all lights by calling the light eater proc
 /datum/antagonist/darkspawn/proc/shatter_lights()
-	for(var/obj/machinery/light/L in GLOB.machines)
-		addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, on_light_eater)), rand(1, 50)) //stagger the "shatter" to reduce lag
+	for(var/obj/machinery/light/light as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/light))
+		if(is_centcom_level(light?.z))
+			continue
+		addtimer(CALLBACK(light, TYPE_PROC_REF(/obj/machinery/light, on_light_eater)), rand(0.1 SECONDS, 5 SECONDS)) //stagger the "shatter" to reduce lag
 
 ///call a shuttle
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
