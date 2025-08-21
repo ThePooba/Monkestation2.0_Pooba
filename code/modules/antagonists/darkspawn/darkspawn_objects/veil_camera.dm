@@ -85,7 +85,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	icon_state = "camera"
 	special_camera = TRUE
 	internal_light = FALSE
-	armor_type = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	armor_type = /datum/armor/machinery_camera
 	flags_1 = NODECONSTRUCT_1
 
 /obj/machinery/camera/darkspawn/Initialize(mapload, obj/structure/camera_assembly/CA)

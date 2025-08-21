@@ -45,7 +45,7 @@
 
 	/// A copy of the last paper object that was shown to this camera.
 	var/obj/item/paper/last_shown_paper
-	//Reference to the obj/mob we're built into
+	///Reference to the obj/mob we're built into
 	var/built_in
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera, 0)

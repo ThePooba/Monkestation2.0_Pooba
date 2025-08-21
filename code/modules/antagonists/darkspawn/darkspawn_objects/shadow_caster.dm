@@ -20,14 +20,26 @@
 	if(!drawn || !chambered)
 		to_chat(user, span_notice("[src] must be drawn to fire a shot!"))
 		return
-	drawn = TRUE
-	playsound(src, 'sound/weapons/draw_bow.ogg', 75, 0) //gets way too high pitched if the freq varies
 	return ..()
 
 /obj/item/gun/ballistic/bow/shadow_caster/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(recharge_bolt)), recharge_time)
 	recharge_time = initial(recharge_time)
+
+/obj/item/gun/ballistic/bow/shadow_caster/attack_self(mob/living/user)
+	if(drawn || !chambered)
+		return
+
+	to_chat(user, span_notice("You draw back the bowstring."))
+	drawn = TRUE
+	playsound(src, 'sound/weapons/draw_bow.ogg', 75, 0) //gets way too high pitched if the freq varies
+	update_icon()
+
+
+
+/obj/item/gun/ballistic/bow/clockwork/attackby(obj/item/I, mob/user, params)
+	return
 
 /// Recharges a bolt, done after the delay in shoot_live_shot
 /obj/item/gun/ballistic/bow/shadow_caster/proc/recharge_bolt()
@@ -38,6 +50,7 @@
 // the thing that holds the ammo inside the bow
 /obj/item/ammo_box/magazine/internal/bow/shadow
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/shadow
+	start_empty = FALSE
 
 //the object that appears when the arrow finishes flying
 /obj/item/ammo_casing/caseless/arrow/shadow
