@@ -13,13 +13,14 @@
 	///How much willpower is granted by this tumor
 	var/willpower_amount = 1
 
-/obj/item/organ/internal/shadowtumor/New()
-	..()
+/obj/item/organ/internal/shadowtumor/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/organ/internal/shadowtumor/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	antag_team = null
+	return ..()
 
 /obj/item/organ/internal/shadowtumor/process()
 	if(isturf(loc))
