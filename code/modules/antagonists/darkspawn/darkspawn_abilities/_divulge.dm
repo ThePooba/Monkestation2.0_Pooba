@@ -61,10 +61,8 @@
 	if(!do_after(user, 3 SECONDS, user))
 		in_use = FALSE
 		return
-	for(var/turf/T in RANGE_TURFS(1, user))
-		if(isclosedturf(T))
-			continue
-		new/obj/structure/psionic_barrier(T, 35 SECONDS)
+	for(var/turf/open/turf in RANGE_TURFS(1, user))
+		new/obj/structure/psionic_barrier(turf, 35 SECONDS)
 	user.visible_message(span_warning("A vortex of violet energies surrounds [user]!"), span_velvet("Your barrier will keep you shielded to a point.."))
 
 	var/image/alert_overlay = image('icons/mob/actions/actions_darkspawn.dmi', "divulge")
