@@ -2,9 +2,9 @@
 	name = "shadow caster"
 	desc = "A bow made of solid darkness. The arrows it shoots seem to suck light out of the surroundings."
 	icon = 'icons/obj/darkspawn_items.dmi'
+	icon_state = "shadow_caster_unchambered_undrawn"
 	inhand_icon_state = "shadow_caster"
 	base_icon_state = "shadow_caster"
-	icon_state = "shadow_caster"
 	lefthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/darkspawn/darkspawn_righthand.dmi'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/bow/shadow
@@ -14,12 +14,14 @@
 
 /obj/item/gun/ballistic/bow/shadow_caster/Initialize(mapload)
 	. = ..()
+	update_icon_state()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 /obj/item/gun/ballistic/bow/shadow_caster/afterattack(atom/target, mob/living/user, flag, params, passthrough)
 	if(!drawn || !chambered)
 		to_chat(user, span_notice("[src] must be drawn to fire a shot!"))
 		return
+
 	return ..()
 
 /obj/item/gun/ballistic/bow/shadow_caster/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
@@ -46,6 +48,11 @@
 	var/obj/item/ammo_casing/caseless/arrow/shadow/bolt = new
 	magazine.give_round(bolt)
 	chambered = bolt
+	update_icon()
+
+/obj/item/gun/ballistic/bow/shadow_caster/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]_[chambered ? "chambered" : "unchambered"]_[drawn ? "drawn" : "undrawn"]"
 
 // the thing that holds the ammo inside the bow
 /obj/item/ammo_box/magazine/internal/bow/shadow
