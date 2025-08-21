@@ -9,10 +9,12 @@
 	var/wake_threshold = 5
 
 /datum/status_effect/broken_will/on_apply()
-	if(owner)
-		RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_take_damage))
-		ADD_TRAIT(owner, TRAIT_NOCRITDAMAGE, TRAIT_STATUS_EFFECT(id))
-	return ..()
+	if(IS_TEAM_DARKSPAWN(owner) || owner.stat == DEAD)
+		return FALSE
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_take_damage))
+	ADD_TRAIT(owner, TRAIT_NOCRITDAMAGE, TRAIT_STATUS_EFFECT(id))
+	owner.Unconscious(15) // initial knockout before first tick
+	return TRUE
 
 /datum/status_effect/broken_will/on_remove()
 	if(owner)
