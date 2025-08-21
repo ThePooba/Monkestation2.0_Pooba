@@ -87,8 +87,8 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		return
 	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
 	add_team_hud(current_mob)
-	add_team_hud(owner, /datum/antagonist/thrall_darkspawn)
-	add_team_hud(owner, /datum/antagonist/darkspawn)
+	add_team_hud(current_mob, /datum/antagonist/thrall_darkspawn)
+	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 	current_mob.grant_language(/datum/language/darkspawn)
 
 	//psi stuff
