@@ -243,6 +243,7 @@
 		TRAIT_ANALGESIA,
 		TRAIT_NO_PAIN_EFFECTS,
 		TRAIT_NO_SHOCK_BUILDUP,
+		TRAIT_NEVER_WOUNDED,
 		)
 	mutanteyes = /obj/item/organ/internal/eyes/darkspawn
 	mutantears = /obj/item/organ/internal/ears/darkspawn
