@@ -333,8 +333,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		return
 	if(amount > 0 && psi_regen_delay)
 		COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
-	psi -= amount
-	psi = round(psi, 0.1)
+	psi = round(psi - amount, 0.1)
 	update_psi_hud()
 	return TRUE
 
