@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
 /obj/item/restraints/legcuffs/beartrap/dark
 	name = "dark snare"
-	armed = 1
+	armed = TRUE
 	icon_state = "e_snare"
 	trap_damage = 0
 	breakouttime = 30 SECONDS
@@ -18,10 +18,10 @@
 /obj/item/restraints/legcuffs/beartrap/dark/attack_hand(mob/user)
 	spring_trap(user) //no picking it up
 
-/obj/item/restraints/legcuffs/beartrap/dark/spring_trap(AM as mob|obj)
-	if(isliving(AM))
-		var/mob/living/target = AM
-		if(IS_TEAM_DARKSPAWN(target))
+/obj/item/restraints/legcuffs/beartrap/dark/spring_trap(datum/source, atom/movable/target, thrown_at = FALSE)
+	if(isliving(target))
+		var/mob/living/living_target = target
+		if(IS_TEAM_DARKSPAWN(living_target))
 			return
 	return ..()
 
@@ -53,7 +53,7 @@
 		var/mob/living/target = AM
 		if(IS_TEAM_DARKSPAWN(target))
 			return
-	if(isprojectile(AM)) //if it's flying above the trap, don't trigger it
+	else if(isprojectile(AM)) //if it's flying above the trap, don't trigger it
 		return
 	return ..()
 
@@ -81,7 +81,7 @@
 	playsound(get_turf(src), 'sound/effects/phasein.ogg', 60, 1)
 
 /obj/structure/trap/darkspawn/teleport/trap_effect(mob/living/L)
-	L.forceMove(get_safe_random_station_turf())
+	L.forceMove(get_safe_random_station_turf_equal_weight())
 	playsound(get_turf(L), 'sound/effects/phasein.ogg', 60, 1)
 
 ///////////////////////basic damage trap///////////////////////////////////
