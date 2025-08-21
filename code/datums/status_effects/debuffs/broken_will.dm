@@ -2,7 +2,7 @@
 /datum/status_effect/broken_will
 	id = "broken_will"
 	status_type = STATUS_EFFECT_UNIQUE
-	tick_interval = 5
+	tick_interval = 0.5 SECONDS
 	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/broken_will
 	//the amount of damage needed to wake up the person
@@ -11,13 +11,13 @@
 /datum/status_effect/broken_will/on_apply()
 	if(owner)
 		RegisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_take_damage))
-		ADD_TRAIT(owner, TRAIT_NOCRITDAMAGE, type)
+		ADD_TRAIT(owner, TRAIT_NOCRITDAMAGE, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
 /datum/status_effect/broken_will/on_remove()
 	if(owner)
 		UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMAGE)
-		REMOVE_TRAIT(owner, TRAIT_NOCRITDAMAGE, type)
+		REMOVE_TRAIT(owner, TRAIT_NOCRITDAMAGE, TRAIT_STATUS_EFFECT(id))
 		owner.SetUnconscious(0) //wake them up
 	return ..()
 
@@ -36,8 +36,8 @@
 	if(damage < wake_threshold)
 		return
 	owner.visible_message(span_warning("[owner] is jolted awake by the impact!") , span_boldannounce("Something hits you, pulling you towards wakefulness!"))
-	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, type)
-	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_NOSOFTCRIT, type), 20 SECONDS)
+	ADD_TRAIT(owner, TRAIT_NOSOFTCRIT, TRAIT_STATUS_EFFECT(id))
+	addtimer(TRAIT_CALLBACK_REMOVE(owner, TRAIT_NOSOFTCRIT, TRAIT_STATUS_EFFECT(id)), 20 SECONDS)
 	qdel(src)
 
 /atom/movable/screen/alert/status_effect/broken_will
