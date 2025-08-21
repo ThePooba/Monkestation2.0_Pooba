@@ -507,7 +507,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	for(var/obj/machinery/light/light as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/light))
 		if(is_centcom_level(light?.z))
 			continue
-		addtimer(CALLBACK(light, TYPE_PROC_REF(/obj/machinery/light, on_light_eater)), rand(0.1 SECONDS, 5 SECONDS)) //stagger the "shatter" to reduce lag
+		addtimer(CALLBACK(light, TYPE_PROC_REF(/obj/machinery/light, break_light_tube)), rand(0.1 SECONDS, 5 SECONDS)) //stagger the "shatter" to reduce lag
 
 ///call a shuttle
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
