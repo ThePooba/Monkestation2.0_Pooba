@@ -32,7 +32,7 @@
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(istype(T))
-		var/light_amount = T.get_lumcount()
+		var/light_amount = GET_SIMPLE_LUMCOUNT(T)
 		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			adjustHealth(-2)
 

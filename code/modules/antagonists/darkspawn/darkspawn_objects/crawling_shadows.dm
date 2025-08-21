@@ -60,7 +60,7 @@
 
 /mob/living/simple_animal/hostile/crawling_shadows/proc/update_light_speed()
 	var/turf/T = get_turf(src)
-	var/lums = T.get_lumcount()
+	var/lums = GET_SIMPLE_LUMCOUNT(T)
 	if(lums < SHADOW_SPECIES_BRIGHT_LIGHT)
 		speed = -1 //Faster, too
 		alpha = max(alpha - ((SHADOW_SPECIES_BRIGHT_LIGHT - lums) * 60), 0) //Rapidly becomes more invisible in the dark

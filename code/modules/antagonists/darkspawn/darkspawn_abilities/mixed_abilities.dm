@@ -209,15 +209,16 @@
 
 	to_chat(caster, span_velvet("You attempt to split a piece of your psyche."))
 	searching = TRUE
-	var/mob/dead/observer/chosen_ghost
-	var/list/consenting_candidates = SSpolling.poll_ghosts_for_target("Would you like to play as piece of [caster]'s psyche?", check_jobban = ROLE_DARKSPAWN, role = ROLE_DARKSPAWN, poll_time = 10 SECONDS, ignore_category = POLL_IGNORE_DARKSPAWN_PSYCHE, jump_target = caster, alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi', "creep"))
-	if(consenting_candidates.len)
-		chosen_ghost = pick(consenting_candidates)
-	searching = FALSE
-	if(!chosen_ghost)
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Would you like to play as piece of [caster]'s psyche?",
+	check_jobban = ROLE_DARKSPAWN,
+	role = ROLE_DARKSPAWN, poll_time = 10 SECONDS,
+	ignore_category = POLL_IGNORE_DARKSPAWN_PSYCHE,
+	jump_target = caster,
+	alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi',
+	 "creep"))
+	if(isnull(chosen_one))
 		to_chat(caster, span_danger("You fail to split a piece of your psyche."))
-		return
-
+		return FALSE
 	caster.balloon_alert(caster, "zkxa'yaera Hohef'era!")
 	caster.visible_message(span_warning("[caster] breaks away from [caster]'s shadow!"), span_velvet("The piece of your psyche creates a form for itself."))
 	playsound(caster, 'sound/magic/darkspawn/devour_will_form.ogg', 50, 1)
@@ -226,7 +227,7 @@
 		dude = new(get_turf(caster))
 		RegisterSignal(dude, COMSIG_LIVING_DEATH, PROC_REF(rejoin))
 	dude.Copy_Parent(caster, 100, health, damage)
-	dude.ckey = chosen_ghost.ckey
+	dude.ckey = chosen_one.ckey
 	dude.name = caster.name
 	dude.real_name = caster.real_name
 	if(IS_DARKSPAWN(caster))

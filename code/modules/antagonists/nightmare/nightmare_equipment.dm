@@ -27,3 +27,4 @@
 	effectiveness = 70, \
 	)
 	AddComponent(/datum/component/light_eater)
+

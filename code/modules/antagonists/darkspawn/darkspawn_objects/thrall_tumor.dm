@@ -24,11 +24,13 @@
 /obj/item/organ/internal/shadowtumor/process()
 	if(isturf(loc))
 		var/turf/T = loc
-		var/light_count = T.get_lumcount()
-		if(light_count > SHADOW_SPECIES_DIM_LIGHT && organ_health > 0) //Die in the light
-			organ_health--
-		else if(light_count < SHADOW_SPECIES_DIM_LIGHT && organ_health < 3) //Heal in the dark
-			organ_health = min(organ_health + 1, 3)
+		var/light_count = GET_SIMPLE_LUMCOUNT(T)
+		if(light_count > SHADOW_SPECIES_DIM_LIGHT) //Die in the light
+			if(organ_health > 0)
+				organ_health--
+		else //Heal in the dark
+			if(organ_health < 3)
+				organ_health = min(organ_health + 1, 3)
 		if(organ_health <= 0)
 			visible_message(span_warning("[src] collapses in on itself!"))
 			qdel(src)

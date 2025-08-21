@@ -6,13 +6,13 @@
 	description = "A dark liquid that seems to slow down anything that comes into contact with it."
 	color = "#000000" //Complete black (RGB: 0, 0, 0)
 
-/datum/reagent/shadowfrost/on_mob_metabolize(mob/living/L)
+/datum/reagent/shadowfrost/on_mob_metabolize(mob/living/exposed_mob)
 	. = ..()
-	L.add_movespeed_modifier(name, 2)
+	exposed_mob.add_movespeed_modifier(/datum/movespeed_modifier/reagent/shadowfrost)
 
 
 /datum/reagent/shadowfrost/on_mob_end_metabolize(mob/living/L)
-	L.remove_movespeed_modifier(name)
+	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/shadowfrost)
 	return ..()
 
 //////////////////////////////////////////////////////////////////////////

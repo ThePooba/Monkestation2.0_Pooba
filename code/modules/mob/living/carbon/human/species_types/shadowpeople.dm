@@ -54,7 +54,7 @@
 	. = ..()
 	var/turf/T = H.loc
 	if(istype(T))
-		var/light_amount = T.get_lumcount()
+		var/light_amount = GET_SIMPLE_LUMCOUNT(T)
 		switch(light_amount)
 			if(0 to SHADOW_SPECIES_DIM_LIGHT)
 				var/list/healing_types = list(CLONE, BURN, BRUTE)
@@ -132,12 +132,14 @@
 	var/turf/owner_turf = owner.loc
 	if(!isturf(owner_turf))
 		return
-	var/light_amount = owner_turf.get_lumcount()
+	var/light_amount = GET_SIMPLE_LUMCOUNT(owner_turf)
+	var/delta_time = min(round(DELTA_WORLD_TIME(SSmobs), 0.1), 8) // compensate for lag, but avoid potentially taking a shitload of damage all at once
 
-	if(light_amount >= SHADOW_SPECIES_DIM_LIGHT) //if there's enough light, start dying -minor monke edit
-		owner.take_overall_damage(brute = 0.5 * seconds_per_tick, burn = 0.5 * seconds_per_tick, required_bodytype = BODYTYPE_ORGANIC)
-	else //heal in the dark -minor monke edit
-		owner.heal_overall_damage(brute = 0.5 * seconds_per_tick, burn = 0.5 * seconds_per_tick, required_bodytype = BODYTYPE_ORGANIC)
+	// 1 damage per second
+	if(light_amount >= SHADOW_SPECIES_DIM_LIGHT) //if there's enough light, start dying
+		owner.take_overall_damage(brute = delta_time, burn = delta_time, required_bodytype = BODYTYPE_ORGANIC)
+	else //heal in the dark
+		owner.heal_overall_damage(brute = delta_time, burn = delta_time, required_bodytype = BODYTYPE_ORGANIC)
 
 /obj/item/organ/internal/eyes/shadow
 	name = "burning red eyes"
@@ -215,7 +217,7 @@
 	armor = 10
 	burnmod = 1.2
 	heatmod = 1.5
-	no_equip_flags = ITEM_SLOT_MASK | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_ICLOTHING | ITEM_SLOT_SUITSTORE | ITEM_SLOT_HEAD | ITEM_SLOT_EYES
+	no_equip_flags = ITEM_SLOT_MASK | ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_ICLOTHING | ITEM_SLOT_SUITSTORE | ITEM_SLOT_EYES
 	inherent_traits = list(
 		TRAIT_NO_TRANSFORMATION_STING,
 		TRAIT_NO_DNA_COPY,
@@ -398,7 +400,7 @@
 		return
 	var/turf/T = get_turf(owner)
 	if(istype(T))
-		var/light_amount = T.get_lumcount()
+		var/light_amount = GET_SIMPLE_LUMCOUNT(T)
 		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			respawn_progress += seconds_per_tick SECONDS
 			playsound(owner, 'sound/effects/singlebeat.ogg', 40, TRUE)
@@ -442,7 +444,8 @@
 /obj/item/light_eater/worn_overlays(mutable_appearance/standing, isinhands, icon_file) //this doesn't work and i have no clue why
 	. = ..()
 	if(isinhands)
-		. += emissive_appearance(icon, "[inhand_icon_state]_emissive", src)
+		if(!istype(src, /obj/item/light_eater/nightmare))
+			. += emissive_appearance(icon, "[inhand_icon_state]_emissive", src)
 
 #undef DARKSPAWN_REFLECT_COOLDOWN
 #undef HEART_SPECIAL_SHADOWIFY

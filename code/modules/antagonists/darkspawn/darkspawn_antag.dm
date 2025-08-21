@@ -67,8 +67,6 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	team.add_member(owner)
 	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_psi))
 	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_psi))
-	add_team_hud(owner, /datum/antagonist/thrall_darkspawn)
-	add_team_hud(owner, /datum/antagonist/darkspawn)
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
@@ -89,6 +87,8 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		return
 	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
 	add_team_hud(current_mob)
+	add_team_hud(owner, /datum/antagonist/thrall_darkspawn)
+	add_team_hud(owner, /datum/antagonist/darkspawn)
 	current_mob.grant_language(/datum/language/darkspawn)
 
 	//psi stuff
@@ -134,7 +134,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
 		"antag_team_hud_[REF(src)]",
 		hud_image_on(target),
-		antag_to_check || type,
+		//antag_to_check || type,
 	))
 
 	// Add HUDs that they couldn't see before
@@ -215,7 +215,8 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 				knowledge_data["disabled"] = (initial(knowledge.willpower_cost) > willpower)
 				knowledge_data["infinite"] = (initial(knowledge.infinite))
 				if(initial(knowledge.icon_state)) //only include an icon if one actually exists
-					knowledge_data["icon"] = icon2base64(icon(initial(knowledge.icon), initial(knowledge.icon_state)))
+					knowledge_data["icon"] = text_ref(initial(knowledge.icon))
+					knowledge_data["icon_state"] = initial(knowledge.icon_state)
 
 				paths += list(knowledge_data)
 
@@ -290,7 +291,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if((owner?.current?.stat == DEAD) && HAS_TRAIT(src, TRAIT_DARKSPAWN_UNDYING) && ishuman(owner.current) && !QDELETED(owner.current))
 		var/mob/living/carbon/human/deadguy = owner.current
 		var/turf/location = get_turf(owner.current)
-		var/light_amount = location.get_lumcount()
+		var/light_amount = GET_SIMPLE_LUMCOUNT(location)
 		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			if(!revive_notice)
 				deadguy.visible_message(span_notice("[deadguy]'s body twitches."), span_progenitor("Your body lurches as it refuses to be stopped by death."))
@@ -468,15 +469,13 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(!user || !istype(user))//sanity check
 		return
 
-	user.status_flags |= TRAIT_GODMODE
-
 	if(!GLOB.sacrament_done)
 		GLOB.sacrament_done = TRUE
 		team.upon_sacrament()
-		SSsecurity_level.set_level(SEC_LEVEL_DELTA)
+		SSsecurity_level.set_level(SEC_LEVEL_LAMBDA)
 		shatter_lights()
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
-	//	set_starlight(COLOR_VELVET) //i wanna change power and range, but that causes immense lag
+		GLOB.starlight_color = COLOR_VELVET
 		to_chat(world, span_velvet("Reality begins to quake and crack at the seams."))
 		addtimer(CALLBACK(src, PROC_REF(start_overlay)), 15 SECONDS)
 		SEND_GLOBAL_SIGNAL(COMSIG_DARKSPAWN_ASCENSION)
@@ -505,8 +504,10 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 ///get rid of all lights by calling the light eater proc
 /datum/antagonist/darkspawn/proc/shatter_lights()
-	for(var/obj/machinery/light/L in GLOB.machines)
-		addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, on_light_eater)), rand(1, 50)) //stagger the "shatter" to reduce lag
+	for(var/obj/machinery/light/light as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/light))
+		if(is_centcom_level(light?.z))
+			continue
+		addtimer(CALLBACK(light, TYPE_PROC_REF(/obj/machinery/light, on_light_eater)), rand(0.1 SECONDS, 5 SECONDS)) //stagger the "shatter" to reduce lag
 
 ///call a shuttle
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()

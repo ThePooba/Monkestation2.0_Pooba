@@ -6,7 +6,7 @@
 	desc = "A language used by the darkspawn. Even with harsh syllables, it rolls silkily off the tongue."
 	syllables = list("ko", "ii", "ma", "an", "sah", "lo", "na")
 	flags = NO_STUTTER
-	key = "a"
+	key = "k"
 	default_priority = 10
 	space_chance = 40
 	icon = 'monkestation/icons/misc/language.dmi'

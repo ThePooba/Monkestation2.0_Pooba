@@ -1,6 +1,6 @@
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Section, Stack, Box, Tabs, Button, Flex } from '../components';
+import { Section, Stack, Box, Tabs, Button, Flex, DmIcon } from '../components';
 import { Window } from '../layouts';
 import { BooleanLike } from 'common/react';
 import { ObjectivePrintout, Objective } from './common/Objectives';
@@ -20,7 +20,7 @@ type Data = {
 };
 
 type Category = {
-  name: String;
+  name: string;
   knowledgeData: Knowledge[];
 };
 
@@ -34,6 +34,7 @@ type Knowledge = {
   menutab: string;
   infinite: boolean;
   icon: string;
+  icon_state: string;
 };
 
 type Classes = {
@@ -415,10 +416,11 @@ const KnowledgePreview = (props) => {
 
           {!!selectedKnowledge.icon && (
             <Stack.Item>
-              <Box
-                as="img"
-                src={`data:image/jpeg;base64,${selectedKnowledge.icon}`}
-                height="128px"
+              <DmIcon
+                icon={selectedKnowledge.icon}
+                icon_state={selectedKnowledge.icon_state}
+                width={'128px'}
+                height={'128px'}
                 style={{
                   background:
                     'radial-gradient(circle, rgb(114, 100, 255) 0%, rgb(33, 0, 127) 100%);',
