@@ -146,14 +146,14 @@
 
 /datum/team/darkspawn/proc/upon_sacrament()
 	for(var/datum/mind/master in members)
-		var/dead = FALSE
-		if(master.current)
-			if(master.current.stat == DEAD)
-				dead = TRUE
-			master.current.grab_ghost()
-			master.current.revive(TRUE)
-			if(dead)
-				to_chat(master.current, "Returning to Nullspace has revitalized your form")
+		if(QDELETED(master.current))
+			continue
+		var/was_dead = FALSE
+		if(master.current.stat == DEAD)
+			was_dead = TRUE
+		master.current.revive(ADMIN_HEAL_ALL)
+		if(was_dead)
+			to_chat(master.current, span_progenitor("Returning to Nullspace has revitalized your form!"))
 
 //60 minutes after the round starts, enable validhunters and powergamers to do their thing (station is probably fucked by that point anyways)
 /datum/team/darkspawn/proc/enable_validhunt()
