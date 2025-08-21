@@ -48,7 +48,7 @@
 	var/processed_message = span_progenitor("\[Mindlink\] [user] has begun performing the sacrament.")
 	for(var/mob/M as anything in GLOB.alive_mob_list)
 		if(IS_TEAM_DARKSPAWN(M))
-			to_chat(M, processed_message)
+			to_chat(M, processed_message, type = MESSAGE_TYPE_RADIO)
 	deadchat_broadcast(processed_message, null, user)
 
 	in_use = TRUE

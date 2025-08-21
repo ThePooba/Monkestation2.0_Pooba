@@ -125,8 +125,8 @@
 		for(var/mob/M in GLOB.player_list)
 			if(M in GLOB.dead_mob_list)
 				var/link = FOLLOW_LINK(M, user)
-				to_chat(M, "[link] [msg]")
+				to_chat(M, "[link] [msg]", type = MESSAGE_TYPE_RADIO)
 			else if(IS_TEAM_DARKSPAWN(M))
-				to_chat(M, msg)
+				to_chat(M, msg, type = MESSAGE_TYPE_RADIO)
 	return FALSE //yogs end
 
