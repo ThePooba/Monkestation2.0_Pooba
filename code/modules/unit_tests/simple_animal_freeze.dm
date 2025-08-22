@@ -68,7 +68,7 @@
 		/mob/living/simple_animal/hostile/ooze,
 		/mob/living/simple_animal/hostile/ooze/gelatinous,
 		/mob/living/simple_animal/hostile/ooze/grapes,
-		/mob/living/simple_animal/hostile/progenitor,
+		/mob/living/simple_animal/hostile/darkspawn_progenitor,
 		/mob/living/simple_animal/hostile/retaliate,
 		/mob/living/simple_animal/hostile/retaliate/goose,
 		/mob/living/simple_animal/hostile/retaliate/goose/vomit,
