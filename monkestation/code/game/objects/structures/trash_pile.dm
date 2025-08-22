@@ -190,7 +190,7 @@
 		COOLDOWN_START(src, trash_cooldown, trash_delay * 0.5 + rand() * trash_delay) // x0.5 to x1.5
 		remaining_trash_throws[ckey]--
 		var/item_to_spawn
-		item_to_spawn = pick_weight_recursive(GLOB.maintenance_loot)
+		item_to_spawn = pick_weight_recursive(GLOB.trash_pile_loot)
 		var/obj/item/spawned_item = new item_to_spawn(drop_location())
 		if(!QDELETED(spawned_item))
 			var/turf/throw_at = get_ranged_target_turf_direct(src, user, 7, rand(-60, 60))

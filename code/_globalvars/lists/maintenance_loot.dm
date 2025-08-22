@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(trash_pile_loot, list(
 	GLOB.common_loot = 150,
 	/obj/item/grown/bananapeel = 25,
 	/obj/item/grown/bananapeel/bluespace = 3.5, // I am SO going to regret this later ~Lucy
-	GLOB.good_maintenance_loot = 15,
+	GLOB.good_maintenance_loot = 5,
 ))
 // monkestation end
 
