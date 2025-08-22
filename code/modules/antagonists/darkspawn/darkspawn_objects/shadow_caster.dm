@@ -40,7 +40,7 @@
 
 
 
-/obj/item/gun/ballistic/bow/clockwork/attackby(obj/item/I, mob/user, params)
+/obj/item/gun/ballistic/bow/shadow_caster/attackby(obj/item/I, mob/user, params)
 	return
 
 /// Recharges a bolt, done after the delay in shoot_live_shot
@@ -62,10 +62,10 @@
 //the object that appears when the arrow finishes flying
 /obj/item/ammo_casing/caseless/arrow/shadow
 	name = "shadow arrow"
-	desc = "it seem to suck light out of the surroundings."
+	desc = "it seems to suck light out of the surroundings."
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
-	inhand_icon_state = "caster_arrow"
+	inhand_icon_state = null
 	embedding = list("embed_chance" = 20, "embedded_fall_chance" = 0) //always embeds if it hits someone
 	projectile_type = /obj/projectile/energy/shadow_arrow
 
