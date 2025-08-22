@@ -106,7 +106,7 @@
 	possible_shapes = list(/mob/living/basic/crawling_shadows)
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/Grant(mob/grant_to)
-	.. = .()
+	. = ..()
 	if(!IS_DARKSPAWN_OR_THRALL(grant_to))
 		bypass_cost = TRUE
 
