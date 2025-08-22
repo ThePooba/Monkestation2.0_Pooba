@@ -103,7 +103,7 @@
 	convert_damage = TRUE
 	convert_damage_type = STAMINA
 	sound = 'sound/magic/darkspawn/devour_will_end.ogg'
-	possible_shapes = list(/mob/living/basic/crawling_shadows)
+	possible_shapes = list(/mob/living/simple_animal/hostile/crawling_shadows)
 
 /datum/action/cooldown/spell/shapeshift/crawling_shadows/Grant(mob/grant_to)
 	. = ..()

@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 GLOBAL_LIST_INIT(trash_pile_loot, list(
 	GLOB.trash_loot = 500,
 	/obj/item/grown/bananapeel = 10,
-	/obj/item/grown/bananapeel/bluespace = 0.1, // I am SO going to regret this later ~Lucy
+	/obj/item/grown/bananapeel/bluespace = 1, // I am SO going to regret this later ~Lucy
 ))
 // monkestation end
 
@@ -417,7 +417,7 @@ GLOBAL_LIST_INIT(maint_fauna, list(//fauna: there be critters living in yer main
 #define maint_common_weight 4497 //monkestation edit: from 4500 to 4497
 #define maint_uncommon_weight 1400
 #define maint_rarity_weight 99
-#define maint_oddity_weight 20000 //1 out of 10,000 would give metastation (180 spawns) a 2 in 111 chance of spawning an oddity per round, similar to xeno egg
+#define maint_oddity_weight 2 //1 out of 10,000 would give metastation (180 spawns) a 2 in 111 chance of spawning an oddity per round, similar to xeno egg
 #define maint_holiday_weight 3500 // When holiday loot is enabled, it'll give every loot item a 25% chance of being a holiday item
 #define maint_fauna_weight 150 //monkestation edit: adds friendly maintenance bees, also allows for other maintenance fauna to be coded in.
 
