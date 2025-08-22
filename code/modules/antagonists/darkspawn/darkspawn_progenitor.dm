@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/darkspawn_progenitor
+/mob/living/basic/darkspawn_progenitor
 	name = "void progenitor"
 	desc = "..."
 
@@ -12,8 +12,8 @@
 	layer = LARGE_MOB_LAYER
 
 	//combat stats
-	health = 100000 //functionally immortal, but still killable
-	maxHealth = 100000
+	health = 50000 //functionally immortal, but still killable
+	maxHealth = 50000
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	armour_penetration = 100
@@ -78,7 +78,7 @@
 		/datum/action/cooldown/spell/pointed/progenitor_curse
 	)
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload, darkspawn_name, class_colour = COLOR_DARKSPAWN_PSI)
+/mob/living/basic/darkspawn_progenitor/Initialize(mapload, darkspawn_name, class_colour = COLOR_DARKSPAWN_PSI)
 	. = ..()
 	//add_atom_colour(class_colour, FIXED_COLOUR_PRIORITY)
 
@@ -111,11 +111,11 @@
 	time_to_next_roar = world.time + roar_cooldown //prevent immediate roaring causing sound overlap
 	update_appearance(UPDATE_OVERLAYS)
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/update_overlays()
+/mob/living/basic/darkspawn_progenitor/update_overlays()
 	. = ..()
 	. += emissive_appearance(icon, icon_state, src)
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/AttackingTarget()
+/mob/living/basic/darkspawn_progenitor/AttackingTarget()
 	if(istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		playsound(target, 'sound/magic/darkspawn/pass_smash_door.ogg', 100, FALSE)
 	. = ..()
@@ -123,7 +123,7 @@
 //////////////////////////////////////////////////////////////////////////
 //-------------------------------Smol-----------------------------------//
 //////////////////////////////////////////////////////////////////////////
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Login()
+/mob/living/basic/darkspawn_progenitor/Login()
 	..()
 	var/image/I = image(icon = 'icons/mob/simple/darkspawn.dmi' , icon_state = "smol_progenitor", loc = src)
 	I.override = 1
@@ -135,17 +135,17 @@
 //////////////////////////////////////////////////////////////////////////
 //-------------------------------Roar-----------------------------------//
 //////////////////////////////////////////////////////////////////////////
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/basic/darkspawn_progenitor/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(time_to_next_roar + roar_cooldown <= world.time) //gives time to roar manually if you want to
 		roar()
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, message_range = 7, forced = null)
+/mob/living/basic/darkspawn_progenitor/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, message_range = 7, forced = null)
 	..()
 	if(time_to_next_roar <= world.time)
 		roar()
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/proc/roar()
+/mob/living/basic/darkspawn_progenitor/proc/roar()
 	playsound(src, 'sound/creatures/darkspawn/progenitor_roar.ogg', 70, TRUE)
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M, src) > 7)
@@ -164,22 +164,22 @@
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Ignoring physics----------------------------//
 //////////////////////////////////////////////////////////////////////////
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
+/mob/living/basic/darkspawn_progenitor/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/narsie_act()
+/mob/living/basic/darkspawn_progenitor/narsie_act()
 	return
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/ratvar_act()
+/mob/living/basic/darkspawn_progenitor/ratvar_act()
 	return
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/singularity_act()
+/mob/living/basic/darkspawn_progenitor/singularity_act()
 	return
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
+/mob/living/basic/darkspawn_progenitor/ex_act() //sorry no bombs
 	return
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE) //no shuttlegib either
+/mob/living/basic/darkspawn_progenitor/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE) //no shuttlegib either
 	return
 
 //////////////////////////////////////////////////////////////////////////

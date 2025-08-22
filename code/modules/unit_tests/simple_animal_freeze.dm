@@ -40,6 +40,8 @@
 		/mob/living/simple_animal/hostile/illusion,
 		/mob/living/simple_animal/hostile/illusion/escape,
 		/mob/living/simple_animal/hostile/illusion/mirage,
+		/mob/living/simple_animal/hostile/illusion/darkspawn
+		/mob/living/simple_animal/hostile/illusion/darkspawn/psyche
 		/mob/living/simple_animal/hostile/jungle,
 		/mob/living/simple_animal/hostile/jungle/leaper,
 		/mob/living/simple_animal/hostile/megafauna,

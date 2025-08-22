@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/crawling_shadows
+/mob/living/basic/crawling_shadows
 	//appearance variables
 	name = "crawling shadows"
 	desc = "A formless mass of nothingness with piercing white eyes."
