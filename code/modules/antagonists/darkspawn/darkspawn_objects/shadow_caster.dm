@@ -66,7 +66,7 @@
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
 	inhand_icon_state = null
-	embedding = list("embed_chance" = 20, "embedded_fall_chance" = 0) //always embeds if it hits someone
+	embedding = list("embed_chance" = 20, "embedded_fall_chance" = 0)
 	projectile_type = /obj/projectile/energy/shadow_arrow
 
 //the projectile being shot from the bow
@@ -74,7 +74,7 @@
 	name = "shadow arrow"
 	icon = 'icons/obj/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
-	damage = 20 //reduced damage per arrow compared to regular ones
+	damage = 25 //reduced damage per arrow compared to regular ones
 
 /obj/projectile/energy/shadow_arrow/Initialize(mapload)
 	. = ..()
