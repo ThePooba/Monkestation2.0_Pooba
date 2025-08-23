@@ -120,8 +120,10 @@
 	if(!mind)
 		return FALSE
 	if(IS_TEAM_DARKSPAWN(user))
-		user.log_talk(message, LOG_SAY, tag="darkspawn")
+		user.log_talk(message, LOG_SAY, tag = "darkspawn")
 		var/msg = span_velvet("<b>\[Mindlink\] [user.real_name]:</b> \"[message]\"")
+		if(IS_DARKSPAWN(user)) // the darkspawn get bigger messages than their thralls
+			msg = span_slightly_larger(msg)
 		for(var/mob/M in GLOB.player_list)
 			if(M in GLOB.dead_mob_list)
 				var/link = FOLLOW_LINK(M, user)
