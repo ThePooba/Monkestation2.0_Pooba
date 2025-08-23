@@ -351,9 +351,9 @@
 		return
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
-	hallucinate(target)
+	hallucinate(target, hallucination_triggers)
 
-/datum/action/cooldown/spell/aoe/mass_hallucination/proc/hallucinate(mob/living/target, times = hallucination_triggers)
+/datum/action/cooldown/spell/aoe/mass_hallucination/proc/hallucinate(mob/living/target, times)
 	if(times <= 0)
 		return
 	var/datum/hallucination/picked_hallucination = get_random_valid_hallucination_subtype()//not using weights
