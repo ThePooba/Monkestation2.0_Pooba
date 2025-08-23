@@ -540,6 +540,7 @@
 
 /datum/status_effect/tagalong/on_remove()
 	if(owner.loc == shadowing)
+
 		owner.forceMove(cached_location ? cached_location : get_turf(owner))
 		shadowing.visible_message(span_warning("[owner] breaks away from [shadowing]'s shadow!"), \
 		span_userdanger("You feel a sense of freezing cold pass through you!"))

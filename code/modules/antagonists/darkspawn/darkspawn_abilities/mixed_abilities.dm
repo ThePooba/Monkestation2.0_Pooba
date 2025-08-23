@@ -120,18 +120,15 @@
 	if(.)
 		owner.balloon_alert(owner, "...voz")
 
-/datum/action/cooldown/spell/shapeshift/crawling_shadows/can_cast_spell(feedback)
+/datum/action/cooldown/spell/shapeshift/crawling_shadows/before_cast(mob/living/cast_on)
+
+	if(owner.has_status_effect(/datum/status_effect/tagalong))
+		return FALSE
 	if(owner.has_status_effect(/datum/status_effect/shapechange_mob/from_spell)) //so it's free to change back, but costs psi to change
 		bypass_cost = TRUE
 	else
 		bypass_cost = FALSE
-	if(owner.has_status_effect(/datum/status_effect/tagalong))
-		return FALSE
-	if(owner.movement_type & VENTCRAWLING) //don't let them smoosh themselves
-		if(feedback)
-			to_chat(owner, span_warning("There isn't enough room to release your transformation"))
-		return FALSE
-	return ..()
+	..()
 
 //////////////////////////////////////////////////////////////////////////
 //------------------------Summon a distraction--------------------------//
