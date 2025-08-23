@@ -7,6 +7,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	job_rank = ROLE_DARKSPAWN
 	antag_hud_name = "darkspawn"
 	ui_name = "AntagInfoDarkspawn"
+	hud_icon = 'icons/mob/huds/antag_hud.dmi'
 	antag_moodlet = /datum/mood_event/sling
 
 	//team used for all the darkspawns, thralls, and the objective
@@ -96,7 +97,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		current_mob.hud_used.psi_counter.invisibility = 0
 		update_psi_hud()
 
-	current_mob.faction |= ROLE_DARKSPAWN
+	current_mob.faction |= FACTION_DARKSPAWN
 
 	//for panopticon
 	if(current_mob)
@@ -115,7 +116,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	owner.current.remove_language(/datum/language/darkspawn)
-	owner.current.faction -= ROLE_DARKSPAWN
+	owner.current.faction -= FACTION_DARKSPAWN
 	if(owner.current)
 		qdel(owner.current.GetComponent(/datum/component/internal_cam))
 

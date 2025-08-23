@@ -180,7 +180,7 @@
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 100)
 	cooldown_time = 3 MINUTES
 	///mob summoned by the spell
-	var/mob/living/simple_animal/hostile/illusion/darkspawn/psyche/dude
+	var/mob/living/simple_animal/hostile/illusion/darkspawn/psyche/frayed
 	///health of the mob summoned by the spell
 	var/health = 100
 	///punch damage of the mob summoned by the spell
@@ -189,7 +189,7 @@
 	var/searching = FALSE
 
 /datum/action/cooldown/spell/fray_self/can_cast_spell(feedback)
-	if(dude)
+	if(frayed)
 		if(feedback)
 			to_chat(owner, span_velvet("The piece of your psyche hasn't yet returned to you."))
 		return FALSE
@@ -199,7 +199,7 @@
 
 /datum/action/cooldown/spell/fray_self/cast(atom/cast_on)
 	. = ..()
-	if(dude || searching)
+	if(frayed || searching)
 		return
 	if(!isliving(owner))
 		return
@@ -214,7 +214,7 @@
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
 		"Would you like to play as piece of [caster]'s psyche?",
 		check_jobban = ROLE_DARKSPAWN,
-		role = ROLE_DARKSPAWN, poll_time = 10 SECONDS,
+		role = ROLE_DARKSPAWN, poll_time = 25 SECONDS,
 		ignore_category = POLL_IGNORE_DARKSPAWN_PSYCHE,
 		jump_target = caster,
 		alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi', "creep"),
@@ -226,13 +226,13 @@
 	caster.visible_message(span_warning("[caster] breaks away from [caster]'s shadow!"), span_velvet("The piece of your psyche creates a form for itself."))
 	playsound(caster, 'sound/magic/darkspawn/devour_will_form.ogg', 50, 1)
 
-	if(!dude)
-		dude = new(get_turf(caster))
-		RegisterSignal(dude, COMSIG_LIVING_DEATH, PROC_REF(rejoin))
-	dude.Copy_Parent(caster, 100, health, damage)
-	dude.ckey = chosen_one.ckey
-	dude.name = caster.name
-	dude.real_name = caster.real_name
+	if(!frayed)
+		frayed = new(get_turf(caster))
+		RegisterSignal(frayed, COMSIG_LIVING_DEATH, PROC_REF(rejoin))
+	frayed.Copy_Parent(caster, 100, health, damage)
+	frayed.ckey = chosen_one.ckey
+	frayed.name = caster.name
+	frayed.real_name = caster.real_name
 	if(IS_DARKSPAWN(caster))
 		var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(caster)
 		darkspawn.block_psi(30 SECONDS, type)
@@ -240,6 +240,6 @@
 ///Make sure to properly reset the ability when the ghost mob dies
 /datum/action/cooldown/spell/fray_self/proc/rejoin()
 	to_chat(owner, span_velvet("You feel your psyche form back into a singular entity."))
-	if(!QDELETED(dude))
-		qdel(dude)
-	dude = null
+	if(!QDELETED(frayed))
+		qdel(frayed)
+	frayed = null

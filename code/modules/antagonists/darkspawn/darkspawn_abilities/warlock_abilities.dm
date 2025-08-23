@@ -318,11 +318,11 @@
 	language_final = "Xylt'he kkxla'thamara"
 
 //////////////////////////////////////////////////////////////////////////
-//--------------Gives everyone nearby a random hallucination------------//
+//--------------Gives everyone nearby Blindness------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/aoe/mass_hallucination
-	name = "Mass Hallucination"
-	desc = "Forces brief delirium on all nearby enemies."
+/datum/action/cooldown/spell/aoe/mass_blindness
+	name = "Mass Blindness"
+	desc = "Forces brief blindness on all nearby enemies."
 	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "mass_hallucination"
 	background_icon_state = "bg_alien"
@@ -335,15 +335,13 @@
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 30)
 	cooldown_time = 30 SECONDS
 	sound = 'sound/ambience/antag/darkspawn/veil_mind_scream.ogg'
-	aoe_radius = 7
-	///how many times it hallucinates (1 per second)
-	var/hallucination_triggers = 3
+	var/amount = 10 SECONDS
 
-/datum/action/cooldown/spell/aoe/mass_hallucination/cast(atom/cast_on)
+/datum/action/cooldown/spell/aoe/mass_blindness/cast(atom/cast_on)
 	. = ..()
 	owner.balloon_alert(owner, "h'ellekth'ele")
 
-/datum/action/cooldown/spell/aoe/mass_hallucination/cast_on_thing_in_aoe(atom/victim, atom/caster)
+/datum/action/cooldown/spell/aoe/mass_blindness/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isliving(victim))
 		return
 	var/mob/living/target = victim
@@ -351,14 +349,11 @@
 		return
 	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
-	hallucinate(target, hallucination_triggers)
+	blind(target)
 
-/datum/action/cooldown/spell/aoe/mass_hallucination/proc/hallucinate(mob/living/target, times)
-	if(times <= 0)
-		return
-	var/datum/hallucination/picked_hallucination = get_random_valid_hallucination_subtype()//not using weights
-	target.cause_hallucination(picked_hallucination, "mass hallucination")
-	addtimer(CALLBACK(src, PROC_REF(hallucinate), target, times--), 1 SECONDS, TIMER_UNIQUE)
+/datum/action/cooldown/spell/aoe/mass_blindness/proc/blind(mob/living/target)
+	target.adjust_temp_blindness(amount)
+	target.adjust_hallucinations(amount * 3)
 
 //////////////////////////////////////////////////////////////////////////
 //---------------------Detain and capture ability-----------------------//

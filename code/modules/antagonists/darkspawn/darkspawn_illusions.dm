@@ -20,7 +20,7 @@
 	lighting_cutoff_green = 0
 	lighting_cutoff_blue = 50
 	lighting_cutoff = LIGHTING_CUTOFF_HIGH
-	faction = list(ROLE_DARKSPAWN)
+	faction = list(FACTION_DARKSPAWN)
 
 /mob/living/simple_animal/hostile/illusion/darkspawn/Initialize(mapload)
 	. = ..()
@@ -65,9 +65,9 @@
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 
 	current_mob.grant_language(/datum/language/darkspawn)
-	current_mob.faction |= ROLE_DARKSPAWN
+	current_mob.faction |= FACTION_DARKSPAWN
 
-	current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
+	current_mob.AddComponent(/datum/component/internal_cam, list(FACTION_DARKSPAWN))
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
 	if(cam)
 		cam.change_cameranet(GLOB.thrallnet)
@@ -78,7 +78,7 @@
 		return //sanity check
 
 	current_mob.remove_language(/datum/language/darkspawn)
-	current_mob.faction -= ROLE_DARKSPAWN
+	current_mob.faction -= FACTION_DARKSPAWN
 	qdel(current_mob.GetComponent(/datum/component/internal_cam))
 
 /datum/antagonist/psyche/add_team_hud(mob/target, antag_to_check)

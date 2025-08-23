@@ -29,7 +29,7 @@
 		if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
 			. += span_velvet("The staff will devour any lights hit.")
 		. += span_velvet("Consumes [psi_cost] psi to fire a projectile.")
-		. += span_velvet("Projectiles do 35 stamina damage.")
+		. += span_velvet("Projectiles do 65 stamina damage.")
 
 		. += span_velvet("Also functions to pry open depowered airlocks using right click.")
 		if(effect_flags)
@@ -67,18 +67,18 @@
 			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
 				M.extinguish_mob()
 		else
-			M.apply_damage(25, STAMINA)
+			M.apply_damage(65, STAMINA)
 			if(effect_flags & STAFF_UPGRADE_CONFUSION)
 				M.adjust_confusion(4 SECONDS)
 
 ////////////////////////TWO-HANDED BLOCKING//////////////////////////
 /obj/item/gun/magic/darkspawn/proc/on_wield() //guns do weird things to some of the icon procs probably, and i can't find which ones, so i need to do this all again
 	inhand_icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
-	block_chance = 30
+	block_chance = 35
 
 /obj/item/gun/magic/darkspawn/proc/on_unwield()
 	inhand_icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
-	block_chance = 5
+	block_chance = 10
 
 /obj/item/gun/magic/darkspawn/update_icon_state()
 	icon_state = "[base_icon_state]0"

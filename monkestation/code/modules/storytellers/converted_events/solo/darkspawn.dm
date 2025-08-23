@@ -17,7 +17,8 @@
 		JOB_WARDEN,
 		JOB_BRIG_PHYSICIAN,
 		JOB_CHIEF_ENGINEER,
-		JOB_RESEARCH_DIRECTOR
+		JOB_RESEARCH_DIRECTOR,
+		JOB_SECURITY_ASSISTANT,
 	)
 	required_enemies = 3
 	enemy_roles = list(
@@ -27,7 +28,8 @@
 		JOB_SECURITY_OFFICER,
 		JOB_WARDEN,
 		JOB_CHAPLAIN,
-		JOB_CHIEF_ENGINEER
+		JOB_CHIEF_ENGINEER,
+		JOB_SECURITY_ASSISTANT,
 	)
 	base_antags = 2
 	maximum_antags = 4
@@ -35,7 +37,7 @@
 	roundstart = TRUE
 	//title_icon = "darkspawn"
 	earliest_start = 0 SECONDS
-	denominator = 30 //slightly more people for additional darkspawns
+	denominator = 25 //slightly more people for additional darkspawns
 	weight = 8
 	max_occurrences = 1
 

@@ -41,7 +41,7 @@
 	log_game("[key_name(owner.current)] was dethralled!")
 	owner.special_role = null
 	var/mob/living/M = owner.current
-	M.faction -= ROLE_DARKSPAWN
+	M.faction -= FACTION_DARKSPAWN
 	if(issilicon(M))
 		M.audible_message(span_notice("[M] lets out a short blip, followed by a low-pitched beep."))
 		to_chat(M,span_userdanger("You have been turned into a[ iscyborg(M) ? " cyborg" : "n AI" ]! You are no longer a thrall! Though you try, you cannot remember anything about your servitude..."))
@@ -65,7 +65,7 @@
 	RegisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
 	current_mob.update_appearance(UPDATE_OVERLAYS)
 	current_mob.grant_language(/datum/language/darkspawn)
-	current_mob.faction |= ROLE_DARKSPAWN
+	current_mob.faction |= FACTION_DARKSPAWN
 
 	current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
@@ -98,7 +98,7 @@
 	UnregisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS)
 	current_mob.update_appearance(UPDATE_OVERLAYS)
 	current_mob.remove_language(/datum/language/darkspawn)
-	current_mob.faction -= ROLE_DARKSPAWN
+	current_mob.faction -= FACTION_DARKSPAWN
 
 	qdel(current_mob.GetComponent(/datum/component/internal_cam))
 	for(var/datum/action/cooldown/spell/spells in current_mob.actions)

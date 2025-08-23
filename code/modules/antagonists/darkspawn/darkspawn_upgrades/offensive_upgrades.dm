@@ -67,7 +67,7 @@
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/aoe/permafrost)
-	
+
 /datum/psi_web/shadow_caster
 	name = "Shadow Caster"
 	desc = "Twists an active arm into a bow that shoots arrows made of solid darkness."
@@ -87,7 +87,7 @@
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/trap/damage)
-	
+
 /datum/psi_web/cuff_trap
 	name = "Psi Trap (restrain)"
 	desc = "Place a trap that restrains the legs of any non-ally that crosses it."
@@ -97,7 +97,7 @@
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/trap/legcuff)
-	
+
 /datum/psi_web/nausea_trap
 	name = "Psi Trap (nausea)"
 	desc = "Place a trap that makes any non-ally that crosses it sick to their stomach."
@@ -107,7 +107,7 @@
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/trap/nausea)
-	
+
 /datum/psi_web/teleport_trap
 	name = "Psi Trap (teleport)"
 	desc = "Place a trap that teleports any non-ally to a random location on the station."
@@ -116,7 +116,7 @@
 	willpower_cost = 2
 	shadow_flags = DARKSPAWN_SCOUT
 	menu_tab = STORE_OFFENSE
-	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/trap/teleport)	
+	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/trap/teleport)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------Warlock only abilities-------------------------------//
@@ -130,7 +130,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/seize)
-	
+
 //staff upgrades
 /datum/psi_web/ability_upgrade/staff_confusion
 	name = "Confusion Sign"
@@ -153,16 +153,16 @@
 	flag_to_add = STAFF_UPGRADE_LIGHTEATER
 
 //no more staff upgrades
-/datum/psi_web/mass_hallucination
-	name = "Mass Hallucination"
-	desc = "Forces brief delirium on all nearby enemies."
+/datum/psi_web/mass_blindness
+	name = "Mass Blindness"
+	desc = "Forces brief delirium and blindness on all nearby enemies."
 	lore_description = ""
 	icon_state = "mass_hallucination"
 	willpower_cost = 2
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
-	learned_abilities = list(/datum/action/cooldown/spell/aoe/mass_hallucination)
-	
+	learned_abilities = list(/datum/action/cooldown/spell/aoe/mass_blindness)
+
 /datum/psi_web/mindblast
 	name = "Mind blast"
 	desc = "Focus your psionic energy into a blast that deals physical damage. Can also be projected from the minds of allies."
@@ -172,7 +172,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/mindblast)
-	
+
 /datum/psi_web/extract
 	name = "Extract"
 	desc = "Drain a target's life force or bestow it to an ally."
@@ -192,7 +192,7 @@
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call)
-	
+
 /datum/psi_web/shadowflame
 	name = "Shadowflame Gout"
 	desc = "Release a burst of shadowflame, rapidly sapping the heat of any individual."
