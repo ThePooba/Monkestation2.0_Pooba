@@ -11,6 +11,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	hud_icon = 'icons/mob/huds/antag_hud.dmi'
 	antag_moodlet = /datum/mood_event/sling
 	stinger_sound = 'sound/ambience/antag/darkspawn/darkspawn.ogg'
+	antag_flags = parent_type::antag_flags | FLAG_ANTAG_CAP_TEAM
 
 	//team used for all the darkspawns, thralls, and the objective
 	var/datum/team/darkspawn/team
