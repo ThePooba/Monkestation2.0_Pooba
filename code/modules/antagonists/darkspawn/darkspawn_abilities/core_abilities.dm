@@ -69,20 +69,27 @@
 
 	var/datum/team/darkspawn/team = darkspawn.get_team()
 	if(!team)
-		CRASH("darkspawn without a team is trying to thrall someone")
-
-	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
-	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
-	target.Immobilize(10 SECONDS) //we remove this if it's canceled early
-	target.adjust_silence(5 SECONDS)
+		CRASH("darkspawn without a team is trying to devour will someone")
 
 	caster.balloon_alert(caster, "cera ko...")
 	to_chat(caster, span_velvet("You begin siphoning [target]'s will..."))
-	target.visible_message(span_danger("<i>[target] suddenly howls and clutches their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
-	playsound(target, 'sound/magic/darkspawn/devour_will_long.ogg', 65, FALSE)
+
+	//doing a second drain directly after the first makes this significantly faster
+	var doafterTime = 6 SECONDS
+	if (target.has_status_effect(/datum/status_effect/broken_will))
+		doafterTime = 3 SECONDS
+		playsound(target, 'sound/magic/darkspawn/devour_will.ogg', 65, FALSE)
+	else
+		INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
+		target.visible_message(span_danger("<i>[target] suddenly howls and clutches their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
+		playsound(target, 'sound/magic/darkspawn/devour_will_long.ogg', 65, FALSE)
+
+	caster.Immobilize(1 SECONDS) // So the caster doesn't accidentally move while beading
+	target.Immobilize(10 SECONDS) //we remove this if it's canceled early
+	target.adjust_silence(10 SECONDS)
 
 	eating = TRUE
-	if(!do_after(caster, 5 SECONDS, target))
+	if(!do_after(caster, doafterTime, target))
 		to_chat(caster, span_danger("Being interrupted causes a backlash of psionic power."))
 		caster.Immobilize(5 SECONDS)
 		caster.Knockdown(10 SECONDS)
@@ -96,37 +103,35 @@
 		to_chat(owner, span_danger("[target] already has a dark bead lodged within their psyche."))
 		return FALSE
 
-	//put the victim to sleep before the visible_message proc so the victim doesn't see it
+	caster.balloon_alert(caster, "...akkraup'dej")
 	to_chat(target, span_progenitor("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
 	playsound(target, 'sound/magic/darkspawn/devour_will_end.ogg', 75, FALSE)
 	target.playsound_local(target, 'sound/magic/darkspawn/devour_will_victim.ogg', 50, FALSE)
 
+	//put the victim to sleep before the visible_message proc so the victim doesn't see it
+	target.apply_status_effect(/datum/status_effect/broken_will)
+
 	//format the text output to the darkspawn
 	var/list/self_text = list()
 
-	caster.balloon_alert(caster, "...akkraup'dej")
-
-	var/obj/item/organ/internal/shadowtumor/bead = target.get_organ_slot(ORGAN_SLOT_BRAIN_TUMOR)
-	if(!bead || !istype(bead))
-		bead = new
-		bead.Insert(target, FALSE, FALSE)
-		bead.antag_team = team
 	//pass out the willpower and lucidity to the darkspawns
 	if(!HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
 		ADD_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED, type)
-		self_text += span_velvet("You place a dark bead deep within [target]'s psyche.")
 		self_text += span_velvet("This individual's lucidity brings you one step closer to the sacrament...")
 		self_text += span_velvet("You also feed off their will to fuel your growth, generating 2 willpower.")
-		self_text += span_velvet("No further attempts to drain this individual will provide willpower or lucidity.")
+		self_text += span_velvet("No further attempts to drain this individual will provide lucidity.")
+		self_text += span_velvet("There might be further dregs of will that can be squeezed from their psyche.")
 		team.grant_willpower(2)
 		team.grant_lucidity(1)
+		caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
 	else
-		self_text += span_velvet("You replace the dark bead deep within [target]'s psyche.")
+		self_text += span_velvet("You wring just a few more drops of will from this feeble being's mind.")
+		self_text += span_velvet("Brain reduced to an empty void once again, you dispose of this being.")
+		team.grant_willpower(1)
+		playsound(target, 'sound/items/haunted/ghostitemattack.ogg', 100, TRUE)
+		caster.visible_message(span_warning("[caster] gently waves their hand over [target]..."), self_text.Join("<br>"))
+		target.forceMove(get_safe_random_station_turf_equal_weight())
 
-	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
-
-	//apply the long-term debuff to the victim
-	target.apply_status_effect(/datum/status_effect/broken_will)
 	return TRUE
 
 //////////////////////////////////////////////////////////////////////////

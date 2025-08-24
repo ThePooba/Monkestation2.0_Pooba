@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/thrall_mind
 	name = "Thrall mind"
-	desc = "Consume 1 willpower to thrall a target's mind.<br>To be eligible, they must be alive and recently drained by Devour Will.<br>Can also be used to revive deceased thralls.<br>Right-click to release thralls from your control."
+	desc = "Thrall a target's mind.<br>To be eligible, they must be alive and previously drained by Devour Will.<br>Can also be used to revive deceased thralls.<br>Right-click to release thralls from your control."
 	button_icon = 'icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -16,21 +16,11 @@
 	invocation_type = INVOCATION_NONE
 	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 100)
 	hand_path = /obj/item/melee/touch_attack/darkspawn
-	///Willpower spent by the darkspawn datum to thrall a mind
-	var/willpower_cost = 1
 
 /datum/action/cooldown/spell/touch/thrall_mind/Trigger(trigger_flags, atom/target)
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
 		release_thrall()
 		return
-	return ..()
-
-/datum/action/cooldown/spell/touch/thrall_mind/can_cast_spell(feedback)
-	var/datum/antagonist/darkspawn/master = IS_DARKSPAWN(owner)
-	if(master && master.willpower < willpower_cost)
-		if(feedback)
-			to_chat(owner, span_danger("You do not have enough will to thrall [target]."))
-		return FALSE
 	return ..()
 
 /datum/action/cooldown/spell/touch/thrall_mind/is_valid_target(atom/cast_on)
@@ -57,13 +47,9 @@
 		return
 	var/datum/antagonist/darkspawn/master = IS_DARKSPAWN(caster)
 
-	if(!IS_THRALL(target))
-		if(master.willpower < willpower_cost)
-			to_chat(owner, span_danger("You do not have enough will to thrall [target]."))
-			return FALSE
-		if(!get_shadow_tumor(target))
-			to_chat(owner, span_danger("[target] does not have a shadow bead for you to enhance."))
-			return FALSE
+	if(!HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
+		to_chat(owner, span_danger("[target]'s mind might yet hold undiscovered secrets."))
+		return FALSE
 
 	owner.balloon_alert(owner, "krx'lna tyhx graha...")
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
@@ -92,7 +78,7 @@
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 			to_chat(owner, span_warning("[target] has foreign machinery that resists our thralling, we shall attempt to destroy it."))
 			target.visible_message(span_warning("[target] seems to resist an unseen force!"))
-			if(!do_after(owner, 8 SECONDS, target))
+			if(!do_after(owner, 20 SECONDS, target))
 				to_chat(target, span_userdanger("It cannot be permitted to succeed."))
 				return FALSE
 			for(var/obj/item/implant/mindshield/L in target)
@@ -116,12 +102,7 @@
 		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
 		return FALSE
 
-	if(master.willpower < willpower_cost) //sanity check
-		to_chat(owner, span_velvet("You do not have enough will to thrall [target]."))
-		return FALSE
-
 	if(target.add_thrall())
-		master.willpower -= willpower_cost
 		owner.balloon_alert(owner, "...xthl'kap")
 		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a thrall!"))
 		to_chat(owner, span_velvet("Thralls will serve your every command and passively generate willpower for being nearby non thralls."))
