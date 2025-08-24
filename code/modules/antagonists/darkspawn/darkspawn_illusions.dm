@@ -85,13 +85,16 @@
 	QDEL_NULL(team_hud_ref)
 
 	team_hud_ref = WEAKREF(target.add_alt_appearance(
-		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
+		/datum/atom_hud/alternate_appearance/basic/has_antagonist/darkspawn,
 		"antag_team_hud_[REF(src)]",
 		hud_image_on(target),
 		antag_to_check || type,
 	))
 
+	var/datum/atom_hud/alternate_appearance/basic/has_antagonist/darkspawn/hud = team_hud_ref.resolve()
+
 	// Add HUDs that they couldn't see before
-	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
-		if (IS_TEAM_DARKSPAWN(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
-			antag_hud.show_to(owner.current)
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/darkspawn/antag_hud as anything in GLOB.has_antagonist_huds)
+		if(istype(antag_hud, /datum/atom_hud/alternate_appearance/basic/has_antagonist/darkspawn))
+			antag_hud.show_to(target)
+			hud.show_to(antag_hud.target)

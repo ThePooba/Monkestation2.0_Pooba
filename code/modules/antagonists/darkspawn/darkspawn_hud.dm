@@ -13,3 +13,7 @@
 /datum/hud/Destroy()
 	. = ..()
 	psi_counter = null
+
+/datum/atom_hud/alternate_appearance/basic/has_antagonist/darkspawn
+	antag_datum_type = /datum/antagonist/darkspawn
+
