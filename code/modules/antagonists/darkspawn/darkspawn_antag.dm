@@ -9,6 +9,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	ui_name = "AntagInfoDarkspawn"
 	hud_icon = 'icons/mob/huds/antag_hud.dmi'
 	antag_moodlet = /datum/mood_event/sling
+	stinger_sound = 'sound/ambience/antag/darkspawn/darkspawn.ogg'
 
 	//team used for all the darkspawns, thralls, and the objective
 	var/datum/team/darkspawn/team
@@ -151,7 +152,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(!user) //sanity check
 		return
 
-	user.playsound_local(get_turf(user), 'sound/ambience/antag/darkspawn/darkspawn.ogg', 50, FALSE)
+	play_stinger()
 
 	var/list/report = list()
 	report += span_progenitor("You are a darkspawn!")

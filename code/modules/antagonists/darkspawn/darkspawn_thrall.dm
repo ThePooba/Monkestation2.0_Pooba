@@ -17,6 +17,7 @@
 	roundend_category = "thralls"
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall_darkspawn
+	stinger_sound = 'sound/ambience/antag/darkspawn/become_veil.ogg'
 	///The abilities granted to the thrall
 	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall)
 	///The darkspawn team that the thrall is on
@@ -169,8 +170,8 @@
 	to_chat(owner, span_notice("<i>Use <b>.[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink.</i>"))
 	to_chat(owner, span_notice("<i>Blending in with regular crewmembers will generate willpower for your masters.</i>"))
 	to_chat(owner, span_notice("<i>Ask for help from your masters or fellows if you're new to this role.</i>"))
-	SEND_SOUND(owner.current, sound ('sound/ambience/antag/darkspawn/become_veil.ogg', volume = 50))
 	flash_color(owner, flash_color = COLOR_VELVET, flash_time = 10 SECONDS)
+	play_stinger()
 
 /datum/antagonist/thrall_darkspawn/roundend_report()
 	return "[printplayer(owner)]"
