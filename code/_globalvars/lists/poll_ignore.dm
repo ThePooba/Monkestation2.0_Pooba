@@ -101,6 +101,7 @@ GLOBAL_LIST_INIT(poll_ignore_desc, list(
 	POLL_IGNORE_SHUTTLE_DENIZENS = "Shuttle denizens",
 	POLL_IGNORE_BOTS = "Bots",
 	POLL_IGNORE_BINGLE = "Bingle",
+	POLL_IGNORE_DARKSPAWN_PSYCHE = "Darkspawn Psyche",
 ))
 GLOBAL_LIST_INIT(poll_ignore, init_poll_ignore())
 

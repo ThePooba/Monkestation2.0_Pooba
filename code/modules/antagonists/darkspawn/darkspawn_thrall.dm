@@ -15,12 +15,18 @@
 	job_rank = ROLE_DARKSPAWN
 	antag_hud_name = "thrall"
 	roundend_category = "thralls"
+	antag_flags = parent_type::antag_flags | FLAG_ANTAG_CAP_IGNORE
 	antagpanel_category = "Darkspawn"
+	hud_icon = 'icons/mob/huds/antag_hud.dmi'
 	antag_moodlet = /datum/mood_event/thrall_darkspawn
 	///The abilities granted to the thrall
 	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall)
 	///The darkspawn team that the thrall is on
 	var/datum/team/darkspawn/team
+
+/datum/antagonist/thrall_darkspawn/antag_panel_data()
+
+	return "The Darkspawn are your master! Protect them, spread the darkness, and bring them wills to absorb!"
 
 /datum/antagonist/thrall_darkspawn/get_team()
 	return team
@@ -58,9 +64,7 @@
 	if(team)
 		team.add_thrall(current_mob.mind)
 
-	add_team_hud(current_mob, /datum/antagonist/darkspawn)
-	add_team_hud(current_mob, /datum/antagonist/thrall_darkspawn)
-
+	add_team_hud(current_mob)
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(thrall_life))
 	RegisterSignal(current_mob, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
 	current_mob.update_appearance(UPDATE_OVERLAYS)
@@ -123,10 +127,13 @@
 		//antag_to_check || type,
 	))
 
+	var/datum/atom_hud/alternate_appearance/basic/has_antagonist/hud = team_hud_ref.resolve()
+
 	// Add HUDs that they couldn't see before
 	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
-		if (IS_TEAM_DARKSPAWN(owner.current)) //needs to change this line so both the darkspawn and thrall sees it
-			antag_hud.show_to(owner.current)
+		if (IS_TEAM_DARKSPAWN(target)) //needs to change this line so both the darkspawn and thrall sees it
+			antag_hud.show_to(target)
+			hud.show_to(antag_hud.target)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Body Sigil--------------------------------------//

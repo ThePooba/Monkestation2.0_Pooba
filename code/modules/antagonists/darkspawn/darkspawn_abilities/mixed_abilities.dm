@@ -211,31 +211,46 @@
 
 	to_chat(caster, span_velvet("You attempt to split a piece of your psyche."))
 	searching = TRUE
-	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
+	var/mob/dead/observer/candidates = SSpolling.poll_ghost_candidates(
 		"Would you like to play as piece of [caster]'s psyche?",
 		check_jobban = ROLE_DARKSPAWN,
-		role = ROLE_DARKSPAWN, poll_time = 25 SECONDS,
+		role = ROLE_DARKSPAWN,
+		poll_time = 20 SECONDS,
 		ignore_category = POLL_IGNORE_DARKSPAWN_PSYCHE,
 		jump_target = caster,
-		alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi', "creep"),
+		alert_pic = mutable_appearance('icons/mob/actions/actions_darkspawn.dmi', "veil_mind(old)"),
 	)
-	if(isnull(chosen_one))
+
+	if(!length(candidates))
 		to_chat(caster, span_danger("You fail to split a piece of your psyche."))
+		searching = FALSE
+		return NOT_ENOUGH_PLAYERS
+
+	var/mob/dead/selected = pick_n_take(candidates)
+	var/datum/mind/player_mind = new /datum/mind(selected.key)
+
+	if(isnull(player_mind))
+		to_chat(caster, span_danger("You fail to split a piece of your psyche."))
+		searching = FALSE
 		return FALSE
+
 	caster.balloon_alert(caster, "zkxa'yaera Hohef'era!")
 	caster.visible_message(span_warning("[caster] breaks away from [caster]'s shadow!"), span_velvet("The piece of your psyche creates a form for itself."))
 	playsound(caster, 'sound/magic/darkspawn/devour_will_form.ogg', 50, 1)
 
-	if(!frayed)
-		frayed = new(get_turf(caster))
-		RegisterSignal(frayed, COMSIG_LIVING_DEATH, PROC_REF(rejoin))
+	frayed = new(get_turf(caster))
+	player_mind.active = TRUE
+
 	frayed.Copy_Parent(caster, 100, health, damage)
-	frayed.ckey = chosen_one.ckey
 	frayed.name = caster.name
 	frayed.real_name = caster.real_name
+	player_mind.transfer_to(frayed)
+	message_admins("[ADMIN_LOOKUPFLW(frayed)] has been made into a Psyche of a darkspawn!.")
+
 	if(IS_DARKSPAWN(caster))
 		var/datum/antagonist/darkspawn/darkspawn = IS_DARKSPAWN(caster)
 		darkspawn.block_psi(30 SECONDS, type)
+	searching = FALSE
 
 ///Make sure to properly reset the ability when the ghost mob dies
 /datum/action/cooldown/spell/fray_self/proc/rejoin()

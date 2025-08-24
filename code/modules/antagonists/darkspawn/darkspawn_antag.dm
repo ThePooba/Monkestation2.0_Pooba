@@ -6,6 +6,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	antagpanel_category = "Darkspawn"
 	job_rank = ROLE_DARKSPAWN
 	antag_hud_name = "darkspawn"
+	show_name_in_check_antagonists = TRUE
 	ui_name = "AntagInfoDarkspawn"
 	hud_icon = 'icons/mob/huds/antag_hud.dmi'
 	antag_moodlet = /datum/mood_event/sling
@@ -57,6 +58,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Gain and loss stuff---------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+
 /datum/antagonist/darkspawn/on_gain()
 	START_PROCESSING(SSprocessing, src)
 	owner.special_role = "darkspawn"
@@ -83,13 +85,14 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	return ..()
 
 /datum/antagonist/darkspawn/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_psi))
+	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_psi))
 	var/mob/living/current_mob = mob_override || owner.current
 	if(!current_mob)
 		return
 	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
 	add_team_hud(current_mob)
-	add_team_hud(current_mob, /datum/antagonist/thrall_darkspawn)
-	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 	current_mob.grant_language(/datum/language/darkspawn)
 
 	//psi stuff
@@ -272,6 +275,12 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(user.stat == DEAD)
 		return UI_CLOSE
 	return ..()
+
+/datum/antagonist/darkspawn/admin_add(datum/mind/new_owner, mob/admin)
+	var/msg = " made [key_name_admin(new_owner)] into \a [name]"
+	message_admins("[key_name_admin(usr)][msg]")
+	log_admin("[key_name(usr)][msg]")
+	new_owner.add_antag_datum(src)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------Process proc-----------------------------------//
