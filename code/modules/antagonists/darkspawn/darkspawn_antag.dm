@@ -116,7 +116,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		if(!action)
 			action = new(owner)
 			action.Grant(current_mob)
-		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 20 MINUTES) //this won't trigger if they've divulged when the proc runs
+		addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 25 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	owner.current.remove_language(/datum/language/darkspawn)
