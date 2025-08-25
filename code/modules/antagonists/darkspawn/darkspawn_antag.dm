@@ -603,18 +603,8 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	darkspawn_icon.Blend(icon('icons/mob//species/human/bodyparts.dmi', "darkspawn_r_leg"), ICON_OVERLAY)
 	darkspawn_icon.Blend(icon('icons/mob//species/human/bodyparts.dmi', "darkspawn_l_leg"), ICON_OVERLAY)
 
-	var/class_color
-	var/class_icon
-	switch(rand(1,3))
-		if(1)
-			class_color = COLOR_YELLOW
-			class_icon = "scout_sigils"
-		if(2)
-			class_color = COLOR_RED
-			class_icon = "fighter_sigils"
-		if(3)
-			class_color = COLOR_STRONG_VIOLET
-			class_icon = "warlock_sigils"
+	var/class_color = COLOR_STRONG_VIOLET
+	var/class_icon = "classless"
 
 	var/icon/eyes = icon('icons/mob/simple/darkspawn.dmi', "eyes")
 	eyes.Blend(class_color, ICON_MULTIPLY)
