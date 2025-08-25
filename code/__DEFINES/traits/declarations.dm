@@ -1332,4 +1332,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 ///reduces the cooldown of all used /datum/action/cooldown by 25%
 #define TRAIT_FAST_COOLDOWNS "short_spell_cooldowns"
 
+/// they fingersnap real sexy, with like screen effect and boosted volume n whatnot
+#define TRAIT_PANACHEFUL_SNAPS "panacheful_snaps"
 // END TRAIT DEFINES
