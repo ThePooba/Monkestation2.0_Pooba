@@ -75,6 +75,7 @@
 
 /obj/item/clothing/shoes/jackboots/sec/hos
 	name = "head of security jackboots"
+	icon_state = "jackboots_hos"
 	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. \
 	These ones are extra protective and extra loud."
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
