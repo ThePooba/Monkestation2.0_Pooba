@@ -5,7 +5,7 @@
 	tick_interval = 0.5 SECONDS
 	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/broken_will
-	//the amount of damage needed to wake up the person
+	///the amount of damage needed to wake up the person
 	var/wake_threshold = 5
 
 /datum/status_effect/broken_will/on_apply()

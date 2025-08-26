@@ -18,21 +18,21 @@
 
 /datum/component/walk/proc/handle_move(datum/source, direction)
 	SIGNAL_HANDLER
-	var/mob/living/L = parent
-	var/turf/T = get_step(L, direction)
-	L.setDir(direction)
-	if(!T)
+	var/mob/living/target = parent
+	var/turf/next_turf = get_step(target, direction)
+	target.setDir(direction)
+	if(!next_turf)
 		return
-	var/allowed = can_walk(L, T)
+	var/allowed = can_walk(target, next_turf)
 	switch(allowed)
 		if(DEFER_MOVE)
 			return FALSE
 		if(MOVE_NOT_ALLOWED)
 			return TRUE
 		if(MOVE_ALLOWED)
-			preprocess_move(L, T)
-			L.forceMove(T)
-			finalize_move(L, T)
+			preprocess_move(target, next_turf)
+			target.forceMove(next_turf)
+			finalize_move(target, next_turf)
 			return TRUE
 
 /datum/component/walk/proc/can_walk(mob/living/user, turf/destination)
@@ -49,12 +49,16 @@
 	var/move_delay = 0
 	var/atom/movable/pulled
 
+/datum/component/walk/shadow/Initialize()
+	if(!isshadowperson(parent))
+		return COMPONENT_INCOMPATIBLE
+	return ..()
+
 /datum/component/walk/shadow/handle_move(datum/source, list/move_args)
+	SIGNAL_HANDLER
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return TRUE
 
-	if(!isshadowperson(source))
-		return FALSE
 	var/mob/living/Livin = source
 
 	var/direction = move_args[MOVE_ARG_DIRECTION]
@@ -97,8 +101,6 @@
 /datum/component/walk/shadow/can_walk(mob/living/user, turf/destination)
 	if(istype(destination, /turf/closed/mineral))
 		return DEFER_MOVE // if not asteroid rocks n shit
-//	if(!destination.is_softly_lit())
-//		return MOVE_ALLOWED
 	return (destination.get_lumcount() <= SHADOW_SPECIES_DIM_LIGHT ? MOVE_ALLOWED : DEFER_MOVE)
 
 /datum/component/walk/shadow/preprocess_move(mob/living/user, turf/destination)
@@ -107,12 +109,12 @@
 			user.stop_pulling()
 			return
 		if(isliving(user.pulling))
-			var/mob/living/L = user.pulling
-			L.stop_pulling()
-			if(L.buckled && L.buckled.buckle_prevents_pull)
+			var/mob/living/abductee = user.pulling
+			abductee.stop_pulling()
+			if(abductee.buckled && abductee.buckled.buckle_prevents_pull)
 				user.stop_pulling()
 				return
-			L.face_atom(user)
+			abductee.face_atom(user)
 		pulled = user.pulling
 		pulled.set_glide_size(user.glide_size)
 		user.pulling.forceMove(get_turf(user))

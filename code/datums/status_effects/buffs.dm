@@ -251,7 +251,7 @@
 	med_hud.hide_from(owner)
 
 /datum/status_effect/hippocratic_oath/get_examine_text()
-	return span_warning("[owner.p_are(TRUE)] to have an aura of healing and helpfulness about [owner.p_them()].")
+	return span_notice("[owner.p_they(TRUE)] to have an aura of healing and helpfulness about [owner.p_them()].")
 
 /datum/status_effect/hippocratic_oath/tick()
 	if(owner.stat == DEAD)
@@ -423,8 +423,8 @@
 	duration = 2 SECONDS
 	status_type = STATUS_EFFECT_REPLACE
 	show_duration = TRUE
-	var/slowdown
 	alert_type = null
+	var/slowdown
 
 /datum/status_effect/speed_boost/on_creation(mob/living/new_owner, set_duration, multiplier)
 	if(multiplier)
@@ -566,7 +566,7 @@
 
 /datum/status_effect/time_dilation //used by darkspawn; greatly increases action times etc
 	id = "time_dilation"
-	duration = 600
+	duration = 60 SECONDS
 	alert_type = /obj/screen/alert/status_effect/time_dilation
 
 /datum/status_effect/time_dilation/get_examine_text()

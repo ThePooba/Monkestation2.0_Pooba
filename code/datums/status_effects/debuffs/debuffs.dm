@@ -580,9 +580,9 @@
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
 	playsound(spawn_turf, pick('sound/effects/curse1.ogg','sound/effects/curse2.ogg','sound/effects/curse3.ogg'), 80, 1, -1)
-	var/obj/projectile/curse_hand/progenitor/C = new (spawn_turf)
-	C.preparePixelProjectile(owner, spawn_turf)
-	C.fire()
+	var/obj/projectile/curse_hand/progenitor/pro = new (spawn_turf)
+	pro.preparePixelProjectile(owner, spawn_turf)
+	pro.fire()
 
 /datum/status_effect/gonbola_pacify
 	id = "gonbolaPacify"
@@ -1082,4 +1082,3 @@
 
 /datum/movespeed_modifier/careful_driving
 	multiplicative_slowdown = 3
-

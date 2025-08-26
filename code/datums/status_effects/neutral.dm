@@ -539,16 +539,17 @@
 	RegisterSignal(owner, COMSIG_MOB_EQUIPPED_ITEM, PROC_REF(on_equip))
 
 /datum/status_effect/tagalong/on_remove()
-	if(owner.loc == shadowing)
-
-		owner.forceMove(cached_location ? cached_location : get_turf(owner))
-		shadowing.visible_message(span_warning("[owner] breaks away from [shadowing]'s shadow!"), \
-		span_userdanger("You feel a sense of freezing cold pass through you!"))
-		to_chat(owner, span_velvet("You break away from [shadowing]."))
+	if(owner.loc != shadowing)
+		return
+	owner.forceMove(cached_location ? cached_location : get_turf(owner))
+	shadowing.visible_message(span_warning("[owner] breaks away from [shadowing]'s shadow!"), \
+	span_userdanger("You feel a sense of freezing cold pass through you!"))
+	to_chat(owner, span_velvet("You break away from [shadowing]."))
 	playsound(owner, 'sound/magic/darkspawn/devour_will_form.ogg', 50, TRUE)
 	owner.setDir(SOUTH)
 
 /datum/status_effect/tagalong/proc/on_equip()
+	SIGNAL_HANDLER
 	to_chat(owner, span_userdanger("Equipping an item forces you out!"))
 	qdel(src)
 
@@ -563,10 +564,6 @@
 		owner.forceMove(cached_location)
 		shadowing.visible_message(span_warning("[owner] suddenly appears from the dark!"))
 		to_chat(owner, span_warning("You are forced out of [shadowing]'s shadow!"))
-		qdel(src)
-	var/obj/item/I = owner.get_active_held_item()
-	if(I)
-		to_chat(owner, span_userdanger("Equipping an item forces you out!"))
 		qdel(src)
 
 /atom/movable/screen/alert/status_effect/tagalong

@@ -58,7 +58,8 @@
 	var/can_chromosome = CHROMOSOME_NONE
 	/// Name of the chromosome
 	var/chromosome_name
-	var/modified = FALSE  //ugly but we really don't want chromosomes and on_acquiring to overlap and apply double the powers
+	///ugly but we really don't want chromosomes and on_acquiring to overlap and apply double the powers
+	var/modified = FALSE
 
 	//Chromosome stuff - set to -1 to prevent people from changing it. Example: It'd be a waste to decrease cooldown on mutism
 	/// genetic stability coeff
@@ -196,7 +197,8 @@
 	can_chromosome = initial(can_chromosome)
 	chromosome_name = null
 
-/datum/mutation/proc/modify() //called when a genome is applied so we can properly update some stats without having to remove and reapply the mutation from someone
+///called when a genome is applied so we can properly update some stats without having to remove and reapply the mutation from someone
+/datum/mutation/proc/modify()
 	if(modified || !power_path || !owner)
 		return
 	var/datum/action/cooldown/spell/modified_power = locate(power_path) in owner.actions

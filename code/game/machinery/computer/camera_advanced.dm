@@ -21,7 +21,8 @@
 
 	/// List of all actions to give to a user when they're well, granted actions
 	var/list/actions = list()
-	var/datum/cameranet/camnet //the net it's looking at
+	///the net it's looking at
+	var/datum/cameranet/camnet
 	///Should we supress any view changes?
 	var/should_supress_view_changes = TRUE
 

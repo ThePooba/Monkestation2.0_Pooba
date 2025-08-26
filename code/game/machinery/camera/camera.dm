@@ -24,7 +24,7 @@
 	var/area/myarea = null
 
 	//OTHER
-
+	///used to track what camera network we are on
 	var/datum/cameranet/camnet
 
 	var/view_range = 7

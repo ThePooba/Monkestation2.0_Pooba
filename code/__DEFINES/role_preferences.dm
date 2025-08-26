@@ -21,7 +21,7 @@
 #define ROLE_OPFOR_CANDIDATE "OPFOR Candidate"
 #define ROLE_ASSAULT_OPERATIVE "Assault Operative"
 #define ROLE_DARKSPAWN "Darkspawn"
-//darkspawns class paths are different jobs technically
+///darkspawns class paths are different jobs technically
 #define ROLE_DARKSPAWN_CLASSLESS "Deprived"
 #define ROLE_DARKSPAWN_ADMEME "Admeme"
 #define ROLE_DARKSPAWN_FIGHTER "Fighter"

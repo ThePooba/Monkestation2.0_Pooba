@@ -136,10 +136,12 @@
 	var/market_verb = "Customer"
 	var/payment_department = ACCOUNT_ENG
 
-
-	var/clickvol = 40	// sound volume played on succesful click
-	var/next_clicksound = 0	// value to compare with world.time for whether to play clicksound according to CLICKSOUND_INTERVAL
-	var/clicksound	// sound played on succesful interface use by a carbon lifeform
+	/// sound volume played on succesful click
+	var/clickvol = 40
+	/// value to compare with world.time for whether to play clicksound according to CLICKSOUND_INTERVAL
+	var/next_clicksound = 0
+	/// sound played on succesful interface use by a carbon lifeform
+	var/clicksound
 
 	/// For storing and overriding ui id
 	var/tgui_id // ID of TGUI interface

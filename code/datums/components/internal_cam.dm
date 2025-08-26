@@ -32,8 +32,8 @@
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
 
 /datum/component/internal_cam/Destroy(force, silent)
-	. = ..()
 	QDEL_NULL(bodcam)
+	return ..()
 
 ///Changes the camera net used by the interal camera, currently only used for the darkspawn cameranet
 /datum/component/internal_cam/proc/change_cameranet(datum/cameranet/newnet)
@@ -43,5 +43,6 @@
 
 ///Updates the camera net, telling it that the camera has moved
 /datum/component/internal_cam/proc/update_cam()
+	SIGNAL_HANDLER
 	bodcam.camnet.updatePortableCamera(bodcam, INTERNAL_CAMERA_BUFFER)
 
