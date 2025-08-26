@@ -316,44 +316,45 @@ extra range addition
 			'monkestation/sound/effects/ballpit.ogg'), 100, 0),
 		)
 
+///here comes da big stompy hos oh noes
 /datum/component/shoesteps/hosboots
 	custom_sounds = list(
 		FOOTSTEP_WOOD = list(list(
-			'monkestation/sound/effects/marchsound/marchsound1.ogg',
-			'monkestation/sound/effects/marchsound/marchsound2.ogg',
-			'monkestation/sound/effects/marchsound/marchsound3.ogg',
-			'monkestation/sound/effects/marchsound/marchsound4.ogg',
-			'monkestation/sound/effects/marchsound/marchsound5.ogg',), 50, 2),
+			'monkestation/sound/effects/bigboot/bigboot1.ogg',
+			'monkestation/sound/effects/bigboot/bigboot2.ogg',
+			'monkestation/sound/effects/bigboot/bigboot3.ogg',
+			'monkestation/sound/effects/bigboot/bigboot4.ogg',
+			'monkestation/sound/effects/bigboot/bigboot5.ogg',), 40, 2),
 		FOOTSTEP_FLOOR = list(list(
-			'monkestation/sound/effects/marchsound/marchsound1.ogg',
-			'monkestation/sound/effects/marchsound/marchsound2.ogg',
-			'monkestation/sound/effects/marchsound/marchsound3.ogg',
-			'monkestation/sound/effects/marchsound/marchsound4.ogg',
-			'monkestation/sound/effects/marchsound/marchsound5.ogg',), 50, 2),
+			'monkestation/sound/effects/bigboot/bigboot1.ogg',
+			'monkestation/sound/effects/bigboot/bigboot2.ogg',
+			'monkestation/sound/effects/bigboot/bigboot3.ogg',
+			'monkestation/sound/effects/bigboot/bigboot4.ogg',
+			'monkestation/sound/effects/bigboot/bigboot5.ogg',), 40, 2),
 		FOOTSTEP_PLATING = list(list(
-			'monkestation/sound/effects/marchsound/marchsound1.ogg',
-			'monkestation/sound/effects/marchsound/marchsound2.ogg',
-			'monkestation/sound/effects/marchsound/marchsound3.ogg',
-			'monkestation/sound/effects/marchsound/marchsound4.ogg',
-			'monkestation/sound/effects/marchsound/marchsound5.ogg',), 50, 2),
+			'monkestation/sound/effects/bigboot/bigboot1.ogg',
+			'monkestation/sound/effects/bigboot/bigboot2.ogg',
+			'monkestation/sound/effects/bigboot/bigboot3.ogg',
+			'monkestation/sound/effects/bigboot/bigboot4.ogg',
+			'monkestation/sound/effects/bigboot/bigboot5.ogg',), 40, 2),
 		FOOTSTEP_CARPET = list(list(
-			'monkestation/sound/effects/marchsound/marchsound1.ogg',
-			'monkestation/sound/effects/marchsound/marchsound2.ogg',
-			'monkestation/sound/effects/marchsound/marchsound3.ogg',
-			'monkestation/sound/effects/marchsound/marchsound4.ogg',
-			'monkestation/sound/effects/marchsound/marchsound5.ogg',), 50, 2),
+			'monkestation/sound/effects/bigboot/bigboot1.ogg',
+			'monkestation/sound/effects/bigboot/bigboot2.ogg',
+			'monkestation/sound/effects/bigboot/bigboot3.ogg',
+			'monkestation/sound/effects/bigboot/bigboot4.ogg',
+			'monkestation/sound/effects/bigboot/bigboot5.ogg',), 40, 2),
 		FOOTSTEP_SAND = list(list(
-			'monkestation/sound/effects/marchsound/marchsound1.ogg',
-			'monkestation/sound/effects/marchsound/marchsound2.ogg',
-			'monkestation/sound/effects/marchsound/marchsound3.ogg',
-			'monkestation/sound/effects/marchsound/marchsound4.ogg',
-			'monkestation/sound/effects/marchsound/marchsound5.ogg',), 50, 2),
+			'monkestation/sound/effects/bigboot/bigboot1.ogg',
+			'monkestation/sound/effects/bigboot/bigboot2.ogg',
+			'monkestation/sound/effects/bigboot/bigboot3.ogg',
+			'monkestation/sound/effects/bigboot/bigboot4.ogg',
+			'monkestation/sound/effects/bigboot/bigboot5.ogg',), 40, 2),
 		FOOTSTEP_GRASS = list(list(
-			'monkestation/sound/effects/marchsound/marchsound1.ogg',
-			'monkestation/sound/effects/marchsound/marchsound2.ogg',
-			'monkestation/sound/effects/marchsound/marchsound3.ogg',
-			'monkestation/sound/effects/marchsound/marchsound4.ogg',
-			'monkestation/sound/effects/marchsound/marchsound5.ogg',), 50, 2),
+			'monkestation/sound/effects/bigboot/bigboot1.ogg',
+			'monkestation/sound/effects/bigboot/bigboot2.ogg',
+			'monkestation/sound/effects/bigboot/bigboot3.ogg',
+			'monkestation/sound/effects/bigboot/bigboot4.ogg',
+			'monkestation/sound/effects/bigboot/bigboot5.ogg',), 40, 2),
 		FOOTSTEP_WATER = list(list(
 			'sound/effects/footstep/water1.ogg',
 			'sound/effects/footstep/water2.ogg',
@@ -366,11 +367,11 @@ extra range addition
 		FOOTSTEP_MEAT = list(list(
 			'sound/effects/meatslap.ogg'), 100, 0),
 		FOOTSTEP_CATWALK = list(list(
-			'monkestation/sound/effects/marchsound/marchsound1.ogg',
-			'monkestation/sound/effects/marchsound/marchsound2.ogg',
-			'monkestation/sound/effects/marchsound/marchsound3.ogg',
-			'monkestation/sound/effects/marchsound/marchsound4.ogg',
-			'monkestation/sound/effects/marchsound/marchsound5.ogg',), 50, 2),
+			'monkestation/sound/effects/bigboot/bigboot1.ogg',
+			'monkestation/sound/effects/bigboot/bigboot2.ogg',
+			'monkestation/sound/effects/bigboot/bigboot3.ogg',
+			'monkestation/sound/effects/bigboot/bigboot4.ogg',
+			'monkestation/sound/effects/bigboot/bigboot5.ogg',), 40, 2),
 		FOOTSTEP_BALL = list(list(
 			'monkestation/sound/effects/ballpit.ogg'), 100, 0),
 		)
