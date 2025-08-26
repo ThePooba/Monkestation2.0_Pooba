@@ -49,16 +49,10 @@
 	var/move_delay = 0
 	var/atom/movable/pulled
 
-/datum/component/walk/shadow/Initialize()
-	if(!isshadowperson(parent))
-		return COMPONENT_INCOMPATIBLE
-	return ..()
-
 /datum/component/walk/shadow/handle_move(datum/source, list/move_args)
 	SIGNAL_HANDLER
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return TRUE
-
 	var/mob/living/Livin = source
 
 	var/direction = move_args[MOVE_ARG_DIRECTION]
@@ -91,7 +85,7 @@
 		if(MOVE_ALLOWED)
 			preprocess_move(Livin, Destination)
 			Livin.forceMove(Destination)
-			finalize_move(Livin, Destination)
+			INVOKE_ASYNC(src, PROC_REF(finalize_move), Livin, Destination)
 			if(direction & (direction - 1) && Livin.loc == Destination) //extra delay for diagonals
 				add_delay *= sqrt(2)
 			Livin.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
