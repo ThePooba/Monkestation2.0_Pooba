@@ -46,11 +46,11 @@
 	flag_to_add = TENDRIL_UPGRADE_TWIN
 
 /datum/psi_web/ability_upgrade/cleaving_tendrils
-	name = "Cleaving Sigils - DONT BUY"
+	name = "Cleaving Sigils"
 	desc = "Unlocking these sigils causes tendrils to cleave through enemies."
 	lore_description = "The Akvryt sigils, representing pierce, are etched onto the arms."
 	icon_state = "cleave"
-	willpower_cost = 200
+	willpower_cost = 2
 	shadow_flags = DARKSPAWN_FIGHTER
 	menu_tab = STORE_OFFENSE
 	flag_to_add = TENDRIL_UPGRADE_CLEAVE

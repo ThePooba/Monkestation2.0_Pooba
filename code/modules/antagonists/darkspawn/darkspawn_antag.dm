@@ -525,7 +525,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 ///call a shuttle
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
-	SSshuttle.emergency.request(null, 0, null, 0.1)
+	SSshuttle.emergency.request(null, 0, null, set_coefficient = 0.1)
 
 /datum/antagonist/darkspawn/proc/start_overlay()
 	to_chat(world, span_progenitor("SOMETHING IS WRONG."))

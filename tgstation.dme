@@ -1143,6 +1143,7 @@
 #include "code\datums\components\chasm.dm"
 #include "code\datums\components\chuunibyou.dm"
 #include "code\datums\components\cleaner.dm"
+#include "code\datums\components\cleave_attack.dm"
 #include "code\datums\components\clickbox.dm"
 #include "code\datums\components\clothing_fov_visor.dm"
 #include "code\datums\components\codeword_hearing.dm"

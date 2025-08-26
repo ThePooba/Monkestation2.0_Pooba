@@ -61,8 +61,8 @@
 
 	for(var/i in 1 to num_tendrils)
 		var/obj/item/umbral_tendrils/T = new(owner)
-		//if(ability_flags & TENDRIL_UPGRADE_CLEAVE)
-		//	T.AddComponent(/datum/component/cleave_attack, arc_size=180) ill fuckin do it later
+		if(ability_flags & TENDRIL_UPGRADE_CLEAVE)
+			T.AddComponent(/datum/component/cleave_attack, arc_size=120)
 		owner.put_in_hands(T)
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/proc/echo()
