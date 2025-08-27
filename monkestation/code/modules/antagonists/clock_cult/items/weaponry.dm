@@ -265,6 +265,7 @@
 	/// Time between bolt recharges
 	var/recharge_time = 1.5 SECONDS
 	drawn = TRUE
+	nodrop = TRUE
 
 /obj/item/gun/ballistic/bow/clockwork/Initialize(mapload)
 	. = ..()
