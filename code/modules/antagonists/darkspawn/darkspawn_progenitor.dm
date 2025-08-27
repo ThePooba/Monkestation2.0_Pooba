@@ -8,12 +8,16 @@
 	icon_living = "darkspawn_progenitor"
 	health_doll_icon = "smolgenitor"
 	pixel_x = -48 //offset so the mob collision is roughly the middle of the sprite
+	base_pixel_x = -48
 	pixel_y = -32
+	base_pixel_y = -32
+	maptext_height = 64
+	maptext_width = 64
 	layer = LARGE_MOB_LAYER
 
 	//combat stats
-	health = 100000 //functionally immortal, but still killable
-	maxHealth = 100000
+	health = 10000 //functionally immortal, but still killable
+	maxHealth = 10000
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	armour_penetration = 100
@@ -215,3 +219,4 @@
 	var/zoinks = rand(1, 50) / 100 //like, this isn't even my final form!
 	owner.visible_message(span_warning("[owner]'s sigils flare as it glances at [target]!"), span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!"))
 	target.apply_status_effect(/datum/status_effect/progenitor_curse)
+
