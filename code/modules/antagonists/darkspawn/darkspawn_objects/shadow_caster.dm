@@ -11,18 +11,13 @@
 	pin = /obj/item/firing_pin/magic
 	var/recharge_time = 2 SECONDS
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
+	nodrop = TRUE
 
 /obj/item/gun/ballistic/bow/shadow_caster/Initialize(mapload)
 	. = ..()
 	update_icon_state()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
-/obj/item/gun/ballistic/bow/shadow_caster/afterattack(atom/target, mob/living/user, flag, params, passthrough)
-	if(!drawn || !chambered)
-		to_chat(user, span_notice("[src] must be drawn to fire a shot!"))
-		return
-
-	return ..()
 
 /obj/item/gun/ballistic/bow/shadow_caster/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
 	. = ..()

@@ -96,6 +96,7 @@
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT) //so people can actually look at the sprite without the weird bobbing up and down
 	AddElement(/datum/element/death_explosion, 20, 20, 20) //with INFINITY health, they're not really able to die, but IF THEY DO
 	AddComponent(/datum/component/light_eater)
+	AddComponent(/datum/component/seethrough_mob)
 
 	//so the progenitor can hear people's screams over radio
 	var/obj/item/radio/headset/silicon/ai/radio = new(src)
@@ -115,7 +116,6 @@
 	time_to_next_roar = world.time + roar_cooldown //prevent immediate roaring causing sound overlap
 	update_appearance(UPDATE_OVERLAYS)
 	//make u smol
-	RegisterSignal(src, COMSIG_MOB_MIND_INITIALIZED, PROC_REF(smol))
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/update_overlays()
 	. = ..()
@@ -126,19 +126,6 @@
 	if(istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		playsound(target, 'sound/magic/darkspawn/pass_smash_door.ogg', 100, FALSE)
 	. = ..()
-
-//////////////////////////////////////////////////////////////////////////
-//-------------------------------Smol-----------------------------------//
-//////////////////////////////////////////////////////////////////////////
-///make you smal cus seethrough no work
-/mob/living/simple_animal/hostile/darkspawn_progenitor/proc/smol()
-	SIGNAL_HANDLER
-	var/image/I = image(icon = 'icons/mob/simple/darkspawn.dmi' , icon_state = "smol_progenitor", loc = src)
-	I.override = 1
-	I.pixel_x -= pixel_x
-	I.pixel_y -= pixel_y
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smolgenitor", I)
-	time_to_next_roar = world.time + roar_cooldown
 
 //////////////////////////////////////////////////////////////////////////
 //-------------------------------Roar-----------------------------------//
