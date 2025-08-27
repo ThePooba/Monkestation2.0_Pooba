@@ -70,8 +70,6 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	if(!team)
 		team = new
 	team.add_member(owner)
-	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_psi))
-	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_psi))
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()

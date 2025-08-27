@@ -50,7 +50,6 @@
 	var/atom/movable/pulled
 
 /datum/component/walk/shadow/handle_move(datum/source, list/move_args)
-	SIGNAL_HANDLER
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return TRUE
 	var/mob/living/Livin = source
