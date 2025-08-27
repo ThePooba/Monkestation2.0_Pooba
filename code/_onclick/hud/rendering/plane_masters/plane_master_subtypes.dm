@@ -49,6 +49,7 @@
 	. = ..()
 	if(offset != 0)
 		// You aren't the source? don't change yourself
+		critical = PLANE_CRITICAL_FUCKO_PARALLAX
 		return
 	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(on_offset_increase))
 /*
@@ -299,14 +300,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	critical = PLANE_CRITICAL_DISPLAY
 
-/atom/movable/screen/plane_master/additive_lighting
-	name = "additive lighting plane master"
-	plane = LIGHTING_PLANE_ADDITIVE
-	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
-	blend_mode_override = BLEND_ADD
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	critical = PLANE_CRITICAL_DISPLAY
-
 /// This will not work through multiz, because of a byond bug with BLEND_MULTIPLY
 /// Bug report is up, waiting on a fix
 /atom/movable/screen/plane_master/o_light_visual
@@ -470,6 +463,7 @@
 	documentation = "Holds the main tiling 32x32 sprites of weather. We mask against walls that are on the edge of weather effects."
 	plane = WEATHER_PLANE
 	start_hidden = TRUE
+	critical = PLANE_CRITICAL_DISPLAY
 
 /atom/movable/screen/plane_master/weather/set_home(datum/plane_master_group/home)
 	. = ..()
@@ -482,6 +476,7 @@
 	documentation = "Holds the glowing parts of the main tiling 32x32 sprites of weather."
 	plane = WEATHER_GLOW_PLANE
 	start_hidden = TRUE
+	critical = PLANE_CRITICAL_DISPLAY
 
 /atom/movable/screen/plane_master/weather_glow/set_home(datum/plane_master_group/home)
 	. = ..()
