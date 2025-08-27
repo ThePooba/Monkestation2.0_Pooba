@@ -307,5 +307,5 @@
 		handler.disrupt()
 		return
 
-	handler.afterattack(cast_on, owner, TRUE)
+	handler.ranged_interact_with_atom(cast_on, owner, TRUE)
 	handler.toggle(owner)

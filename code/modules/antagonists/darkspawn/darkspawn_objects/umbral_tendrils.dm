@@ -59,7 +59,7 @@
 	if(twin && proximity && !QDELETED(target) && (isstructure(target) || ismachinery(target)) && user.get_active_held_item() == src)
 		target.attackby(twin, user)
 
-/obj/item/umbral_tendrils/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/umbral_tendrils/interact_with_atom_secondary(atom/target, mob/user, click_parameters)
 	if(!IS_DARKSPAWN(user))
 		return ..()
 	tendril_swing(user, target) //Note that airlock interactions can be found in airlock.dm.

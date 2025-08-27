@@ -502,6 +502,3 @@
 
 ///Sent from /obj/item/skillchip/on_remove()
 #define COMSIG_SKILLCHIP_REMOVED "skillchip_removed"
-
-/// from /obj/item/detective_scanner/scan(): (mob/user, list/extra_data)
-#define COMSIG_DETECTIVE_SCANNED "det_scanned"
