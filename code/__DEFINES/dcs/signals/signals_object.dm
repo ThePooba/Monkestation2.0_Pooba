@@ -461,6 +461,9 @@
 /// from /obj/structure/sign/poster/trap_succeeded() : (mob/user)
 #define COMSIG_POSTER_TRAP_SUCCEED "poster_trap_succeed"
 
+/// from /obj/item/detective_scanner/scan(): (mob/user, list/extra_data)
+#define COMSIG_DETECTIVE_SCANNED "det_scanned"
+
 /// from /obj/machinery/mineral/ore_redemption/pickup_item when it successfully picks something up
 #define COMSIG_ORM_COLLECTED_ORE "orm_collected_ore"
 
