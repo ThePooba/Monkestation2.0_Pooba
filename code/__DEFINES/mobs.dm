@@ -1002,5 +1002,5 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define SYNTHETIC 2
 /// Types of bullets that mining mobs take full damage from
 #define MINING_MOB_PROJECTILE_VULNERABILITY list(BRUTE)
-
-#define REGEN_BLOOD_REQUIREMENT 40 /// The amount of "blood" that a slimeperson consumes when regenerating a single limb.
+/// The amount of "blood" that a slimeperson consumes when regenerating a single limb.
+#define REGEN_BLOOD_REQUIREMENT 40
