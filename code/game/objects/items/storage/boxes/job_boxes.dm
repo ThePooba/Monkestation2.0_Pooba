@@ -203,7 +203,6 @@
 		return FALSE
 	else
 		return ..()
-	return TRUE
 
 /obj/item/storage/box/clown/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] opens [src] and gets consumed by [p_them()]! It looks like [user.p_theyre()] trying to commit suicide!"))
