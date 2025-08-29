@@ -83,8 +83,8 @@
 	visuals.emissive = emissive
 	visuals.update_appearance()
 	Draw()
-	RegisterSignal(origin, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING), PROC_REF(redrawing))
-	RegisterSignal(target, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING), PROC_REF(redrawing))
+	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 
 /**
  * Triggered by signals set up when the beam is set up. If it's still sane to create a beam, it removes the old beam, creates a new one. Otherwise it kills the beam.
@@ -105,8 +105,8 @@
 /datum/beam/Destroy()
 	QDEL_LIST(elements)
 	QDEL_NULL(visuals)
-	UnregisterSignal(origin, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
-	UnregisterSignal(target, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
+	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 	target = null
 	origin = null
 	return ..()
