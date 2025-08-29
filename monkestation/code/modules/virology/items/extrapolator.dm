@@ -33,12 +33,12 @@
 
 /obj/item/extrapolator/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	. = ..()
-	if(!proximity_flag && !scan)
+	if(!scan)
 		return
 	if(isliving(interacting_with) && interacting_with != usr)
 		user_data = WEAKREF(interacting_with)
 	if(!scan)
-		try_disease_modification(user, interacting_with
+		try_disease_modification(user, interacting_with)
 	else
 		switch(interacting_with.extrapolator_act(user, src, scan))
 			if(FALSE)
