@@ -283,7 +283,7 @@
 	. = FALSE
 	if(!istype(turf_to_check))
 		return
-	var/datum/gas_mixture/environment = turf_to_check.return_air()
+	var/datum/gas_mixture/environment = turf_to_check.get_readonly_air()
 	if(!istype(environment))
 		return
 	var/pressure = environment.return_pressure()

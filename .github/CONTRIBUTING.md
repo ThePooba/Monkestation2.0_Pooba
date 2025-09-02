@@ -94,13 +94,13 @@ Things you **CAN'T** do:
 
 ## Development Guides
 
-#### Writing readable code 
+#### Writing readable code
 [Style guide](./guides/STYLE.md)
 
-#### Writing sane code 
+#### Writing sane code
 [Code standards](./guides/STANDARDS.md)
 
-#### Writing understandable code 
+#### Writing understandable code
 [Autodocumenting code](./guides/AUTODOC.md)
 
 #### Misc
@@ -140,7 +140,7 @@ There is no strict process when it comes to merging pull requests. Pull requests
 
 ## Justifying Your Changes
 
-You must explain why you are submitting the pull request in the "Why It's Good For The Game" section of your pull request, and how you think your change will be beneficial to the game. Failure to do so will be grounds for rejecting your pull request wholesale, or requiring that you fix it before your pull request is merged. A reasonable justification for your changes is a requirement. 
+You must explain why you are submitting the pull request in the "Why It's Good For The Game" section of your pull request, and how you think your change will be beneficial to the game. Failure to do so will be grounds for rejecting your pull request wholesale, or requiring that you fix it before your pull request is merged. A reasonable justification for your changes is a requirement.
 
 Your "Why It's Good For The Game" section must make a good faith and reasonable attempt to:
 * Assert and argue that the current state of affairs in the game is not good, and needs changing.
@@ -167,7 +167,7 @@ Negative GBP increases the likelihood of a maintainer closing your PR. With that
 
 There is no benefit to having a higher positive GBP score, since GBP only comes into consideration when it is negative.
 
-You can see each tag and their GBP values [Here](https://github.com/tgstation/tgstation/blob/master/.github/gbp.toml). 
+You can see each tag and their GBP values [Here](https://github.com/tgstation/tgstation/blob/master/.github/gbp.toml).
 
 ## Porting features/sprites/sounds/tools from other codebases
 
@@ -197,3 +197,16 @@ Github actions that require additional configuration are disabled on the reposit
 This role `@Maintainer` is pingable as a compromise reached with the server host MrStonedOne over the auto-stale system we presently have in the codebase. It should be used only to ping Maintainers when your PR has had the "Stale" label applied. Using it before then can be met with escalating timeouts and referral to /tg/station's Discord moderators for further infractions.
 
 Feel free to engage and obtain general feedback in the Coding General channel without the role ping before your PR goes stale to build interest and get reviews.
+
+## Modifying MILLA
+
+Our atmos engine, MILLA, is in the `milla/` directory. It's written in Rust for performance reasons, which means it's not compiled the same way as the rest of the code. If you're on Windows, you get a pre-built copy by default. If you're on Linux, you built one already to run the server.
+
+If you make changes to MILLA, you'll want to rebuild. This will be very similar to RUSTG:
+https://github.com/ParadiseSS13/rust-g
+The only difference is that you run `cargo` from the `milla/` directory, and don't need to speify `--all-features` (though it doesn't hurt).
+
+The server will automatically detect that you have a local build, and use that over the default Windows one.
+
+When you're ready to make a PR, please DO NOT modify `milla.dll` or `tools/ci/libmilla_ci.so`. Leave "Allow edits and access to secrets by maintainers" enabled, and post a comment on your PR saying `!build_milla`. A bot will automatically build them for you and update your branch.
+

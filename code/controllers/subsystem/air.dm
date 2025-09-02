@@ -1,3 +1,11 @@
+#define SSAIR_DEFERREDPIPENETS 1
+#define SSAIR_PIPENETS 2
+#define SSAIR_ATMOSMACHINERY 3
+#define SSAIR_INTERESTING_TILES 4
+#define SSAIR_HOTSPOTS 5
+#define SSAIR_BOUND_MIXTURES 6
+#define SSAIR_MILLA_TICK 7
+
 SUBSYSTEM_DEF(air)
 	name = "Atmospherics"
 	init_order = INIT_ORDER_AIR
@@ -8,56 +16,97 @@ SUBSYSTEM_DEF(air)
 
 	var/cached_cost = 0
 
-	var/cost_atoms = 0
-	var/cost_turfs = 0
-	var/cost_hotspots = 0
-	var/cost_groups = 0
-	var/cost_highpressure = 0
-	var/cost_superconductivity = 0
-	var/cost_pipenets = 0
-	var/cost_atmos_machinery = 0
-	var/cost_rebuilds = 0
-	var/cost_adjacent = 0
+	/// How long we took for a full pass through the subsystem. Custom-tracked version of `cost`.
+	var/datum/resumable_cost_counter/cost_full = new()
+	/// How long we spent sleeping while waiting for MILLA to finish the last tick, shown in SS Info's C block as ZZZ.
+	var/datum/resumable_cost_counter/time_slept = new()
+	/// The cost of a pass through bound gas mixtures, shown in SS Info's C block as BM.
+	var/datum/resumable_cost_counter/cost_bound_mixtures = new()
+	/// The cost of a MILLA tick in ms, shown in SS Info's C block as MT.
+	var/cost_milla_tick = 0
+	/// The cost of a pass through interesting tiles, shown in SS Info's C block as IT.
+	var/datum/resumable_cost_counter/cost_interesting_tiles = new()
+	/// The cost of a pass through hotspots, shown in SS Info's C block as HS.
+	var/datum/resumable_cost_counter/cost_hotspots = new()
+	/// The cost of a pass through pipenets, shown in SS Info's C block as PN.
+	var/datum/resumable_cost_counter/cost_pipenets = new()
+	/// The cost of a pass through building pipenets, shown in SS Info's C block as DPN.
+	var/datum/resumable_cost_counter/cost_pipenets_to_build = new()
+	/// The cost of a pass through atmos machinery, shown in SS Info's C block as AM.
+	var/datum/resumable_cost_counter/cost_atmos_machinery = new()
 
-	var/list/excited_groups = list()
-	var/list/active_turfs = list()
+	/// The set of current bound mixtures. Shown in SS Info as BM:x+y, where x is the length at the start of the most recent processing, and y is the number of mixtures that have been added during processing.
+	var/list/bound_mixtures = list()
+	/// The original length of bound_mixtures.
+	var/original_bound_mixtures = 0
+	/// The number of bound mixtures we saw when we last stopped processing them.
+	var/last_bound_mixtures = 0
+	/// The number of bound mixtures that were added during this processing cycle.
+	var/added_bound_mixtures = 0
+	/// The length of the most recent interesting tiles list, shown in SS Info as IT.
+	var/interesting_tile_count = 0
+	/// The set of current active hotspots. Length shown in SS Info as HS.
 	var/list/hotspots = list()
-	var/list/networks = list()
-	var/list/rebuild_queue = list()
-	//Subservient to rebuild queue
-	var/list/expansion_queue = list()
-	/// List of turfs to recalculate adjacent turfs on before processing
-	var/list/adjacent_rebuild = list()
-	/// A list of machines that will be processed when currentpart == SSAIR_ATMOSMACHINERY. Use SSair.begin_processing_machine and SSair.stop_processing_machine to add and remove machines.
-	var/list/obj/machinery/atmos_machinery = list()
+	/// The set of pipenets that need to be built. Length shown in SS Info as PTB.
+	var/list/pipenets_to_build = list()
+	/// The set of active pipenets. Length shown in SS Info as PN.
+	var/list/pipenets = list()
+	/// The set of active atmos machinery. Length shown in SS Info as AM.
+	var/list/atmos_machinery = list()
 
-	var/list/pipe_init_dirs_cache = list()
-	//atmos singletons
-	var/list/gas_reactions = list()
-	var/list/atmos_gen
-	var/list/planetary = list() //Lets cache static planetary mixes
-	/// List of gas string -> canonical gas mixture
-	var/list/strings_to_mix = list()
+	/// A list of atmos machinery to set up in Initialize.
+	var/list/machinery_to_construct = list()
 
+	/// Pipe overlay/underlay icon manager
+	var/datum/pipe_icon_manager/icon_manager
 
-	//Special functions lists
-	var/list/turf/active_super_conductivity = list()
-	var/list/turf/open/high_pressure_delta = list()
-	var/list/atom_process = list()
-	/// Reactions which will contribute to a hotspot's size.
-	var/list/hotspot_reactions
-
-	/// A cache of objects that perisists between processing runs when resumed == TRUE. Dangerous, qdel'd objects not cleared from this may cause runtimes on processing.
+	/// An arbitrary list of stuff currently being processed.
 	var/list/currentrun = list()
-	var/currentpart = SSAIR_PIPENETS
 
-	var/map_loading = TRUE
-	var/list/queued_for_activation
-	var/display_all_groups = FALSE
+	/// Which step we're currently on, used to let us resume if our time budget elapses.
+	var/currentpart = SSAIR_DEFERREDPIPENETS
+
+	/// Is MILLA currently in synchronous mode? TRUE if data is fresh and changes can be made, FALSE if data is from last tick and changes cannot be made (because this tick is still processing).
+	var/is_synchronous = TRUE
+
+	/// Are we currently running in a MILLA-safe context, i.e. is is_synchronous *guaranteed* to be TRUE. Nothing outside of this file should change this.
+	VAR_PRIVATE/in_milla_safe_code = FALSE
+
+	/// When did we start the last MILLA tick?
+	var/milla_tick_start = null
+
+	/// Is MILLA (and hence SSair) reliably healthy?
+	var/healthy = TRUE
+
+	/// When was MILLA last seen unhealthy?
+	var/last_unhealthy = 0
+
+	/// A list of callbacks waiting for MILLA to finish its tick and enter synchronous mode.
+	var/list/waiting_for_sync = list()
 
 	var/list/reaction_handbook
 	var/list/gas_handbook
 
+/datum/controller/subsystem/air/stat_entry(msg)
+	var/list/msg = list()
+	msg += "C:{"
+	msg += "ZZZ:[time_slept.to_string()]|"
+	msg += "BM:[cost_bound_mixtures.to_string()]|"
+	msg += "MT:[round(cost_milla_tick,1)]|"
+	msg += "IT:[cost_interesting_tiles.to_string()]|"
+	msg += "HS:[cost_hotspots.to_string()]|"
+	msg += "PN:[cost_pipenets.to_string()]|"
+	msg += "PTB:[cost_pipenets_to_build.to_string()]|"
+	msg += "AM:[cost_atmos_machinery.to_string()]"
+	msg += "} "
+	msg += "BM:[original_bound_mixtures]+[added_bound_mixtures]|"
+	msg += "IT:[interesting_tile_count]|"
+	msg += "HS:[length(hotspots)]|"
+	msg += "PN:[length(pipenets)]|"
+	msg += "AM:[length(atmos_machinery)]|"
+	return ..()
+
+/*
 /datum/controller/subsystem/air/stat_entry(msg)
 	msg += "C:{"
 	msg += "AT:[round(cost_turfs,1)]|"
@@ -84,21 +133,24 @@ SUBSYSTEM_DEF(air)
 	msg += "AJ:[adjacent_rebuild.len]|"
 	msg += "AT/MS:[round((cost ? active_turfs.len/cost : 0),0.1)]"
 	return ..()
-
+*/
 
 /datum/controller/subsystem/air/Initialize()
+	in_milla_safe_code = TRUE
+
 	map_loading = FALSE
 	gas_reactions = init_gas_reactions()
 	hotspot_reactions = init_hotspot_reactions()
-
+	setup_write_to_milla()
 	setup_allturfs()
 	setup_atmos_machinery()
 	setup_pipenets()
 	setup_turf_visuals()
 	process_adjacent_rebuild()
 	atmos_handbooks_init()
-	return SS_INIT_SUCCESS
+	in_milla_safe_code = FALSE
 
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/air/fire(resumed = FALSE)
 	var/timer = TICK_USAGE_REAL

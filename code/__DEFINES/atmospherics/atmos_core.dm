@@ -120,7 +120,11 @@
 //Must be between 0 and 1. Values closer to 1 equalize temperature faster
 //Should not exceed 0.4 else strange heat flow occur
 #define WALL_HEAT_TRANSFER_COEFFICIENT 0.0
+#define DOOR_HEAT_TRANSFER_COEFFICIENT 0.001
+#define WINDOW_HEAT_TRANSFER_COEFFICIENT 0.001
 #define OPEN_HEAT_TRANSFER_COEFFICIENT 0.4
+// This looks silly, but it's for clarity when reading elsewhere.
+#define ZERO_HEAT_TRANSFER_COEFFICIENT		0.0
 /// a hack for now
 #define WINDOW_HEAT_TRANSFER_COEFFICIENT 0.1
 /// a hack to help make vacuums "cold", sacrificing realism for gameplay
@@ -182,3 +186,16 @@
 #define ATMOS_PRESSURE_APPROXIMATION_ITERATIONS 20
 /// We deal with big numbers and a lot of math, things are bound to get imprecise. Take this traveller.
 #define ATMOS_PRESSURE_ERROR_TOLERANCE 0.01
+
+
+// From milla/src/lib.rs
+#define ATMOS_MODE_SPACE 0
+#define ATMOS_MODE_SEALED 1
+#define ATMOS_MODE_EXPOSED_TO_ENVIRONMENT 2
+
+/// Lavaland environment: hot, low pressure.
+#define ENVIRONMENT_LAVALAND "lavaland"
+/// Temperate environment: Normal atmosphere, 20 C.
+#define ENVIRONMENT_TEMPERATE "temperate"
+/// Cold environment: Normal atmosphere, -93 C.
+#define ENVIRONMENT_COLD "cold"
