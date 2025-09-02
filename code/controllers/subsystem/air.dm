@@ -153,132 +153,125 @@ SUBSYSTEM_DEF(air)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/air/fire(resumed = FALSE)
+		// All atmos stuff assumes MILLA is synchronous. Ensure it actually is.
+	if(!is_synchronous)
+		var/timer = TICK_USAGE_REAL
+
+		while(!is_synchronous)
+			// Sleep for 1ms.
+			sleep(0.01)
+			if(MC_TICK_CHECK)
+				time_slept.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), FALSE)
+				cost_full.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), FALSE)
+				return
+
+		cost_full.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), FALSE)
+		time_slept.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), TRUE)
+
+	fire_sleepless(resumed)
+
+/datum/controller/subsystem/air/proc/fire_sleepless(resumed)
+	// Any proc that wants MILLA to be synchronous should not sleep.
+	SHOULD_NOT_SLEEP(TRUE)
+	in_milla_safe_code = TRUE
+
 	var/timer = TICK_USAGE_REAL
 
-	//Rebuilds can happen at any time, so this needs to be done outside of the normal system
-	cost_rebuilds = 0
-	cost_adjacent = 0
-
-	// We need to have a solid setup for turfs before fire, otherwise we'll get massive runtimes and strange behavior
-	if(length(adjacent_rebuild))
+	if(currentpart == SSAIR_DEFERREDPIPENETS || !resumed)
 		timer = TICK_USAGE_REAL
-		process_adjacent_rebuild()
-		//This does mean that the apperent rebuild costs fluctuate very quickly, this is just the cost of having them always process, no matter what
-		cost_adjacent = TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
 
-	// Every time we fire, we want to make sure pipenets are rebuilt. The game state could have changed between each fire() proc call
-	// and anything missing a pipenet can lead to unintended behaviour at worse and various runtimes at best.
-	if(length(rebuild_queue) || length(expansion_queue))
-		timer = TICK_USAGE_REAL
-		process_rebuilds()
-		//This does mean that the apperent rebuild costs fluctuate very quickly, this is just the cost of having them always process, no matter what
-		cost_rebuilds = TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
+		build_pipenets(resumed)
+
+		cost_pipenets_to_build.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), state != SS_PAUSED && state != SS_PAUSING)
+		cost_full.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), FALSE)
+		if(state == SS_PAUSED || state == SS_PAUSING)
+			in_milla_safe_code = FALSE
 			return
+		resumed = 0
+		currentpart = SSAIR_PIPENETS
 
 	if(currentpart == SSAIR_PIPENETS || !resumed)
 		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
+
 		process_pipenets(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
+
+		cost_pipenets.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), state != SS_PAUSED && state != SS_PAUSING)
+		cost_full.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), FALSE)
+		if(state == SS_PAUSED || state == SS_PAUSING)
+			in_milla_safe_code = FALSE
 			return
-		cost_pipenets = MC_AVERAGE(cost_pipenets, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
+		resumed = 0
 		currentpart = SSAIR_ATMOSMACHINERY
 
 	if(currentpart == SSAIR_ATMOSMACHINERY)
 		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_atmos_machinery(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_atmos_machinery = MC_AVERAGE(cost_atmos_machinery, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_ACTIVETURFS
 
-	if(currentpart == SSAIR_ACTIVETURFS)
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_active_turfs(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
+		process_atmos_machinery(resumed)
+
+		cost_atmos_machinery.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), state != SS_PAUSED && state != SS_PAUSING)
+		cost_full.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), FALSE)
+		if(state == SS_PAUSED || state == SS_PAUSING)
+			in_milla_safe_code = FALSE
 			return
-		cost_turfs = MC_AVERAGE(cost_turfs, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
+		resumed = 0
+		currentpart = SSAIR_INTERESTING_TILES
+
+	if(currentpart == SSAIR_INTERESTING_TILES)
+		timer = TICK_USAGE_REAL
+
+		process_interesting_tiles(resumed)
+
+		cost_interesting_tiles.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), state != SS_PAUSED && state != SS_PAUSING)
+		cost_full.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), FALSE)
+		if(state == SS_PAUSED || state == SS_PAUSING)
+			in_milla_safe_code = FALSE
+			return
+		resumed = 0
 		currentpart = SSAIR_HOTSPOTS
 
-	if(currentpart == SSAIR_HOTSPOTS) //We do this before excited groups to allow breakdowns to be independent of adding turfs while still *mostly preventing mass fires
+	if(currentpart == SSAIR_HOTSPOTS)
 		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
+
 		process_hotspots(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_hotspots = MC_AVERAGE(cost_hotspots, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_EXCITEDGROUPS
 
-	if(currentpart == SSAIR_EXCITEDGROUPS)
+		cost_hotspots.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), state != SS_PAUSED && state != SS_PAUSING)
+		cost_full.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), FALSE)
+		if(state == SS_PAUSED || state == SS_PAUSING)
+			in_milla_safe_code = FALSE
+			return
+		resumed = 0
+		currentpart = SSAIR_BOUND_MIXTURES
+
+	if(currentpart == SSAIR_BOUND_MIXTURES)
 		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_excited_groups(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_groups = MC_AVERAGE(cost_groups, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_HIGHPRESSURE
 
-	if(currentpart == SSAIR_HIGHPRESSURE)
+		process_bound_mixtures(resumed)
+
+		cost_bound_mixtures.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), state != SS_PAUSED && state != SS_PAUSING)
+		cost_full.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), FALSE)
+		if(state == SS_PAUSED || state == SS_PAUSING)
+			in_milla_safe_code = FALSE
+			return
+		resumed = 0
+		currentpart = SSAIR_MILLA_TICK
+
+	if(currentpart == SSAIR_MILLA_TICK)
 		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_high_pressure_delta(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_highpressure = MC_AVERAGE(cost_highpressure, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_SUPERCONDUCTIVITY
 
-	if(currentpart == SSAIR_SUPERCONDUCTIVITY)
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_super_conductivity(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
-			return
-		cost_superconductivity = MC_AVERAGE(cost_superconductivity, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
-		currentpart = SSAIR_PROCESS_ATOMS
+		spawn_milla_tick_thread()
+		is_synchronous = FALSE
 
-	if(currentpart == SSAIR_PROCESS_ATOMS)
-		timer = TICK_USAGE_REAL
-		if(!resumed)
-			cached_cost = 0
-		process_atoms(resumed)
-		cached_cost += TICK_USAGE_REAL - timer
-		if(state != SS_RUNNING)
+		cost_milla_tick = MC_AVERAGE(cost_milla_tick, get_milla_tick_time())
+		cost_full.record_progress(TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer), state != SS_PAUSED && state != SS_PAUSING)
+		if(state == SS_PAUSED || state == SS_PAUSING)
+			in_milla_safe_code = FALSE
 			return
-		cost_atoms = MC_AVERAGE(cost_atoms, TICK_DELTA_TO_MS(cached_cost))
-		resumed = FALSE
+		resumed = 0
 
-	currentpart = SSAIR_PIPENETS
-	SStgui.update_uis(SSair) //Lightning fast debugging motherfucker
+	currentpart = SSAIR_DEFERREDPIPENETS
+	in_milla_safe_code = FALSE
 
 /datum/controller/subsystem/air/Recover()
-	excited_groups = SSair.excited_groups
-	active_turfs = SSair.active_turfs
 	hotspots = SSair.hotspots
 	networks = SSair.networks
 	rebuild_queue = SSair.rebuild_queue
@@ -289,8 +282,7 @@ SUBSYSTEM_DEF(air)
 	gas_reactions = SSair.gas_reactions
 	atmos_gen = SSair.atmos_gen
 	planetary = SSair.planetary
-	active_super_conductivity = SSair.active_super_conductivity
-	high_pressure_delta = SSair.high_pressure_delta
+	is_synchronous = SSair.is_synchronous
 	atom_process = SSair.atom_process
 	currentrun = SSair.currentrun
 	queued_for_activation = SSair.queued_for_activation
