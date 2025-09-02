@@ -1,11 +1,3 @@
-#define SSAIR_DEFERREDPIPENETS 1
-#define SSAIR_PIPENETS 2
-#define SSAIR_ATMOSMACHINERY 3
-#define SSAIR_INTERESTING_TILES 4
-#define SSAIR_HOTSPOTS 5
-#define SSAIR_BOUND_MIXTURES 6
-#define SSAIR_MILLA_TICK 7
-
 SUBSYSTEM_DEF(air)
 	name = "Atmospherics"
 	init_order = INIT_ORDER_AIR
@@ -361,23 +353,8 @@ SUBSYSTEM_DEF(air)
 	while(currentrun.len)
 		var/obj/machinery/M = currentrun[currentrun.len]
 		currentrun.len--
-		if(!M)
+		if(isnull(M) || (M.process_atmos(seconds) == PROCESS_KILL))
 			atmos_machinery -= M
-		if(M.process_atmos() == PROCESS_KILL)
-			stop_processing_machine(M)
-		if(MC_TICK_CHECK)
-			return
-
-
-/datum/controller/subsystem/air/proc/process_super_conductivity(resumed = FALSE)
-	if (!resumed)
-		src.currentrun = active_super_conductivity.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/turf/T = currentrun[currentrun.len]
-		currentrun.len--
-		T.super_conduct()
 		if(MC_TICK_CHECK)
 			return
 
@@ -405,37 +382,78 @@ SUBSYSTEM_DEF(air)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_active_turfs(resumed = FALSE)
-	//cache for sanic speed
-	var/fire_count = times_fired
-	if (!resumed)
-		src.currentrun = active_turfs.Copy()
+/datum/controller/subsystem/air/proc/process_interesting_tiles(resumed = FALSE)
+	if(!resumed)
+		// Fetch the list of interesting tiles from MILLA.
+		src.currentrun = get_interesting_atmos_tiles()
+		interesting_tile_count = length(src.currentrun) / MILLA_INTERESTING_TILE_SIZE
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/turf/open/T = currentrun[currentrun.len]
-		currentrun.len--
-		if (T)
-			T.process_cell(fire_count)
-		if (MC_TICK_CHECK)
+	while(length(currentrun))
+		// Pop a tile off the list.
+		var/offset = length(currentrun) - MILLA_INTERESTING_TILE_SIZE
+		var/turf/current_turf = currentrun[offset + MILLA_INDEX_TURF]
+		if(!istype(current_turf))
+			currentrun.len -= MILLA_INTERESTING_TILE_SIZE
+			if(MC_TICK_CHECK)
+				return
+			continue
+
+		var/reasons = currentrun[offset + MILLA_INDEX_INTERESTING_REASONS]
+		var/x_flow = currentrun[offset + MILLA_INDEX_AIRFLOW_X]
+		var/y_flow = currentrun[offset + MILLA_INDEX_AIRFLOW_Y]
+		var/milla_tile = currentrun.Copy(offset + 1, offset + 1 + MILLA_TILE_SIZE + 1)
+		currentrun.len -= MILLA_INTERESTING_TILE_SIZE
+
+		// Bind the MILLA tile we got, if needed.
+		if(isnull(current_turf.bound_air))
+			bind_turf(current_turf, milla_tile)
+		else if(current_turf.bound_air.lastread < times_fired)
+			current_turf.bound_air.copy_from_milla(milla_tile)
+			current_turf.bound_air.lastread = times_fired
+			current_turf.bound_air.readonly = null
+			current_turf.bound_air.dirty = FALSE
+			current_turf.bound_air.synchronized = FALSE
+
+		if(reasons & MILLA_INTERESTING_REASON_DISPLAY)
+			var/turf/simulated/simmed_turf = current_turf
+			if(istype(simmed_turf))
+				simmed_turf.update_visuals()
+
+		if(reasons & MILLA_INTERESTING_REASON_HOT)
+			var/datum/gas_mixture/air = current_turf.get_readonly_air()
+			current_turf.hotspot_expose(air.temperature(), CELL_VOLUME)
+			for(var/atom/movable/item in current_turf)
+				item.temperature_expose(air, air.temperature(), CELL_VOLUME)
+			current_turf.temperature_expose(air, air.temperature(), CELL_VOLUME)
+
+		if(reasons & MILLA_INTERESTING_REASON_WIND)
+			current_turf.high_pressure_movements(x_flow, y_flow)
+
+		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_excited_groups(resumed = FALSE)
+
+
+
+/datum/controller/subsystem/air/proc/process_bound_mixtures(resumed = FALSE)
 	if (!resumed)
-		src.currentrun = excited_groups.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
+		original_bound_mixtures = length(bound_mixtures)
+		last_bound_mixtures = length(bound_mixtures)
+	// Note that we do NOT copy this list to src.currentrun.
+	//We're fine with things being added to it as we work, because it all needs to get written before the next MILLA tick.
+	var/list/currentrun = bound_mixtures
+	added_bound_mixtures = length(currentrun) - last_bound_mixtures
 	while(currentrun.len)
-		var/datum/excited_group/EG = currentrun[currentrun.len]
+		var/datum/gas_mixture/bound_to_turf/mixture = currentrun[length(currentrun)]
 		currentrun.len--
-		EG.breakdown_cooldown++
-		EG.dismantle_cooldown++
-		if(EG.breakdown_cooldown >= EXCITED_GROUP_BREAKDOWN_CYCLES)
-			EG.self_breakdown(poke_turfs = TRUE)
-		else if(EG.dismantle_cooldown >= EXCITED_GROUP_DISMANTLE_CYCLES && !(EG.turf_reactions & (REACTING | STOP_REACTIONS)))
-			EG.dismantle()
-		EG.turf_reactions = NONE
+		mixture.synchronized = FALSE
+		if(mixture.dirty)
+			// This is one of two places expected to call this otherwise-unsafe method.
+			mixture.private_unsafe_write()
+			mixture.dirty = FALSE
 		if (MC_TICK_CHECK)
+			last_bound_mixtures = length(bound_mixtures)
 			return
 
 /datum/controller/subsystem/air/proc/process_rebuilds()
@@ -504,54 +522,6 @@ SUBSYSTEM_DEF(air)
 		if (MC_TICK_CHECK)
 			return
 
-///Removes a turf from processing, and causes its excited group to clean up so things properly adapt to the change
-/datum/controller/subsystem/air/proc/remove_from_active(turf/open/T)
-	active_turfs -= T
-	if(currentpart == SSAIR_ACTIVETURFS)
-		currentrun -= T
-	#ifdef VISUALIZE_ACTIVE_TURFS //Use this when you want details about how the turfs are moving, display_all_groups should work for normal operation
-	T.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_VIBRANT_LIME)
-	#endif
-	if(istype(T))
-		T.excited = FALSE
-		if(T.excited_group)
-			//If this fires during active turfs it'll cause a slight removal of active turfs, as they breakdown if they have no excited group
-			//The group also expands by a tile per rebuild on each edge, suffering
-			T.excited_group.garbage_collect() //Kill the excited group, it'll reform on its own later
-
-///Puts an active turf to sleep so it doesn't process. Do this without cleaning up its excited group.
-/datum/controller/subsystem/air/proc/sleep_active_turf(turf/open/T)
-	active_turfs -= T
-	if(currentpart == SSAIR_ACTIVETURFS)
-		currentrun -= T
-	#ifdef VISUALIZE_ACTIVE_TURFS
-	T.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_VIBRANT_LIME)
-	#endif
-	if(istype(T))
-		T.excited = FALSE
-
-///Adds a turf to active processing, handles duplicates. Call this with blockchanges == TRUE if you want to nuke the assoc excited group
-/datum/controller/subsystem/air/proc/add_to_active(turf/open/activate, blockchanges = FALSE)
-	if(istype(activate) && activate.air)
-		activate.significant_share_ticker = 0
-		if(blockchanges && activate.excited_group) //This is used almost exclusivly for shuttles, so the excited group doesn't stay behind
-			activate.excited_group.garbage_collect() //Nuke it
-		if(activate.excited) //Don't keep doing it if there's no point
-			return
-		#ifdef VISUALIZE_ACTIVE_TURFS
-		activate.add_atom_colour(COLOR_VIBRANT_LIME, TEMPORARY_COLOUR_PRIORITY)
-		#endif
-		activate.excited = TRUE
-		active_turfs += activate
-	else if(activate.flags_1 & INITIALIZED_1)
-		for(var/turf/neighbor as anything in activate.atmos_adjacent_turfs)
-			add_to_active(neighbor, TRUE)
-	else if(map_loading)
-		if(queued_for_activation)
-			queued_for_activation[activate] = activate
-	else
-		activate.requires_activation = TRUE
-
 /datum/controller/subsystem/air/StartLoadingMap()
 	LAZYINITLIST(queued_for_activation)
 	map_loading = TRUE
@@ -563,188 +533,137 @@ SUBSYSTEM_DEF(air)
 	queued_for_activation.Cut()
 
 /datum/controller/subsystem/air/proc/setup_allturfs()
-	var/list/active_turfs = src.active_turfs
-	times_fired++
-
-	// Clear active turfs - faster than removing every single turf in the world
-	// one-by-one, and Initalize_Atmos only ever adds `src` back in.
-	#ifdef VISUALIZE_ACTIVE_TURFS
-	for(var/jumpy in active_turfs)
-		var/turf/active = jumpy
-		active.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_VIBRANT_LIME)
-	#endif
-	active_turfs.Cut()
-	// We compare this against turf.current cycle using <= to ensure O(n)
-	// It defaults to 0, so we start at -1
-	var/time = -1
-
-	var/list/turf/open/difference_check = list()
 	for(var/turf/setup as anything in ALL_TURFS())
-		if (!setup.init_air)
-			continue
-		// We pass the tick as the current step so if we sleep the step changes
-		// This way we can make setting up adjacent turfs O(n) rather then O(n^2)
-		setup.Initalize_Atmos(time)
-		// We assert that we'll only get open turfs here
-		difference_check += setup
-		if(CHECK_TICK)
-			time--
-
-	// Now we're gonna compare for differences
-	// Taking advantage of current cycle being set to negative before this run to do A->B B->A prevention
-	for(var/turf/open/potential_diff as anything in difference_check)
-		// I can't use 0 here, so we're gonna do this instead. If it ever breaks I'll eat my shoe
-		potential_diff.current_cycle = -INFINITY
-		for(var/turf/open/enemy_tile as anything in potential_diff.atmos_adjacent_turfs)
-			// If it's already been processed, then it's already talked to us
-			if(enemy_tile.current_cycle == -INFINITY)
-				continue
-			// .air instead of .return_air() because we can guarantee that the proc won't do anything
-			if(potential_diff.air.compare(enemy_tile.air, MOLES))
-				//testing("Active turf found. Return value of compare(): [T.air.compare(enemy_tile.air, MOLES)]")
-				if(!potential_diff.excited)
-					potential_diff.excited = TRUE
-					SSair.active_turfs += potential_diff
-				if(!enemy_tile.excited)
-					enemy_tile.excited = TRUE
-					SSair.active_turfs += enemy_tile
-				// No sense continuing to iterate
-				break
+		setup.Initialize_atmos(times_fired)
 		CHECK_TICK
 
-	if(active_turfs.len)
-		var/starting_ats = active_turfs.len
-		sleep(world.tick_lag)
-		var/timer = world.timeofday
-
-		log_mapping("There are [starting_ats] active turfs at roundstart caused by a difference of the air between the adjacent turfs. \
-		To locate these active turfs, go into the \"Debug\" tab of your stat-panel. Then hit the verb that says \"Mapping Verbs - Enable\". \
-		Now, you can see all of the associated coordinates using \"Mapping -> Show roundstart AT list\" verb.")
-
-		for(var/turf/T in active_turfs)
-			GLOB.active_turfs_startlist += T
-
-		//now lets clear out these active turfs
-		var/list/turfs_to_check = active_turfs.Copy()
-		do
-			var/list/new_turfs_to_check = list()
-			for(var/turf/open/T in turfs_to_check)
-				new_turfs_to_check += T.resolve_active_graph()
-			CHECK_TICK
-
-			active_turfs += new_turfs_to_check
-			turfs_to_check = new_turfs_to_check
-		while (turfs_to_check.len)
-
-		var/ending_ats = active_turfs.len
-		for(var/thing in excited_groups)
-			var/datum/excited_group/EG = thing
-			EG.self_breakdown(roundstart = TRUE)
-			EG.dismantle()
-			CHECK_TICK
-
-		log_active_turfs() // invoke this here so we can count the time it takes to run this proc as "wasted time", quite simple honestly.
-
-		var/msg = "HEY! LISTEN! [DisplayTimeText(world.timeofday - timer, 0.00001)] were wasted processing [starting_ats] turf(s) (connected to [ending_ats - starting_ats] other turfs) with atmos differences at round start."
-		to_chat(world, span_boldannounce("[msg]"))
-		warning(msg)
-
-/// Logs all active turfs at roundstart to the mapping log so it can be readily accessed.
-/datum/controller/subsystem/air/proc/log_active_turfs()
-// sadly this has to be here because we can't realistically expect that all active turfs will be resolved in every possible situation when running through CI.
-// In an ideal world, we would have absolutely zero active turfs 99.99% of the time, but that's not the case. `log_mapping()` during world initialize triggers a CI fail.
-#ifdef UNIT_TESTS
-	return
-#endif
-	// Associated lists, left-hand-side is the z-level or z-trait, right-hand-side is the number of active turfs associated with that.
-	var/list/tally_by_level = list()
-	// Discriminate for certain z-traits, stuff like "Linkage" is not helpful.
-	var/list/tally_by_level_trait = list(
-		ZTRAIT_AWAY = 0,
-		ZTRAIT_CENTCOM = 0,
-		ZTRAIT_ICE_RUINS = 0,
-		ZTRAIT_ICE_RUINS_UNDERGROUND  = 0,
-		ZTRAIT_ISOLATED_RUINS = 0,
-		ZTRAIT_LAVA_RUINS = 0,
-		ZTRAIT_MINING = 0,
-		ZTRAIT_RESERVED = 0,
-		ZTRAIT_SPACE_RUINS = 0,
-		ZTRAIT_STATION = 0,
-	)
-
-	var/list/message_to_log = list()
-
-	message_to_log += "\nAll that follows is a turf with an active air difference at roundstart. To clear this, make sure that all of the turfs listed below are connected to a turf with the same air contents.\n\
-		In an ideal world, this list should have enough information to help you locate the active turf(s) in question. Unfortunately, this might not be an ideal world.\n\
-		If the round is still ongoing, you can use the \"Mapping -> Show roundstart AT list\" verb to see exactly what active turfs were detected. Otherwise, good luck."
-
-	for(var/turf/active_turf as anything in GLOB.active_turfs_startlist)
-		var/turf_z = active_turf.z
-		var/datum/space_level/level = SSmapping.z_list[turf_z]
-		var/list/level_traits = list()
-		for(var/trait in level.traits)
-			if(!isnull(tally_by_level_trait[trait]))
-				level_traits += trait
-				tally_by_level_trait[trait]++
-
-		// so we can pass along the area type for the log, making it much easier to locate the active turf for a mapper assuming all area types are unique. This is only really a problem for stuff like ruin areas.
-		var/area/turf_area = get_area(active_turf)
-		message_to_log += "Active turf: [AREACOORD(active_turf)] ([turf_area.type]). Turf type: [active_turf.type]. Relevant Z-Trait(s): [english_list(level_traits)]."
-
-		tally_by_level["[turf_z]"]++
-
-	// Following is so we can detect which rounds were "problematic" as far as active turfs go.
-	SSblackbox.record_feedback("amount", "overall_roundstart_active_turfs", length(GLOB.active_turfs_startlist))
-
-	for(var/z_level in tally_by_level)
-		var/level_turf_count = tally_by_level[z_level]
-		if(level_turf_count == 0) // no point logging it
-			continue
-		message_to_log += "Z-Level [z_level] has [level_turf_count] active turf(s)."
-		SSblackbox.record_feedback("tally", "roundstart_active_turfs_per_z", level_turf_count, z_level)
-
-	for(var/z_trait in tally_by_level_trait)
-		var/trait_turf_count = tally_by_level_trait[z_trait]
-		if(trait_turf_count == 0)
-			continue
-		message_to_log += "Z-Level trait [z_trait] has [trait_turf_count] active turf(s)."
-		SSblackbox.record_feedback("amount", "roundstart_active_turfs_for_trait_[z_trait]", trait_turf_count)
-
-	message_to_log += "End of active turf list."
-	log_mapping(message_to_log.Join("\n"))
-
-/turf/open/proc/resolve_active_graph()
-	. = list()
-	var/datum/excited_group/EG = excited_group
-	if (blocks_air || !air)
-		return
-	if (!EG)
-		EG = new
-		EG.add_turf(src)
-
-	for (var/turf/open/ET in atmos_adjacent_turfs)
-		if (ET.blocks_air || !ET.air)
-			continue
-
-		var/ET_EG = ET.excited_group
-		if (ET_EG)
-			if (ET_EG != EG)
-				EG.merge_groups(ET_EG)
-				EG = excited_group //merge_groups() may decide to replace our current EG
-		else
-			EG.add_turf(ET)
-		if (!ET.excited)
-			ET.excited = TRUE
-			. += ET
-
-/turf/open/space/resolve_active_graph()
-	return list()
+/datum/controller/subsystem/air/proc/setup_allturfs_sleepless()
+	for(var/turf/eepless as anything in ALL_TURFS())
+		eepless.Initialize_Atmos(times_fired)
 
 /datum/controller/subsystem/air/proc/setup_atmos_machinery()
 	for (var/obj/machinery/atmospherics/AM in atmos_machinery)
 		AM.atmos_init()
 		CHECK_TICK
 
+/datum/controller/subsystem/air/proc/setup_write_to_milla()
+	var/watch = start_watch()
+	log_startup_progress("Writing tiles to MILLA...")
+	//cache for sanic speed (lists are references anyways)
+	var/list/cache = bound_mixtures
+	var/count = length(cache)
+	while(length(cache))
+		var/datum/gas_mixture/bound_to_turf/mixture = cache[length(cache)]
+		cache.len--
+		if(mixture.dirty)
+			in_milla_safe_code = TRUE
+			// This is one of two places expected to call this otherwise-unsafe method.
+			mixture.private_unsafe_write()
+			in_milla_safe_code = FALSE
+		mixture.bound_turf.bound_air = null
+		mixture.bound_turf = null
+		CHECK_TICK
+
+	log_startup_progress("Wrote [count] tiles in [stop_watch(watch)]s.")
+
+/datum/controller/subsystem/air/proc/bind_turf(turf/to_bind, list/milla_tile = null)
+	var/datum/gas_mixture/bound_to_turf/new_air = new()
+	to_bind.bound_air = new_air
+	new_air.bound_turf = to_bind
+	if(isnull(milla_tile))
+		milla_tile = new/list(MILLA_TILE_SIZE)
+		get_tile_atmos(to_bind, milla_tile)
+	new_air.copy_from_milla(milla_tile)
+	new_air.lastread = src.times_fired
+	new_air.readonly = null
+	new_air.dirty = FALSE
+	new_air.synchronized = FALSE
+
+
+/// Similar to addtimer, but triggers once MILLA enters synchronous mode.
+/datum/controller/subsystem/air/proc/synchronize(datum/milla_safe/CB)
+	// Any proc that wants MILLA to be synchronous should not sleep.
+	SHOULD_NOT_SLEEP(TRUE)
+
+	if(is_synchronous)
+		var/was_safe = SSair.in_milla_safe_code
+		SSair.in_milla_safe_code = TRUE
+		// This is one of two intended places to call this otherwise-unsafe proc.
+		CB.private_unsafe_invoke()
+		SSair.in_milla_safe_code = was_safe
+		return
+	waiting_for_sync += CB
+
+/datum/controller/subsystem/air/proc/is_in_milla_safe_code()
+	return in_milla_safe_code
+
+/datum/controller/subsystem/air/proc/on_milla_tick_finished()
+	is_synchronous = TRUE
+	in_milla_safe_code = TRUE
+	for(var/datum/milla_safe/CB as anything in waiting_for_sync)
+		// This is one of two intended places to call this otherwise-unsafe proc.
+		CB.private_unsafe_invoke()
+	waiting_for_sync.Cut()
+	in_milla_safe_code = FALSE
+
+/proc/milla_tick_finished()
+	// Any proc that wants MILLA to be synchronous should not sleep.
+	SHOULD_NOT_SLEEP(TRUE)
+
+	SSair.on_milla_tick_finished()
+
+/// Create a subclass of this and implement `on_run` to manipulate tile air safely.
+/datum/milla_safe
+	var/run_args = list()
+
+/// All subclasses should implement this.
+/datum/milla_safe/proc/on_run(...)
+	// Any proc that wants MILLA to be synchronous should not sleep.
+	SHOULD_NOT_SLEEP(TRUE)
+
+	CRASH("[src.type] does not implement on_run")
+
+/// Call this to make the subclass run when it's safe to do so. Args will be passed to on_run.
+/datum/milla_safe/proc/invoke_async(...)
+	run_args = args.Copy()
+	SSair.synchronize(src)
+
+/// Do not call this yourself. This is what is called to run your code from a safe context.
+/datum/milla_safe/proc/private_unsafe_invoke()
+	soft_assert_safe()
+	on_run(arglist(run_args))
+
+/// Used internally to check that we're running safely, but without breaking things worse if we aren't.
+/datum/milla_safe/proc/soft_assert_safe()
+	ASSERT(SSair.is_in_milla_safe_code())
+
+/// Fetch the air for a turf. Only use from `on_run`.
+/datum/milla_safe/proc/get_turf_air(turf/T)
+	RETURN_TYPE(/datum/gas_mixture)
+	soft_assert_safe()
+	// This is one of two intended places to call this otherwise-unsafe proc.
+	var/datum/gas_mixture/bound_to_turf/air = T.private_unsafe_get_air()
+	if(air.lastread < SSair.times_fired)
+		var/list/milla_tile = new/list(MILLA_TILE_SIZE)
+		get_tile_atmos(T, milla_tile)
+		air.copy_from_milla(milla_tile)
+		air.lastread = SSair.times_fired
+		air.readonly = null
+		air.dirty = FALSE
+	if(!air.synchronized)
+		air.synchronized = TRUE
+		SSair.bound_mixtures += air
+	return air
+
+/// Add air to a turf. Only use from `on_run`.
+/datum/milla_safe/proc/add_turf_air(turf/T, datum/gas_mixture/air)
+	var/datum/gas_mixture/turf_air = get_turf_air(T)
+	turf_air.merge(air)
+
+/// Completely replace the air for a turf. Only use from `on_run`.
+/datum/milla_safe/proc/set_turf_air(turf/T, datum/gas_mixture/air)
+	var/datum/gas_mixture/turf_air = get_turf_air(T)
+	turf_air.copy_from(air)
 //this can't be done with setup_atmos_machinery() because
 // all atmos machinery has to initalize before the first
 // pipenet can be built.
@@ -805,6 +724,8 @@ GLOBAL_LIST_EMPTY(colored_images)
 	for(var/T in subtypesof(/datum/atmosphere))
 		var/datum/atmosphere/atmostype = T
 		atmos_gen[initial(atmostype.id)] = new atmostype
+
+
 
 /// Takes a gas string, returns the matching mutable gas_mixture
 /datum/controller/subsystem/air/proc/parse_gas_string(gas_string, gastype = /datum/gas_mixture)

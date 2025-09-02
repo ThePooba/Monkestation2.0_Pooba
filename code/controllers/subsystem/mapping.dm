@@ -95,6 +95,9 @@ SUBSYSTEM_DEF(mapping)
 	var/list/random_engine_spawners = list()
 	var/list/random_bar_spawners = list()
 
+	/// A mapping of environment names to MILLA environment IDs.
+	var/list/environments
+
 /datum/controller/subsystem/mapping/PreInit()
 	..()
 #ifdef FORCE_MAP
@@ -106,6 +109,13 @@ SUBSYSTEM_DEF(mapping)
 /datum/controller/subsystem/mapping/Initialize()
 	if(initialized)
 		return SS_INIT_SUCCESS
+
+	environments = list()
+	environments[ENVIRONMENT_LAVALAND] = create_environment(oxygen = LAVALAND_OXYGEN, nitrogen = LAVALAND_NITROGEN, temperature = LAVALAND_TEMPERATURE)
+	environments[ENVIRONMENT_TEMPERATE] = create_environment(oxygen = MOLES_O2STANDARD, nitrogen = MOLES_N2STANDARD, temperature = T20C)
+	environments[ENVIRONMENT_COLD] = create_environment(oxygen = MOLES_O2STANDARD, nitrogen = MOLES_N2STANDARD, temperature = 180)
+
+
 	if(current_map.defaulted)
 		var/datum/map_config/old_config = current_map
 		current_map = config.defaultmap

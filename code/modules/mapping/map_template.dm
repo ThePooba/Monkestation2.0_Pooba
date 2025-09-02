@@ -126,6 +126,8 @@
 	for(var/turf/affected_turf as anything in template_and_bordering_turfs)
 		affected_turf.air_update_turf(TRUE, TRUE)
 		affected_turf.levelupdate()
+	var/datum/milla_safe/late_setup_level/milla = new()
+	milla.invoke_async(block(bounds[MAP_MINX], bounds[MAP_MINY]), block(bounds[MAP_MINX], bounds[MAP_MINY]))
 
 /datum/map_template/proc/load_new_z(secret = FALSE)
 	var/x = round((world.maxx - width) * 0.5) + 1
@@ -149,6 +151,7 @@
 	//initialize things that are normally initialized after map load
 	initTemplateBounds(bounds)
 	smooth_zlevel(world.maxz)
+
 	log_game("Z-level [name] loaded at [x],[y],[world.maxz]")
 
 	return level
@@ -210,6 +213,8 @@
 
 	//initialize things that are normally initialized after map load
 	initTemplateBounds(bounds)
+
+
 
 	if(has_ceiling)
 		var/affected_turfs = get_affected_turfs(T, FALSE)

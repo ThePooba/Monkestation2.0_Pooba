@@ -53,6 +53,14 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
 	var/dynamic_lumcount = 0
 
+
+	/// The general behavior of atmos on this tile.
+	var/atmos_mode = ATMOS_MODE_SEALED
+	/// The external environment that this tile is exposed to for ATMOS_MODE_EXPOSED_TO_ENVIRONMENT
+	var/atmos_environment
+
+	var/datum/gas_mixture/bound_to_turf/bound_air
+
 	///Bool, whether this turf will always be illuminated no matter what area it is in
 	///Makes it look blue, be warned
 	var/space_lit = FALSE
@@ -171,11 +179,13 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(uses_integrity)
 		atom_integrity = max_integrity
 
+	initialize_milla()
+
 	return INITIALIZE_HINT_NORMAL
 
 /// Initializes our adjacent turfs. If you want to avoid this, do not override it, instead set init_air to FALSE
 /turf/proc/Initalize_Atmos(time)
-	CALCULATE_ADJACENT_TURFS(src, NORMAL_TURF)
+	recalculate_atmos_connectivity()
 
 /turf/Destroy(force)
 	. = QDEL_HINT_IWILLGC
@@ -202,6 +212,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	LAZYCLEARLIST(blueprint_data)
 	flags_1 &= ~INITIALIZED_1
 	requires_activation = FALSE
+	bound_air = null
 	..()
 
 	if(length(vis_contents))

@@ -97,34 +97,29 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 		span_danger("You [damage_verb] [src] with [attacking_item][damage ? "." : ", without leaving a mark!"]"), null, COMBAT_MESSAGE_RANGE)
 	log_combat(user, src, "attacked", attacking_item)
 
-/obj/assume_air(datum/gas_mixture/giver)
-	if(loc)
-		return loc.assume_air(giver)
-	else
-		return null
-
-/obj/remove_air(amount)
-	if(loc)
-		return loc.remove_air(amount)
-	else
-		return null
-
-/obj/return_air()
-	if(loc)
-		return loc.return_air()
-	else
-		return null
-
-/obj/proc/handle_internal_lifeform(mob/lifeform_inside_me, breath_request)
+/obj/proc/handle_internal_lifeform(mob/lifeform_inside_me, breath_request, datum/gas_mixture/environment)
 	//Return: (NONSTANDARD)
 	// null if object handles breathing logic for lifeform
 	// datum/air_group to tell lifeform to process using that breath return
 	//DEFAULT: Take air from turf to give to have mob process
 
 	if(breath_request>0)
-		var/datum/gas_mixture/environment = return_air()
-		var/breath_percentage = BREATH_VOLUME / environment.return_volume()
-		return remove_air(environment.total_moles() * breath_percentage)
+		var/datum/gas_mixture/air = return_obj_air()
+		if(isnull(air))
+			air = environment
+		if(isnull(air))
+			return
+
+		var/breath_percentage = BREATH_VOLUME / air.return_volume()
+		return air.remove(air.total_moles() * breath_percentage)
+	else
+		return null
+
+/obj/proc/return_obj_air()
+	RETURN_TYPE(/datum/gas_mixture)
+	if(isobj(loc))
+		var/obj/O = loc
+		return O.return_obj_air()
 	else
 		return null
 
@@ -427,3 +422,4 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 	if(HAS_TRAIT(target, TRAIT_INVERTED_DEMOLITION))
 		return (1 / demolition_mod)
 	return demolition_mod
+
