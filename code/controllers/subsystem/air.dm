@@ -309,7 +309,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/process_pipenets(resumed = FALSE)
 	if (!resumed)
-		src.currentrun = networks.Copy()
+		src.currentrun = pipenets.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
@@ -318,7 +318,7 @@ SUBSYSTEM_DEF(air)
 		if(thing)
 			thing.process()
 		else
-			networks.Remove(thing)
+			pipenets.Remove(thing)
 		if(MC_TICK_CHECK)
 			return
 
