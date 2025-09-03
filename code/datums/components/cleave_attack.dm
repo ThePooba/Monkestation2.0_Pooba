@@ -90,13 +90,13 @@
 			arc_desc = "full circle"
 	examine_list += "It can swing in a [arc_desc]."
 
-/datum/component/cleave_attack/proc/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
+/datum/component/cleave_attack/proc/ranged_interact_with_atom(atom/interacting_with, mob/living/user, atom/target, list/modifiers)
 	if((user.next_move > world.time) || !(user.istate & ISTATE_HARM))
 		return ITEM_INTERACT_BLOCKING// don't spam it or swing on help
 
-	perform_sweep(parent, interacting_with, user, modifiers)
+	perform_sweep(interacting_with, user, target, modifiers)
 
-/datum/component/cleave_attack/proc/perform_sweep(obj/item/item, atom/target, mob/living/user, params)
+/datum/component/cleave_attack/proc/perform_sweep(obj/item/item, mob/living/user, atom/target, list/modifiers)
 	if(requires_wielded && !HAS_TRAIT(item, TRAIT_WIELDED))
 		return // if it needs to be wielded, check to make sure it is
 
@@ -119,7 +119,7 @@
 	// now swing across those turfs
 	ADD_TRAIT(item, TRAIT_CLEAVING, REF(src))
 	for(var/turf/T as anything in turf_list)
-		if(hit_atoms_on_turf(item, target, user, T, params))
+		if(hit_atoms_on_turf(item, target, user, T, modifiers))
 			break
 	REMOVE_TRAIT(item, TRAIT_CLEAVING, REF(src))
 
