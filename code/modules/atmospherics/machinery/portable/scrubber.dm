@@ -33,7 +33,7 @@
 
 /obj/machinery/portable_atmospherics/scrubber/Destroy()
 	var/turf/T = get_turf(src)
-	T.assume_air(air_contents)
+	T.blind_release_air(air_contents)
 	return ..()
 
 /obj/machinery/portable_atmospherics/scrubber/update_icon_state()
@@ -60,7 +60,7 @@
 	excited = TRUE
 
 	var/atom/target = holding || get_turf(src)
-	scrub(target.return_air())
+	scrub(target.get_readonly_air())
 
 	for(var/turf/open/open_turf in view(3, src))
 		if(!isopenturf(open_turf))
@@ -132,7 +132,7 @@
 	if(holding)
 		data["holding"] = list()
 		data["holding"]["name"] = holding.name
-		var/datum/gas_mixture/holding_mix = holding.return_air()
+		var/datum/gas_mixture/holding_mix = holding.get_readonly_air()
 		data["holding"]["pressure"] = round(holding_mix.return_pressure())
 	else
 		data["holding"] = null
@@ -217,7 +217,7 @@
 	if(!holding)
 		var/turf/T = get_turf(src)
 		for(var/turf/AT in T.get_atmos_adjacent_turfs(alldir = TRUE))
-			scrub(AT.return_air())
+			scrub(AT.get_readonly_air())
 
 	return ..()
 

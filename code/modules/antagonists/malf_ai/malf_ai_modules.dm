@@ -616,7 +616,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module/malf))
 			if(HAS_TRAIT(honk_victim, TRAIT_GODMODE) || !honk_victim.can_hear())
 				continue
 			var/turf/victim_turf = get_turf(honk_victim)
-			if((isspaceturf(victim_turf) || ((victim_turf.return_air()?.return_pressure() || 0) < SOUND_MINIMUM_PRESSURE)) && !victim_turf.Adjacent(found_intercom)) //Prevents getting honked in space
+			if((isspaceturf(victim_turf) || ((victim_turf.get_readonly_air()?.return_pressure() || 0) < SOUND_MINIMUM_PRESSURE)) && !victim_turf.Adjacent(found_intercom)) //Prevents getting honked in space
 				continue
 			victims |= honk_victim
 	for(var/mob/living/carbon/victim as anything in victims)

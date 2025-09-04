@@ -157,7 +157,7 @@
 	if(!istype(us))
 		return
 	var/datum/gas_mixture/air_contents = airs[1]
-	var/datum/gas_mixture/environment = us.return_air()
+	var/datum/gas_mixture/environment = us.get_readonly_air()
 	var/environment_pressure = environment.return_pressure()
 
 	if(pump_direction & ATMOS_DIRECTION_RELEASING) // internal -> external
@@ -176,7 +176,7 @@
 				if(!removed || !removed.total_moles())
 					return
 
-				loc.assume_air(removed)
+				loc.blind_release_air(removed)
 				update_parents()
 
 	else // external -> internal

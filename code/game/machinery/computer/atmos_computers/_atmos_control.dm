@@ -130,7 +130,7 @@
 
 		var/obj/machinery/sensor = GLOB.objects_by_id_tag[connected_sensors[chamber_id]]
 		if(!QDELETED(sensor))
-			chamber_info["gasmix"] = gas_mixture_parser(sensor.return_air())
+			chamber_info["gasmix"] = gas_mixture_parser(sensor.get_readonly_air())
 
 		if(istype(sensor, /obj/machinery/air_sensor)) //distro & waste loop are not air sensors and don't have these functions
 			var/obj/machinery/air_sensor/air_sensor = sensor

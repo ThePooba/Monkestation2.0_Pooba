@@ -447,7 +447,7 @@
 		return FALSE
 
 	// Priority 1: use air from environment.
-	var/datum/gas_mixture/environment = owner_turf.return_air()
+	var/datum/gas_mixture/environment = owner_turf.get_readonly_air()
 	if(environment && environment.return_pressure() > 30)
 		return TRUE
 
@@ -459,16 +459,16 @@
 		return TRUE
 
 	// Priority 3: use internals tank.
-	var/datum/gas_mixture/internal_mix = owner.internal?.return_air()
+	var/datum/gas_mixture/internal_mix = owner.internal?.get_readonly_air()
 	if(internal_mix && internal_mix.total_moles() > num)
 		if(!use_fuel)
 			return TRUE
 		var/datum/gas_mixture/removed = internal_mix.remove(num)
 		if(removed.total_moles() > 0.005)
-			owner_turf.assume_air(removed)
+			owner_turf.blind_release_air(removed)
 			return TRUE
 		else
-			owner_turf.assume_air(removed)
+			owner_turf.blind_release_air(removed)
 
 	deactivate(silent = TRUE)
 	return FALSE

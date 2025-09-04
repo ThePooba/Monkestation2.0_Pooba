@@ -796,3 +796,58 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /// Returns whether it is safe for an atom to move across this turf
 /turf/proc/can_cross_safely(atom/movable/crossing)
 	return TRUE
+
+/turf/proc/initialize_milla()
+	var/datum/milla_safe/initialize_turf/milla = new()
+	milla.invoke_async(src)
+
+/datum/milla_safe/initialize_turf
+
+/datum/milla_safe/initialize_turf/on_run(turf/T)
+	if(!isnull(T))
+		set_tile_atmos(T, atmos_mode = T.atmos_mode, environment_id = SSmapping.environments[T.atmos_environment], innate_heat_capacity = T.heat_capacity, temperature = T.temperature)
+
+/// Do not call this directly. Use get_readonly_air or implement /datum/milla_safe.
+/turf/proc/private_unsafe_get_air()
+	RETURN_TYPE(/datum/gas_mixture)
+	if(isnull(bound_air))
+		SSair.bind_turf(src)
+	return bound_air
+
+/// Gets a read-only version of this tile's air. Do not use if you intend to modify the air later, implement /datum/milla_safe instead.
+/turf/proc/get_readonly_air()
+	RETURN_TYPE(/datum/gas_mixture)
+	// This is one of two intended places to call this otherwise-unsafe proc.
+	var/datum/gas_mixture/bound_to_turf/air = private_unsafe_get_air()
+	if(air.lastread < SSair.times_fired)
+		var/list/milla_tile = new/list(MILLA_TILE_SIZE)
+		get_tile_atmos(src, milla_tile)
+		air.copy_from_milla(milla_tile)
+		air.lastread = SSair.times_fired
+		air.readonly = null
+		air.dirty = FALSE
+		air.synchronized = FALSE
+	return air.get_readonly()
+
+/// Blindly releases air to this tile. Do not use if you care what the tile previously held, implement /datum/milla_safe instead.
+/turf/proc/blind_release_air(datum/gas_mixture/air)
+	var/datum/milla_safe/turf_blind_release/milla = new()
+	milla.invoke_async(src, air)
+
+/datum/milla_safe/turf_blind_release
+
+/datum/milla_safe/turf_blind_release/on_run(turf/T, datum/gas_mixture/air)
+	get_turf_air(T).merge(air)
+
+// Blindly sets the air in this tile. Do not use if you care what the tile previously held, implement /datum/milla_safe instead.
+/turf/proc/blind_set_air(datum/gas_mixture/air)
+	var/datum/milla_safe/turf_blind_set/milla = new()
+	milla.invoke_async(src, air)
+
+/datum/milla_safe/turf_blind_set
+
+/datum/milla_safe/turf_blind_set/on_run(turf/T, datum/gas_mixture/air)
+	get_turf_air(T).copy_from(air)
+
+/turf/return_analyzable_air()
+	return get_readonly_air()

@@ -206,8 +206,8 @@ GLOBAL_DATUM_INIT(cached_mixer_channels, /alist, alist())
 		if(pressure_affected)
 			//Atmosphere affects sound
 			var/pressure_factor = 1
-			var/datum/gas_mixture/hearer_env = turf_loc.return_air()
-			var/datum/gas_mixture/source_env = turf_source.return_air()
+			var/datum/gas_mixture/hearer_env = turf_loc.get_readonly_air()
+			var/datum/gas_mixture/source_env = turf_source.get_readonly_air()
 
 			if(hearer_env && source_env)
 				var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())

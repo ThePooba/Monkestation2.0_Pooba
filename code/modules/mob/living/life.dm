@@ -57,7 +57,7 @@
 			handle_random_events(seconds_per_tick, times_fired)
 
 		//Handle temperature/pressure differences between body and environment
-		var/datum/gas_mixture/environment = loc.return_air()
+		var/datum/gas_mixture/environment = loc.get_readonly_air()
 		if(environment)
 			handle_environment(environment, seconds_per_tick, times_fired)
 			body_temperature_damage(environment, seconds_per_tick, times_fired)

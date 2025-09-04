@@ -59,10 +59,10 @@
 		SSair.stop_processing_machine(src)
 
 /obj/machinery/meter/return_air()
-	return target?.return_air() || ..()
+	return target?.get_readonly_air() || ..()
 
 /obj/machinery/meter/process_atmos()
-	var/datum/gas_mixture/pipe_air = target?.return_air()
+	var/datum/gas_mixture/pipe_air = target?.get_readonly_air()
 	if(isnull(pipe_air))
 		icon_state = "meter0"
 		return FALSE
@@ -111,7 +111,7 @@
 
 /obj/machinery/meter/proc/status()
 	if (target)
-		var/datum/gas_mixture/pipe_air = target.return_air()
+		var/datum/gas_mixture/pipe_air = target.get_readonly_air()
 		if(pipe_air)
 			. = "The pressure gauge reads [round(pipe_air.return_pressure(), 0.01)] kPa; [round(pipe_air.temperature,0.01)] K ([round(pipe_air.temperature-T0C,0.01)]&deg;C)."
 		else
@@ -184,7 +184,7 @@
 	CIRCUIT_TRIGGER
 	if(!connected_meter)
 		return
-	var/datum/gas_mixture/environment = connected_meter.target.return_air()
+	var/datum/gas_mixture/environment = connected_meter.target.get_readonly_air()
 	pressure.set_output(environment.return_pressure())
 	temperature.set_output(environment.temperature)
 

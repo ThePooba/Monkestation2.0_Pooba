@@ -179,7 +179,7 @@
 	if(!current_turf)
 		return
 	//Remove the gas from airs and assume it
-	var/datum/gas_mixture/environment = current_turf.return_air()
+	var/datum/gas_mixture/environment = current_turf.get_readonly_air()
 	var/lost = null
 	var/times_lost = 0
 	for(var/i in 1 to device_type)
@@ -195,7 +195,7 @@
 			to_release = air.remove(shared_loss)
 			continue
 		to_release.merge(air.remove(shared_loss))
-	current_turf.assume_air(to_release)
+	current_turf.blind_release_air(to_release)
 
 // Helpers
 

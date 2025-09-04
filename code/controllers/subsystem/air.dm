@@ -79,6 +79,26 @@ SUBSYSTEM_DEF(air)
 	var/list/reaction_handbook
 	var/list/gas_handbook
 
+/// A cost counter for resumable, repeating processes.
+/datum/resumable_cost_counter
+	var/last_complete_ms = 0
+	var/ongoing_ms = 0
+
+/// Updates the counter based on the time spent making progress and whether we finished the task.
+/datum/resumable_cost_counter/proc/record_progress(cost_ms, finished)
+	if(finished)
+		last_complete_ms = ongoing_ms + cost_ms
+		ongoing_ms = 0
+	else
+		ongoing_ms += cost_ms
+
+/// Gets a display string for this cost counter.
+/datum/resumable_cost_counter/proc/to_string()
+	if(ongoing_ms > last_complete_ms)
+		// We're in the middle of a task that's already longer than the prior one took in total, report the in-progress time instead, but mark that it's still incomplete with a +
+		return "[round(ongoing_ms, 1)]+"
+	return "[round(last_complete_ms, 1)]"
+
 /datum/controller/subsystem/air/stat_entry(msg)
 	var/list/msg = list()
 	msg += "C:{"

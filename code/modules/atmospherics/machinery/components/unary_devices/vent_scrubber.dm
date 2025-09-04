@@ -222,7 +222,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/proc/scrub(turf/tile)
 	if(!istype(tile))
 		return FALSE
-	var/datum/gas_mixture/environment = tile.return_air()
+	var/datum/gas_mixture/environment = tile.get_readonly_air()
 	var/datum/gas_mixture/air_contents = airs[1]
 	var/list/env_gases = environment.gases
 

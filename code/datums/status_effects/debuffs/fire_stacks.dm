@@ -167,7 +167,7 @@
 		qdel(src)
 		return TRUE
 
-	var/list/gases = owner.loc?.return_air()?.gases
+	var/list/gases = owner.loc?.get_readonly_air()?.gases
 	if(gases && (!gases[/datum/gas/oxygen] || gases[/datum/gas/oxygen][MOLES] < 1))
 		qdel(src)
 		return TRUE

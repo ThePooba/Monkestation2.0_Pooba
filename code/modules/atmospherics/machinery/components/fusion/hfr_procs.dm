@@ -527,8 +527,8 @@
 		for(var/i in 1 to gas_pockets)
 			remove = remove_fusion.remove_ratio(1/gas_pockets)
 			var/turf/local = pick(around_turfs)
-			local.assume_air(remove)
-		loc.assume_air(internal_fusion)
+			local.blind_release_air(remove)
+		loc.blind_release_air(internal_fusion)
 	var/datum/gas_mixture/remove_moderator
 	if(moderator_internal.total_moles() > 0)
 		remove_moderator = moderator_internal.remove_ratio(0.2)
@@ -536,8 +536,8 @@
 		for(var/i in 1 to gas_pockets)
 			remove = remove_moderator.remove_ratio(1/gas_pockets)
 			var/turf/local = pick(around_turfs)
-			local.assume_air(remove)
-		loc.assume_air(moderator_internal)
+			local.blind_release_air(remove)
+		loc.blind_release_air(moderator_internal)
 
 	//Max explosion ranges: devastation = 12, heavy = 24, light = 42
 	explosion(
@@ -597,7 +597,7 @@
 	var/turf/origin_turf = origin.loc
 	if(!origin_turf)
 		return
-	origin_turf.assume_air(remove_mixture)
+	origin_turf.blind_release_air(remove_mixture)
 
 /**
  * Processes leaking from moderator hypercriticality.

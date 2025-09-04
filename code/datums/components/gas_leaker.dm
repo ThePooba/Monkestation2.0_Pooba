@@ -59,7 +59,7 @@
 	SSair.start_processing_machine(src)
 
 /datum/component/gas_leaker/proc/process_obj(obj/master, list/airs=list())
-	airs += master.return_air()
+	airs += master.get_readonly_air()
 	return process_leak(master, airs)
 
 /datum/component/gas_leaker/proc/process_machine(obj/machinery/master, list/airs=list())
@@ -79,7 +79,7 @@
 	var/true_rate = (1 - (current_integrity / master.max_integrity)) * leak_rate
 	for(var/datum/gas_mixture/mix as anything in airs)
 		var/pressure = mix.return_pressure()
-		if(mix.release_gas_to(location.return_air(), pressure, true_rate))
+		if(mix.release_gas_to(location.get_readonly_air(), pressure, true_rate))
 			location.air_update_turf(FALSE, FALSE)
 
 #undef PROCESS_OBJ

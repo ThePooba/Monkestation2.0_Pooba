@@ -131,7 +131,7 @@
 		return FALSE
 
 	var/turf/T = get_turf(src)
-	T.assume_air(removed)
+	T.blind_release_air(removed)
 	return TRUE
 
 /obj/item/tank/jetpack/suicide_act(mob/living/user)

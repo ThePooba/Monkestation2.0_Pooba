@@ -98,7 +98,7 @@ ARTIFACT_SETUP(/obj/machinery/power/generator_artifact, SSmachines, null, /datum
 		merger.gases[/datum/gas/carbon_dioxide][MOLES] = rand(10,120)
 		merger.temperature = rand(200,1000)
 		var/turf/holder_turf = get_turf(our_artifact.holder)
-		holder_turf.assume_air(merger)
+		holder_turf.blind_release_air(merger)
 
 
 /datum/artifact_effect/generator/effect_deactivate()

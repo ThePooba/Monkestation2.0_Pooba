@@ -181,7 +181,7 @@
 	for(var/turf/open in view(range, viewer))
 		if(open.blocks_air)
 			continue
-		var/datum/gas_mixture/environment = open.return_air()
+		var/datum/gas_mixture/environment = open.get_readonly_air()
 		var/temp = round(environment.return_temperature())
 		var/image/pic = image('icons/turf/overlays.dmi', open, "greyOverlay", ABOVE_ALL_MOB_LAYER)
 		// Lower than TEMP_SHADE_CYAN should be deep blue

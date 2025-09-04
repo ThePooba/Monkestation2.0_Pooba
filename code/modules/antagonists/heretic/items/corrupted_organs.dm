@@ -233,7 +233,7 @@
 	mix_to_spawn.temperature = breather.bodytemperature
 	log_atmos("[owner] coughed some gas into the air due to their corrupted lungs.", mix_to_spawn)
 	var/turf/open/our_turf = get_turf(breather)
-	our_turf.assume_air(mix_to_spawn)
+	our_turf.blind_release_air(mix_to_spawn)
 
 
 /// It's full of worms

@@ -90,7 +90,7 @@
 		can_burn = TRUE
 
 	if(!atmos_sealed && can_burn)
-		var/datum/gas_mixture/environment = H.loc.return_air()
+		var/datum/gas_mixture/environment = H.loc.get_readonly_air()
 		if(environment?.total_moles())
 			if(environment.gases[/datum/gas/hypernoblium] && (environment.gases[/datum/gas/hypernoblium][MOLES]) >= 5)
 				if(H.on_fire && H.fire_stacks > 0)

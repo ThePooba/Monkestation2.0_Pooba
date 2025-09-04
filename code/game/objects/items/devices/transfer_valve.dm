@@ -146,9 +146,9 @@
 		return FALSE
 
 	// Throw both tanks into processing queue
-	var/datum/gas_mixture/target_mix = target.return_air()
+	var/datum/gas_mixture/target_mix = target.get_readonly_air()
 	var/datum/gas_mixture/other_mix
-	other_mix = (target == tank_one ? tank_two : tank_one).return_air()
+	other_mix = (target == tank_one ? tank_two : tank_one).get_readonly_air()
 
 	if(change_volume)
 		target_mix.volume += other_mix.volume
@@ -159,8 +159,8 @@
 /obj/item/transfer_valve/proc/split_gases()
 	if (!valve_open || !tank_one || !tank_two)
 		return
-	var/datum/gas_mixture/mix_one = tank_one.return_air()
-	var/datum/gas_mixture/mix_two = tank_two.return_air()
+	var/datum/gas_mixture/mix_one = tank_one.get_readonly_air()
+	var/datum/gas_mixture/mix_two = tank_two.get_readonly_air()
 
 	var/volume_ratio = mix_one.volume/mix_two.volume
 	var/datum/gas_mixture/temp

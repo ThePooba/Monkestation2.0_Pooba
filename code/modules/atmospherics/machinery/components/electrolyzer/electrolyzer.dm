@@ -114,7 +114,7 @@
 	if(mode == ELECTROLYZER_MODE_STANDBY)
 		return
 
-	var/datum/gas_mixture/env = our_turf.return_air() //get air from the turf
+	var/datum/gas_mixture/env = our_turf.get_readonly_air() //get air from the turf
 
 	if(!env)
 		return

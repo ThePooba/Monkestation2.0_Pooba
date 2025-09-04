@@ -54,7 +54,7 @@
 /obj/machinery/atmospherics/pipe/proc/releaseAirToTurf()
 	if(air_temporary)
 		var/turf/T = loc
-		T.assume_air(air_temporary)
+		T.blind_release_air(air_temporary)
 
 /obj/machinery/atmospherics/pipe/return_air()
 	if(air_temporary)

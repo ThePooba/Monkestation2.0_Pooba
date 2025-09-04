@@ -126,7 +126,7 @@
 			update_appearance()
 		return
 
-	var/datum/gas_mixture/enviroment = local_turf.return_air()
+	var/datum/gas_mixture/enviroment = local_turf.get_readonly_air()
 
 	var/new_mode = HEATER_MODE_STANDBY
 	if(set_mode != HEATER_MODE_COOL && enviroment.temperature < target_temperature - temperature_tolerance)
@@ -153,7 +153,7 @@
 		delta_temperature *= -1
 	if(delta_temperature)
 		for (var/turf/open/turf in ((local_turf.atmos_adjacent_turfs || list()) + local_turf))
-			var/datum/gas_mixture/turf_gasmix = turf.return_air()
+			var/datum/gas_mixture/turf_gasmix = turf.get_readonly_air()
 			turf_gasmix.temperature += delta_temperature
 			air_update_turf(FALSE, FALSE)
 	cell.use(required_energy / efficiency)
@@ -243,7 +243,7 @@
 	var/turf/local_turf = get_turf(loc)
 	var/current_temperature
 	if(istype(local_turf))
-		var/datum/gas_mixture/enviroment = local_turf.return_air()
+		var/datum/gas_mixture/enviroment = local_turf.get_readonly_air()
 		current_temperature = enviroment.temperature
 	else if(isturf(local_turf))
 		current_temperature = local_turf.temperature

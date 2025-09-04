@@ -545,7 +545,7 @@
 		var/datum/gas_mixture/lowertemp = exposed_turf.remove_air(exposed_turf.air.total_moles())
 		lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
 		lowertemp.react(src)
-		exposed_turf.assume_air(lowertemp)
+		exposed_turf.blind_release_air(lowertemp)
 		qdel(hotspot)
 
 /datum/reagent/consumable/enzyme

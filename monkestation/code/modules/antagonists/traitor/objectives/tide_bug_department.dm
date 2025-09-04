@@ -185,7 +185,7 @@
 			continue
 		if(isgroundlessturf(turf))
 			return TRUE
-		var/pressure = turf.return_air()?.return_pressure()
+		var/pressure = turf.get_readonly_air()?.return_pressure()
 		if(!IS_SAFE_NUM(pressure) || !ISINRANGE_EX(pressure, HAZARD_LOW_PRESSURE, HAZARD_HIGH_PRESSURE))
 			return TRUE
 	return FALSE

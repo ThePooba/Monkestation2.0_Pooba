@@ -80,7 +80,7 @@
 	if (!istype(turf))
 		return
 
-	var/datum/gas_mixture/enviroment = turf.return_air()
+	var/datum/gas_mixture/enviroment = turf.get_readonly_air()
 	if (host_mob.bodytemperature < enviroment.temperature) // sadly our bitcoin mining operations just aren't cool enough
 		return
 

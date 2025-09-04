@@ -147,7 +147,7 @@
 			reference = affected // Our color and volume will depend on this small sparked gasmix
 			affected.temperature = temperature
 			affected.react(src)
-			location.assume_air(affected)
+			location.blind_release_air(affected)
 
 	if(reference)
 		volume = 0

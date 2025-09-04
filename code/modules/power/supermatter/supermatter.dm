@@ -257,7 +257,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		return
 
 	// PART 2: GAS PROCESSING
-	var/datum/gas_mixture/env = local_turf.return_air()
+	var/datum/gas_mixture/env = local_turf.get_readonly_air()
 	absorbed_gasmix = env?.remove_ratio(absorption_ratio) || new()
 	absorbed_gasmix.volume = (env?.volume || CELL_VOLUME) * absorption_ratio // To match the pressure.
 	calculate_gases()
@@ -944,8 +944,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	//This gotdamn variable is a boomer and keeps giving me problems
 	var/turf/target_turf = get_turf(target)
 	var/pressure = 1
-	if(target_turf?.return_air())
-		pressure = max(1,target_turf.return_air().return_pressure())
+	if(target_turf?.get_readonly_air())
+		pressure = max(1,target_turf.get_readonly_air().return_pressure())
 	//We get our range with the strength of the zap and the pressure, the higher the former and the lower the latter the better
 	var/new_range = clamp(zap_str / pressure * 10, 2, 7)
 	var/zap_count = 1

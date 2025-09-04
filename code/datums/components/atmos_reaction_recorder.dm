@@ -5,13 +5,13 @@
  * Add this component after gasmixes has been initialized.
  */
 /datum/component/atmos_reaction_recorder
-	/// The list we write append each reaction tick to. 
+	/// The list we write append each reaction tick to.
 	/// This is often a list initialized by something else (passed as a reference under Initialize).
 	var/list/copied_reaction_results
 	/// Signals we have been listening to.
 	var/list/registered_signals
 
-/** 
+/**
  * Verify that parent is indeed an atom, and then register signals.
  * Args:
  * - target_list (list): The list we are writing the captured reaction_results to.
@@ -21,7 +21,7 @@
 	. = ..()
 
 	var/atom/parent_atom = parent
-	var/datum/gas_mixture/parent_air = parent_atom?.return_air()
+	var/datum/gas_mixture/parent_air = parent_atom?.get_readonly_air()
 	if((!istype(parent_atom) || !istype(parent_air)))
 		return COMPONENT_INCOMPATIBLE
 

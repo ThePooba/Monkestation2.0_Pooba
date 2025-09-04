@@ -12,7 +12,7 @@
 	if(!..())
 		return FALSE
 	var/obj/item/tank/applied_tank = applied_obj
-	var/datum/gas_mixture/our_mix = applied_tank.return_air()
+	var/datum/gas_mixture/our_mix = applied_tank.get_readonly_air()
 	if(!our_mix.gases[gas_type])
 		return FALSE
 	return our_mix.gases[gas_type][MOLES] >= moles_required

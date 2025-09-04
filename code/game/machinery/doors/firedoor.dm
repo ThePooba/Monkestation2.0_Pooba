@@ -280,7 +280,7 @@
 	post_change_callbacks += CALLBACK(src, PROC_REF(process_results), changed) //check the atmosphere of the changed turf so we don't hold onto alarm if a wall is built
 
 /obj/machinery/door/firedoor/proc/check_atmos(turf/checked_turf)
-	var/datum/gas_mixture/environment = checked_turf.return_air()
+	var/datum/gas_mixture/environment = checked_turf.get_readonly_air()
 	if(!environment)
 		CRASH("We tried to check a gas_mixture that doesn't exist for its firetype, what are you DOING")
 

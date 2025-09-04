@@ -33,7 +33,7 @@
 	SIGNAL_HANDLER
 
 	if(can_fly())
-		var/datum/gas_mixture/current = owner.loc.return_air()
+		var/datum/gas_mixture/current = owner.loc.get_readonly_air()
 		if(current && (current.return_pressure() >= ONE_ATMOSPHERE*0.85)) //as long as there's reasonable pressure and no gravity, flight is possible
 			ADD_TRAIT(owner, TRAIT_FREE_FLOAT_MOVEMENT, REF(src))
 			return

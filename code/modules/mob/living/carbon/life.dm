@@ -79,7 +79,7 @@
 		location_as_object.handle_internal_lifeform(src, 0)
 
 /mob/living/carbon/proc/breathe(seconds_per_tick, times_fired, next_breath = 4)
-	var/datum/gas_mixture/environment = loc?.return_air()
+	var/datum/gas_mixture/environment = loc?.get_readonly_air()
 	var/datum/gas_mixture/breath
 
 	if(!HAS_TRAIT(src, TRAIT_ASSISTED_BREATHING))
@@ -132,7 +132,7 @@
 /mob/living/carbon/proc/exhale_breath(datum/gas_mixture/breath)
 	if(SEND_SIGNAL(src, COMSIG_CARBON_BREATH_EXHALE, breath) & BREATHE_EXHALE_HANDLED)
 		return
-	loc.assume_air(breath)
+	loc.blind_release_air(breath)
 
 /mob/living/carbon/proc/has_smoke_protection()
 	return HAS_TRAIT(src, TRAIT_NOBREATH)

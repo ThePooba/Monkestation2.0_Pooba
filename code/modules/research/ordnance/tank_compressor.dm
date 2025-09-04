@@ -107,7 +107,7 @@
 	if(!input_air?.total_moles() || !active || !transfer_rate || !inserted_tank)
 		return
 
-	var/datum/gas_mixture/tank_air = inserted_tank.return_air()
+	var/datum/gas_mixture/tank_air = inserted_tank.get_readonly_air()
 	if(!tank_air)
 		return
 
@@ -126,7 +126,7 @@
 	tank_air.merge(removed)
 	update_parents()
 
-/obj/machinery/atmospherics/components/binary/tank_compressor/assume_air(datum/gas_mixture/giver)
+/obj/machinery/atmospherics/components/binary/tank_compressor/blind_release_air(datum/gas_mixture/giver)
 	if(!leaked_gas_buffer)
 		return ..()
 	leaked_gas_buffer.merge(giver)
@@ -138,7 +138,7 @@
 	if(inserted_tank.get_integrity() > 0)
 		return
 	flush_buffer()
-	var/datum/gas_mixture/tank_air = inserted_tank.return_air()
+	var/datum/gas_mixture/tank_air = inserted_tank.get_readonly_air()
 	last_recorded_pressure = tank_air.return_pressure()
 	active = FALSE
 	return
@@ -207,7 +207,7 @@
 /obj/machinery/atmospherics/components/binary/tank_compressor/proc/eject_tank(mob/user)
 	if(!inserted_tank)
 		return FALSE
-	var/datum/gas_mixture/tank_air = inserted_tank.return_air()
+	var/datum/gas_mixture/tank_air = inserted_tank.get_readonly_air()
 	if(tank_air.return_pressure() >= (PUMP_MAX_PRESSURE + ONE_ATMOSPHERE))
 		return FALSE
 	flush_buffer()
@@ -313,7 +313,7 @@
 /obj/machinery/atmospherics/components/binary/tank_compressor/ui_data(mob/user)
 	var/list/data = list()
 	data["tankPresent"] = inserted_tank ? TRUE : FALSE
-	var/datum/gas_mixture/tank_air = inserted_tank?.return_air()
+	var/datum/gas_mixture/tank_air = inserted_tank?.get_readonly_air()
 	data["tankPressure"] = tank_air?.return_pressure()
 	data["leaking"] = inserted_tank?.leaking
 

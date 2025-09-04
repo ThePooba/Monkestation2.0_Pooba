@@ -44,7 +44,7 @@
 	. = ..()
 	if(!connected_device)
 		return
-	. += connected_device.return_air()
+	. += connected_device.get_readonly_air()
 
 /obj/machinery/atmospherics/components/unary/portables_connector/can_unwrench(mob/user)
 	. = ..()

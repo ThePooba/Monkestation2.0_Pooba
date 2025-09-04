@@ -70,7 +70,7 @@
 	if(!location)
 		return FALSE
 
-	var/datum/gas_mixture/environment = location.return_air()
+	var/datum/gas_mixture/environment = location.get_readonly_air()
 	if(environment?.return_pressure() < HAZARD_LOW_PRESSURE + 10)
 		to_chat(human, span_warning("The atmosphere is too thin for you to fly!"))
 		return FALSE

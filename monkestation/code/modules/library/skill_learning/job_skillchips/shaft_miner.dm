@@ -198,7 +198,7 @@
 		return
 
 	var/turf/our_turf = get_turf(pointing_mob)
-	var/pressure = our_turf.return_air()?.return_pressure() || 0
+	var/pressure = our_turf.get_readonly_air()?.return_pressure() || 0
 	var/thin_air = pressure < (ONE_ATMOSPHERE * 0.4)
 
 	if (thin_air && COOLDOWN_FINISHED(src, radio_cooldown))

@@ -131,13 +131,13 @@
 	var/datum/gas_mixture/inside_air = gas_connector.airs[1]
 	if(inside_air.total_moles() > 0)
 		if(!gas_connector.nodes[1])
-			local_turf.assume_air(inside_air)
+			local_turf.blind_release_air(inside_air)
 			return
 		var/datum/gas_mixture/parents_air = gas_connector.parents[1].air
 		if(istype(gas_connector.nodes[1], /obj/machinery/atmospherics/components/unary/portables_connector))
 			var/obj/machinery/atmospherics/components/unary/portables_connector/portable_devices_connector = gas_connector.nodes[1]
 			if(!portable_devices_connector.connected_device)
-				local_turf.assume_air(inside_air)
+				local_turf.blind_release_air(inside_air)
 				return
 		parents_air.merge(inside_air)
 
@@ -205,7 +205,7 @@
 	var/turf/our_turf = get_turf(src)
 
 	var/datum/gas_mixture/hot_air_from_pipe = connected_chamber.gas_connector.airs[1]
-	var/datum/gas_mixture/environment = our_turf.return_air()
+	var/datum/gas_mixture/environment = our_turf.get_readonly_air()
 
 	if(!QUANTIZE(hot_air_from_pipe.total_moles()) || !QUANTIZE(environment.total_moles())) //Don't transfer if there's no gas
 		return

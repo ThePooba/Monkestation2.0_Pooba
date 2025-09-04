@@ -48,7 +48,7 @@
 		. += span_notice("A small panel on [p_their()] side is dislaying a notice. Something about firmware?")
 
 
-/obj/machinery/research/anomaly_refinery/assume_air(datum/gas_mixture/giver)
+/obj/machinery/research/anomaly_refinery/blind_release_air(datum/gas_mixture/giver)
 	return null // Required to make the TTV not vent directly into the air.
 
 /**
@@ -246,8 +246,8 @@
 		return FALSE
 
 	if(reaction_increment == 0)
-		var/datum/gas_mixture/first_gasmix = inserted_bomb.tank_one.return_air()
-		var/datum/gas_mixture/second_gasmix = inserted_bomb.tank_two.return_air()
+		var/datum/gas_mixture/first_gasmix = inserted_bomb.tank_one.get_readonly_air()
+		var/datum/gas_mixture/second_gasmix = inserted_bomb.tank_two.get_readonly_air()
 
 		combined_gasmix = new(70)
 		combined_gasmix.volume = first_gasmix.volume + second_gasmix.volume
@@ -336,8 +336,8 @@
 	if(inserted_bomb?.tank_one && inserted_bomb?.tank_two)
 		other_tank = inserted_bomb.tank_one == tank_to_target ? inserted_bomb.tank_two : inserted_bomb.tank_one
 
-	parsed_gasmixes += list(gas_mixture_parser(tank_to_target?.return_air(), tank_to_target?.name))
-	parsed_gasmixes += list(gas_mixture_parser(other_tank?.return_air(), other_tank?.name))
+	parsed_gasmixes += list(gas_mixture_parser(tank_to_target?.get_readonly_air(), tank_to_target?.name))
+	parsed_gasmixes += list(gas_mixture_parser(other_tank?.get_readonly_air(), other_tank?.name))
 	parsed_gasmixes += list(gas_mixture_parser(combined_gasmix, "Combined Gasmix"))
 
 	data["gasList"] = parsed_gasmixes

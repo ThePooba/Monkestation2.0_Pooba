@@ -410,7 +410,7 @@
 
 	return ..()
 
-/obj/structure/chrono_field/assume_air()
+/obj/structure/chrono_field/blind_release_air()
 	return FALSE
 
 /obj/structure/chrono_field/return_air() //we always have nominal air and temperature

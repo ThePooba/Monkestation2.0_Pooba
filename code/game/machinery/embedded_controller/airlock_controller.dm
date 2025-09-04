@@ -279,7 +279,7 @@
 	if (!isnull(sensor) && !sensor.on)
 		return last_pressure
 
-	var/datum/gas_mixture/air = sensor?.return_air()
+	var/datum/gas_mixture/air = sensor?.get_readonly_air()
 	last_pressure = air?.return_pressure()
 	return last_pressure
 

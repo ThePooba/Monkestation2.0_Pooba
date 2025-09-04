@@ -168,7 +168,7 @@
 	pod_moving = FALSE
 	if(QDELETED(pod))
 		return
-	var/datum/gas_mixture/floor_mixture = loc.return_air()
+	var/datum/gas_mixture/floor_mixture = loc.get_readonly_air()
 	if(pod.air_contents.equalize(floor_mixture)) //equalize the pod's mix with the tile it's on
 		air_update_turf(FALSE, FALSE)
 

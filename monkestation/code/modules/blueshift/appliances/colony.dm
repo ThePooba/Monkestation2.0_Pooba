@@ -579,7 +579,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/cell_charger_multi/wall_mounted, 29)
 		return
 
 	var/turf/our_turf = get_turf(src)
-	var/datum/gas_mixture/environment = our_turf.return_air()
+	var/datum/gas_mixture/environment = our_turf.get_readonly_air()
 
 	if(environment.return_pressure() < minimum_pressure)
 		pressure_too_low = TRUE

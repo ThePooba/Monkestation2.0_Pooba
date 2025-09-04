@@ -47,9 +47,9 @@
 
 /obj/structure/closet/crate/critter/return_air()
 	if(tank)
-		return tank.return_air()
+		return tank.get_readonly_air()
 	else
-		return loc.return_air()
+		return loc.get_readonly_air()
 
 /obj/structure/closet/crate/critter/return_analyzable_air()
 	if(tank)

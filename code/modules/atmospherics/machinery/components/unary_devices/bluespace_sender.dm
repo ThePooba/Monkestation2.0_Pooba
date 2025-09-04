@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY_TYPED(bluespace_senders, /obj/machinery/atmospherics/component
 /obj/machinery/atmospherics/components/unary/bluespace_sender/Destroy()
 	if(bluespace_network.total_moles())
 		var/turf/local_turf = get_turf(src)
-		local_turf.assume_air(bluespace_network)
+		local_turf.blind_release_air(bluespace_network)
 
 	GLOB.bluespace_senders -= src
 

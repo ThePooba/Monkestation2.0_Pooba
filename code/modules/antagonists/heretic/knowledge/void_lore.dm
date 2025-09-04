@@ -104,7 +104,7 @@
 /datum/heretic_knowledge/cold_snap/proc/check_environment(mob/living/user)
 	SIGNAL_HANDLER
 
-	var/datum/gas_mixture/environment = user.loc?.return_air()
+	var/datum/gas_mixture/environment = user.loc?.get_readonly_air()
 	if(!isnull(environment))
 		var/affected_temperature = environment.return_temperature()
 		var/affected_pressure = environment.return_pressure()
@@ -284,7 +284,7 @@
 
 		else if(isturf(thing_in_range))
 			var/turf/affected_turf = thing_in_range
-			affected_turf.return_air()?.temperature *= 0.9
+			affected_turf.get_readonly_air()?.temperature *= 0.9
 
 	// Telegraph the storm in every area on the station.
 	var/list/station_levels = SSmapping.levels_by_trait(ZTRAIT_STATION)

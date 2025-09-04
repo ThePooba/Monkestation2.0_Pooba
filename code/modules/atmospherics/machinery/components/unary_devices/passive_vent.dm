@@ -24,7 +24,7 @@
 	if(isclosedturf(location))
 		return
 
-	var/datum/gas_mixture/external = location.return_air()
+	var/datum/gas_mixture/external = location.get_readonly_air()
 	var/datum/gas_mixture/internal = airs[1]
 
 	if(internal.equalize(external))

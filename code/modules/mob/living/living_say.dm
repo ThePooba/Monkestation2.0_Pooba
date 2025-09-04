@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 		//No screams in space, unless you're next to someone.
 		var/turf/our_turf = get_turf(src)
-		var/pressure = our_turf.return_air()?.return_pressure() || 0
+		var/pressure = our_turf.get_readonly_air()?.return_pressure() || 0
 		if(pressure < SOUND_MINIMUM_PRESSURE)
 			message_range = 1
 

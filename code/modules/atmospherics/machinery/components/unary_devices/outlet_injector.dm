@@ -100,7 +100,7 @@
 
 		var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 
-		location.assume_air(removed)
+		location.blind_release_air(removed)
 
 		update_parents()
 

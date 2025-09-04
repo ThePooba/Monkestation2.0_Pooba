@@ -260,7 +260,7 @@
 /obj/machinery/power/turbine/inlet_compressor/proc/compress_gases()
 	compressor_work = 0
 	compressor_pressure = MINIMUM_TURBINE_PRESSURE
-	var/datum/gas_mixture/input_turf_mixture = input_turf.return_air()
+	var/datum/gas_mixture/input_turf_mixture = input_turf.get_readonly_air()
 	if(!input_turf_mixture)
 		return 0
 

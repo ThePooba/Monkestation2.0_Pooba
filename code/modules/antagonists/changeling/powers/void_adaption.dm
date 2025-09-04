@@ -32,7 +32,7 @@
 
 	var/list/active_reasons = list()
 
-	var/datum/gas_mixture/environment = void_adapted.loc.return_air()
+	var/datum/gas_mixture/environment = void_adapted.loc.get_readonly_air()
 	if (!isnull(environment))
 		var/vulnerable_temperature = void_adapted.bodytemp_cold_damage_limit
 		var/affected_temperature = environment.return_temperature()

@@ -33,4 +33,4 @@
 	mix_to_spawn.gases[gas_type][MOLES] = amount_of_gas
 	mix_to_spawn.temperature = T20C
 	var/turf/open/our_turf = get_turf(target)
-	our_turf.assume_air(mix_to_spawn)
+	our_turf.blind_release_air(mix_to_spawn)

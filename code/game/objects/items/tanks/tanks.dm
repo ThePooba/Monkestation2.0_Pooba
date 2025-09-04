@@ -159,7 +159,7 @@
 /obj/item/tank/deconstruct(disassembled = TRUE)
 	var/atom/location = loc
 	if(location)
-		location.assume_air(air_contents)
+		location.blind_release_air(air_contents)
 		playsound(location, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	return ..()
 
@@ -245,7 +245,7 @@
 /obj/item/tank/return_analyzable_air()
 	return air_contents
 
-/obj/item/tank/assume_air(datum/gas_mixture/giver)
+/obj/item/tank/blind_release_air(datum/gas_mixture/giver)
 	START_PROCESSING(SSobj, src)
 	air_contents.merge(giver)
 	handle_tolerances(ASSUME_AIR_DT_FACTOR)
@@ -294,7 +294,7 @@
 	if(!location)
 		return
 	var/datum/gas_mixture/leaked_gas = air_contents.remove_ratio(0.25)
-	location.assume_air(leaked_gas)
+	location.blind_release_air(leaked_gas)
 
 /**
  * Handles the minimum and maximum pressure tolerances of the tank.
@@ -393,7 +393,7 @@
 		else if(strength >= 0.2)
 			explosion(ground_zero, devastation_range = -1, light_impact_range = 1, flash_range = 2, explosion_cause = src)
 		else
-			ground_zero.assume_air(bomb_mixture)
+			ground_zero.blind_release_air(bomb_mixture)
 			ground_zero.hotspot_expose(1000, 125)
 
 	else if(bomb_mixture.temperature > (T0C + 250))
@@ -404,7 +404,7 @@
 		else if(strength >= 0.5)
 			explosion(ground_zero, devastation_range = -1, light_impact_range = 1, flash_range = 2, explosion_cause = src)
 		else
-			ground_zero.assume_air(bomb_mixture)
+			ground_zero.blind_release_air(bomb_mixture)
 			ground_zero.hotspot_expose(1000, 125)
 
 	else if(bomb_mixture.temperature > (T0C + 100))
@@ -413,11 +413,11 @@
 		if(strength >= 1)
 			explosion(ground_zero, devastation_range = -1, light_impact_range = round(strength,1), flash_range = round(strength*3,1), explosion_cause = src)
 		else
-			ground_zero.assume_air(bomb_mixture)
+			ground_zero.blind_release_air(bomb_mixture)
 			ground_zero.hotspot_expose(1000, 125)
 
 	else
-		ground_zero.assume_air(bomb_mixture)
+		ground_zero.blind_release_air(bomb_mixture)
 		ground_zero.hotspot_expose(1000, 125)
 
 	if(master)
@@ -430,5 +430,5 @@
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
-	T.assume_air(removed)
+	T.blind_release_air(removed)
 #undef ASSUME_AIR_DT_FACTOR

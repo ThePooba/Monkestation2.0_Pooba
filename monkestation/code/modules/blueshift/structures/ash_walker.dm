@@ -472,7 +472,7 @@
 	if(!isopenturf(src_turf) || isspaceturf(src_turf) || src_turf.planetary_atmos) //must be open turf, can't be space turf, and can't be a turf that regenerates its atmos
 		return
 
-	var/datum/gas_mixture/src_mixture = src_turf.return_air()
+	var/datum/gas_mixture/src_mixture = src_turf.get_readonly_air()
 
 	src_mixture.assert_gases(/datum/gas/carbon_dioxide, /datum/gas/oxygen, /datum/gas/nitrogen)
 

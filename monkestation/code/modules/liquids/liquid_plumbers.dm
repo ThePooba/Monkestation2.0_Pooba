@@ -298,7 +298,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/plumbing/floor_pump/input/on/waste, 0
 	if(affected_turf.liquids?.liquid_group.expected_turf_height >= max_ext_volume)
 		return FALSE
 	var/turf/open/open_turf = affected_turf
-	var/datum/gas_mixture/gas_mix = open_turf?.return_air()
+	var/datum/gas_mixture/gas_mix = open_turf?.get_readonly_air()
 	if(gas_mix?.return_pressure() > max_ext_kpa)
 		over_pressure = TRUE
 		return FALSE

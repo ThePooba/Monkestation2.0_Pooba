@@ -14,7 +14,7 @@
 
 /obj/machinery/portable_atmospherics/pump/Destroy()
 	var/turf/local_turf = get_turf(src)
-	local_turf.assume_air(air_contents)
+	local_turf.blind_release_air(air_contents)
 	return ..()
 
 /obj/machinery/portable_atmospherics/pump/update_icon_state()
@@ -44,11 +44,11 @@
 	var/datum/gas_mixture/receiving
 
 	if (holding) //Work with tank when inserted, otherwise - with area
-		sending = (direction == PUMP_IN ? holding.return_air() : air_contents)
-		receiving = (direction == PUMP_IN ? air_contents : holding.return_air())
+		sending = (direction == PUMP_IN ? holding.get_readonly_air() : air_contents)
+		receiving = (direction == PUMP_IN ? air_contents : holding.get_readonly_air())
 	else
-		sending = (direction == PUMP_IN ? local_turf.return_air() : air_contents)
-		receiving = (direction == PUMP_IN ? air_contents : local_turf.return_air())
+		sending = (direction == PUMP_IN ? local_turf.get_readonly_air() : air_contents)
+		receiving = (direction == PUMP_IN ? air_contents : local_turf.get_readonly_air())
 
 	if(sending.pump_gas_to(receiving, target_pressure) && !holding)
 		air_update_turf(FALSE, FALSE) // Update the environment if needed.
@@ -103,7 +103,7 @@
 	if(holding)
 		data["holding"] = list()
 		data["holding"]["name"] = holding.name
-		var/datum/gas_mixture/holding_mix = holding.return_air()
+		var/datum/gas_mixture/holding_mix = holding.get_readonly_air()
 		data["holding"]["pressure"] = round(holding_mix.return_pressure())
 	else
 		data["holding"] = null

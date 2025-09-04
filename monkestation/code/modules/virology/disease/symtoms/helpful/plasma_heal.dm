@@ -57,14 +57,14 @@
 		var/mob/living/carbon/breather = diseased_mob
 		var/obj/item/tank/internals/internals_tank = breather.internal
 		if(internals_tank)
-			var/datum/gas_mixture/tank_contents = internals_tank.return_air()
+			var/datum/gas_mixture/tank_contents = internals_tank.get_readonly_air()
 			if(tank_contents && round(tank_contents.return_pressure())) // make sure the tank is not empty or 0 pressure
 				if(tank_contents.gases[/datum/gas/plasma])
 					// higher tank distribution pressure leads to more healing, but once you get to about 15kpa you reach the max
 					base += power * min(MAX_HEAL_COEFFICIENT_INTERNALS, internals_tank.distribute_pressure * HEALING_PER_BREATH_PRESSURE)
 	// Check environment
 	if(diseased_mob.loc)
-		environment = diseased_mob.loc.return_air()
+		environment = diseased_mob.loc.get_readonly_air()
 	if(environment)
 		gases = environment.gases
 		if(gases[/datum/gas/plasma])

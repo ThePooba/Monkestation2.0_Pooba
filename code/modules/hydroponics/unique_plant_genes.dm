@@ -673,14 +673,14 @@
 		return
 
 	var/turf/open/tray_turf = get_turf(tray)
-	if(abs(ONE_ATMOSPHERE - tray_turf.return_air().return_pressure()) > (seed.potency / 10 + 10)) // clouds can begin showing at around 50-60 potency in standard atmos
+	if(abs(ONE_ATMOSPHERE - tray_turf.get_readonly_air().return_pressure()) > (seed.potency / 10 + 10)) // clouds can begin showing at around 50-60 potency in standard atmos
 		return
 
 	var/datum/gas_mixture/stank = new
 	ADD_GAS(/datum/gas/miasma, stank.gases)
 	stank.gases[/datum/gas/miasma][MOLES] = (seed.yield + 6) * 3.5 * MIASMA_CORPSE_MOLES * seconds_per_tick // this process is only being called about 2/7 as much as corpses so this is 12-32 times a corpses
 	stank.temperature = T20C // without this the room would eventually freeze and miasma mining would be easier
-	tray_turf.assume_air(stank)
+	tray_turf.blind_release_air(stank)
 
 /// Starthistle's essential invasive spreading
 /datum/plant_gene/trait/invasive/galaxythistle

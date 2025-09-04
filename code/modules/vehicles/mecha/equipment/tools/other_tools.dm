@@ -448,7 +448,7 @@
 	var/obj/machinery/portable_atmospherics/canister/internal_tank = chassis.get_internal_tank()
 	if(!internal_tank)
 		return FALSE
-	var/datum/gas_mixture/our_mix = internal_tank.return_air()
+	var/datum/gas_mixture/our_mix = internal_tank.get_readonly_air()
 	var/moles = our_mix.total_moles()
 	if(moles < move_cost)
 		our_mix.remove(moles)

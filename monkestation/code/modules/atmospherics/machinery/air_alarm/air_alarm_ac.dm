@@ -83,7 +83,7 @@
 		update_use_power(IDLE_POWER_USE)
 		ac_active = FALSE
 		return
-	var/datum/gas_mixture/environment = location.return_air()
+	var/datum/gas_mixture/environment = location.get_readonly_air()
 	if(!environment)
 		update_use_power(IDLE_POWER_USE)
 		ac_active = FALSE
@@ -108,7 +108,7 @@
 		for(var/turf/open/adjacent_turf in location.get_atmos_adjacent_turfs())
 			if(isspaceturf(adjacent_turf))
 				continue
-			var/datum/gas_mixture/adj_environment = adjacent_turf.return_air()
+			var/datum/gas_mixture/adj_environment = adjacent_turf.get_readonly_air()
 			if(!adj_environment)
 				continue
 			var/adj_temp = adj_environment.return_temperature()

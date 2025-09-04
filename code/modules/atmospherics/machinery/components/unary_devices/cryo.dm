@@ -206,7 +206,7 @@
 	if(T)
 		///Take the air composition inside the cryotube
 		var/datum/gas_mixture/air1 = airs[1]
-		T.assume_air(air1)
+		T.blind_release_air(air1)
 
 	return ..()
 
@@ -417,7 +417,7 @@
 	var/breath_percentage = breath_request / air1.volume
 	return air1.remove(air1.total_moles() * breath_percentage)
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/assume_air(datum/gas_mixture/giver)
+/obj/machinery/atmospherics/components/unary/cryo_cell/blind_release_air(datum/gas_mixture/giver)
 	return airs[1].merge(giver)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/living/user, direction)

@@ -60,7 +60,7 @@
 	data["clickAtmozphereCompatible"] = (computer.hardware_flag & PROGRAM_TABLET)
 	switch (atmozphere_mode) //Null air wont cause errors, don't worry.
 		if(ATMOZPHERE_SCAN_ENV)
-			var/datum/gas_mixture/air = turf?.return_air()
+			var/datum/gas_mixture/air = turf?.get_readonly_air()
 			data["gasmixes"] = list(gas_mixture_parser(air, "Location Reading"))
 		if(ATMOZPHERE_SCAN_CLICK)
 			LAZYINITLIST(last_gasmix_data)
@@ -80,7 +80,7 @@
 			atmozphere_mode = ATMOZPHERE_SCAN_CLICK
 			RegisterSignal(computer, COMSIG_ITEM_ATTACK_SELF_SECONDARY, PROC_REF(turf_analyze))
 			var/turf/turf = get_turf(computer)
-			last_gasmix_data = list(gas_mixture_parser(turf?.return_air(), "Location Reading"))
+			last_gasmix_data = list(gas_mixture_parser(turf?.get_readonly_air(), "Location Reading"))
 			return TRUE
 
 #undef ATMOZPHERE_SCAN_ENV

@@ -66,7 +66,7 @@
 		return //Cooldown check
 	var/turf/location = get_turf(loc)
 	if(location)
-		var/datum/gas_mixture/enviro = location.return_air()
+		var/datum/gas_mixture/enviro = location.get_readonly_air()
 		enviro.temperature = clamp(min(T20C, enviro.temperature*0.85),MIN_FREEZE_TEMP,MAX_FREEZE_TEMP)
 	sparks.start()
 

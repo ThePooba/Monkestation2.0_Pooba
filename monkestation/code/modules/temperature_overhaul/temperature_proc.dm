@@ -117,7 +117,7 @@
  * plus some other modifiers
  */
 /mob/living/proc/get_skin_temperature()
-	var/area_temperature = get_temperature(loc?.return_air())
+	var/area_temperature = get_temperature(loc?.get_readonly_air())
 	if(!(mob_biotypes & MOB_ORGANIC) && !isipc(src))
 		// non-organic mobs likely don't feel or regulate temperature
 		// so we can just report the area temp... probably

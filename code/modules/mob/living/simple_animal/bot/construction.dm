@@ -622,7 +622,7 @@
 		if(ASSEMBLY_SIXTH_STEP)
 			if(istype(part, /obj/item/tank/internals))
 				var/obj/item/tank/internals/tank = part
-				if(tank.return_air()?.return_pressure() <= HAZARD_LOW_PRESSURE)
+				if(tank.get_readonly_air()?.return_pressure() <= HAZARD_LOW_PRESSURE)
 					balloon_alert(user, "not enough air in tank!")
 					return
 				if(!user.temporarilyRemoveItemFromInventory(part))

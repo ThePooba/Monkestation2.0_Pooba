@@ -94,7 +94,7 @@
 		var/turf/open/T = loc
 		if(istype(T))
 			var/datum/gas_mixture/leaked = removed.remove_ratio(VOLUME_PUMP_LEAK_AMOUNT)
-			T.assume_air(leaked)
+			T.blind_release_air(leaked)
 
 	air2.merge(removed)
 

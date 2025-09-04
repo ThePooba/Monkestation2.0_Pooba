@@ -43,8 +43,8 @@
 
 /obj/machinery/portable_atmospherics/pipe_scrubber/Destroy()
 	var/turf/my_turf = get_turf(src)
-	my_turf.assume_air(air_contents)
-	my_turf.assume_air(secondary_tank_contents)
+	my_turf.blind_release_air(air_contents)
+	my_turf.blind_release_air(secondary_tank_contents)
 	secondary_tank_contents = null
 	return ..()
 

@@ -489,7 +489,7 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 	disconnect()
 	var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
 	var/turf/T = get_turf(src)
-	T.assume_air(expelled_gas)
+	T.blind_release_air(expelled_gas)
 
 	atom_break()
 
@@ -557,7 +557,7 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 	// Handle gas transfer.
 	if(valve_open)
 		var/turf/location = get_turf(src)
-		var/datum/gas_mixture/target_air = holding?.return_air() || location.return_air()
+		var/datum/gas_mixture/target_air = holding?.get_readonly_air() || location.get_readonly_air()
 		excited = TRUE
 
 		if(air_contents.release_gas_to(target_air, release_pressure))
@@ -620,7 +620,7 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 		)
 
 	if (holding)
-		var/datum/gas_mixture/holding_mix = holding.return_air()
+		var/datum/gas_mixture/holding_mix = holding.get_readonly_air()
 		. += list(
 			"holdingTank" = list(
 				"name" = holding.name,

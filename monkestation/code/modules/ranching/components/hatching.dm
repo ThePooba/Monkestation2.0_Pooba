@@ -71,7 +71,7 @@
 
 	if(lowest_possible_temp || highest_possible_temp || lowest_pressure || highest_pressure)
 		var/turf/open/turf = get_turf(parent)
-		var/datum/gas_mixture/turf_mixture = turf.return_air()
+		var/datum/gas_mixture/turf_mixture = turf.get_readonly_air()
 
 		if(lowest_possible_temp || highest_possible_temp)
 			var/temp = turf_mixture.return_temperature()

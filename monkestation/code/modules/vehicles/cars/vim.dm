@@ -16,7 +16,7 @@
 	return ..()
 
 /obj/vehicle/sealed/car/vim/return_air()
-	return tank?.return_air() || loc?.return_air()
+	return tank?.get_readonly_air() || loc?.get_readonly_air()
 
 /obj/vehicle/sealed/car/vim/return_analyzable_air()
 	return tank?.return_analyzable_air()
@@ -28,7 +28,7 @@
 		to_chat(user, span_warning("[src] already has \the [tank]!"))
 		return
 	var/obj/item/tank/internals/tank_to_attach = attacking_item
-	if(tank_to_attach.return_air()?.return_pressure() <= HAZARD_LOW_PRESSURE)
+	if(tank_to_attach.get_readonly_air()?.return_pressure() <= HAZARD_LOW_PRESSURE)
 		to_chat(user, span_warning("[src] does not have enough air!"))
 		return
 	if(DOING_INTERACTION_WITH_TARGET(user, src))

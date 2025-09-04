@@ -405,7 +405,7 @@
 
 	if(required_fluid_type != AQUARIUM_FLUID_AIR && !HAS_TRAIT(src, TRAIT_FISH_AMPHIBIOUS))
 		return FALSE
-	var/datum/gas_mixture/mixture = loc.return_air()
+	var/datum/gas_mixture/mixture = loc.get_readonly_air()
 	if(!mixture)
 		return FALSE
 	if(safe_air_limits && !check_gases(mixture.gases, safe_air_limits))

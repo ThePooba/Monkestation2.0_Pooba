@@ -47,7 +47,7 @@
 	var/datum/gas_mixture/air1 = airs[1]
 	var/datum/gas_mixture/air2 = airs[2]
 
-	var/datum/gas_mixture/environment = loc.return_air()
+	var/datum/gas_mixture/environment = loc.get_readonly_air()
 	var/environment_pressure = environment.return_pressure()
 
 	if(pump_direction) //input -> external
@@ -69,7 +69,7 @@
 		if(!removed)
 			return
 
-		loc.assume_air(removed)
+		loc.blind_release_air(removed)
 
 		var/datum/pipeline/parent1 = parents[1]
 		parent1.update = TRUE

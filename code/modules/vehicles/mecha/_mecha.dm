@@ -317,7 +317,7 @@
 
 /obj/vehicle/sealed/mecha/atom_destruction()
 	spark_system?.start()
-	loc.assume_air(cabin_air)
+	loc.blind_release_air(cabin_air)
 
 	var/mob/living/silicon/ai/unlucky_ai
 	for(var/mob/living/occupant as anything in occupants)
@@ -543,7 +543,7 @@
 	if(internal_damage & MECHA_CABIN_AIR_BREACH && cabin_air && cabin_sealed) //remove some air from cabin_air
 		var/datum/gas_mixture/leaked_gas = cabin_air.remove_ratio(SPT_PROB_RATE(0.05, seconds_per_tick))
 		if(loc)
-			loc.assume_air(leaked_gas)
+			loc.blind_release_air(leaked_gas)
 		else
 			qdel(leaked_gas)
 
@@ -749,7 +749,7 @@
 
 	src.cabin_sealed = cabin_sealed
 
-	var/datum/gas_mixture/environment_air = loc.return_air()
+	var/datum/gas_mixture/environment_air = loc.get_readonly_air()
 	if(!isnull(environment_air))
 		if(cabin_sealed)
 			// Fill cabin with air
@@ -758,7 +758,7 @@
 			// Dump cabin air
 			var/datum/gas_mixture/removed_gases = cabin_air.remove_ratio(1)
 			if(loc)
-				loc.assume_air(removed_gases)
+				loc.blind_release_air(removed_gases)
 			else
 				qdel(removed_gases)
 

@@ -55,7 +55,7 @@
 		broken_message = span_boldnotice("AIR VENTING TO SPACE")
 		set_broken(TRUE)
 		return FALSE
-	var/datum/gas_mixture/G = OT.return_air()
+	var/datum/gas_mixture/G = OT.get_readonly_air()
 	if(G.return_pressure() > (max_ext_kpa - ((spawn_mol*spawn_temp*R_IDEAL_GAS_EQUATION)/(CELL_VOLUME))))
 		broken_message = span_boldwarning("EXTERNAL PRESSURE OVER THRESHOLD")
 		set_broken(TRUE)
@@ -83,7 +83,7 @@
 	if(!active)
 		active_power_usage = idle_power_usage
 	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/G = T.return_air()
+	var/datum/gas_mixture/G = T.get_readonly_air()
 	var/P = G.return_pressure()
 	switch(power_draw)
 		if(GASMINER_POWER_NONE)
@@ -137,7 +137,7 @@
 	merger.assert_gas(spawn_id)
 	merger.gases[spawn_id][MOLES] = spawn_mol * seconds_per_tick
 	merger.temperature = spawn_temp
-	O.assume_air(merger)
+	O.blind_release_air(merger)
 
 /obj/machinery/atmospherics/miner/attack_ai(mob/living/silicon/user)
 	if(broken)

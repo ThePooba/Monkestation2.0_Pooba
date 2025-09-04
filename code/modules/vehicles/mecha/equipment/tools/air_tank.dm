@@ -75,8 +75,8 @@
 /obj/item/mecha_parts/mecha_equipment/air_tank/proc/process_cabin_pressure(seconds_per_tick)
 	if(!chassis.cabin_sealed || !active)
 		return
-	var/datum/gas_mixture/external_air = chassis.loc.return_air()
-	var/datum/gas_mixture/tank_air = internal_tank.return_air()
+	var/datum/gas_mixture/external_air = chassis.loc.get_readonly_air()
+	var/datum/gas_mixture/tank_air = internal_tank.get_readonly_air()
 	var/datum/gas_mixture/cabin_air = chassis.cabin_air
 	var/release_pressure = internal_tank.release_pressure
 	if(cabin_air.return_pressure() < release_pressure)
@@ -88,8 +88,8 @@
 	if(!tank_pump_active)
 		return
 	var/turf/local_turf = get_turf(chassis)
-	var/datum/gas_mixture/sending = (tank_pump_direction == PUMP_IN ? local_turf.return_air() : internal_tank.air_contents)
-	var/datum/gas_mixture/receiving = (tank_pump_direction == PUMP_IN ? internal_tank.air_contents : local_turf.return_air())
+	var/datum/gas_mixture/sending = (tank_pump_direction == PUMP_IN ? local_turf.get_readonly_air() : internal_tank.air_contents)
+	var/datum/gas_mixture/receiving = (tank_pump_direction == PUMP_IN ? internal_tank.air_contents : local_turf.get_readonly_air())
 	if(sending.pump_gas_to(receiving, tank_pump_pressure))
 		air_update_turf(FALSE, FALSE)
 
@@ -100,7 +100,7 @@
 		log_message("Lost connection to gas port.", LOG_MECHA)
 
 /obj/item/mecha_parts/mecha_equipment/air_tank/get_snowflake_data()
-	var/datum/gas_mixture/tank_air = internal_tank.return_air()
+	var/datum/gas_mixture/tank_air = internal_tank.get_readonly_air()
 	return list(
 		"snowflake_id" = MECHA_SNOWFLAKE_ID_AIR_TANK,
 		"auto_pressurize_on_seal" = auto_pressurize_on_seal,

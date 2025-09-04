@@ -82,7 +82,7 @@
 
 	set_state(POPPED)
 	playsound(src, 'sound/items/balloon_pop.ogg', 75, TRUE)
-	loc.assume_air(air_contents)
+	loc.blind_release_air(air_contents)
 
 /obj/item/latexballoon/ex_act(severity, target)
 	burst()

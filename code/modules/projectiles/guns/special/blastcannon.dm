@@ -68,7 +68,7 @@
 		update_appearance()
 	return ..()
 
-/obj/item/gun/blastcannon/assume_air(datum/gas_mixture/giver)
+/obj/item/gun/blastcannon/blind_release_air(datum/gas_mixture/giver)
 	qdel(giver)
 	return null // Required to make the TTV not vent gas directly into the firer.
 

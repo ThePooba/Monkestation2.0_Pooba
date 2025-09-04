@@ -122,7 +122,7 @@
 /datum/export/large/gas_canister/get_cost(obj/O)
 	var/obj/machinery/portable_atmospherics/canister/C = O
 	var/worth = cost
-	var/datum/gas_mixture/canister_mix = C.return_air()
+	var/datum/gas_mixture/canister_mix = C.get_readonly_air()
 	var/canister_gas = canister_mix.gases
 	var/list/gases_to_check = list(
 								/datum/gas/bz,

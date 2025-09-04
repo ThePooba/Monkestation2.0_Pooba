@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 
 /obj/machinery/airalarm/power_change()
 	var/turf/our_turf = connected_sensor ? get_turf(connected_sensor) : get_turf(src)
-	var/datum/gas_mixture/environment = our_turf.return_air()
+	var/datum/gas_mixture/environment = our_turf.get_readonly_air()
 	if(isnull(environment))
 		return
 	check_danger(our_turf, environment, environment.temperature)
@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	data["allowLinkChange"] = allow_link_change
 
 	var/turf/turf = connected_sensor ? get_turf(connected_sensor) : get_turf(src)
-	var/datum/gas_mixture/environment = turf.return_air()
+	var/datum/gas_mixture/environment = turf.get_readonly_air()
 	var/total_moles = environment.total_moles()
 	var/temp = environment.temperature
 	var/pressure = environment.return_pressure()
@@ -439,7 +439,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			investigate_log("threshold value for [threshold]:[threshold_type] was set to [value] by [key_name(usr)]", INVESTIGATE_ATMOS)
 
 			var/turf/our_turf = connected_sensor ? get_turf(connected_sensor) : get_turf(src)
-			var/datum/gas_mixture/environment = our_turf.return_air()
+			var/datum/gas_mixture/environment = our_turf.get_readonly_air()
 			check_danger(our_turf, environment, environment.temperature)
 
 		if("reset_threshold")
@@ -452,7 +452,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			investigate_log("threshold value for [threshold]:[threshold_type] was reset by [key_name(usr)]", INVESTIGATE_ATMOS)
 
 			var/turf/our_turf = connected_sensor ? get_turf(connected_sensor) : get_turf(src)
-			var/datum/gas_mixture/environment = our_turf.return_air()
+			var/datum/gas_mixture/environment = our_turf.get_readonly_air()
 			check_danger(our_turf, environment, environment.temperature)
 
 		if ("alarm")
@@ -662,7 +662,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 27)
 	my_area = get_area(connected_sensor)
 
 	var/turf/our_turf = get_turf(connected_sensor)
-	var/datum/gas_mixture/environment = our_turf.return_air()
+	var/datum/gas_mixture/environment = our_turf.get_readonly_air()
 	check_danger(our_turf, environment, environment.temperature)
 
 	update_appearance()
@@ -675,7 +675,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 27)
 	my_area = get_area(src)
 
 	var/turf/our_turf = get_turf(src)
-	var/datum/gas_mixture/environment = our_turf.return_air()
+	var/datum/gas_mixture/environment = our_turf.get_readonly_air()
 	check_danger(our_turf, environment, environment.temperature)
 
 	update_appearance()

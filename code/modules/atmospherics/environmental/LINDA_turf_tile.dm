@@ -83,7 +83,7 @@
 
 	return mix
 
-/turf/open/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
+/turf/open/blind_release_air(datum/gas_mixture/giver) //use this for machines to adjust air
 	if(!giver)
 		return FALSE
 	air.merge(giver)

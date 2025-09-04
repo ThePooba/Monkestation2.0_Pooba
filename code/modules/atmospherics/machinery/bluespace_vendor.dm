@@ -119,7 +119,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/bluespace_vendor, 30)
 		return
 
 
-	var/datum/gas_mixture/to_merge = connected_machine.bluespace_network.pump_gas_to(internal_tank.return_air(), (tank_filling_amount * 0.01) * 10 * ONE_ATMOSPHERE, gas_path)
+	var/datum/gas_mixture/to_merge = connected_machine.bluespace_network.pump_gas_to(internal_tank.get_readonly_air(), (tank_filling_amount * 0.01) * 10 * ONE_ATMOSPHERE, gas_path)
 	purchased_gas_mix.merge(to_merge)
 
 /obj/machinery/bluespace_vendor/multitool_act(mob/living/user, obj/item/multitool/multitool)
@@ -214,7 +214,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/bluespace_vendor, 30)
 			return
 
 	var/temp_price = 0
-	var/datum/gas_mixture/working_mix = internal_tank.return_air()
+	var/datum/gas_mixture/working_mix = internal_tank.get_readonly_air()
 	var/list/purchased_gases = purchased_gas_mix.gases
 
 	for(var/gas_id in purchased_gases)
@@ -271,7 +271,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/bluespace_vendor, 30)
 	data["inserted_tank"] = !!internal_tank
 	var/total_tank_pressure
 	if(internal_tank)
-		var/datum/gas_mixture/working_mix = internal_tank.return_air()
+		var/datum/gas_mixture/working_mix = internal_tank.get_readonly_air()
 		total_tank_pressure = working_mix.return_pressure()
 	else
 		total_tank_pressure = 0

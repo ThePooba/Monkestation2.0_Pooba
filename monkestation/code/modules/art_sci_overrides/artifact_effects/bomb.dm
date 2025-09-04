@@ -151,5 +151,5 @@
 	merger.gases[payload_gas][MOLES] = rand(150,2000)
 	merger.gases[/datum/gas/oxygen][MOLES] = 350
 	merger.temperature = rand(200,3000)
-	O.assume_air(merger)
+	O.blind_release_air(merger)
 	qdel(our_artifact)

@@ -72,7 +72,7 @@
 		var/floor_text = "<span class='info'>Analyzing results for <b>[scan_turf]</b> ([station_time_timestamp()]):</span><br>"
 		floor_text += "<span class='info ml-1'>Overall status: <i>Unknown</i></span><br>"
 		floor_text += "<span class='alert ml-1'>Subject lacks a brain.</span><br>"
-		floor_text += "<span class='info ml-1'>Body temperature: [scan_turf?.return_air()?.return_temperature() || "???"]</span><br>"
+		floor_text += "<span class='info ml-1'>Body temperature: [scan_turf?.get_readonly_air()?.return_temperature() || "???"]</span><br>"
 
 		if(user.can_read(src) && !user.is_blind())
 			to_chat(user, boxed_message(floor_text))

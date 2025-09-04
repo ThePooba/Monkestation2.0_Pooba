@@ -47,4 +47,4 @@
 
 /datum/element/volatile_gas_storage/proc/ObjBreak(obj/owner)
 	SIGNAL_HANDLER
-	Break(owner, owner.return_air())
+	Break(owner, owner.get_readonly_air())
