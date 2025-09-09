@@ -147,17 +147,17 @@
 /obj/machinery/atmospherics/miner/n2o
 	name = "\improper N2O Gas Miner"
 	overlay_color = "#FFCCCC"
-	spawn_id = /datum/gas/nitrous_oxide
+	spawn_id = GAS_NITROUS
 
 /obj/machinery/atmospherics/miner/nitrogen
 	name = "\improper N2 Gas Miner"
 	overlay_color = "#CCFFCC"
-	spawn_id = /datum/gas/nitrogen
+	spawn_id = GAS_N2
 
 /obj/machinery/atmospherics/miner/oxygen
 	name = "\improper O2 Gas Miner"
 	overlay_color = "#007FFF"
-	spawn_id = /datum/gas/oxygen
+	spawn_id = GAS_O2
 
 /obj/machinery/atmospherics/miner/plasma
 	name = "\improper Plasma Gas Miner"
@@ -167,17 +167,17 @@
 /obj/machinery/atmospherics/miner/carbon_dioxide
 	name = "\improper CO2 Gas Miner"
 	overlay_color = "#CDCDCD"
-	spawn_id = /datum/gas/carbon_dioxide
+	spawn_id = GAS_CO2
 
 /obj/machinery/atmospherics/miner/bz
 	name = "\improper BZ Gas Miner"
 	overlay_color = "#FAFF00"
-	spawn_id = /datum/gas/bz
+	spawn_id = GAS_BZ
 
 /obj/machinery/atmospherics/miner/water_vapor
 	name = "\improper Water Vapor Gas Miner"
 	overlay_color = "#99928E"
-	spawn_id = /datum/gas/water_vapor
+	spawn_id = GAS_H2O
 
 /obj/machinery/atmospherics/miner/freon
 	name = "\improper Freon Gas Miner"
@@ -202,7 +202,7 @@
 /obj/machinery/atmospherics/miner/hypernoblium
 	name = "\improper Hypernoblium Gas Miner"
 	overlay_color = "#00f7ff"
-	spawn_id = /datum/gas/hypernoblium
+	spawn_id = GAS_HYPERNOB
 
 /obj/machinery/atmospherics/miner/miasma
 	name = "\improper Miasma Gas Miner"
@@ -212,7 +212,7 @@
 /obj/machinery/atmospherics/miner/nitrium
 	name = "\improper Nitrium Gas Miner"
 	overlay_color = "#752b00"
-	spawn_id = /datum/gas/nitrium
+	spawn_id = GAS_NITRIUM
 
 /obj/machinery/atmospherics/miner/pluoxium
 	name = "\improper Pluoxium Gas Miner"

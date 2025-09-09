@@ -373,8 +373,8 @@
 	//START_PROCESSING(SSobj, src)
 	var/datum/gas_mixture/our_mix = return_air()
 
-	our_mix.assert_gases(/datum/gas/plasma, /datum/gas/oxygen)
-	var/fuel_moles = our_mix.gases[/datum/gas/plasma][MOLES] + our_mix.gases[/datum/gas/oxygen][MOLES]/6
+	our_mix.assert_gases(/datum/gas/plasma, GAS_O2)
+	var/fuel_moles = our_mix.gases[/datum/gas/plasma][MOLES] + our_mix.gases[GAS_O2][MOLES]/6
 	our_mix.garbage_collect()
 	var/datum/gas_mixture/bomb_mixture = our_mix.copy()
 	var/strength = 1

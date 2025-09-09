@@ -29,7 +29,7 @@
 	if(liquids && liquids.liquid_group && !liquids.fire_state)
 		liquids.liquid_group.ignite_turf(src)
 
-	. = air_gases[/datum/gas/oxygen]
+	. = air_gases[GAS_O2]
 	var/oxy = . ? .[MOLES] : 0
 	if (oxy < 0.5)
 		return
@@ -262,7 +262,7 @@
 		return
 
 	//Not enough / nothing to burn
-	if(!location.air || (INSUFFICIENT(/datum/gas/plasma) && INSUFFICIENT(/datum/gas/tritium) && INSUFFICIENT(/datum/gas/hydrogen) && INSUFFICIENT(/datum/gas/freon)) || INSUFFICIENT(/datum/gas/oxygen))
+	if(!location.air || (INSUFFICIENT(/datum/gas/plasma) && INSUFFICIENT(/datum/gas/tritium) && INSUFFICIENT(/datum/gas/hydrogen) && INSUFFICIENT(/datum/gas/freon)) || INSUFFICIENT(GAS_O2))
 		qdel(src)
 		return
 

@@ -225,22 +225,22 @@
 	icon_state = "filter_on-0"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2
 	name = "nitrogen filter"
-	filter_type = list(/datum/gas/nitrogen)
+	filter_type = list(GAS_N2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/o2
 	name = "oxygen filter"
-	filter_type = list(/datum/gas/oxygen)
+	filter_type = list(GAS_O2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/co2
 	name = "carbon dioxide filter"
-	filter_type = list(/datum/gas/carbon_dioxide)
+	filter_type = list(GAS_CO2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2o
 	name = "nitrous oxide filter"
-	filter_type = list(/datum/gas/nitrous_oxide)
+	filter_type = list(GAS_NITROUS)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/plasma
 	name = "plasma filter"
 	filter_type = list(/datum/gas/plasma)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/bz
 	name = "bz filter"
-	filter_type = list(/datum/gas/bz)
+	filter_type = list(GAS_BZ)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/freon
 	name = "freon filter"
 	filter_type = list(/datum/gas/freon)
@@ -255,13 +255,13 @@
 	filter_type = list(/datum/gas/hydrogen)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/hypernoblium
 	name = "hypernoblium filter"
-	filter_type = list(/datum/gas/hypernoblium)
+	filter_type = list(GAS_HYPERNOB)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/miasma
 	name = "miasma filter"
 	filter_type = list(/datum/gas/miasma)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/no2
 	name = "nitrium filter"
-	filter_type = list(/datum/gas/nitrium)
+	filter_type = list(GAS_NITRIUM)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/pluoxium
 	name = "pluoxium filter"
 	filter_type = list(/datum/gas/pluoxium)
@@ -273,7 +273,7 @@
 	filter_type = list(/datum/gas/tritium)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/h2o
 	name = "water vapor filter"
-	filter_type = list(/datum/gas/water_vapor)
+	filter_type = list(GAS_H2O)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/zauker
 	name = "zauker filter"
 	filter_type = list(/datum/gas/zauker)
@@ -291,22 +291,22 @@
 	flipped = TRUE
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2
 	name = "nitrogen filter"
-	filter_type = list(/datum/gas/nitrogen)
+	filter_type = list(GAS_N2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2
 	name = "oxygen filter"
-	filter_type = list(/datum/gas/oxygen)
+	filter_type = list(GAS_O2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2
 	name = "carbon dioxide filter"
-	filter_type = list(/datum/gas/carbon_dioxide)
+	filter_type = list(GAS_CO2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o
 	name = "nitrous oxide filter"
-	filter_type = list(/datum/gas/nitrous_oxide)
+	filter_type = list(GAS_NITROUS)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma
 	name = "plasma filter"
 	filter_type = list(/datum/gas/plasma)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/bz
 	name = "bz filter"
-	filter_type = list(/datum/gas/bz)
+	filter_type = list(GAS_BZ)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/freon
 	name = "freon filter"
 	filter_type = list(/datum/gas/freon)
@@ -321,13 +321,13 @@
 	filter_type = list(/datum/gas/hydrogen)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/hypernoblium
 	name = "hypernoblium filter"
-	filter_type = list(/datum/gas/hypernoblium)
+	filter_type = list(GAS_HYPERNOB)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/miasma
 	name = "miasma filter"
 	filter_type = list(/datum/gas/miasma)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/no2
 	name = "nitrium filter"
-	filter_type = list(/datum/gas/nitrium)
+	filter_type = list(GAS_NITRIUM)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/pluoxium
 	name = "pluoxium filter"
 	filter_type = list(/datum/gas/pluoxium)
@@ -339,7 +339,7 @@
 	filter_type = list(/datum/gas/tritium)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/h2o
 	name = "water vapor filter"
-	filter_type = list(/datum/gas/water_vapor)
+	filter_type = list(GAS_H2O)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/zauker
 	name = "zauker filter"
 	filter_type = list(/datum/gas/zauker)

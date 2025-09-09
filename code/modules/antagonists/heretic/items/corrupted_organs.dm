@@ -205,7 +205,7 @@
 	var/gas_amount = 30
 	/// What can we cough up?
 	var/list/gas_types = list(
-		/datum/gas/bz = 30,
+		GAS_BZ = 30,
 		/datum/gas/miasma = 50,
 		/datum/gas/plasma = 20,
 	)

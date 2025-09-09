@@ -66,7 +66,7 @@
 	var/desc
 
 
-/datum/gas/oxygen
+GAS_O2
 	id = "o2"
 	specific_heat = 20
 	name = "Oxygen"
@@ -75,7 +75,7 @@
 	base_value = 0.2
 	desc = "The gas most life forms need to be able to survive. Also an oxidizer."
 
-/datum/gas/nitrogen
+GAS_N2
 	id = "n2"
 	specific_heat = 20
 	name = "Nitrogen"
@@ -84,7 +84,7 @@
 	base_value = 0.1
 	desc = "A very common gas that used to pad artifical atmospheres to habitable pressure."
 
-/datum/gas/carbon_dioxide //what the fuck is this?
+GAS_CO2 //what the fuck is this?
 	id = "co2"
 	specific_heat = 30
 	name = "Carbon Dioxide"
@@ -105,7 +105,7 @@
 	base_value = 1.5
 	desc = "A flammable gas with many other curious properties. It's research is one of NT's primary objective."
 
-/datum/gas/water_vapor
+GAS_H2O
 	id = "water_vapor"
 	specific_heat = 40
 	name = "Water Vapor"
@@ -117,7 +117,7 @@
 	base_value = 0.5
 	desc = "Water, in gas form. Makes things slippery."
 
-/datum/gas/hypernoblium
+GAS_HYPERNOB
 	id = "nob"
 	specific_heat = 2000
 	name = "Hyper-noblium"
@@ -128,7 +128,7 @@
 	base_value = 2.5
 	desc = "The most noble gas of them all. High quantities of hyper-noblium actively prevents reactions from occuring."
 
-/datum/gas/nitrous_oxide
+GAS_NITROUS
 	id = "n2o"
 	specific_heat = 40
 	name = "Nitrous Oxide"
@@ -141,7 +141,7 @@
 	base_value = 1.5
 	desc = "Causes drowsiness, euphoria, and eventually unconsciousness."
 
-/datum/gas/nitrium
+GAS_NITRIUM
 	id = "nitrium"
 	specific_heat = 10
 	name = "Nitrium"
@@ -165,7 +165,7 @@
 	base_value = 2.5
 	desc = "A highly flammable and radioctive gas."
 
-/datum/gas/bz
+GAS_BZ
 	id = "bz"
 	specific_heat = 20
 	name = "BZ"

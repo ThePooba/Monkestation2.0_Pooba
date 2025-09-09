@@ -31,15 +31,15 @@
 	///List of gases with high filter priority
 	var/list/high_filtering_gases = list(
 		/datum/gas/plasma,
-		/datum/gas/carbon_dioxide,
-		/datum/gas/nitrous_oxide
+		GAS_CO2,
+		GAS_NITROUS
 		)
 	///List of gases with medium filter priority
 	var/list/mid_filtering_gases = list(
-		/datum/gas/nitrium,
+		GAS_NITRIUM,
 		/datum/gas/freon,
-		/datum/gas/hypernoblium,
-		/datum/gas/bz
+		GAS_HYPERNOB,
+		GAS_BZ
 		)
 	///List of gases with low filter priority
 	var/list/low_filtering_gases = list(
@@ -107,9 +107,9 @@
 /obj/item/gas_filter/plasmaman
 	name = "plasmaman atmospheric gas filter"
 	high_filtering_gases = list(
-		/datum/gas/oxygen,
-		/datum/gas/carbon_dioxide,
-		/datum/gas/nitrous_oxide
+		GAS_O2,
+		GAS_CO2,
+		GAS_NITROUS
 		)
 
 #undef HIGH_FILTERING_MOLES

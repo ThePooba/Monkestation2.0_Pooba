@@ -435,26 +435,26 @@
 
 /obj/machinery/atmospherics/components/tank/air/Initialize(mapload)
 	. = ..()
-	fill_to_pressure(/datum/gas/oxygen, safety_margin = (O2STANDARD * 0.5))
-	fill_to_pressure(/datum/gas/nitrogen, safety_margin = (N2STANDARD * 0.5))
+	fill_to_pressure(GAS_O2, safety_margin = (O2STANDARD * 0.5))
+	fill_to_pressure(GAS_N2, safety_margin = (N2STANDARD * 0.5))
 
 /obj/machinery/atmospherics/components/tank/carbon_dioxide
-	gas_type = /datum/gas/carbon_dioxide
+	gas_type = GAS_CO2
 
 /obj/machinery/atmospherics/components/tank/plasma
 	gas_type = /datum/gas/plasma
 
 /obj/machinery/atmospherics/components/tank/nitrogen
-	gas_type = /datum/gas/nitrogen
+	gas_type = GAS_N2
 
 /obj/machinery/atmospherics/components/tank/oxygen
-	gas_type = /datum/gas/oxygen
+	gas_type = GAS_O2
 
 /obj/machinery/atmospherics/components/tank/nitrous
-	gas_type = /datum/gas/nitrous_oxide
+	gas_type = GAS_NITROUS
 
 /obj/machinery/atmospherics/components/tank/bz
-	gas_type = /datum/gas/bz
+	gas_type = GAS_BZ
 
 /obj/machinery/atmospherics/components/tank/freon
 	gas_type = /datum/gas/freon
@@ -469,13 +469,13 @@
 	gas_type = /datum/gas/hydrogen
 
 /obj/machinery/atmospherics/components/tank/hypernoblium
-	gas_type = /datum/gas/hypernoblium
+	gas_type = GAS_HYPERNOB
 
 /obj/machinery/atmospherics/components/tank/miasma
 	gas_type = /datum/gas/miasma
 
 /obj/machinery/atmospherics/components/tank/nitrium
-	gas_type = /datum/gas/nitrium
+	gas_type = GAS_NITRIUM
 
 /obj/machinery/atmospherics/components/tank/pluoxium
 	gas_type = /datum/gas/pluoxium
@@ -487,7 +487,7 @@
 	gas_type = /datum/gas/tritium
 
 /obj/machinery/atmospherics/components/tank/water_vapor
-	gas_type = /datum/gas/water_vapor
+	gas_type = GAS_H2O
 
 /obj/machinery/atmospherics/components/tank/zauker
 	gas_type = /datum/gas/zauker
