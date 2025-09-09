@@ -37,17 +37,17 @@
 	///List of gases with medium filter priority
 	var/list/mid_filtering_gases = list(
 		GAS_NITRIUM,
-		/datum/gas/freon,
+		GAS_FREON,
 		GAS_HYPERNOB,
 		GAS_BZ
 		)
 	///List of gases with low filter priority
 	var/list/low_filtering_gases = list(
-		/datum/gas/healium,
+		GAS_HEALIUM,
 		/datum/gas/proto_nitrate,
-		/datum/gas/halon,
+		GAS_HALON,
 		/datum/gas/tritium,
-		/datum/gas/zauker
+		GAS_ZAUKER
 		)
 
 /obj/item/gas_filter/examine(mob/user)

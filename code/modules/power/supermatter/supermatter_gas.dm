@@ -109,8 +109,8 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 		return
 	sm.absorbed_gasmix.gases[GAS_CO2][MOLES] -= consumed_co2
 	sm.absorbed_gasmix.gases[GAS_O2][MOLES] -= consumed_co2
-	ASSERT_GAS(/datum/gas/pluoxium, sm.absorbed_gasmix)
-	sm.absorbed_gasmix.gases[/datum/gas/pluoxium][MOLES] += consumed_co2
+	ASSERT_GAS(GAS_PLUOXIUM, sm.absorbed_gasmix)
+	sm.absorbed_gasmix.gases[GAS_PLUOXIUM][MOLES] += consumed_co2
 
 /datum/sm_gas/plasma
 	gas_path = /datum/gas/plasma
@@ -153,44 +153,44 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 		sm.fire_nuclear_particle()
 
 /datum/sm_gas/pluoxium
-	gas_path = /datum/gas/pluoxium
+	gas_path = GAS_PLUOXIUM
 	heat_modifier = -1.5
 	power_transmission = -0.5
 	heat_power_generation = -1
 
 /datum/sm_gas/miasma
-	gas_path = /datum/gas/miasma
+	gas_path = GAS_MIASMA
 	heat_power_generation = 0.5
 	desc = "Will be consumed by the Supermatter to generate power."
 
 ///Miasma is really just microscopic particulate. It gets consumed like anything else that touches the crystal.
 /datum/sm_gas/miasma/extra_effects(obj/machinery/power/supermatter_crystal/sm)
-	if(!sm.gas_percentage[/datum/gas/miasma])
+	if(!sm.gas_percentage[GAS_MIASMA])
 		return
-	var/miasma_pp = sm.absorbed_gasmix.return_pressure() * sm.gas_percentage[/datum/gas/miasma]
+	var/miasma_pp = sm.absorbed_gasmix.return_pressure() * sm.gas_percentage[GAS_MIASMA]
 	var/miasma_ratio = clamp(((miasma_pp - MIASMA_CONSUMPTION_PP) / (miasma_pp + MIASMA_PRESSURE_SCALING)) * (1 + (sm.gas_heat_power_generation * MIASMA_GASMIX_SCALING)), 0, 1)
-	var/consumed_miasma = sm.absorbed_gasmix.gases[/datum/gas/miasma][MOLES] * miasma_ratio
+	var/consumed_miasma = sm.absorbed_gasmix.gases[GAS_MIASMA][MOLES] * miasma_ratio
 	if(!consumed_miasma)
 		return
-	sm.absorbed_gasmix.gases[/datum/gas/miasma][MOLES] -= consumed_miasma
+	sm.absorbed_gasmix.gases[GAS_MIASMA][MOLES] -= consumed_miasma
 	sm.external_power_trickle += consumed_miasma * MIASMA_POWER_GAIN
 	sm.log_activation("miasma absorption")
 
 /datum/sm_gas/freon
-	gas_path = /datum/gas/freon
+	gas_path = GAS_FREON
 	heat_modifier = -9
 	power_transmission = -3
 	heat_power_generation = -1
 
 /datum/sm_gas/hydrogen
-	gas_path = /datum/gas/hydrogen
+	gas_path = GAS_H2
 	heat_modifier = 9
 	power_transmission = 2.5
 	heat_resistance = 1
 	heat_power_generation = 1
 
 /datum/sm_gas/healium
-	gas_path = /datum/gas/healium
+	gas_path = GAS_HEALIUM
 	heat_modifier = 3
 	power_transmission = 0.24
 	heat_power_generation = 1
@@ -203,14 +203,14 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 	heat_power_generation = 1
 
 /datum/sm_gas/zauker
-	gas_path = /datum/gas/zauker
+	gas_path = GAS_ZAUKER
 	heat_modifier = 7
 	power_transmission = 2
 	heat_power_generation = 1
 	desc = "Will generate electrical zaps."
 
 /datum/sm_gas/zauker/extra_effects(obj/machinery/power/supermatter_crystal/sm)
-	if(!prob(sm.gas_percentage[/datum/gas/zauker]))
+	if(!prob(sm.gas_percentage[GAS_ZAUKER]))
 		return
 	playsound(sm.loc, 'sound/weapons/emitter2.ogg', 100, TRUE, extrarange = 10)
 	sm.supermatter_zap(
@@ -224,7 +224,7 @@ GLOBAL_LIST_INIT(sm_gas_behavior, init_sm_gas())
 	)
 
 /datum/sm_gas/antinoblium
-	gas_path = /datum/gas/antinoblium
+	gas_path = GAS_ANTINOB
 	heat_modifier = 14
 	power_transmission = -0.5
 	heat_power_generation = 1

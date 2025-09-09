@@ -243,28 +243,28 @@
 	filter_type = list(GAS_BZ)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/freon
 	name = "freon filter"
-	filter_type = list(/datum/gas/freon)
+	filter_type = list(GAS_FREON)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/halon
 	name = "halon filter"
-	filter_type = list(/datum/gas/halon)
+	filter_type = list(GAS_HALON)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/healium
 	name = "healium filter"
-	filter_type = list(/datum/gas/healium)
+	filter_type = list(GAS_HEALIUM)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/h2
 	name = "hydrogen filter"
-	filter_type = list(/datum/gas/hydrogen)
+	filter_type = list(GAS_H2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/hypernoblium
 	name = "hypernoblium filter"
 	filter_type = list(GAS_HYPERNOB)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/miasma
 	name = "miasma filter"
-	filter_type = list(/datum/gas/miasma)
+	filter_type = list(GAS_MIASMA)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/no2
 	name = "nitrium filter"
 	filter_type = list(GAS_NITRIUM)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/pluoxium
 	name = "pluoxium filter"
-	filter_type = list(/datum/gas/pluoxium)
+	filter_type = list(GAS_PLUOXIUM)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/proto_nitrate
 	name = "proto-nitrate filter"
 	filter_type = list(/datum/gas/proto_nitrate)
@@ -276,7 +276,7 @@
 	filter_type = list(GAS_H2O)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/zauker
 	name = "zauker filter"
-	filter_type = list(/datum/gas/zauker)
+	filter_type = list(GAS_ZAUKER)
 
 /obj/machinery/atmospherics/components/trinary/filter/atmos/helium
 	name = "helium filter"
@@ -284,7 +284,7 @@
 
 /obj/machinery/atmospherics/components/trinary/filter/atmos/antinoblium
 	name = "antinoblium filter"
-	filter_type = list(/datum/gas/antinoblium)
+	filter_type = list(GAS_ANTINOB)
 
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped //This feels wrong, I know
 	icon_state = "filter_on-0_f"
@@ -309,28 +309,28 @@
 	filter_type = list(GAS_BZ)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/freon
 	name = "freon filter"
-	filter_type = list(/datum/gas/freon)
+	filter_type = list(GAS_FREON)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/halon
 	name = "halon filter"
-	filter_type = list(/datum/gas/halon)
+	filter_type = list(GAS_HALON)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/healium
 	name = "healium filter"
-	filter_type = list(/datum/gas/healium)
+	filter_type = list(GAS_HEALIUM)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/h2
 	name = "hydrogen filter"
-	filter_type = list(/datum/gas/hydrogen)
+	filter_type = list(GAS_H2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/hypernoblium
 	name = "hypernoblium filter"
 	filter_type = list(GAS_HYPERNOB)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/miasma
 	name = "miasma filter"
-	filter_type = list(/datum/gas/miasma)
+	filter_type = list(GAS_MIASMA)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/no2
 	name = "nitrium filter"
 	filter_type = list(GAS_NITRIUM)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/pluoxium
 	name = "pluoxium filter"
-	filter_type = list(/datum/gas/pluoxium)
+	filter_type = list(GAS_PLUOXIUM)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/proto_nitrate
 	name = "proto-nitrate filter"
 	filter_type = list(/datum/gas/proto_nitrate)
@@ -342,13 +342,13 @@
 	filter_type = list(GAS_H2O)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/zauker
 	name = "zauker filter"
-	filter_type = list(/datum/gas/zauker)
+	filter_type = list(GAS_ZAUKER)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/helium
 	name = "helium filter"
 	filter_type = list(/datum/gas/helium)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/antinoblium
 	name = "antinoblium filter"
-	filter_type = list(/datum/gas/antinoblium)
+	filter_type = list(GAS_ANTINOB)
 
 // These two filter types have critical_machine flagged to on and thus causes the area they are in to be exempt from the Grid Check event.
 

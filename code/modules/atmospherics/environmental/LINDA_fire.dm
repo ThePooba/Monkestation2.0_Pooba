@@ -37,9 +37,9 @@
 	var/plas = . ? .[MOLES] : 0
 	. = air_gases[/datum/gas/tritium]
 	var/trit = . ? .[MOLES] : 0
-	. = air_gases[/datum/gas/hydrogen]
+	. = air_gases[GAS_H2]
 	var/h2 = . ? .[MOLES] : 0
-	. = air_gases[/datum/gas/freon]
+	. = air_gases[GAS_FREON]
 	var/freon = . ? .[MOLES] : 0
 	if(active_hotspot)
 		if(soh)
@@ -262,7 +262,7 @@
 		return
 
 	//Not enough / nothing to burn
-	if(!location.air || (INSUFFICIENT(/datum/gas/plasma) && INSUFFICIENT(/datum/gas/tritium) && INSUFFICIENT(/datum/gas/hydrogen) && INSUFFICIENT(/datum/gas/freon)) || INSUFFICIENT(GAS_O2))
+	if(!location.air || (INSUFFICIENT(/datum/gas/plasma) && INSUFFICIENT(/datum/gas/tritium) && INSUFFICIENT(GAS_H2) && INSUFFICIENT(GAS_FREON)) || INSUFFICIENT(GAS_O2))
 		qdel(src)
 		return
 

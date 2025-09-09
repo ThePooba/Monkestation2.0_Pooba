@@ -176,7 +176,7 @@ GAS_BZ
 	base_value = 1.5
 	desc = "A powerful hallucinogenic nerve agent able to induce cognitive damage."
 
-/datum/gas/pluoxium
+GAS_PLUOXIUM
 	id = "pluox"
 	specific_heat = 80
 	name = "Pluoxium"
@@ -185,7 +185,7 @@ GAS_BZ
 	base_value = 2.5
 	desc = "A gas that could supply even more oxygen to the bloodstream when inhaled, without being an oxidizer."
 
-/datum/gas/miasma
+GAS_MIASMA
 	id = "miasma"
 	specific_heat = 20
 	name = "Miasma"
@@ -196,7 +196,7 @@ GAS_BZ
 	base_value = 1
 	desc = "Not necessarily a gas, miasma refers to biological pollutants found in the atmosphere."
 
-/datum/gas/freon
+GAS_FREON
 	id = "freon"
 	specific_heat = 600
 	name = "Freon"
@@ -209,7 +209,7 @@ GAS_BZ
 	base_value = 1.5 //MONKESTATION EDIT 5 ==> 1.5
 	desc = "A coolant gas. Mainly used for it's endothermic reaction with oxygen."
 
-/datum/gas/hydrogen
+GAS_H2
 	id = "hydrogen"
 	specific_heat = 15
 	name = "Hydrogen"
@@ -220,7 +220,7 @@ GAS_BZ
 	base_value = 1
 	desc = "A highly flammable gas."
 
-/datum/gas/healium
+GAS_HEALIUM
 	id = "healium"
 	specific_heat = 10
 	name = "Healium"
@@ -242,7 +242,7 @@ GAS_BZ
 	base_value = 2.5
 	desc = "A very volatile gas that reacts differently with various gases."
 
-/datum/gas/zauker
+GAS_ZAUKER
 	id = "zauker"
 	specific_heat = 350
 	name = "Zauker"
@@ -253,7 +253,7 @@ GAS_BZ
 	base_value = 7
 	desc = "A highly toxic gas, it's production is highly regulated on top of being difficult. It also breaks down when in contact with nitrogen."
 
-/datum/gas/halon
+GAS_HALON
 	id = "halon"
 	specific_heat = 175
 	name = "Halon"
@@ -273,7 +273,7 @@ GAS_BZ
 	base_value = 3.5
 	desc = "A very inert gas produced by the fusion of hydrogen and it's derivatives."
 
-/datum/gas/antinoblium
+GAS_ANTINOB
 	id = "antinoblium"
 	specific_heat = 1
 	name = "Antinoblium"

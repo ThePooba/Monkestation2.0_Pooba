@@ -457,28 +457,28 @@
 	gas_type = GAS_BZ
 
 /obj/machinery/atmospherics/components/tank/freon
-	gas_type = /datum/gas/freon
+	gas_type = GAS_FREON
 
 /obj/machinery/atmospherics/components/tank/halon
-	gas_type = /datum/gas/halon
+	gas_type = GAS_HALON
 
 /obj/machinery/atmospherics/components/tank/healium
-	gas_type = /datum/gas/healium
+	gas_type = GAS_HEALIUM
 
 /obj/machinery/atmospherics/components/tank/hydrogen
-	gas_type = /datum/gas/hydrogen
+	gas_type = GAS_H2
 
 /obj/machinery/atmospherics/components/tank/hypernoblium
 	gas_type = GAS_HYPERNOB
 
 /obj/machinery/atmospherics/components/tank/miasma
-	gas_type = /datum/gas/miasma
+	gas_type = GAS_MIASMA
 
 /obj/machinery/atmospherics/components/tank/nitrium
 	gas_type = GAS_NITRIUM
 
 /obj/machinery/atmospherics/components/tank/pluoxium
-	gas_type = /datum/gas/pluoxium
+	gas_type = GAS_PLUOXIUM
 
 /obj/machinery/atmospherics/components/tank/proto_nitrate
 	gas_type = /datum/gas/proto_nitrate
@@ -490,13 +490,13 @@
 	gas_type = GAS_H2O
 
 /obj/machinery/atmospherics/components/tank/zauker
-	gas_type = /datum/gas/zauker
+	gas_type = GAS_ZAUKER
 
 /obj/machinery/atmospherics/components/tank/helium
 	gas_type = /datum/gas/helium
 
 /obj/machinery/atmospherics/components/tank/antinoblium
-	gas_type = /datum/gas/antinoblium
+	gas_type = GAS_ANTINOB
 
 ///////////////////////////////////////////////////////////////////
 // Tank Frame Structure

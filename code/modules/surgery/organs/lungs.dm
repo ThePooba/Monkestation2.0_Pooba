@@ -142,9 +142,9 @@
 		add_gas_reaction(GAS_O2, always = PROC_REF(breathe_oxygen))
 	if(safe_oxygen_max)
 		add_gas_reaction(GAS_O2, while_present = PROC_REF(too_much_oxygen), on_loss = PROC_REF(safe_oxygen))
-	add_gas_reaction(/datum/gas/pluoxium, while_present = PROC_REF(consume_pluoxium))
+	add_gas_reaction(GAS_PLUOXIUM, while_present = PROC_REF(consume_pluoxium))
 	// We treat a mole of ploux as 8 moles of oxygen
-	add_gas_relationship(/datum/gas/pluoxium, GAS_O2, 8)
+	add_gas_relationship(GAS_PLUOXIUM, GAS_O2, 8)
 	if(safe_nitro_min)
 		add_gas_reaction(GAS_N2, always = PROC_REF(breathe_nitro))
 	if(safe_co2_max)
@@ -154,17 +154,17 @@
 	if(safe_plasma_max)
 		add_gas_reaction(/datum/gas/plasma, while_present = PROC_REF(too_much_plasma), on_loss = PROC_REF(safe_plasma))
 	add_gas_reaction(GAS_BZ, while_present = PROC_REF(too_much_bz))
-	add_gas_reaction(/datum/gas/freon, while_present = PROC_REF(too_much_freon))
-	add_gas_reaction(/datum/gas/halon, while_present = PROC_REF(too_much_halon))
-	add_gas_reaction(/datum/gas/healium, while_present = PROC_REF(consume_healium), on_loss = PROC_REF(lose_healium))
+	add_gas_reaction(GAS_FREON, while_present = PROC_REF(too_much_freon))
+	add_gas_reaction(GAS_HALON, while_present = PROC_REF(too_much_halon))
+	add_gas_reaction(GAS_HEALIUM, while_present = PROC_REF(consume_healium), on_loss = PROC_REF(lose_healium))
 	add_gas_reaction(/datum/gas/helium, while_present = PROC_REF(consume_helium), on_loss = PROC_REF(lose_helium))
 	add_gas_reaction(GAS_HYPERNOB, while_present = PROC_REF(consume_hypernoblium))
 	if(suffers_miasma)
-		add_gas_reaction(/datum/gas/miasma, while_present = PROC_REF(too_much_miasma), on_loss = PROC_REF(safe_miasma))
+		add_gas_reaction(GAS_MIASMA, while_present = PROC_REF(too_much_miasma), on_loss = PROC_REF(safe_miasma))
 	add_gas_reaction(GAS_NITROUS, while_present = PROC_REF(too_much_n2o), on_loss = PROC_REF(safe_n2o))
 	add_gas_reaction(GAS_NITRIUM, while_present = PROC_REF(too_much_nitrium))
 	add_gas_reaction(/datum/gas/tritium, while_present = PROC_REF(too_much_tritium))
-	add_gas_reaction(/datum/gas/zauker, while_present = PROC_REF(too_much_zauker))
+	add_gas_reaction(GAS_ZAUKER, while_present = PROC_REF(too_much_zauker))
 
 ///Simply exists so that you don't keep any alerts from your previous lack of lungs.
 /obj/item/organ/internal/lungs/Insert(mob/living/carbon/receiver, special = FALSE, drop_if_replaced = TRUE)
@@ -297,7 +297,7 @@
 
 /// Behaves like Oxygen with 8X efficacy, but metabolizes into a reagent.
 /obj/item/organ/internal/lungs/proc/consume_pluoxium(mob/living/carbon/breather, datum/gas_mixture/breath, pluoxium_pp, old_pluoxium_pp)
-	breathe_gas_volume(breath, /datum/gas/pluoxium)
+	breathe_gas_volume(breath, GAS_PLUOXIUM)
 	// Metabolize to reagent.
 	if(pluoxium_pp > gas_stimulation_min)
 		var/existing = breather.reagents.get_reagent_amount(/datum/reagent/pluoxium)
@@ -405,7 +405,7 @@
 /// Breathing in refridgerator coolent, shit's caustic
 /obj/item/organ/internal/lungs/proc/too_much_freon(mob/living/carbon/breather, datum/gas_mixture/breath, freon_pp, old_freon_pp)
 	// Inhale Freon. Exhale nothing.
-	breathe_gas_volume(breath, /datum/gas/freon)
+	breathe_gas_volume(breath, GAS_FREON)
 	if (freon_pp > gas_stimulation_min)
 		breather.reagents.add_reagent(/datum/reagent/freon, 1)
 	if (prob(freon_pp))
@@ -422,7 +422,7 @@
 /// Breathing in halon, convert it to a reagent
 /obj/item/organ/internal/lungs/proc/too_much_halon(mob/living/carbon/breather, datum/gas_mixture/breath, halon_pp, old_halon_pp)
 	// Inhale Halon. Exhale nothing.
-	breathe_gas_volume(breath, /datum/gas/halon)
+	breathe_gas_volume(breath, GAS_HALON)
 	// Metabolize to reagent.
 	if(halon_pp > gas_stimulation_min)
 		breather.adjustOxyLoss(5)
@@ -430,7 +430,7 @@
 
 /// Sleeping gas with healing properties.
 /obj/item/organ/internal/lungs/proc/consume_healium(mob/living/carbon/breather, datum/gas_mixture/breath, healium_pp, old_healium_pp)
-	breathe_gas_volume(breath, /datum/gas/healium)
+	breathe_gas_volume(breath, GAS_HEALIUM)
 	// Euphoria side-effect.
 	if(healium_pp > gas_stimulation_min)
 		if(prob(15))
@@ -482,7 +482,7 @@
 /// Breathing in the stink gas
 /obj/item/organ/internal/lungs/proc/too_much_miasma(mob/living/carbon/breather, datum/gas_mixture/breath, miasma_pp, old_miasma_pp)
 	// Inhale Miasma. Exhale nothing.
-	breathe_gas_volume(breath, /datum/gas/miasma)
+	breathe_gas_volume(breath, GAS_MIASMA)
 	/* monkestation removal: Death to advance
 	// Miasma sickness
 	if(prob(0.5 * miasma_pp))
@@ -605,7 +605,7 @@
 
 /// Really toxic stuff, very much trying to kill you
 /obj/item/organ/internal/lungs/proc/too_much_zauker(mob/living/carbon/breather, datum/gas_mixture/breath, zauker_pp, old_zauker_pp)
-	breathe_gas_volume(breath, /datum/gas/zauker)
+	breathe_gas_volume(breath, GAS_ZAUKER)
 	// Metabolize to reagent.
 	if(zauker_pp > gas_stimulation_min)
 		var/existing = breather.reagents.get_reagent_amount(/datum/reagent/zauker)
@@ -1091,7 +1091,7 @@
 		GAS_CO2,
 		GAS_N2,
 		GAS_BZ,
-		/datum/gas/miasma,
+		GAS_MIASMA,
 	)
 
 	var/oxygen_pp = breath.get_breath_partial_pressure(breath_gases[GAS_O2][MOLES])
@@ -1099,7 +1099,7 @@
 	var/plasma_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/plasma][MOLES])
 	var/carbon_dioxide_pp = breath.get_breath_partial_pressure(breath_gases[GAS_CO2][MOLES])
 	var/bz_pp = breath.get_breath_partial_pressure(breath_gases[GAS_BZ][MOLES])
-	var/miasma_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/miasma][MOLES])
+	var/miasma_pp = breath.get_breath_partial_pressure(breath_gases[GAS_MIASMA][MOLES])
 
 	safe_oxygen_min = max(0, oxygen_pp - GAS_TOLERANCE)
 	safe_nitro_min = max(0, nitrogen_pp - GAS_TOLERANCE)
@@ -1149,9 +1149,9 @@
 /obj/item/organ/internal/lungs/ethereal/proc/consume_water(mob/living/carbon/breather, datum/gas_mixture/breath, h2o_pp, old_h2o_pp)
 	var/gas_breathed = breath.gases[GAS_H2O][MOLES]
 	breath.gases[GAS_H2O][MOLES] -= gas_breathed
-	breath_out.assert_gases(GAS_O2, /datum/gas/hydrogen)
+	breath_out.assert_gases(GAS_O2, GAS_H2)
 	breath_out.gases[GAS_O2][MOLES] += gas_breathed
-	breath_out.gases[/datum/gas/hydrogen][MOLES] += gas_breathed * 2
+	breath_out.gases[GAS_H2][MOLES] += gas_breathed * 2
 
 #undef BREATH_RELATIONSHIP_INITIAL_GAS
 #undef BREATH_RELATIONSHIP_CONVERT

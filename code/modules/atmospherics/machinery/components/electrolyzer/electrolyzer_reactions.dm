@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 	)
 	factor = list(
 		GAS_HYPERNOB = "1 mole of Hypernoblium gets consumed",
-		/datum/gas/antinoblium = "0.5 moles of Antinoblium get produced",
+		GAS_ANTINOB = "0.5 moles of Antinoblium get produced",
 		"Temperature" = "Can only occur under 150 kelvin.",
 		"Location" = "Can only happen on turfs with an active Electrolyzer.",
 	)
@@ -78,10 +78,10 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 /datum/electrolyzer_reaction/nob_conversion/react(turf/location, datum/gas_mixture/air_mixture, working_power)
 
 	var/old_heat_capacity = air_mixture.heat_capacity()
-	air_mixture.assert_gases(GAS_HYPERNOB, /datum/gas/antinoblium)
+	air_mixture.assert_gases(GAS_HYPERNOB, GAS_ANTINOB)
 	var/proportion = min(air_mixture.gases[GAS_HYPERNOB][MOLES], (1.5 * (working_power ** 2)))
 	air_mixture.gases[GAS_HYPERNOB][MOLES] -= proportion
-	air_mixture.gases[/datum/gas/antinoblium][MOLES] += proportion * 0.5
+	air_mixture.gases[GAS_ANTINOB][MOLES] += proportion * 0.5
 	var/new_heat_capacity = air_mixture.heat_capacity()
 	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 		air_mixture.temperature = max(air_mixture.temperature * old_heat_capacity / new_heat_capacity, TCMB)
@@ -96,7 +96,7 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 	factor = list(
 		GAS_BZ = "Consumed during reaction.",
 		GAS_H2 = "0.2 moles of oxygen gets produced per mole of BZ consumed.",
-		/datum/gas/halon = "2 moles of Halon gets produced per mole of BZ consumed.",
+		GAS_HALON = "2 moles of Halon gets produced per mole of BZ consumed.",
 		"Energy" = "91.2321 kJ of thermal energy is released per mole of BZ consumed.",
 		"Temperature" = "Reaction efficiency is proportional to temperature.",
 		"Location" = "Can only happen on turfs with an active Electrolyzer.",
@@ -104,11 +104,11 @@ GLOBAL_LIST_INIT(electrolyzer_reactions, electrolyzer_reactions_list())
 
 /datum/electrolyzer_reaction/halon_generation/react(turf/location, datum/gas_mixture/air_mixture, working_power)
 	var/old_heat_capacity = air_mixture.heat_capacity()
-	air_mixture.assert_gases(GAS_BZ, GAS_H2, /datum/gas/halon)
+	air_mixture.assert_gases(GAS_BZ, GAS_H2, GAS_HALON)
 	var/reaction_efficency = min(air_mixture.gases[GAS_BZ][MOLES] * (1 - NUM_E ** (-0.5 * air_mixture.temperature * working_power / FIRE_MINIMUM_TEMPERATURE_TO_EXIST)), air_mixture.gases[GAS_BZ][MOLES])
 	air_mixture.gases[GAS_BZ][MOLES] -= reaction_efficency
 	air_mixture.gases[GAS_H2][MOLES] += reaction_efficency * 0.2
-	air_mixture.gases[/datum/gas/halon][MOLES] += reaction_efficency * 2
+	air_mixture.gases[GAS_HALON][MOLES] += reaction_efficency * 2
 	var/energy_used = reaction_efficency * HALON_FORMATION_ENERGY
 	var/new_heat_capacity = air_mixture.heat_capacity()
 	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)

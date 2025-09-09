@@ -14,7 +14,7 @@
 	restricted_gases = list(
 		/datum/gas/plasma=0.1,
 		GAS_BZ=1.2,
-		/datum/gas/miasma=1.2,
+		GAS_MIASMA=1.2,
 		GAS_H2O=0.1,
 	)
 	restricted_chance = 30
@@ -40,7 +40,7 @@
 	restricted_gases = list(
 		/datum/gas/plasma=0.1,
 		GAS_H2O=0.1,
-		/datum/gas/miasma=1.2,
+		GAS_MIASMA=1.2,
 	)
 	restricted_chance = 20
 

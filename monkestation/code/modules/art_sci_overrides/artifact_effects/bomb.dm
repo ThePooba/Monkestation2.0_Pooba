@@ -129,8 +129,8 @@
 		GAS_CO2 = 10,
 		GAS_NITROUS = 10,
 		/datum/gas/tritium = 5,
-		/datum/gas/hydrogen = 5,
-		/datum/gas/zauker = 2,
+		GAS_H2 = 5,
+		GAS_ZAUKER = 2,
 	)
 
 /datum/artifact_effect/bomb/gas/setup()

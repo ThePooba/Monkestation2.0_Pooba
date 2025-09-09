@@ -7,7 +7,7 @@
 
 /datum/gas_reaction/miaster/init_factors()
 	factor = list(
-		/datum/gas/miasma = "Miasma is sterilized at a rate that scales with the difference between the temperature and [MIASTER_STERILIZATION_TEMP]K.",
+		GAS_MIASMA = "Miasma is sterilized at a rate that scales with the difference between the temperature and [MIASTER_STERILIZATION_TEMP]K.",
 		GAS_O2 = "One mole of oxygen is released per mole of miasma consumed.",
 		"Temperature" = "Higher temperature increases the speed of miasma sterilization.",
 		"Energy" = "[MIASTER_STERILIZATION_ENERGY] joules of energy is released per mole of miasma sterilized.",
@@ -27,7 +27,7 @@
 /datum/gas_reaction/h2fire/init_factors()
 	factor = list(
 		GAS_O2 = "Oxygen is consumed at 0.5 moles per mole of hydrogen consumed. Higher oxygen concentration up to [HYDROGEN_OXYGEN_FULLBURN] times the hydrogen increases the hydrogen consumption rate.",
-		/datum/gas/hydrogen = "Hydrogen is consumed rapidly fast as long as there's enough oxygen to allow combustion.",
+		GAS_H2 = "Hydrogen is consumed rapidly fast as long as there's enough oxygen to allow combustion.",
 		GAS_H2O = "Water vapor is produced at 1 mole per mole of hydrogen combusted.",
 		"Temperature" = "Minimum temperature of [FIRE_MINIMUM_TEMPERATURE_TO_EXIST] kelvin to occur",
 		"Energy" = "[FIRE_HYDROGEN_ENERGY_RELEASED] joules of energy is released per mol of hydrogen consumed.",
@@ -46,7 +46,7 @@
 /datum/gas_reaction/freonfire/init_factors()
 	factor = list(
 		GAS_O2 = "Oxygen consumption is determined by the temperature, ranging from [OXYGEN_BURN_RATIO_BASE] moles per mole of freon consumed at [FREON_LOWER_TEMPERATURE] Kelvins to [OXYGEN_BURN_RATIO_BASE-1] moles per mole of freon consumed at [FREON_MAXIMUM_BURN_TEMPERATURE] Kelvins. Higher oxygen concentration up to [FREON_OXYGEN_FULLBURN] times the freon increases freon consumption rate.",
-		/datum/gas/freon = "Freon is consumed at a rate that scales with the distance of the temperature from [FREON_MAXIMUM_BURN_TEMPERATURE]K. Its relationship with oxygen also determines consumption rate.",
+		GAS_FREON = "Freon is consumed at a rate that scales with the distance of the temperature from [FREON_MAXIMUM_BURN_TEMPERATURE]K. Its relationship with oxygen also determines consumption rate.",
 		GAS_CO2 = "Carbon Dioxide is formed at 1 mole per mole of freon consumed.",
 		"Temperature" = "Can only occur between [FREON_LOWER_TEMPERATURE] - [FREON_MAXIMUM_BURN_TEMPERATURE] Kelvin",
 		"Energy" = "[FIRE_FREON_ENERGY_CONSUMED] joules of energy is absorbed per mole of freon consumed.",
@@ -88,8 +88,8 @@
 		GAS_CO2 = "1 mole of carbon dioxide gets consumed per mole of pluoxium formed.",
 		GAS_O2 = "Oxygen is consumed at 0.5 moles per mole of pluoxium formed.",
 		/datum/gas/tritium = "Tritium is converted into hydrogen at 0.01 moles per mole of pluoxium formed.",
-		/datum/gas/pluoxium = "Pluoxium is produced at a constant rate in any given mixture.",
-		/datum/gas/hydrogen = "Hydrogen is formed from the tritium losing their neutrons.",
+		GAS_PLUOXIUM = "Pluoxium is produced at a constant rate in any given mixture.",
+		GAS_H2 = "Hydrogen is formed from the tritium losing their neutrons.",
 		"Energy" = "[PLUOXIUM_FORMATION_ENERGY] joules of energy is released per mole of pluoxium formed.",
 		"Temperature" = "Can only occur between [PLUOXIUM_FORMATION_MIN_TEMP] - [PLUOXIUM_FORMATION_MAX_TEMP] Kelvin",
 	)
@@ -108,7 +108,7 @@
 	factor = list(
 		GAS_O2 = "[MINIMUM_MOLE_COUNT] moles of oxygen need to be present for the reaction to occur. Not consumed.",
 		GAS_NITRIUM = "Nitrium is consumed at a rate that scales with the temperature.",
-		/datum/gas/hydrogen = "Hydrogen is produced at 1 mole per mole of nitrium decomposed.",
+		GAS_H2 = "Hydrogen is produced at 1 mole per mole of nitrium decomposed.",
 		GAS_N2 = "Nitrogen is produced at 1 mole per mole of nitrium decomposed.",
 		"Temperature" = "Can only occur below [NITRIUM_DECOMPOSITION_MAX_TEMP]. Higher temperature increases the nitrium decomposition rate.",
 		"Energy" = "[NITRIUM_DECOMPOSITION_ENERGY] joules of energy is released per mole of nitrium decomposed.",
@@ -119,7 +119,7 @@
 		/datum/gas/plasma = "At least 0.06 moles of plasma needs to be present. Plasma is consumed at 0.6 moles per mole of freon formed.",
 		GAS_CO2 = "At least 0.03 moles of CO2 needs to be present. CO2 is consumed at 0.3 moles per mole of freon formed.",
 		GAS_BZ = "At least 0.01 moles of BZ needs to be present. BZ is consumed at 0.1 moles per mole of freon formed.",
-		/datum/gas/freon = "Freon is produced at a rate that scales with the sum of a quadratic exponential and sigmoidal function, with the quadratic exponential peaking at 800 Kelvin, but the sigmoidal function takes dominance at over 5,500K being up to 3 times more efficient.",
+		GAS_FREON = "Freon is produced at a rate that scales with the sum of a quadratic exponential and sigmoidal function, with the quadratic exponential peaking at 800 Kelvin, but the sigmoidal function takes dominance at over 5,500K being up to 3 times more efficient.",
 		"Energy" = "Between 100 and 800 joules of energy is absorbed per mole of freon produced", // I don't know why the energy release is also a sigmoidal function, but it should really just be constant to be honest.
 		"Temperature" = "Minimum temperature of [FIRE_MINIMUM_TEMPERATURE_TO_EXIST + 100] Kelvin to occur, with production peak at 800 K. However at temperatures above 5500 K higher rates are possible maxing out at three times the low temperature rate at over 8500 K.",
 	)
@@ -136,7 +136,7 @@
 
 /datum/gas_reaction/halon_o2removal/init_factors()
 	factor = list(
-		/datum/gas/halon = "Halon is consumed at a rate that scales with temperature.",
+		GAS_HALON = "Halon is consumed at a rate that scales with temperature.",
 		GAS_O2 = "20 moles of oxygen is consumed per mole of halon combusted.",
 		GAS_CO2 = "Carbon dioxide is produced at 5 moles per mole of halon consumed.",
 		"Energy" = "[HALON_COMBUSTION_ENERGY] joules of energy is absorbed per mole of halon consumed.",
@@ -146,8 +146,8 @@
 /datum/gas_reaction/healium_formation/init_factors()
 	factor = list(
 		GAS_BZ = "BZ is consumed at 1/12th of a mole per mole of healium formed.",
-		/datum/gas/freon = "Freon is consumed at 11/12th of a mole per mole of healium formed.",
-		/datum/gas/healium = "Healium is formed at a rate that scales with the temperature.",
+		GAS_FREON = "Freon is consumed at 11/12th of a mole per mole of healium formed.",
+		GAS_HEALIUM = "Healium is formed at a rate that scales with the temperature.",
 		"Temperature" = "Can only occur between [HEALIUM_FORMATION_MIN_TEMP] - [HEALIUM_FORMATION_MAX_TEMP]. Higher temperature increases healium formation rate.",
 		"Energy" = "[HEALIUM_FORMATION_ENERGY/3] joules of energy is released per mole of healium formed.",
 	)
@@ -156,14 +156,14 @@
 	factor = list(
 		GAS_HYPERNOB = "Hyper-Noblium is consumed at 0.02 moles per mole of zauker formed.",
 		GAS_NITRIUM = "Nitrium is consumed at 1 mole per mole of zauker formed.",
-		/datum/gas/zauker = "Zauker is produced at a rate that scales with the temperature.",
+		GAS_ZAUKER = "Zauker is produced at a rate that scales with the temperature.",
 		"Temperature" = "Can only occur between [ZAUKER_FORMATION_MIN_TEMPERATURE] - [ZAUKER_FORMATION_MAX_TEMPERATURE] kelvin. Zauker formation rate is proportional to the temperature.",
 		"Energy" = "[2 * ZAUKER_FORMATION_ENERGY] joules of energy is absorbed per mole of zauker formed.",
 	)
 
 /datum/gas_reaction/zauker_decomp/init_factors() //Fixed reaction rate
 	factor = list(
-		/datum/gas/zauker = "Zauker is consumed at [ZAUKER_DECOMPOSITION_MAX_RATE SECONDS / SSair.wait] moles per second in any unique gas mixture.",
+		GAS_ZAUKER = "Zauker is consumed at [ZAUKER_DECOMPOSITION_MAX_RATE SECONDS / SSair.wait] moles per second in any unique gas mixture.",
 		GAS_N2 = "At least [MINIMUM_MOLE_COUNT] moles of Nitrogen needs to be present for this reaction to occur. Nitrogen is produced at 0.7 moles per mole of Zauker decomposed.",
 		GAS_O2 = "Oxygen is produced at 0.3 moles per mole of zauker decomposed.",
 		"Energy" = "[ZAUKER_DECOMPOSITION_ENERGY] joules of energy is released per mole of zauker decomposed.",
@@ -171,8 +171,8 @@
 
 /datum/gas_reaction/proto_nitrate_formation/init_factors()
 	factor = list(
-		/datum/gas/pluoxium = "Pluoxium is consumed at 1/11th of a mole per mole of proto-nitrate formed.",
-		/datum/gas/hydrogen = "Hydrogen is consumed at 10/11th of a mole per mole of proto-nitrate formed.",
+		GAS_PLUOXIUM = "Pluoxium is consumed at 1/11th of a mole per mole of proto-nitrate formed.",
+		GAS_H2 = "Hydrogen is consumed at 10/11th of a mole per mole of proto-nitrate formed.",
 		/datum/gas/proto_nitrate = "Proto-Nitrate is produced at a rate that scales with the temperature.",
 		"Energy" = "[PN_FORMATION_ENERGY / 2.2] joules of energy is released per mole of proto-nitrate formed.",
 		"Temperature" = "Can only occur between [PN_FORMATION_MIN_TEMPERATURE] - [PN_FORMATION_MAX_TEMPERATURE] kelvin. Higher temperature increases proto-nitrate formation rate.",
@@ -180,7 +180,7 @@
 
 /datum/gas_reaction/proto_nitrate_hydrogen_response/init_factors() // Fixed reaction rate
 	factor = list(
-		/datum/gas/hydrogen = "[PN_HYDROGEN_CONVERSION_THRESHOLD] moles of hydrogen needs to be present for the reaction to occur. Hydrogen is consumed at 2 moles per mole of proto-nitrate formed.",
+		GAS_H2 = "[PN_HYDROGEN_CONVERSION_THRESHOLD] moles of hydrogen needs to be present for the reaction to occur. Hydrogen is consumed at 2 moles per mole of proto-nitrate formed.",
 		/datum/gas/proto_nitrate = "[MINIMUM_MOLE_COUNT] moles of proto-nitrate needs to be present for the reaction to occur. Proto nitrate is produced a rate that scales with its mole count, up to a max of [PN_HYDROGEN_CONVERSION_MAX_RATE * 0.5 SECONDS / SSair.wait] moles per second.",
 		"Energy" = "[PN_HYDROGEN_CONVERSION_ENERGY * 2] joules of energy is absorbed per mole of proto-nitrate formed.",
 	)
@@ -189,7 +189,7 @@
 	factor = list(
 		/datum/gas/tritium = "Tritium radiates its neutrons at a rate that scales with the temperature and proto-nitrate mole count.",
 		/datum/gas/proto_nitrate = "Proto nitrate is consumed at 0.005 moles per mole of neutrons released.",
-		/datum/gas/hydrogen = "Hydrogen remains after the neutrons escape.",
+		GAS_H2 = "Hydrogen remains after the neutrons escape.",
 		"Energy" = "[PN_TRITIUM_CONVERSION_ENERGY / 2] joules of energy is released per mole of neutron released.",
 		"Radiation" = "Neutrons get released as ionising radiation.",
 	)

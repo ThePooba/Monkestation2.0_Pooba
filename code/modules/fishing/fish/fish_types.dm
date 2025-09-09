@@ -247,7 +247,7 @@
 		GAS_H2O,
 		/datum/gas/plasma = list(0, 5),
 		GAS_BZ = list(0, 5),
-		/datum/gas/miasma = list(0, 5),
+		GAS_MIASMA = list(0, 5),
 	)
 	evolution_types = list(/datum/fish_evolution/ice_chrab)
 	compatible_types = list(/obj/item/fish/chasm_crab/ice)

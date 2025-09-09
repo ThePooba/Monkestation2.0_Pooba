@@ -23,12 +23,12 @@
 		/datum/gas/tritium,
 		GAS_HYPERNOB,
 		GAS_H2O,
-		/datum/gas/freon,
-		/datum/gas/hydrogen,
-		/datum/gas/healium,
+		GAS_FREON,
+		GAS_H2,
+		GAS_HEALIUM,
 		/datum/gas/proto_nitrate,
-		/datum/gas/zauker,
-		/datum/gas/halon,
+		GAS_ZAUKER,
+		GAS_HALON,
 	)
 
 /obj/machinery/portable_atmospherics/scrubber/Destroy()

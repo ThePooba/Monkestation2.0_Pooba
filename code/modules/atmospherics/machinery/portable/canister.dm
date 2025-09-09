@@ -150,7 +150,7 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 
 /obj/machinery/portable_atmospherics/canister/antinoblium
 	name = "Antinoblium canister"
-	gas_type = /datum/gas/antinoblium
+	gas_type = GAS_ANTINOB
 	filled = 1
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#9b5d7f#368bff"
@@ -169,21 +169,21 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 
 /obj/machinery/portable_atmospherics/canister/freon
 	name = "Freon canister"
-	gas_type = /datum/gas/freon
+	gas_type = GAS_FREON
 	filled = 1
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#6696ee#fefb30"
 
 /obj/machinery/portable_atmospherics/canister/halon
 	name = "Halon canister"
-	gas_type = /datum/gas/halon
+	gas_type = GAS_HALON
 	filled = 1
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#9b5d7f#368bff"
 
 /obj/machinery/portable_atmospherics/canister/healium
 	name = "Healium canister"
-	gas_type = /datum/gas/healium
+	gas_type = GAS_HEALIUM
 	filled = 1
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#009823#ff0e00"
@@ -197,14 +197,14 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 
 /obj/machinery/portable_atmospherics/canister/hydrogen
 	name = "Hydrogen canister"
-	gas_type = /datum/gas/hydrogen
+	gas_type = GAS_H2
 	filled = 1
 	greyscale_config = /datum/greyscale_config/canister/stripe
 	greyscale_colors = "#bdc2c0#ffffff"
 
 /obj/machinery/portable_atmospherics/canister/miasma
 	name = "Miasma canister"
-	gas_type = /datum/gas/miasma
+	gas_type = GAS_MIASMA
 	filled = 1
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#009823#f7d5d3"
@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
 	name = "Pluoxium canister"
-	gas_type = /datum/gas/pluoxium
+	gas_type = GAS_PLUOXIUM
 	greyscale_config = /datum/greyscale_config/canister
 	greyscale_colors = "#2786e5"
 
@@ -273,7 +273,7 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 
 /obj/machinery/portable_atmospherics/canister/zauker
 	name = "Zauker canister"
-	gas_type = /datum/gas/zauker
+	gas_type = GAS_ZAUKER
 	filled = 1
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#009a00#006600"

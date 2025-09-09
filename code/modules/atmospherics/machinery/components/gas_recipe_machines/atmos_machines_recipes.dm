@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	min_temp = 50000
 	max_temp = 150000
 	energy_release = -2500000
-	requirements = list(/datum/gas/hydrogen = 300, GAS_BZ = 50)
+	requirements = list(GAS_H2 = 300, GAS_BZ = 50)
 	products = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 1)
 
 /datum/gas_recipe/crystallizer/healium_grenade
@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	min_temp = 200
 	max_temp = 400
 	energy_release = -2000000
-	requirements = list(/datum/gas/healium = 100, GAS_O2 = 120, /datum/gas/plasma = 50)
+	requirements = list(GAS_HEALIUM = 100, GAS_O2 = 120, /datum/gas/plasma = 50)
 	products = list(/obj/item/grenade/gas_crystal/healium_crystal = 1)
 
 /datum/gas_recipe/crystallizer/proto_nitrate_grenade
@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	min_temp = 15
 	max_temp = 35
 	energy_release = -3000000
-	requirements = list(/datum/gas/freon = 60, /datum/gas/plasma = 160, GAS_O2 = 80)
+	requirements = list(GAS_FREON = 60, /datum/gas/plasma = 160, GAS_O2 = 80)
 	products = list(/obj/item/stack/sheet/hot_ice = 1)
 
 /datum/gas_recipe/crystallizer/ammonia_crystal
@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	min_temp = 200
 	max_temp = 240
 	energy_release = 950000
-	requirements = list(/datum/gas/hydrogen = 50, GAS_N2 = 40)
+	requirements = list(GAS_H2 = 50, GAS_N2 = 40)
 	products = list(/obj/item/stack/ammonia_crystals = 2)
 
 /datum/gas_recipe/crystallizer/shard
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	max_temp = 20
 	energy_release = 3500000
 	dangerous = TRUE
-	requirements = list(GAS_HYPERNOB = 250, /datum/gas/antinoblium = 250, GAS_BZ = 200, /datum/gas/plasma = 5000, GAS_O2 = 4500)
+	requirements = list(GAS_HYPERNOB = 250, GAS_ANTINOB = 250, GAS_BZ = 200, /datum/gas/plasma = 5000, GAS_O2 = 4500)
 	products = list(/obj/machinery/power/supermatter_crystal/shard = 1)
 
 /datum/gas_recipe/crystallizer/n2o_crystal
@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	min_temp = 5
 	max_temp = 20
 	energy_release = 2900000
-	requirements = list(/datum/gas/antinoblium = 5, /datum/gas/zauker = 20, GAS_BZ = 7.5)
+	requirements = list(GAS_ANTINOB = 5, GAS_ZAUKER = 20, GAS_BZ = 7.5)
 	products = list(/obj/item/stack/sheet/mineral/zaukerite = 2)
 
 /datum/gas_recipe/crystallizer/fuel_pellet
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	id = "fuel_advanced"
 	name = "advanced fuel pellet"
 	energy_release = -6000000
-	requirements = list(/datum/gas/tritium = 100, /datum/gas/hydrogen = 100)
+	requirements = list(/datum/gas/tritium = 100, GAS_H2 = 100)
 	products = list(/obj/item/fuel_pellet/advanced = 1)
 
 /datum/gas_recipe/crystallizer/fuel_pellet_exotic

@@ -11,7 +11,7 @@
 	///List of gases with medium filter priority
 	mid_filtering_gases = list(
 		GAS_NITRIUM,
-		/datum/gas/freon,
+		GAS_FREON,
 		GAS_HYPERNOB
 		)
 
