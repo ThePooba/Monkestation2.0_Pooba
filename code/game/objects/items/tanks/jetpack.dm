@@ -62,7 +62,7 @@
 	if(gas_type)
 		var/datum/gas_mixture/our_mix = return_air()
 		our_mix.assert_gas(gas_type)
-		our_mix.gases[gas_type][MOLES] = ((6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
+		our_mix.set_moles(gas_typegas_type, ((6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C)))
 
 /obj/item/tank/jetpack/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/toggle_jetpack))
@@ -125,13 +125,8 @@
 	if(!use_fuel)
 		return TRUE
 
-	var/datum/gas_mixture/removed = remove_air(num)
-	if(removed.total_moles() < 0.005)
-		turn_off(user)
-		return FALSE
+	assume_air_moles(air_contents, num)
 
-	var/turf/T = get_turf(src)
-	T.assume_air(removed)
 	return TRUE
 
 /obj/item/tank/jetpack/suicide_act(mob/living/user)

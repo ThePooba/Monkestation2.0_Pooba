@@ -195,17 +195,6 @@
 		target_turf.air_update_turf() //You're empty now
 	air_update_turf() //You aren't
 
-/atom/movable/proc/move_update_air(turf/target_turf)
-	if(isturf(target_turf))
-		target_turf.air_update_turf() //You're empty now
-	air_update_turf() //You aren't
-
-/atom/proc/atmos_spawn_air(text) //because a lot of people loves to copy paste awful code lets just make an easy proc to spawn your plasma fires
-	var/turf/open/T = get_turf(src)
-	if(!istype(T))
-		return
-	T.atmos_spawn_air(text)
-
 /turf/open/atmos_spawn_air(text)
 	if(!text || !air)
 		return

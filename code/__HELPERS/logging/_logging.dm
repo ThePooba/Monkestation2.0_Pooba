@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 #ifdef EXTOOLS_LOGGING
 #define WRITE_LOG(log, text) extools_log_write(log, text, TRUE)
 #define WRITE_LOG_NO_FORMAT(log, text) extools_log_write(log, text, FALSE)
-#else
+#endif
 
 /**
  * Generic logging helper

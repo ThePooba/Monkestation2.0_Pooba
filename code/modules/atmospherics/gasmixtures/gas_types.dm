@@ -66,8 +66,8 @@
 	var/desc
 
 
-GAS_O2
-	id = "o2"
+/datum/gas/oxygen
+	id = GAS_O2
 	specific_heat = 20
 	name = "Oxygen"
 	rarity = 900
@@ -75,8 +75,8 @@ GAS_O2
 	base_value = 0.2
 	desc = "The gas most life forms need to be able to survive. Also an oxidizer."
 
-GAS_N2
-	id = "n2"
+/datum/gas/nitrogen
+	id = GAS_N2
 	specific_heat = 20
 	name = "Nitrogen"
 	rarity = 1000
@@ -84,8 +84,8 @@ GAS_N2
 	base_value = 0.1
 	desc = "A very common gas that used to pad artifical atmospheres to habitable pressure."
 
-GAS_CO2 //what the fuck is this?
-	id = "co2"
+/datum/gas/carbon_dioxide //what the fuck is this?
+	id = GAS_CO2
 	specific_heat = 30
 	name = "Carbon Dioxide"
 	dangerous = TRUE
@@ -95,7 +95,7 @@ GAS_CO2 //what the fuck is this?
 	desc = "What the fuck is carbon dioxide?"
 
 /datum/gas/plasma
-	id = "plasma"
+	id = GAS_PLASMA
 	specific_heat = 200
 	name = "Plasma"
 	gas_overlay = "plasma"
@@ -105,8 +105,8 @@ GAS_CO2 //what the fuck is this?
 	base_value = 1.5
 	desc = "A flammable gas with many other curious properties. It's research is one of NT's primary objective."
 
-GAS_H2O
-	id = "water_vapor"
+/datum/gas/water_vapor
+	id = GAS_H2O
 	specific_heat = 40
 	name = "Water Vapor"
 	gas_overlay = "water_vapor"
@@ -117,8 +117,8 @@ GAS_H2O
 	base_value = 0.5
 	desc = "Water, in gas form. Makes things slippery."
 
-GAS_HYPERNOB
-	id = "nob"
+/datum/gas/hypernoblium
+	id = GAS_HYPERNOB
 	specific_heat = 2000
 	name = "Hyper-noblium"
 	gas_overlay = "freon"
@@ -128,8 +128,8 @@ GAS_HYPERNOB
 	base_value = 2.5
 	desc = "The most noble gas of them all. High quantities of hyper-noblium actively prevents reactions from occuring."
 
-GAS_NITROUS
-	id = "n2o"
+/datum/gas/nitrous_oxide
+	id = GAS_NITROUS
 	specific_heat = 40
 	name = "Nitrous Oxide"
 	gas_overlay = "nitrous_oxide"
@@ -141,8 +141,8 @@ GAS_NITROUS
 	base_value = 1.5
 	desc = "Causes drowsiness, euphoria, and eventually unconsciousness."
 
-GAS_NITRIUM
-	id = "nitrium"
+/datum/gas/nitrium
+	id = GAS_NITRIUM
 	specific_heat = 10
 	name = "Nitrium"
 	fusion_power = 7
@@ -154,6 +154,7 @@ GAS_NITRIUM
 	desc = "An experimental performance enhancing gas. Nitrium can have amplified effects as more of it gets into your bloodstream."
 
 /datum/gas/tritium
+	id = GAS_TRITIUM
 	id = "tritium"
 	specific_heat = 10
 	name = "Tritium"
@@ -165,8 +166,8 @@ GAS_NITRIUM
 	base_value = 2.5
 	desc = "A highly flammable and radioctive gas."
 
-GAS_BZ
-	id = "bz"
+/datum/gas/bz
+	id = GAS_BZ
 	specific_heat = 20
 	name = "BZ"
 	dangerous = TRUE
@@ -176,8 +177,8 @@ GAS_BZ
 	base_value = 1.5
 	desc = "A powerful hallucinogenic nerve agent able to induce cognitive damage."
 
-GAS_PLUOXIUM
-	id = "pluox"
+/datum/gas/pluoxium
+	id = GAS_PLUOXIUM
 	specific_heat = 80
 	name = "Pluoxium"
 	fusion_power = -10
@@ -185,8 +186,8 @@ GAS_PLUOXIUM
 	base_value = 2.5
 	desc = "A gas that could supply even more oxygen to the bloodstream when inhaled, without being an oxidizer."
 
-GAS_MIASMA
-	id = "miasma"
+/datum/gas/miasma
+	id = GAS_MIASMA
 	specific_heat = 20
 	name = "Miasma"
 	dangerous = TRUE
@@ -196,8 +197,8 @@ GAS_MIASMA
 	base_value = 1
 	desc = "Not necessarily a gas, miasma refers to biological pollutants found in the atmosphere."
 
-GAS_FREON
-	id = "freon"
+/datum/gas/freon
+	id = GAS_FREON
 	specific_heat = 600
 	name = "Freon"
 	dangerous = TRUE
@@ -209,8 +210,8 @@ GAS_FREON
 	base_value = 1.5 //MONKESTATION EDIT 5 ==> 1.5
 	desc = "A coolant gas. Mainly used for it's endothermic reaction with oxygen."
 
-GAS_H2
-	id = "hydrogen"
+/datum/gas/hydrogen
+	id = GAS_H2
 	specific_heat = 15
 	name = "Hydrogen"
 	dangerous = TRUE
@@ -220,8 +221,8 @@ GAS_H2
 	base_value = 1
 	desc = "A highly flammable gas."
 
-GAS_HEALIUM
-	id = "healium"
+/datum/gas/healium
+	id = GAS_HEALIUM
 	specific_heat = 10
 	name = "Healium"
 	dangerous = TRUE
@@ -232,7 +233,7 @@ GAS_HEALIUM
 	desc = "Causes deep, regenerative sleep."
 
 /datum/gas/proto_nitrate
-	id = "proto_nitrate"
+	id = GAS_PROTONITRATE
 	specific_heat = 30
 	name = "Proto Nitrate"
 	dangerous = TRUE
@@ -242,8 +243,8 @@ GAS_HEALIUM
 	base_value = 2.5
 	desc = "A very volatile gas that reacts differently with various gases."
 
-GAS_ZAUKER
-	id = "zauker"
+/datum/gas/zauker
+	id = GAS_ZAUKER
 	specific_heat = 350
 	name = "Zauker"
 	dangerous = TRUE
@@ -253,8 +254,8 @@ GAS_ZAUKER
 	base_value = 7
 	desc = "A highly toxic gas, it's production is highly regulated on top of being difficult. It also breaks down when in contact with nitrogen."
 
-GAS_HALON
-	id = "halon"
+/datum/gas/halon
+	id = GAS_HALON
 	specific_heat = 175
 	name = "Halon"
 	dangerous = TRUE
@@ -264,8 +265,8 @@ GAS_HALON
 	base_value = 4
 	desc = "A potent fire supressant. Removes oxygen from high temperature fires and cools down the area"
 
-/datum/gas/helium
-	id = "helium"
+/datum/gas/healium
+	id = GAS_HEALIUM
 	specific_heat = 15
 	name = "Helium"
 	fusion_power = 7
@@ -273,8 +274,8 @@ GAS_HALON
 	base_value = 3.5
 	desc = "A very inert gas produced by the fusion of hydrogen and it's derivatives."
 
-GAS_ANTINOB
-	id = "antinoblium"
+/datum/gas/antinoblium
+	id = GAS_ANTINOB
 	specific_heat = 1
 	name = "Antinoblium"
 	dangerous = TRUE

@@ -15,18 +15,18 @@
 	var/use_overlays = TRUE
 	///List of gases that can be scrubbed
 	var/list/scrubbing = list(
-		/datum/gas/plasma,
+		GAS_PLASMA,
 		GAS_CO2,
 		GAS_NITROUS,
 		GAS_BZ,
 		GAS_NITRIUM,
-		/datum/gas/tritium,
+		GAS_TRITIUM,
 		GAS_HYPERNOB,
 		GAS_H2O,
 		GAS_FREON,
 		GAS_H2,
 		GAS_HEALIUM,
-		/datum/gas/proto_nitrate,
+		GAS_PROTONITRATE,
 		GAS_ZAUKER,
 		GAS_HALON,
 	)

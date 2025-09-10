@@ -411,7 +411,13 @@
 	return ..()
 
 /obj/structure/chrono_field/assume_air()
-	return FALSE
+	return null
+
+/obj/effect/chrono_field/assume_air_moles()
+	return null
+
+/obj/effect/chrono_field/assume_air_ratio()
+	return null
 
 /obj/structure/chrono_field/return_air() //we always have nominal air and temperature
 	var/datum/gas_mixture/fresh_air = new

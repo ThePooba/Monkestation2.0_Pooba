@@ -384,21 +384,6 @@ GLOBAL_LIST_EMPTY(colored_images)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/air/proc/process_atmos_machinery(resumed = FALSE)
-	if (!resumed)
-		src.currentrun = atmos_machinery.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-	while(currentrun.len)
-		var/obj/machinery/M = currentrun[currentrun.len]
-		currentrun.len--
-		if(!M)
-			atmos_machinery -= M
-		if(M.process_atmos() == PROCESS_KILL)
-			stop_processing_machine(M)
-		if(MC_TICK_CHECK)
-			return
-
 /datum/controller/subsystem/air/proc/process_hotspots(resumed = FALSE)
 	if (!resumed)
 		src.currentrun = hotspots.Copy()
@@ -484,39 +469,6 @@ GLOBAL_LIST_EMPTY(colored_images)
 			continue
 		setup.Initalize_Atmos(times_fired)
 		CHECK_TICK
-
-/datum/controller/subsystem/air/proc/setup_atmos_machinery()
-	for (var/obj/machinery/atmospherics/AM in atmos_machinery)
-		AM.atmos_init()
-		CHECK_TICK
-
-/datum/controller/subsystem/air/proc/process_rebuilds()
-	//Yes this does mean rebuilding pipenets can freeze up the subsystem forever, but if we're in that situation something else is very wrong
-	var/list/currentrun = rebuild_queue
-	while(currentrun.len || length(expansion_queue))
-		while(currentrun.len && !length(expansion_queue)) //If we found anything, process that first
-			var/obj/machinery/atmospherics/remake = currentrun[currentrun.len]
-			currentrun.len--
-			if (!remake)
-				continue
-			remake.rebuild_pipes()
-			if (MC_TICK_CHECK)
-				return
-
-		var/list/queue = expansion_queue
-		while(queue.len)
-			var/list/pack = queue[queue.len]
-			//We operate directly with the pipeline like this because we can trust any rebuilds to remake it properly
-			var/datum/pipeline/linepipe = pack[SSAIR_REBUILD_PIPELINE]
-			var/list/border = pack[SSAIR_REBUILD_QUEUE]
-			expand_pipeline(linepipe, border)
-			if(state != SS_RUNNING) //expand_pipeline can fail a tick check, we shouldn't let things get too fucky here
-				return
-
-			linepipe.building = FALSE
-			queue.len--
-			if (MC_TICK_CHECK)
-				return
 
 ///Rebuilds a pipeline by expanding outwards, while yielding when sane
 /datum/controller/subsystem/air/proc/expand_pipeline(datum/pipeline/net, list/border)
