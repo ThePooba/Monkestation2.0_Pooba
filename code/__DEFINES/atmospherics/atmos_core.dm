@@ -205,6 +205,7 @@
 #define GAS_HALON "halon"
 #define GAS_ANTINOB "antinob"
 #define GAS_ZAUKER "zauker"
+#define GAS_HELIUM "helium"
 //4 da future
 //#define GAS_HEXANE "hexane"
 //#define GAS_DILITHIUM "dilithium"

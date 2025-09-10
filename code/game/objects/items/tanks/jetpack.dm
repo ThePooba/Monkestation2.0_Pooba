@@ -125,8 +125,13 @@
 	if(!use_fuel)
 		return TRUE
 
-	assume_air_moles(air_contents, num)
+	var/datum/gas_mixture/removed = remove_air(num)
+	if(removed.total_moles() < 0.005)
+		turn_off(user)
+		return FALSE
 
+	var/turf/T = get_turf(src)
+	T.assume_air(removed)
 	return TRUE
 
 /obj/item/tank/jetpack/suicide_act(mob/living/user)
