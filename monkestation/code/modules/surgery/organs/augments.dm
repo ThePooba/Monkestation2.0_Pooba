@@ -165,16 +165,15 @@
 	)
 
 /obj/item/organ/internal/cyberimp/brain/linked_surgery/perfect/nt/update_surgeries(download_from_held = TRUE)
-	loaded_surgeries.Cut()
+	for(var/design in linked_techweb.researched_designs)
+		var/datum/design/surgery/surgery_design = SSresearch.techweb_design_by_id(design)
+		if(!istype(surgery_design))
+			continue
+		loaded_surgeries |= surgery_design.surgery
+
 	for(var/datum/surgery/surgery as() in GLOB.surgeries_list)
 		if(surgery.type in blocked_surgeries)
 			continue
 		if(!length(surgery.steps))
 			continue
 		loaded_surgeries |= surgery.type
-
-	for(var/design in linked_techweb.researched_designs)
-		var/datum/design/surgery/surgery_design = SSresearch.techweb_design_by_id(design)
-		if(!istype(surgery_design))
-			continue
-		loaded_surgeries |= surgery_design.surgery
