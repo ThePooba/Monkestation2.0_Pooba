@@ -147,3 +147,34 @@
 	desc = "A brain implant with a bluespace technology that lets you perform any advanced surgery through private access too Nanotrasen servers."
 	organ_flags = parent_type::organ_flags & ~ORGAN_HIDDEN
 	implant_color = "#00eeff"
+	organ_traits = null
+	blocked_surgeries = list(
+		/datum/surgery/advanced/brainwashing_sleeper, // this one has special handling
+		/datum/surgery/advanced/necrotic_revival,
+		/datum/surgery/organ_extraction,
+		/datum/surgery/advanced/viral_bonding,
+		/datum/surgery/advanced/pacify,
+		/datum/surgery/advanced/bioware/vein_threading,
+		/datum/surgery/advanced/bioware/nerve_splicing,
+		/datum/surgery/advanced/bioware/nerve_grounding,
+		/datum/surgery/advanced/bioware/muscled_veins,
+		/datum/surgery/advanced/bioware/ligament_reinforcement,
+		/datum/surgery/advanced/bioware/ligament_hook,
+		/datum/surgery/advanced/bioware/cortex_imprint,
+		/datum/surgery/advanced/bioware/cortex_folding,
+	)
+
+/obj/item/organ/internal/cyberimp/brain/linked_surgery/perfect/nt/update_surgeries(download_from_held = TRUE)
+	loaded_surgeries.Cut()
+	for(var/datum/surgery/surgery as() in GLOB.surgeries_list)
+		if(surgery.type in blocked_surgeries)
+			continue
+		if(!length(surgery.steps))
+			continue
+		loaded_surgeries |= surgery.type
+
+	for(var/design in linked_techweb.researched_designs)
+		var/datum/design/surgery/surgery_design = SSresearch.techweb_design_by_id(design)
+		if(!istype(surgery_design))
+			continue
+		loaded_surgeries |= surgery_design.surgery
