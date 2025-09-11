@@ -146,8 +146,8 @@
 	name = "advanced surgical serverlink brain implant"
 	desc = "A brain implant with a bluespace technology that lets you perform any advanced surgery through private access too Nanotrasen servers."
 	organ_flags = parent_type::organ_flags & ~ORGAN_HIDDEN
+	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	implant_color = "#00eeff"
-	organ_traits = null
 	blocked_surgeries = list(
 		/datum/surgery/advanced/brainwashing_sleeper, // this one has special handling
 		/datum/surgery/advanced/necrotic_revival,
@@ -162,18 +162,60 @@
 		/datum/surgery/advanced/bioware/ligament_hook,
 		/datum/surgery/advanced/bioware/cortex_imprint,
 		/datum/surgery/advanced/bioware/cortex_folding,
+		/datum/surgery/healing/combo/upgraded/femto,
+		/datum/surgery/advanced/brainwashing,
 	)
 
-/obj/item/organ/internal/cyberimp/brain/linked_surgery/perfect/nt/update_surgeries(download_from_held = TRUE)
-	for(var/design in linked_techweb.researched_designs)
-		var/datum/design/surgery/surgery_design = SSresearch.techweb_design_by_id(design)
-		if(!istype(surgery_design))
-			continue
-		loaded_surgeries |= surgery_design.surgery
-
+/obj/item/organ/internal/cyberimp/brain/linked_surgery/perfect/nt/update_surgeries(download_from_held = TRUE) // IS IT PRETTY NO? BUT DO WE WANT IT TO WORK YES?
+	loaded_surgeries.Cut() // give everything but a blacklisted surgery.
 	for(var/datum/surgery/surgery as() in GLOB.surgeries_list)
 		if(surgery.type in blocked_surgeries)
 			continue
 		if(!length(surgery.steps))
 			continue
 		loaded_surgeries |= surgery.type
+
+	// Then give any blacklisted if researched or a disk
+	var/list/prev_amt = length(loaded_surgeries)
+	for(var/design in linked_techweb.researched_designs)
+		var/datum/design/surgery/surgery_design = SSresearch.techweb_design_by_id(design)
+		if(!istype(surgery_design))
+			continue
+		loaded_surgeries |= surgery_design.surgery
+	if(download_from_held)
+		for(var/held_item in owner.held_items)
+			if(!held_item)
+				continue
+			var/list/surgeries_to_add = list()
+			if(istype(held_item, /obj/item/disk/surgery))
+				var/obj/item/disk/surgery/surgery_disk = held_item
+				for(var/surgery in surgery_disk.surgeries)
+					surgeries_to_add |= surgery
+			else if(istype(held_item, /obj/item/disk/tech_disk))
+				var/obj/item/disk/tech_disk/tech_disk = held_item
+				for(var/design in tech_disk.stored_research.researched_designs)
+					var/datum/design/surgery/surgery_design = SSresearch.techweb_design_by_id(design)
+					if(!istype(surgery_design))
+						continue
+					surgeries_to_add |= surgery_design.surgery
+			else if(istype(held_item, /obj/item/disk/nuclear))
+				// funny joke message
+				to_chat(owner, span_warning("Do you <i>want</i> to explode? You can't get surgery data from \the [held_item]!"))
+				continue
+			else
+				continue
+			if(!length(surgeries_to_add))
+				owner.balloon_alert(owner, "no new surgery data found")
+				continue
+			owner.balloon_alert(owner, "downloading surgery data...")
+			if(!do_after(owner, 5 SECONDS, held_item))
+				owner.balloon_alert(owner, "surgery download interrupted!")
+				return
+			loaded_surgeries |= surgeries_to_add
+	var/new_amt = length(loaded_surgeries)
+	var/diff = new_amt - prev_amt
+	if(diff)
+		owner.balloon_alert(owner, "installed [diff] new surgeries, [new_amt] total loaded")
+	else
+		owner.balloon_alert(owner, "no new surgery data found")
+
