@@ -100,7 +100,7 @@
 						result++
 		. -= result - 1
 
-/obj/structure/blob/block_superconductivity()
+/obj/structure/blob/BlockThermalConductivity()
 	return atmosblock
 
 /obj/structure/blob/can_atmos_pass(turf/T, vertical = FALSE)

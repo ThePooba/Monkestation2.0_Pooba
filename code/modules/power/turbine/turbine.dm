@@ -88,7 +88,7 @@
 	output_mix.temperature = max((output_mix.temperature * output_mix_heat_capacity + work_done * TURBINE_HEAT_CONVERSION_MULTIPLIER) / output_mix_heat_capacity, TCMB)
 	return work_done
 
-/obj/machinery/power/turbine/block_superconductivity()
+/obj/machinery/power/turbine/BlockThermalConductivity()
 	return TRUE
 
 /obj/machinery/power/turbine/examine(mob/user)

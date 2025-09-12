@@ -648,7 +648,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/plasma/spawner, 0)
 	fire = 99
 	acid = 100
 
-/obj/structure/window/reinforced/plasma/block_superconductivity()
+/obj/structure/window/reinforced/plasma/BlockThermalConductivity()
 	return TRUE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/plasma/spawner, 0)

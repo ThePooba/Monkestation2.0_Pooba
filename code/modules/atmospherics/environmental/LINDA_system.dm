@@ -38,7 +38,7 @@
 			continue
 		can_pass = FALSE
 		//the direction and open/closed are already checked on can_atmos_pass() so there are no arguments
-		if(checked_object.block_superconductivity())
+		if(checked_object.BlockThermalConductivity())
 			atmos_supeconductivity |= direction
 			target_turf.atmos_supeconductivity |= opposite_direction
 			return FALSE //no need to keep going, we got all we asked (Is this even faster? fuck you it's soul)
@@ -50,7 +50,7 @@
 
 	return can_pass
 
-/atom/movable/proc/block_superconductivity() // objects that block air and don't let superconductivity act
+/atom/movable/proc/BlockThermalConductivity() // objects that block air and don't let superconductivity act
 	return FALSE
 
 /// This proc is a more deeply optimized version of immediate_calculate_adjacent_turfs

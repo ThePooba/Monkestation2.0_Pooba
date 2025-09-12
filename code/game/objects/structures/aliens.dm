@@ -89,7 +89,7 @@
 	smoothing_groups = SMOOTH_GROUP_ALIEN_WALLS + SMOOTH_GROUP_ALIEN_RESIN
 	canSmoothWith = SMOOTH_GROUP_ALIEN_WALLS
 
-/obj/structure/alien/resin/wall/block_superconductivity()
+/obj/structure/alien/resin/wall/BlockThermalConductivity()
 	return 1
 
 /// meant for one lavaland ruin or anywhere that has simplemobs who can push aside structures
