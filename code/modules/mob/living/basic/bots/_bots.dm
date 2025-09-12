@@ -372,7 +372,7 @@ GLOBAL_LIST_INIT(command_strings, list(
 	if(bot_access_flags & BOT_MAINTS_PANEL_OPEN)
 		balloon_alert(user, "access panel must be closed!")
 		return
-	if(!check_access(user))
+	if(!allowed(user))
 		balloon_alert(user, "no access")
 		return
 	bot_access_flags ^= BOT_CONTROL_PANEL_OPEN
