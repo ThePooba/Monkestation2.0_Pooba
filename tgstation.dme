@@ -4850,6 +4850,7 @@
 #include "code\modules\mob\living\basic\ruin_defender\wizard\wizard_ai.dm"
 #include "code\modules\mob\living\basic\ruin_defender\wizard\wizard_spells.dm"
 #include "code\modules\mob\living\basic\space_fauna\ant.dm"
+#include "code\modules\mob\living\basic\space_fauna\beetmin.dm"
 #include "code\modules\mob\living\basic\space_fauna\cat_surgeon.dm"
 #include "code\modules\mob\living\basic\space_fauna\faithless.dm"
 #include "code\modules\mob\living\basic\space_fauna\garden_gnome.dm"
