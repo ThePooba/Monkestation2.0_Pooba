@@ -1116,7 +1116,7 @@
 	toxpwr = 0
 	ph = 3.1
 	taste_description = "bone hurting"
-	overdose_threshold = 50
+	overdose_threshold = 35
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_add(mob/living/carbon/affected_mob)
@@ -1143,7 +1143,7 @@
 			playsound(affected_mob, SFX_DESECRATION, 50, TRUE, -1)
 			affected_mob.visible_message(span_warning("[affected_mob]'s bones hurt too much!!"), span_danger("Your bones hurt too much!!"))
 			affected_mob.say("OOF!!", forced = /datum/reagent/toxin/bonehurtingjuice)
-			BP.receive_damage(20, 0, 90, wound_bonus = rand(30, 130))
+			BP.receive_damage(20, wound_bonus = rand(30, 130))
 		else //SUCH A LUST FOR REVENGE!!!
 			to_chat(affected_mob, span_warning("A phantom limb hurts!"))
 			affected_mob.say("Why are we still here, just to suffer?", forced = /datum/reagent/toxin/bonehurtingjuice)
@@ -1159,7 +1159,7 @@
 	toxpwr = 0
 	ph = 3.1
 	taste_description = "cringe"
-	overdose_threshold = 50
+	overdose_threshold = 5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	var/transform = 1
 
