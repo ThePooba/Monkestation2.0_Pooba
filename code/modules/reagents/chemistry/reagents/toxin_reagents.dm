@@ -1143,7 +1143,7 @@
 			playsound(affected_mob, SFX_DESECRATION, 50, TRUE, -1)
 			affected_mob.visible_message(span_warning("[affected_mob]'s bones hurt too much!!"), span_danger("Your bones hurt too much!!"))
 			affected_mob.say("OOF!!", forced = /datum/reagent/toxin/bonehurtingjuice)
-			BP.receive_damage(20, 0, 200, wound_bonus = rand(30, 130))
+			BP.receive_damage(20, 0, 90, wound_bonus = rand(30, 130))
 		else //SUCH A LUST FOR REVENGE!!!
 			to_chat(affected_mob, span_warning("A phantom limb hurts!"))
 			affected_mob.say("Why are we still here, just to suffer?", forced = /datum/reagent/toxin/bonehurtingjuice)
@@ -1168,8 +1168,8 @@
 	return ..()
 
 /datum/reagent/toxin/morbital/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
-	affected_mob.stamina.adjust(-7.5 * REM * seconds_per_tick, 0)
-	if(SPT_PROB(8, seconds_per_tick))
+	affected_mob.stamina.adjust(-10 * REM * seconds_per_tick, 0)
+	if(SPT_PROB(10, seconds_per_tick))
 		switch(rand(1, 3))
 			if(1)
 				affected_mob.say(pick("I'M GONNA MORB!!!", "ITS MORBIN TIME!", "ITS OVER, ANTI-MORB!!!", "TIME TO GET MORBED, SCARLET!", "IM A TRUE WEREWOLF!"), forced = /datum/reagent/toxin/bonehurtingjuice)
@@ -1186,8 +1186,8 @@
 		if(BP)
 			playsound(affected_mob, SFX_DESECRATION, 50, TRUE, -1)
 			affected_mob.visible_message(span_warning("[affected_mob]'s blood hurts too much!!"), span_danger("Your blood hurts too much!!"))
-			affected_mob.say("OOF!!", forced = /datum/reagent/toxin/morbital)
-			BP.receive_damage(20, 0, 200, wound_bonus = rand(30, 130))
+			affected_mob.say("Morbin aint easy...", forced = /datum/reagent/toxin/morbital)
+			BP.receive_damage(brute = 1)
 		else //SUCH A LUST FOR REVENGE!!!
 			to_chat(affected_mob, span_warning("A phantom limb hurts!"))
 			affected_mob.say("I SOLD ONE MORBILLION TICKETS!", forced = /datum/reagent/toxin/morbital)
