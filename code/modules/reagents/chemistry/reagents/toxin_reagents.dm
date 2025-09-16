@@ -1172,7 +1172,7 @@
 	if(SPT_PROB(10, seconds_per_tick))
 		switch(rand(1, 3))
 			if(1)
-				affected_mob.say(pick("I'M GONNA MORB!!!", "ITS MORBIN TIME!", "ITS OVER, ANTI-MORB!!!", "TIME TO GET MORBED, SCARLET!", "IM A TRUE WEREWOLF!"), forced = /datum/reagent/toxin/bonehurtingjuice)
+				affected_mob.say(pick("I'M GONNA MORB!!!", "ITS MORBIN TIME!", "ITS OVER, ANTI-MORB!!!", "TIME TO GET MORBED, SCARLET!", "IM A TRUE WEREWOLF!"), forced = /datum/reagent/toxin/morbital)
 			if(2)
 				affected_mob.manual_emote(pick("morbs", "looks like [affected_mob.p_their()] blood hurts.", "grimaces, as though [affected_mob.p_their()] blood hurts."))
 			if(3)

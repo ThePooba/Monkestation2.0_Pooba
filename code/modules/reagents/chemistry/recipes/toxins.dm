@@ -413,7 +413,7 @@
 
 /datum/chemical_reaction/morbital
 	results = list(/datum/reagent/toxin/morbital = 5)
-	required_reagents = list(/datum/reagent/toxin/mutagen = 2, /datum/reagent/medicine/c2/probital = 1, /datum/reagent/blood = 2)
+	required_reagents = list(/datum/reagent/toxin/bonehurtingjuice = 1, /datum/reagent/medicine/c2/probital = 1, /datum/reagent/blood = 1)
 	mix_message = "<span class='danger'>The mixture suddenly becomes deep blood red and smells a bit like an wet dog.</span>"
 	is_cold_recipe = FALSE
 	required_temp = 100
