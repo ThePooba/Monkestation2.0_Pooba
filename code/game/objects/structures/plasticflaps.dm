@@ -56,7 +56,7 @@
 		return TRUE
 	set_anchored(!anchored)
 	update_atmos_behaviour()
-	air_update_turf(TRUE)
+	air_update_turf()
 	to_chat(user, span_notice("You [uraction] the floor."))
 	return TRUE
 

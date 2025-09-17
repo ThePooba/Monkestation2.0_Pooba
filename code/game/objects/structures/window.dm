@@ -622,6 +622,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/unanchored/spawner,
 	. = ..()
 	RemoveElement(/datum/element/atmos_sensitive)
 
+/obj/structure/window/plasma/BlockThermalConductivity(opp_dir)
+	if(!anchored || !density)
+		return FALSE
+	return FULLTILE_WINDOW_DIR == dir || dir == opp_dir
+
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/plasma/spawner, 0)
 
 /obj/structure/window/plasma/unanchored

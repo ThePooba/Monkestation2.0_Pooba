@@ -218,8 +218,7 @@
 /obj/structure/closet/body_bag/environmental/proc/refresh_air()
 	air_contents = null
 	air_contents = new(50) //liters
-	air_contents.temperature = T20C
-
+	air_contents.set_temperature(T20C)
 	air_contents.assert_gases(GAS_O2, GAS_N2)
 	air_contents.gases[GAS_O2][MOLES] = (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
 	air_contents.gases[GAS_N2][MOLES] = (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD

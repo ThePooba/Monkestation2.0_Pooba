@@ -45,7 +45,7 @@
 	if(part_path && mapped)
 		installed_part = new part_path(src)
 
-	air_update_turf(TRUE)
+	air_update_turf()
 
 	update_appearance()
 
@@ -54,7 +54,7 @@
 	activate_parts()
 
 /obj/machinery/power/turbine/Destroy()
-	air_update_turf(TRUE)
+	air_update_turf()
 
 	if(installed_part)
 		QDEL_NULL(installed_part)
@@ -174,7 +174,7 @@
 	set_panel_open(TRUE)
 	update_appearance()
 	deactivate_parts()
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/machinery/power/turbine/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -268,7 +268,7 @@
 	//the temperature and pressure rises up, you can regulate this to increase/decrease the amount of gas moved in.
 	compressor_work = transfer_gases(input_turf_mixture, machine_gasmix, work_amount_to_remove = 0, intake_size = intake_regulator)
 	input_turf.update_visuals()
-	input_turf.air_update_turf(TRUE)
+	input_turf.air_update_turf()
 	compressor_pressure = PRESSURE_MAX(machine_gasmix.return_pressure())
 
 	return input_turf_mixture.temperature
@@ -320,7 +320,7 @@
 	var/datum/gas_mixture/ejected_gases = machine_gasmix.pump_gas_to(output_turf.air, machine_gasmix.return_pressure())
 	if(ejected_gases)
 		output_turf.update_visuals()
-		output_turf.air_update_turf(TRUE)
+		output_turf.air_update_turf()
 
 	//return ejected gases
 	return ejected_gases

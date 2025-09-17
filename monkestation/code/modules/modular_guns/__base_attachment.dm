@@ -34,7 +34,7 @@
 	///the color of our attachment in hex
 	var/attachment_color
 
-/obj/item/attachment/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/attachment/(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	SEND_SIGNAL(target, COMSIG_ATTACHMENT_ATTACH_ATTEMPT, user, target, src)
 

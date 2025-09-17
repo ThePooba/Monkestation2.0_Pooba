@@ -168,9 +168,9 @@
 	pod_moving = FALSE
 	if(QDELETED(pod))
 		return
-	var/datum/gas_mixture/floor_mixture = loc.return_air()
-	if(pod.air_contents.equalize(floor_mixture)) //equalize the pod's mix with the tile it's on
-		air_update_turf()
+	var/datum/gas_mixture/floor_mixture = loc?.return_air()
+	if(floor_mixture) //equalize the pod's mix with the tile it's on
+		equalize_all_gases_in_list(list(pod.air_contents,floor_mixture))
 
 /obj/structure/transit_tube/station/init_tube_dirs()
 	switch(dir)

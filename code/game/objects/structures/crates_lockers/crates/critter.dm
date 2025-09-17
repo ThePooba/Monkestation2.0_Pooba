@@ -49,7 +49,7 @@
 	if(tank)
 		return tank.return_air()
 	else
-		return loc.return_air()
+		return loc?.return_air()
 
 /obj/structure/closet/crate/critter/return_analyzable_air()
 	if(tank)

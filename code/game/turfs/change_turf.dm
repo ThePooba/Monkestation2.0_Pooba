@@ -14,13 +14,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		qdel(thing, force=TRUE)
 
 	if(turf_type)
-		var/turf/new_turf = ChangeTurf(turf_type, baseturf_type, flags)
-		SSair.remove_from_active(new_turf)
-		CALCULATE_ADJACENT_TURFS(new_turf, KILL_EXCITED)
+		ChangeTurf(turf_type, baseturf_type, flags)
 
-/turf/proc/copyTurf(turf/copy_to_turf)
+/turf/proc/copyTurf(turf/copy_to_turf, copy_air, flags)
 	if(copy_to_turf.type != type)
-		copy_to_turf.ChangeTurf(type)
+		copy_to_turf.ChangeTurf(type, null, flags)
 	if(copy_to_turf.icon_state != icon_state)
 		copy_to_turf.icon_state = icon_state
 	if(copy_to_turf.icon != icon)
@@ -45,6 +43,14 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 //wrapper for ChangeTurf()s that you want to prevent/affect without overriding ChangeTurf() itself
 /turf/proc/TerraformTurf(path, new_baseturf, flags)
 	return ChangeTurf(path, new_baseturf, flags)
+
+/turf/proc/get_z_base_turf()
+	. = SSmapping.level_trait(z, ZTRAIT_BASETURF) || /turf/open/space
+	if (!ispath(.))
+		. = text2path(.)
+		if (!ispath(.))
+			warning("Z-level [z] has invalid baseturf '[SSmapping.level_trait(z, ZTRAIT_BASETURF)]'")
+			. = /turf/open/space
 
 // Creates a new turf
 // new_baseturfs can be either a single type or list of types, formated the same as baseturfs. see turf.dm
@@ -204,31 +210,31 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return new_turf
 
 /turf/open/ChangeTurf(path, list/new_baseturfs, flags) //Resist the temptation to make this default to keeping air.
+	//don't
+	if(!SSair.initialized)
+		return ..()
+
 	if ((flags & CHANGETURF_INHERIT_AIR) && ispath(path, /turf/open))
 		var/datum/gas_mixture/stashed_air = new()
-		stashed_air.copy_from(air)
-		var/stashed_state = excited
 		var/datum/pollution/stashed_pollution = pollution
-		var/datum/excited_group/stashed_group = excited_group
-		. = ..() //If path == type this will return us, don't bank on making a new type
+		stashed_air.copy_from(air)
+		. = ..()
 		if (!.) // changeturf failed or didn't do anything
+			QDEL_NULL(stashed_air)
 			return
-		var/turf/open/new_turf = .
-
+		var/turf/open/newTurf = .
+		if(turf_fire)
+			if(isgroundlessturf(newTurf))
+				qdel(turf_fire)
+			else
+				newTurf.turf_fire = turf_fire
+		if (!istype(newTurf.air, /datum/gas_mixture/immutable/space))
+			QDEL_NULL(newTurf.air)
+			newTurf.air = stashed_air
+			update_air_ref(planetary_atmos ? 1 : 2)
 		if(stashed_pollution)
 			new_turf.pollution = stashed_pollution
 			stashed_pollution.handle_overlay()
-
-		new_turf.air.copy_from(stashed_air)
-		new_turf.excited = stashed_state
-		new_turf.excited_group = stashed_group
-		#ifdef VISUALIZE_ACTIVE_TURFS
-		if(stashed_state)
-			new_turf.add_atom_colour(COLOR_VIBRANT_LIME, TEMPORARY_COLOUR_PRIORITY)
-		#endif
-		if(stashed_group)
-			if(stashed_group.should_display || SSair.display_all_groups)
-				stashed_group.display_turf(new_turf)
 	else
 		for(var/turf/open/adjacent_turf as anything in atmos_adjacent_turfs)
 			if(QDELETED(adjacent_turf) || !adjacent_turf.atmos_adjacent_turfs)
@@ -237,11 +243,14 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		atmos_adjacent_turfs = null
 		if(pollution)
 			qdel(pollution)
-		if(excited || excited_group)
-			SSair.remove_from_active(src) //Clean up wall excitement, and refresh excited groups
-		if(ispath(path,/turf/closed) || ispath(path,/turf/cordon))
+		if(ispath(path, /turf/closed) || ispath(path, /turf/cordon))
 			flags |= CHANGETURF_RECALC_ADJACENT
-		return ..()
+			update_air_ref(-1)
+			. = ..()
+		else
+			. = ..()
+			if(!istype(air,/datum/gas_mixture))
+				Initalize_Atmos(0)
 
 //If you modify this function, ensure it works correctly with lateloaded map templates.
 /turf/proc/AfterChange(flags, oldType) //called after a turf has been replaced in ChangeTurf()
@@ -251,7 +260,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		if(ispath(oldType, /turf/closed) && isopenturf(src))
 			SSair.add_to_active(src)
 	else //In effect, I want closed turfs to make their tile active when sheered, but we need to queue it since they have no adjacent turfs
-		CALCULATE_ADJACENT_TURFS(src, (!(ispath(oldType, /turf/closed) && isopenturf(src)) ? NORMAL_TURF : MAKE_ACTIVE))
+		immediate_calculate_adjacent_turfs()
 
 /turf/open/AfterChange(flags, oldType)
 	..()
@@ -294,7 +303,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	for(var/turf/open/turf in turf_list)
 		turf.air.copy_from(total)
 		turf.update_visuals()
-		SSair.add_to_active(turf)
 
 /// Attempts to replace a tile with lattice. Amount is the amount of tiles to scrape away.
 /turf/proc/attempt_lattice_replacement(amount = 2)

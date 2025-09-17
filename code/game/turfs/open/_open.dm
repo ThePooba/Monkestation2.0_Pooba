@@ -249,11 +249,14 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/Initalize_Atmos(time)
-	excited = FALSE
+	if(!blocks_air)
+		if(!istype(air,/datum/gas_mixture/turf))
+			air = new(2500,src)
+		air.copy_from_turf(src)
+		update_air_ref(planetary_atmos ? 1 : 2)
 	update_visuals()
-
 	current_cycle = time
-	init_immediate_calculate_adjacent_turfs()
+	immediate_calculate_adjacent_turfs()
 
 /turf/open/GetHeatCapacity()
 	. = air.heat_capacity()
@@ -262,8 +265,8 @@
 	. = air.temperature
 
 /turf/open/TakeTemperature(temp)
-	air.temperature += temp
-	air_update_turf()
+	air.set_temperature(air.return_temperature() + temp)
+
 
 /turf/open/proc/freeze_turf()
 	for(var/obj/iced in contents)
