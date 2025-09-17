@@ -34,9 +34,9 @@
 	///the color of our attachment in hex
 	var/attachment_color
 
-/obj/item/attachment/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/attachment/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
-	SEND_SIGNAL(target, COMSIG_ATTACHMENT_ATTACH_ATTEMPT, user, target, src)
+	SEND_SIGNAL(tool, COMSIG_ATTACHMENT_ATTACH_ATTEMPT, user, tool, src)
 
 /obj/item/attachment/proc/unique_attachment_effects(obj/item/gun/modular)
 	return
