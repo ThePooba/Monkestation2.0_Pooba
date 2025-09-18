@@ -32,6 +32,19 @@
 	price_max = CARGO_CRATE_VALUE * 7
 	auction_weight = 2
 */
+
+/datum/market_item/auction/gun_part/makarov //Funny guns that fit the shoddy gun bidding market.
+	name = "Old Makarov"
+	desc = "Especially Illegal."
+	item = /obj/item/gun/ballistic/automatic/pistol
+
+	price_min = CARGO_CRATE_VALUE * 6
+	price_max = CARGO_CRATE_VALUE * 8
+	auction_weight = 4
+
+/obj/item/suppressor
+
+
 /datum/market_item/auction/gun_part/evil_wespe //Funny guns that fit the shoddy gun bidding market.
 	name = "Modified Wespe"
 	desc = "Super Illegal."
@@ -62,7 +75,7 @@
 /datum/market_item/auction/gun_part/evil_sindano
 	name = "Modified Sindano"
 	desc = "Super Duper Illegal, goodluck getting it to fire!"
-	item = /obj/item/gun/ballistic/automatic/sol_smg/evil
+	item = /obj/item/gun/ballistic/automatic/sol_smg/evil/unrestricted
 
 	price_min = CARGO_CRATE_VALUE * 8
 	price_max = CARGO_CRATE_VALUE * 12
@@ -71,7 +84,7 @@
 /datum/market_item/auction/gun_part/evil_cawil
 	name = "Modified Carwo-Cawil"
 	desc = "We found these in the wreckage of the GRV Brutus, no one'll care if they aren't found. No lowballing, we know what we got!"
-	item = /obj/item/gun/ballistic/automatic/sol_rifle/evil
+	item = /obj/item/gun/ballistic/automatic/sol_rifle/evil/unrestricted
 
 	price_min = CARGO_CRATE_VALUE * 15
 	price_max = CARGO_CRATE_VALUE * 20
