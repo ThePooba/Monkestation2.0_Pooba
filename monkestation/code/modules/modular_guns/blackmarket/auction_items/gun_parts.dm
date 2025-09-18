@@ -4,7 +4,7 @@
 	availability_prob = 100
 	category = "Gun Part"
 	auction_weight = 5
-
+/*
 /datum/market_item/auction/gun_part/mk58
 	name = "MK 58 Reciever"
 	desc = "An illegal mk 58 reciever for all your gun needs."
@@ -31,7 +31,7 @@
 	price_min = CARGO_CRATE_VALUE * 2.5
 	price_max = CARGO_CRATE_VALUE * 7
 	auction_weight = 2
-
+*/
 /datum/market_item/auction/gun_part/evil_wespe //Funny guns that fit the shoddy gun bidding market.
 	name = "Modified Wespe"
 	desc = "Super Illegal."
