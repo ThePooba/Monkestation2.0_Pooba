@@ -43,7 +43,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	var/willpower = 6
 
 	///Default amount healed in darkness
-	var/dark_healing = 8
+	var/dark_healing = 7
 	///Default amount of damage taken in light
 	var/light_burning = 7
 	///These three variables

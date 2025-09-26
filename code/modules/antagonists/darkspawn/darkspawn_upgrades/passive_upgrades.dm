@@ -85,12 +85,13 @@
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
 	infinite = TRUE
+	purchases_left = 5
 
 /datum/psi_web/dark_healing/on_gain()
-	darkspawn.dark_healing *= 1.25
+	darkspawn.dark_healing *= 1.1
 
 /datum/psi_web/dark_healing/on_loss()
-	darkspawn.dark_healing /= 1.25
+	darkspawn.dark_healing /= 1.1
 
 //gives resistance to dim light
 /datum/psi_web/low_light_resistance
@@ -167,12 +168,13 @@
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
 	infinite = TRUE
+	purchases_left = 3
 
 /datum/psi_web/light_resistance/on_gain()
-	darkspawn.light_burning *= 0.6
+	darkspawn.light_burning *= 0.8
 
 /datum/psi_web/light_resistance/on_loss()
-	darkspawn.light_burning /= 0.6
+	darkspawn.light_burning /= 0.8
 
 /datum/psi_web/brute_res
 	name = "Callous Sigil"
@@ -183,6 +185,7 @@
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
 	infinite = TRUE
+	purchases_left = 3
 
 /datum/psi_web/brute_res/on_gain()
 	darkspawn.brute_mod *= 0.6
@@ -199,12 +202,13 @@
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
 	infinite = TRUE
+	purchases_left = 3
 
 /datum/psi_web/burn_res/on_gain()
-	darkspawn.burn_mod *= 0.6
+	darkspawn.burn_mod *= 0.8
 
 /datum/psi_web/burn_res/on_loss()
-	darkspawn.burn_mod /= 0.6
+	darkspawn.burn_mod /= 0.8
 
 /datum/psi_web/undying
 	name = "Undying Sigils"

@@ -33,6 +33,7 @@ type Knowledge = {
   disabled: boolean;
   menutab: string;
   infinite: boolean;
+  purchases_left: number;
   icon: string;
   icon_state: string;
 };
@@ -327,6 +328,8 @@ const ResearchInfo = (props) => {
                           upgrade_path: selectedKnowledge.path,
                         });
                         !selectedKnowledge.infinite &&
+                          setSelectedKnowledge(null);
+                        !selectedKnowledge.purchases_left &&
                           setSelectedKnowledge(null);
                       }}
                     />

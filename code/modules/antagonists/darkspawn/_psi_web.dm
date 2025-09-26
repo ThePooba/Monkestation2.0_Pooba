@@ -27,6 +27,8 @@
 	///If it can be bought infinite times for incremental upgrades
 	var/infinite = FALSE
 
+	var/purchases_left = 1
+
 ///When the button to purchase is clicked
 /datum/psi_web/proc/on_purchase(datum/mind/user, silent = FALSE)
 	if(!istype(user, /datum/mind))
