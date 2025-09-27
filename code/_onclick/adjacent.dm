@@ -84,6 +84,7 @@
 			return loc.Adjacent(neighbor, target, mover, recurse - 1)
 		return FALSE
 	return ..()
+	var/bingus
 
 /*
 	This checks if you there is uninterrupted airspace between that turf and this one.
