@@ -391,5 +391,5 @@
 
 /datum/chemical_reaction/medicine/lean
 	results = list(/datum/reagent/medicine/painkiller/lean = 3)
-	required_reagents = list(/datum/reagent/sugar = 1, /datum/reagent/medicine/painkiller/morphine = 1, /datum/reagent/consumable/ethanol = 1)
+	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/painkiller/morphine = 1, /datum/reagent/consumable/ethanol = 1)
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_OTHER | REACTION_TAG_DRUG

@@ -1662,8 +1662,9 @@ MONKESTATION REMOVAL END */
 	affected_mob.remove_status_effect(/datum/status_effect/grouped/anesthetic, name)
 	..()
 
+///lean is tasty yum yum drink it alllllll
 /datum/reagent/medicine/painkiller/lean
-	name = "lean"
+	name = "Lean"
 	description = "A disgustingly purple drink made from all sorts of bad shit"
 	reagent_state = LIQUID
 	color = "#ae00ff"
@@ -1675,14 +1676,13 @@ MONKESTATION REMOVAL END */
 	pain_modifier = 0.5
 
 /datum/reagent/medicine/painkiller/lean/on_mob_metabolize(mob/living/affected_mob)
-	var/matrix/M = affected_mob.transform
-	transform = M.Turn(45)
+	var/matrix/lean = matrix(45, MATRIX_ROTATE)
+	affected_mob.transform = lean
 	..()
 
-
 /datum/reagent/medicine/painkiller/lean/on_mob_end_metabolize(mob/living/affected_mob)
-	var/matrix/M = affected_mob.transform
-	transform = M.Turn(-45)
+	var/matrix/lean = matrix(0, MATRIX_ROTATE)
+	affected_mob.transform = lean
 	..()
 
 /datum/reagent/medicine/painkiller/lean/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
