@@ -436,7 +436,8 @@ const KnowledgePreview = (props) => {
             {selectedKnowledge?.lore_description}
           </Stack.Item>
           <Stack.Item fontSize="12px" color="purple">
-            {!!selectedKnowledge?.infinite && 'Can be purchased multiple times'}
+            {!!selectedKnowledge?.purchases_left &&
+              'Can be purchased multiple times'}
           </Stack.Item>
         </Stack>
       </Section>
