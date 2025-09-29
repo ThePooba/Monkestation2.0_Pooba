@@ -67,7 +67,6 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_SCOUT | DARKSPAWN_FIGHTER
-	infinite = TRUE
 
 /datum/psi_web/stamina_res/on_gain()
 	darkspawn.stam_mod *= 0.5
@@ -84,14 +83,13 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
-	infinite = TRUE
-	purchases_left = 5
+	purchases_left = 3
 
 /datum/psi_web/dark_healing/on_gain()
-	darkspawn.dark_healing *= 1.1
+	darkspawn.dark_healing *= 1.2
 
 /datum/psi_web/dark_healing/on_loss()
-	darkspawn.dark_healing /= 1.1
+	darkspawn.dark_healing /= 1.2
 
 //gives resistance to dim light
 /datum/psi_web/low_light_resistance
@@ -167,7 +165,6 @@
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
-	infinite = TRUE
 	purchases_left = 3
 
 /datum/psi_web/light_resistance/on_gain()
@@ -188,10 +185,10 @@
 	purchases_left = 3
 
 /datum/psi_web/brute_res/on_gain()
-	darkspawn.brute_mod *= 0.6
+	darkspawn.brute_mod *= 0.8
 
 /datum/psi_web/brute_res/on_loss()
-	darkspawn.brute_mod /= 0.6
+	darkspawn.brute_mod /= 0.8
 
 /datum/psi_web/burn_res
 	name = "Stifle Sigil"
@@ -271,7 +268,7 @@
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
-	infinite = TRUE
+	purchases_left = 10
 
 /datum/psi_web/psi_regen_speed/on_gain()
 	darkspawn.psi_per_second *= 2
@@ -288,6 +285,7 @@
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
+	purchases_left = 2
 
 /datum/psi_web/more_thralls/on_gain()
 	var/datum/team/darkspawn/team = darkspawn.get_team()

@@ -25,7 +25,6 @@
 	///The antag datum of the owner(used for modifying)
 	var/datum/antagonist/darkspawn/darkspawn
 	///If it can be bought infinite times for incremental upgrades
-	var/infinite = FALSE
 
 	var/purchases_left = 1
 
