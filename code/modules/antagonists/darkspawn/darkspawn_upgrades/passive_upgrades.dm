@@ -51,7 +51,6 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = ALL_DARKSPAWN_CLASSES
-	infinite = TRUE
 
 /datum/psi_web/psi_cap/on_gain()
 	darkspawn.psi_cap += 100
@@ -181,7 +180,6 @@
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
-	infinite = TRUE
 	purchases_left = 3
 
 /datum/psi_web/brute_res/on_gain()
@@ -198,7 +196,6 @@
 	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_FIGHTER
-	infinite = TRUE
 	purchases_left = 3
 
 /datum/psi_web/burn_res/on_gain()

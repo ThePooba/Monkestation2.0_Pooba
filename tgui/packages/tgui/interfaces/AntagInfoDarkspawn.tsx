@@ -326,7 +326,7 @@ const ResearchInfo = (props) => {
                         act('purchase', {
                           upgrade_path: selectedKnowledge.path,
                         });
-                        !selectedKnowledge.purchases_left &&
+                        selectedKnowledge.purchases_left > 0 &&
                           setSelectedKnowledge(null);
                       }}
                     />
@@ -436,8 +436,8 @@ const KnowledgePreview = (props) => {
             {selectedKnowledge?.lore_description}
           </Stack.Item>
           <Stack.Item fontSize="12px" color="purple">
-            {!!selectedKnowledge?.purchases_left &&
-              'Can be purchased multiple times'}
+            {selectedKnowledge?.purchases_left > 0 &&
+              'Can be purchased ' + selectedKnowledge.purchases_left + ' times'}
           </Stack.Item>
         </Stack>
       </Section>

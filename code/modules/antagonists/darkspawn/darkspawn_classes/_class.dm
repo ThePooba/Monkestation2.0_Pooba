@@ -110,7 +110,7 @@
 	for(var/datum/psi_web/ability as anything in subtypesof(/datum/psi_web))
 		if(!(initial(ability.willpower_cost))) //if it's free for some reason, don't show it, it's probably a bug
 			continue
-		if(!(initial(ability.shadow_flags) & specialization_flag) || (!initial(ability.infinite) && locate(ability) in learned_abilities))
+		if(!(initial(ability.shadow_flags) & specialization_flag) || (!initial(ability.purchases_left) && locate(ability) in learned_abilities))
 			continue
 		available_abilities += ability
 	return available_abilities
@@ -120,7 +120,7 @@
 		CRASH("[owner] tried to gain [power_typepath] which is not a valid darkspawn ability")
 	if(!(initial(power_typepath.shadow_flags) & specialization_flag))
 		CRASH("[owner] tried to gain [power_typepath] which is not allowed by their specialization")
-	if(!initial(power_typepath.infinite) && (locate(power_typepath) in learned_abilities))
+	if(!initial(power_typepath.purchases_left) && (locate(power_typepath) in learned_abilities))
 		return
 
 	var/datum/psi_web/new_power = new power_typepath()

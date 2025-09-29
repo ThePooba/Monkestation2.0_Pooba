@@ -42,11 +42,11 @@
 		CRASH("[owner] tried to gain a psi_web datum despite not being a darkspawn")
 	if(darkspawn.willpower < willpower_cost)
 		return
-
+	purchases_left--
 	darkspawn.willpower -= willpower_cost
 	if(willpower_cost && !silent)
 		to_chat(user, span_velvet("You have unlocked [name]"))
-	on_gain()
+		on_gain()
 	for(var/ability in learned_abilities)
 		if(ispath(ability, /datum/action))
 			var/datum/action/action = new ability(owner)
