@@ -128,7 +128,12 @@
 	if(!initial(power_typepath.purchases_left) && (locate(power_typepath) in learned_abilities))
 		return
 
-	var/datum/psi_web/new_power = new power_typepath()
+	var/datum/psi_web/new_power
+	if (ispath(power_typepath))
+		new_power = new power_typepath()
+	else
+		new_power = power_typepath
+
 	if(new_power.on_purchase(owner, silent))
 		learned_abilities += new_power
 	else
