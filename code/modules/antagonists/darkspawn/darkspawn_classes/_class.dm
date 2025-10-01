@@ -165,7 +165,7 @@
 
 	if(!initial(power.purchases_left))
 		power.purchases_left++
-	purchasable_abilities.Add(power)
+	purchasable_abilities += power
 	learned_abilities -= power
 	power.remove(refund)
 
