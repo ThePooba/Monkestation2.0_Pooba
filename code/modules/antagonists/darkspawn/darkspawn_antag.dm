@@ -24,6 +24,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	///Component that keeps track of all the spells a darkspawn can learn
 	var/datum/component/darkspawn_class/picked_class
 
+	var/list/datum/psi_web/available_abilities
 	//Psi variables
 	//Psi is the resource used for darkspawn powers
 	///Currently available psi
@@ -217,7 +218,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 				knowledge_data["lore_description"]  = initial(knowledge.lore_description)
 				knowledge_data["cost"] = initial(knowledge.willpower_cost)
 				knowledge_data["disabled"] = (initial(knowledge.willpower_cost) > willpower)
-				knowledge_data["purchases_left"] = knowledge.purchases_left || initial(knowledge.purchases_left)
+				knowledge_data["purchases_left"] = knowledge.purchases_left
 				if(initial(knowledge.icon_state)) //only include an icon if one actually exists
 					knowledge_data["icon"] = initial(knowledge.icon)
 					knowledge_data["icon_state"] = initial(knowledge.icon_state)
@@ -266,6 +267,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 				return FALSE
 			picked_class = owner.AddComponent(class_path)
 			var/processed_message = span_velvet("<b>\[Mindlink\] [owner.current] has selected [picked_class.name] as their class.</b>")
+			picked_class.populate_ability_list()
 			for(var/T in GLOB.alive_mob_list)
 				var/mob/M = T
 				if(IS_TEAM_DARKSPAWN(M))

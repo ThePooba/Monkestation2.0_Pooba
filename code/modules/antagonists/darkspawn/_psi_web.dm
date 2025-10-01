@@ -42,7 +42,6 @@
 		CRASH("[owner] tried to gain a psi_web datum despite not being a darkspawn")
 	if(darkspawn.willpower < willpower_cost)
 		return
-	purchases_left--
 	darkspawn.willpower -= willpower_cost
 	if(willpower_cost && !silent)
 		to_chat(user, span_velvet("You have unlocked [name]"))

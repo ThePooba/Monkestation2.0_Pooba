@@ -15,6 +15,8 @@
 	var/datum/antagonist/darkspawn/d
 	///Abilities our class will start with. Granted to the owning darkspawn on initialization
 	var/list/datum/psi_web/starting_abilities = list()
+	///Abilities our class can purchase currently
+	var/list/datum/psi_web/purchasable_abilities = list()
 	///Abilities the darkspawn has learned from the psi_web
 	var/list/datum/psi_web/learned_abilities = list()
 	///The color of their aura outline
@@ -105,28 +107,46 @@
 //////////////////////////////////////////////////////////////////////////
 //---------------------------Abilities procs----------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/component/darkspawn_class/proc/get_purchasable_abilities() //todo, add buying multiples in this thing
-	var/list/datum/psi_web/available_abilities = list()
+///Populates the list of purchaseable abilities
+/datum/component/darkspawn_class/proc/populate_ability_list()
+	purchasable_abilities.RemoveAll()
+	learned_abilities.RemoveAll()
 	for(var/datum/psi_web/ability as anything in subtypesof(/datum/psi_web))
 		if(!(initial(ability.willpower_cost))) //if it's free for some reason, don't show it, it's probably a bug
 			continue
 		if(!(initial(ability.shadow_flags) & specialization_flag) || (!initial(ability.purchases_left)))
 			continue
 		var/located_ability = (locate(ability) in learned_abilities)
-		if (located_ability)
-			available_abilities += located_ability
+		if(located_ability)
 			continue
-		available_abilities += ability
+		purchasable_abilities += ability
 
-	return available_abilities
+///Prunes and returns a list of abilities that should be purchaseable
+/datum/component/darkspawn_class/proc/get_purchasable_abilities()
+	for(var/datum/psi_web/ability as anything in purchasable_abilities)
+		if(!(initial(ability.willpower_cost))) //if it's free for some reason, don't show it, it's probably a bug
+			purchasable_abilities.Remove(ability)
+			continue
+		if(!(initial(ability.shadow_flags) & specialization_flag))//if you somehow have an ability for the wrong class remove it
+			purchasable_abilities.Remove(ability)
+			continue
+		if(ability.purchases_left < 1)// if you have bought them all up
+			purchasable_abilities.Remove(ability)
+			continue
+
+	return purchasable_abilities
 
 /datum/component/darkspawn_class/proc/gain_power(atom/source, datum/psi_web/power_typepath, silent = FALSE)
 	if(!ispath(power_typepath))
 		CRASH("[owner] tried to gain [power_typepath] which is not a valid darkspawn ability")
 	if(!(initial(power_typepath.shadow_flags) & specialization_flag))
 		CRASH("[owner] tried to gain [power_typepath] which is not allowed by their specialization")
-	if(!initial(power_typepath.purchases_left) && (locate(power_typepath) in learned_abilities))
+	if((power_typepath.purchases_left) && (locate(power_typepath) in learned_abilities))
 		return
+
+	for(var/datum/psi_web/ability as anything in purchasable_abilities)
+		if(ability.type == power_typepath.type)
+			ability.purchases_left--
 
 	var/datum/psi_web/new_power
 	if (ispath(power_typepath))
@@ -143,6 +163,9 @@
 	if(!locate(power) in learned_abilities)
 		CRASH("[owner] tried to lose [power] which they haven't learned")
 
+	if(!initial(power.purchases_left))
+		power.purchases_left++
+	purchasable_abilities.Add(power)
 	learned_abilities -= power
 	power.remove(refund)
 
