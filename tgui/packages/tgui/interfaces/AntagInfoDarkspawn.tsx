@@ -326,8 +326,9 @@ const ResearchInfo = (props) => {
                         act('purchase', {
                           upgrade_path: selectedKnowledge.path,
                         });
-                        selectedKnowledge.purchases_left > 0 &&
+                        if (selectedKnowledge.purchases_left <= 0) {
                           setSelectedKnowledge(null);
+                        }
                       }}
                     />
                   )}
