@@ -286,7 +286,6 @@ const InformationSection = (props) => {
 const ResearchInfo = (props) => {
   const { act, data } = useBackend<Info>();
   const { willpower, categories = [] } = data;
-
   const [selectedKnowledge, setSelectedKnowledge] =
     useLocalState<Knowledge | null>('knowledge', null);
 
