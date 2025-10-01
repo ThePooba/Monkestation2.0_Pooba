@@ -217,7 +217,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 				knowledge_data["lore_description"]  = initial(knowledge.lore_description)
 				knowledge_data["cost"] = initial(knowledge.willpower_cost)
 				knowledge_data["disabled"] = (initial(knowledge.willpower_cost) > willpower)
-				knowledge_data["purchases_left"] = (initial(knowledge.purchases_left))
+				knowledge_data["purchases_left"] = knowledge.purchases_left
 				if(initial(knowledge.icon_state)) //only include an icon if one actually exists
 					knowledge_data["icon"] = initial(knowledge.icon)
 					knowledge_data["icon_state"] = initial(knowledge.icon_state)
