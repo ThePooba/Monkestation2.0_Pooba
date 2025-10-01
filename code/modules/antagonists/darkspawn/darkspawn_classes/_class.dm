@@ -110,9 +110,14 @@
 	for(var/datum/psi_web/ability as anything in subtypesof(/datum/psi_web))
 		if(!(initial(ability.willpower_cost))) //if it's free for some reason, don't show it, it's probably a bug
 			continue
-		if(!(initial(ability.shadow_flags) & specialization_flag) || (!initial(ability.purchases_left) && locate(ability) in learned_abilities))
+		if(!(initial(ability.shadow_flags) & specialization_flag) || (!initial(ability.purchases_left)))
+			continue
+		var/located_ability = (locate(ability) in learned_abilities)
+		if (located_ability)
+			available_abilities += located_ability
 			continue
 		available_abilities += ability
+
 	return available_abilities
 
 /datum/component/darkspawn_class/proc/gain_power(atom/source, datum/psi_web/power_typepath, silent = FALSE)
