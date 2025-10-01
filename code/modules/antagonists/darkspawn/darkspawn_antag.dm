@@ -248,7 +248,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 	return data
 
-/datum/antagonist/darkspawn/ui_act(action, params, ui)
+/datum/antagonist/darkspawn/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -258,7 +258,6 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 			if(!ispath(upgrade_path, /datum/psi_web))
 				return FALSE
 			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
-			ui.send_update();
 		if("select")
 			if(picked_class)
 				return FALSE
