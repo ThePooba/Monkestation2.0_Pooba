@@ -212,7 +212,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 					continue
 
 				var/list/knowledge_data = list()
-				knowledge_data["path"] = knowledge
+				knowledge_data["path"] = knowledge.type
 				knowledge_data["name"] = initial(knowledge.name)
 				knowledge_data["desc"] = initial(knowledge.desc)
 				knowledge_data["lore_description"]  = initial(knowledge.lore_description)

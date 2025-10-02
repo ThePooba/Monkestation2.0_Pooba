@@ -123,7 +123,7 @@
 
 ///Prunes and returns a list of abilities that should be purchaseable
 /datum/component/darkspawn_class/proc/get_purchasable_abilities()
-	for(var/datum/psi_web/ability as anything in purchasable_abilities)
+	for(var/datum/psi_web/ability in purchasable_abilities)
 		if(!(initial(ability.willpower_cost))) //if it's free for some reason, don't show it, it's probably a bug
 			purchasable_abilities.Remove(ability)
 			continue
