@@ -119,7 +119,7 @@
 		var/located_ability = (locate(ability) in learned_abilities)
 		if(located_ability)
 			continue
-		purchasable_abilities += ability
+		purchasable_abilities += new ability
 
 ///Prunes and returns a list of abilities that should be purchaseable
 /datum/component/darkspawn_class/proc/get_purchasable_abilities()
@@ -165,7 +165,7 @@
 
 	if(!initial(power.purchases_left))
 		power.purchases_left++
-	purchasable_abilities += power
+	purchasable_abilities += new power
 	learned_abilities -= power
 	power.remove(refund)
 
