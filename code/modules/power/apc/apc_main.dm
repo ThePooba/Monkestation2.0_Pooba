@@ -556,6 +556,7 @@
 
 	lastused_total = lastused_light + lastused_equip + lastused_environ + lastused_charge
 
+	last_used_total /= 2
 	//store states to update icon if any change
 	var/last_lt = lighting
 	var/last_eq = equipment

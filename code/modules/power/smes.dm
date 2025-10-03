@@ -356,7 +356,7 @@
 			outputting = TRUE
 
 			// reduce the storage (may be recovered in /restore() if excessive)
-			output_used = adjust_charge(-output_energy)
+			output_used = adjust_charge(-(output_energy/2))
 			if(output_used)
 				add_avail(output_used)
 
