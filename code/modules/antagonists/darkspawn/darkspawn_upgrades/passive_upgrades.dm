@@ -51,6 +51,7 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = ALL_DARKSPAWN_CLASSES
+	purchases_left = 10
 
 /datum/psi_web/psi_cap/on_gain()
 	darkspawn.psi_cap += 100
@@ -66,6 +67,7 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_SCOUT | DARKSPAWN_FIGHTER
+	purchases_left = 3
 
 /datum/psi_web/stamina_res/on_gain()
 	darkspawn.stam_mod *= 0.5
@@ -249,6 +251,7 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
+	purchases_left = 3
 
 /datum/psi_web/psi_regen_delay/on_gain()
 	darkspawn.psi_regen_delay -= 5 SECONDS
@@ -265,7 +268,7 @@
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
-	purchases_left = 10
+	purchases_left = 5
 
 /datum/psi_web/psi_regen_speed/on_gain()
 	darkspawn.psi_per_second *= 2

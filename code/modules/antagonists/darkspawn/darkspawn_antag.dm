@@ -24,7 +24,6 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	///Component that keeps track of all the spells a darkspawn can learn
 	var/datum/component/darkspawn_class/picked_class
 
-	var/list/datum/psi_web/available_abilities
 	//Psi variables
 	//Psi is the resource used for darkspawn powers
 	///Currently available psi
@@ -181,6 +180,13 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------UI and Psi web stuff--------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+
+/datum/antagonist/darkspawn/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AntagInfoDarkspawn", name)
+		ui.open()
+
 /datum/antagonist/darkspawn/ui_data(mob/user)
 	var/list/data = list()
 
@@ -207,7 +213,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		var/list/paths = list()
 
 		if(picked_class)
-			for(var/datum/psi_web/knowledge as anything in picked_class.get_purchasable_abilities())
+			for(var/datum/psi_web/knowledge in picked_class.get_purchasable_abilities())
 				if(category != initial(knowledge.menu_tab))
 					continue
 
@@ -249,7 +255,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 
 	return data
 
-/datum/antagonist/darkspawn/ui_act(action, params)
+/datum/antagonist/darkspawn/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -258,7 +264,10 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 			var/upgrade_path = text2path(params["upgrade_path"])
 			if(!ispath(upgrade_path, /datum/psi_web))
 				return FALSE
-			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
+			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path, willpower)
+			ui.send_update()
+		if("refresh")
+			ui.send_update()
 		if("select")
 			if(picked_class)
 				return FALSE

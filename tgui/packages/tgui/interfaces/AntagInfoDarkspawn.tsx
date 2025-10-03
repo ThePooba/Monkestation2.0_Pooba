@@ -286,6 +286,7 @@ const InformationSection = (props) => {
 const ResearchInfo = (props) => {
   const { act, data } = useBackend<Info>();
   const { willpower, categories = [] } = data;
+
   const [selectedKnowledge, setSelectedKnowledge] =
     useLocalState<Knowledge | null>('knowledge', null);
 
@@ -318,7 +319,11 @@ const ResearchInfo = (props) => {
                       }
                       textAlign="center"
                       fontSize="16px"
-                      disabled={selectedKnowledge.disabled}
+                      disabled={
+                        selectedKnowledge.disabled ||
+                        selectedKnowledge.purchases_left <= 0 ||
+                        selectedKnowledge.cost > willpower
+                      }
                       fluid
                       color={(selectedKnowledge.disabled && 'grey') || 'green'}
                       onClick={() => {
@@ -343,7 +348,7 @@ const ResearchInfo = (props) => {
 
 // the skills on the left side of the menu
 const MenuTabs = (props) => {
-  const { data } = useBackend<Data>();
+  const { act, data } = useBackend<Info>();
   const { categories = [] } = data;
 
   const [selectedCategory, setSelectedCategory] = useLocalState<Category>(
@@ -363,7 +368,10 @@ const MenuTabs = (props) => {
             fontSize="16px"
             key={category}
             selected={category === selectedCategory}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => {
+              setSelectedCategory(category);
+              act('refresh');
+            }}
           >
             {capitalize(category.name)}
           </Tabs.Tab>
@@ -389,11 +397,12 @@ const MenuTabs = (props) => {
 };
 
 const KnowledgePreview = (props) => {
+  const { act, data } = useBackend<Info>();
   const [selectedKnowledge] = useLocalState<Knowledge | null>(
     'knowledge',
     null,
   );
-  if (selectedKnowledge !== null) {
+  if (selectedKnowledge !== null && selectedKnowledge.purchases_left > 0) {
     return (
       <Section
         overflow-wrap="break-word"

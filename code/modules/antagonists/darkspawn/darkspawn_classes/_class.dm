@@ -110,7 +110,6 @@
 ///Populates the list of purchaseable abilities
 /datum/component/darkspawn_class/proc/populate_ability_list()
 	purchasable_abilities.RemoveAll()
-	learned_abilities.RemoveAll()
 	for(var/datum/psi_web/ability as anything in subtypesof(/datum/psi_web))
 		if(!(initial(ability.willpower_cost))) //if it's free for some reason, don't show it, it's probably a bug
 			continue
@@ -136,28 +135,39 @@
 
 	return purchasable_abilities
 
-/datum/component/darkspawn_class/proc/gain_power(atom/source, datum/psi_web/power_typepath, silent = FALSE)
+/datum/component/darkspawn_class/proc/gain_power(atom/source, datum/psi_web/power_typepath, var/willpower, silent = FALSE)
+	var/datum/psi_web/new_ability
 	if(!ispath(power_typepath))
 		CRASH("[owner] tried to gain [power_typepath] which is not a valid darkspawn ability")
 	if(!(initial(power_typepath.shadow_flags) & specialization_flag))
 		CRASH("[owner] tried to gain [power_typepath] which is not allowed by their specialization")
-	if((power_typepath.purchases_left) && (locate(power_typepath) in learned_abilities))
-		return
 
-	for(var/datum/psi_web/ability as anything in purchasable_abilities)
+	if(locate(power_typepath) in starting_abilities)
+		new_ability = new power_typepath()
+		if(new_ability.on_purchase(owner, silent))
+			learned_abilities += new_ability
+			return
+		else
+			qdel(new_ability)
+			return
+	for(var/datum/psi_web/ability in purchasable_abilities)
 		if(ability.type == power_typepath.type)
-			ability.purchases_left--
+			if(willpower < ability.willpower_cost)
+				return
+			if(ability.purchases_left <= 0)
+				purchasable_abilities.Remove(ability)
+				return
 
-	var/datum/psi_web/new_power
-	if (ispath(power_typepath))
-		new_power = new power_typepath()
-	else
-		new_power = power_typepath
-
-	if(new_power.on_purchase(owner, silent))
-		learned_abilities += new_power
-	else
-		qdel(new_power)
+			new_ability = new power_typepath()
+			if(new_ability.on_purchase(owner, silent))
+				learned_abilities += new_ability
+				ability.purchases_left--
+				if(ability.purchases_left <= 0)
+					purchasable_abilities.Remove(ability)
+				return
+			else
+				qdel(new_ability)
+				return
 
 /datum/component/darkspawn_class/proc/lose_power(datum/psi_web/power, refund = FALSE)
 	if(!locate(power) in learned_abilities)
