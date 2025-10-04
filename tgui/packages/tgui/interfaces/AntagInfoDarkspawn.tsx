@@ -287,8 +287,21 @@ const ResearchInfo = (props) => {
   const { act, data } = useBackend<Info>();
   const { willpower, categories = [] } = data;
 
-  const [selectedKnowledge, setSelectedKnowledge] =
-    useLocalState<Knowledge | null>('knowledge', null);
+  const [selectedKnowledgePath, setSelectedKnowledgePath] = useLocalState<
+    string | null
+  >('knowledgePath', null);
+
+  // Look up the selected knowledge from fresh backend data
+  let selectedKnowledge: Knowledge | null = null;
+  for (const category of categories) {
+    const found = category.knowledgeData?.find(
+      (k) => k.path === selectedKnowledgePath,
+    );
+    if (found) {
+      selectedKnowledge = found;
+      break;
+    }
+  }
 
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
@@ -313,25 +326,25 @@ const ResearchInfo = (props) => {
                   {selectedKnowledge && (
                     <Button
                       content={
-                        (selectedKnowledge.disabled &&
+                        (selectedKnowledge!.disabled &&
                           'Not enough willpower') ||
                         'Purchase'
                       }
                       textAlign="center"
                       fontSize="16px"
                       disabled={
-                        selectedKnowledge.disabled ||
-                        selectedKnowledge.purchases_left <= 0 ||
-                        selectedKnowledge.cost > willpower
+                        selectedKnowledge!.disabled ||
+                        selectedKnowledge!.purchases_left <= 0 ||
+                        selectedKnowledge!.cost > willpower
                       }
                       fluid
-                      color={(selectedKnowledge.disabled && 'grey') || 'green'}
+                      color={(selectedKnowledge!.disabled && 'grey') || 'green'}
                       onClick={() => {
                         act('purchase', {
-                          upgrade_path: selectedKnowledge.path,
+                          upgrade_path: selectedKnowledge!.path,
                         });
-                        if (selectedKnowledge.purchases_left <= 0) {
-                          setSelectedKnowledge(null);
+                        if (selectedKnowledge!.purchases_left <= 1) {
+                          setSelectedKnowledgePath(null);
                         }
                       }}
                     />
@@ -355,9 +368,9 @@ const MenuTabs = (props) => {
     'category',
     categories[0],
   );
-
-  const [selectedKnowledge, setSelectedKnowledge] =
-    useLocalState<Knowledge | null>('knowledge', null);
+  const [selectedKnowledgePath, setSelectedKnowledgePath] = useLocalState<
+    string | null
+  >('knowledgePath', null);
 
   return (
     <Section>
@@ -384,8 +397,8 @@ const MenuTabs = (props) => {
               fontSize="16px"
               key={knowledge}
               Autofocus
-              selected={psiWeb === selectedKnowledge}
-              onClick={() => setSelectedKnowledge(psiWeb)}
+              selected={psiWeb.path === selectedKnowledgePath}
+              onClick={() => setSelectedKnowledgePath(psiWeb.path)}
             >
               {capitalize(psiWeb.name)}
             </Tabs.Tab>
@@ -398,10 +411,24 @@ const MenuTabs = (props) => {
 
 const KnowledgePreview = (props) => {
   const { act, data } = useBackend<Info>();
-  const [selectedKnowledge] = useLocalState<Knowledge | null>(
-    'knowledge',
+  const { categories = [] } = data;
+  const [selectedKnowledgePath] = useLocalState<string | null>(
+    'knowledgePath',
     null,
   );
+
+  // Look up from fresh data
+  let selectedKnowledge: Knowledge | null = null;
+  for (const category of categories) {
+    const found = category.knowledgeData?.find(
+      (k) => k.path === selectedKnowledgePath,
+    );
+    if (found) {
+      selectedKnowledge = found;
+      break;
+    }
+  }
+
   if (selectedKnowledge !== null && selectedKnowledge.purchases_left > 0) {
     return (
       <Section

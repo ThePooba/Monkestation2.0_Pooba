@@ -251,7 +251,7 @@
 	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
-	purchases_left = 3
+	purchases_left = 1
 
 /datum/psi_web/psi_regen_delay/on_gain()
 	darkspawn.psi_regen_delay -= 5 SECONDS
@@ -268,7 +268,7 @@
 	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = DARKSPAWN_WARLOCK
-	purchases_left = 5
+	purchases_left = 10
 
 /datum/psi_web/psi_regen_speed/on_gain()
 	darkspawn.psi_per_second *= 2
