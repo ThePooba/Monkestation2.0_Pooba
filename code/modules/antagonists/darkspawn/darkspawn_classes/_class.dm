@@ -135,7 +135,7 @@
 
 	return purchasable_abilities
 
-/datum/component/darkspawn_class/proc/gain_power(atom/source, datum/psi_web/power_typepath, var/willpower, silent = FALSE)
+/datum/component/darkspawn_class/proc/gain_power(atom/source, datum/psi_web/power_typepath, willpower, silent = FALSE)
 	var/datum/psi_web/new_ability
 	if(!ispath(power_typepath))
 		CRASH("[owner] tried to gain [power_typepath] which is not a valid darkspawn ability")
