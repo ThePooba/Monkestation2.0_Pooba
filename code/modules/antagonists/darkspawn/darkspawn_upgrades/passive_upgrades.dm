@@ -70,10 +70,10 @@
 	purchases_left = 3
 
 /datum/psi_web/stamina_res/on_gain()
-	darkspawn.stam_mod *= 0.5
+	darkspawn.stam_mod *= 0.6
 
 /datum/psi_web/stamina_res/on_loss()
-	darkspawn.stam_mod /= 0.5
+	darkspawn.stam_mod /= 0.6
 
 //Increases healing in darkness.
 /datum/psi_web/dark_healing
@@ -87,10 +87,10 @@
 	purchases_left = 3
 
 /datum/psi_web/dark_healing/on_gain()
-	darkspawn.dark_healing *= 1.2
+	darkspawn.dark_healing *= 1.25
 
 /datum/psi_web/dark_healing/on_loss()
-	darkspawn.dark_healing /= 1.2
+	darkspawn.dark_healing /= 1.25
 
 //gives resistance to dim light
 /datum/psi_web/low_light_resistance
@@ -169,10 +169,10 @@
 	purchases_left = 3
 
 /datum/psi_web/light_resistance/on_gain()
-	darkspawn.light_burning *= 0.8
+	darkspawn.light_burning *= 0.75
 
 /datum/psi_web/light_resistance/on_loss()
-	darkspawn.light_burning /= 0.8
+	darkspawn.light_burning /= 0.75
 
 /datum/psi_web/brute_res
 	name = "Callous Sigil"
@@ -185,10 +185,10 @@
 	purchases_left = 3
 
 /datum/psi_web/brute_res/on_gain()
-	darkspawn.brute_mod *= 0.8
+	darkspawn.brute_mod *= 0.75
 
 /datum/psi_web/brute_res/on_loss()
-	darkspawn.brute_mod /= 0.8
+	darkspawn.brute_mod /= 0.75
 
 /datum/psi_web/burn_res
 	name = "Stifle Sigil"
@@ -201,10 +201,10 @@
 	purchases_left = 3
 
 /datum/psi_web/burn_res/on_gain()
-	darkspawn.burn_mod *= 0.8
+	darkspawn.burn_mod *= 0.75
 
 /datum/psi_web/burn_res/on_loss()
-	darkspawn.burn_mod /= 0.8
+	darkspawn.burn_mod /= 0.75
 
 /datum/psi_web/undying
 	name = "Undying Sigils"
