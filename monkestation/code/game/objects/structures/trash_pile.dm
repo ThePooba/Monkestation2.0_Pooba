@@ -8,7 +8,7 @@
 	desc = "A heap of dense garbage. Perhaps there is something interesting inside?"
 	icon = 'monkestation/icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	density = TRUE
+	density = FALSE
 	anchored = TRUE
 	layer = TABLE_LAYER
 	obj_flags = CAN_BE_HIT
@@ -67,7 +67,7 @@
 
 /obj/structure/trash_pile/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/climbable)
+	COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	AddElement(/datum/element/elevation, pixel_shift = 12)
 	icon_state = pick(
 		"pile1",
@@ -135,6 +135,11 @@
 		return
 	if(user.transferItemToLoc(attacking_item, src))
 		balloon_alert(user, "item hidden!")
+
+/obj/structure/trash_pile/on_entered(atom/source, atom/movable/arrived, turf/old_loc)
+	if(!istype(source, /mob/living))
+		return
+	source.apply_status_effect(/datum/status_effect/speed_boost, 1.5, 2 SECONDS, type)
 
 /obj/structure/trash_pile/mouse_drop_receive(mob/living/dropped, mob/user, params)
 	if(user != dropped || !iscarbon(dropped))
