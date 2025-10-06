@@ -424,6 +424,7 @@
 	status_type = STATUS_EFFECT_REPLACE
 	show_duration = TRUE
 	alert_type = null
+	//negative speeds up, positive slows down. -1 is default speedup
 	var/slowdown
 
 /datum/status_effect/speed_boost/on_creation(mob/living/new_owner, set_duration, multiplier)
@@ -434,7 +435,12 @@
 	. = ..()
 
 /datum/status_effect/speed_boost/on_apply()
-	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_speed_boost, update = TRUE)
+	if(slowdown == null)
+		owner.add_movespeed_modifier(/datum/movespeed_modifier/status_speed_boost, update = TRUE)
+	else
+		var/datum/movespeed_modifier/status_speed_boost/newboost = new /datum/movespeed_modifier/status_speed_boost
+		newboost.multiplicative_slowdown = slowdown
+		owner.add_movespeed_modifier(newboost, update = TRUE)
 	return ..()
 
 /datum/status_effect/speed_boost/on_remove()
