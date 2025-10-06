@@ -252,7 +252,7 @@
 					if(isnull(P.raw_stamp_data))
 						P.raw_stamp_data = sheet.css_tag()
 					P.raw_stamp_data += sheet.icon_tag(type)
-					var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_[type]")
+					var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/service/bureaucracy.dmi', "paper_[type]")
 					stampoverlay.pixel_x = rand(-2, 2)
 					stampoverlay.pixel_y = rand(-3, 2)
 					LAZYADD(P.stamp_cache, type)
