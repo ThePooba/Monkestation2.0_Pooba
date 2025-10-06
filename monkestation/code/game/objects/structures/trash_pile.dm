@@ -67,8 +67,11 @@
 
 /obj/structure/trash_pile/Initialize(mapload)
 	. = ..()
-	COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
-	AddElement(/datum/element/elevation, pixel_shift = 12)
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+	AddElement(/datum/element/elevation, pixel_shift = 6)
 	icon_state = pick(
 		"pile1",
 		"pile2",
@@ -136,10 +139,13 @@
 	if(user.transferItemToLoc(attacking_item, src))
 		balloon_alert(user, "item hidden!")
 
-/obj/structure/trash_pile/on_entered(atom/source, atom/movable/arrived, turf/old_loc)
-	if(!istype(source, /mob/living))
+/obj/structure/trash_pile/proc/on_entered(atom/source, atom/movable/arrived, turf/old_loc)
+	SIGNAL_HANDLER
+
+	if(!isliving(arrived))
 		return
-	source.apply_status_effect(/datum/status_effect/speed_boost, 1.5, 2 SECONDS, type)
+	var/mob/living/trashdiver = arrived
+	trashdiver.apply_status_effect(/datum/status_effect/speed_boost, 1.5, 2 SECONDS, type)
 
 /obj/structure/trash_pile/mouse_drop_receive(mob/living/dropped, mob/user, params)
 	if(user != dropped || !iscarbon(dropped))
