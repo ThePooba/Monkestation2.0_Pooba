@@ -146,3 +146,33 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	var/gift_type = pick(GLOB.possible_gifts)
 
 	return gift_type
+
+/obj/item/a_gift/spooky
+	name = "haunted gift"
+	desc = "It could be anything!"
+	icon_state = "spooky_gift"
+
+/obj/item/a_gift/spooky/Initialize(mapload)
+	. = ..()
+	pixel_x = rand(-10,10)
+	pixel_y = rand(-10,10)
+
+	contains_type = get_gift_type()
+
+/obj/item/a_gift/spooky/get_gift_type()
+	var/gift_type_list = list(/obj/item/food/burger/ghost,
+		/obj/item/paper/selfdestruct/job_application,
+		/obj/item/card/emag/halloween/precooked,
+		/obj/item/ectoplasm,
+		/obj/item/clothing/suit/costume/ghost_sheet,
+		/obj/item/food/cookie/sugar/spookycoffin,
+		/obj/item/food/cookie/sugar/spookyskull,
+		/mob/living/basic/skeleton,
+		/obj/effect/mine/sound/bwoink,
+		/obj/effect/mine/shrapnel,
+		/obj/effect/mine/sound/spooky,
+		/obj/item/restraints/legcuffs/beartrap/prearmed,
+		/obj/item/skeleton_potion,
+		)
+	var/gift_type = pick(gift_type_list)
+	return gift_type
