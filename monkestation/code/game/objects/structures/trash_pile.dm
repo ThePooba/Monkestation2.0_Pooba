@@ -145,7 +145,7 @@
 	if(!isliving(arrived))
 		return
 	var/mob/living/trashdiver = arrived
-	trashdiver.apply_status_effect(/datum/status_effect/speed_boost, 1 SECONDS, 3, type)
+	trashdiver.apply_status_effect(/datum/status_effect/speed_boost, 0.5 SECONDS, 6, type)
 
 /obj/structure/trash_pile/mouse_drop_receive(mob/living/dropped, mob/user, params)
 	if(user != dropped || !iscarbon(dropped))
