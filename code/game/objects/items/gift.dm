@@ -150,10 +150,10 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 /obj/item/a_gift/spooky
 	name = "haunted gift"
 	desc = "It could be anything!"
-	icon_state = "spooky_gift"
 
 /obj/item/a_gift/spooky/Initialize(mapload)
 	. = ..()
+	icon_state = "spooky_gift"
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 

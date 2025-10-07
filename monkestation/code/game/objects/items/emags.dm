@@ -31,9 +31,8 @@
 /obj/item/card/emag/halloween/precooked
 	name = "Extra crispy hack o' lantern"
 	icon_state = "hack_o_lantern_burnt_glow"
-	microwaved = TRUE
-	microwaved_uses_left = 1
 
 /obj/item/card/emag/halloween/precooked/Initialize(mapload)
-	. = ..()
-	parent_type::desc + "I probably dont want to use this..."
+	microwave_act(null, null, null)
+	microwaved_uses_left = 1
+
