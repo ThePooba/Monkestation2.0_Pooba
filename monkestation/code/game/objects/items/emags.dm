@@ -36,4 +36,4 @@
 
 /obj/item/card/emag/halloween/precooked/Initialize(mapload)
 	. = ..()
-	desc += " I probably dont want to use this..."
+	parent_type::desc + "I probably dont want to use this..."
