@@ -27,12 +27,3 @@
 /obj/item/card/emag/examine_more(mob/user)
 	. = ..()
 	. += span_notice("I wonder what happens if you microwave it... surely that's not a good idea.")
-
-/obj/item/card/emag/halloween/precooked
-	name = "Extra crispy hack o' lantern"
-	icon_state = "hack_o_lantern_burnt_glow"
-
-/obj/item/card/emag/halloween/precooked/Initialize(mapload)
-	microwave_act(null, null, null)
-	microwaved_uses_left = 1
-

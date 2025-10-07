@@ -144,6 +144,7 @@
 
 	if(!isliving(arrived))
 		return
+	balloon_alert(arrived, "the trash slows you down!")
 	var/mob/living/trashdiver = arrived
 	trashdiver.apply_status_effect(/datum/status_effect/speed_boost, 0.5 SECONDS, 6, type)
 
