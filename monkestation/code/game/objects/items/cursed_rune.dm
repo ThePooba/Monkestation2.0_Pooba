@@ -17,10 +17,10 @@
 		user.balloon_alert(user, "The slabs curse has been passed on.")
 
 
-/obj/item/bad_luck/curse(mob/user)
+/obj/item/bad_luck/proc/curse(mob/user)
 	if(!iscarbon(user))
 		user.balloon_alert(user, "The curse does not effect you...")
 		return FALSE
 	var/datum/smite/bad_luck/cursed = new /datum/smite/bad_luck
 	cursed.incidents = 13
-	cursed.effect(user, user)
+	cursed.effect(user.client, user)
