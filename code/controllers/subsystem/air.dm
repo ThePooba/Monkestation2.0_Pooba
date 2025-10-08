@@ -20,8 +20,6 @@ SUBSYSTEM_DEF(air)
 	var/cost_rebuilds = 0
 	var/cost_adjacent = 0
 
-	var/list/excited_groups = list()
-
 	var/thread_wait_ticks = 0
 	var/cur_thread_wait_ticks = 0
 

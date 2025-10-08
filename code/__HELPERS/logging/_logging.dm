@@ -169,6 +169,7 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 #else
 	rustg_log_close_all()
 	logger.shutdown_logging()
+#endif
 
 /* Helper procs for building detailed log lines */
 /proc/key_name(whom, include_link = null, include_name = TRUE)
