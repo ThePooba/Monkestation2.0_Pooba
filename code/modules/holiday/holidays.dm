@@ -891,7 +891,7 @@
 			/obj/item/food/candy = 10,
 			/obj/item/food/candiedapple = 10,
 			/obj/item/food/chocolatebar = 10,
-			/obj/item/a_gift/spooky = 1
+			/obj/item/a_gift/spooky = 10,
 		) = 3000,
 	)
 
