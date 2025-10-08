@@ -8,7 +8,7 @@
 	desc = "A heap of dense garbage. Perhaps there is something interesting inside?"
 	icon = 'monkestation/icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	density = FALSE
+	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
 	obj_flags = CAN_BE_HIT
@@ -71,7 +71,8 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
-	AddElement(/datum/element/elevation, pixel_shift = 6)
+	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/elevation, pixel_shift = 12)
 	icon_state = pick(
 		"pile1",
 		"pile2",
@@ -152,12 +153,12 @@
 		return
 	balloon_alert(arrived, "the trash slows you down!")
 	var/mob/living/trashdiver = arrived
-	trashdiver.apply_status_effect(/datum/status_effect/speed_boost, 0.5 SECONDS, 6, type)
+	trashdiver.apply_status_effect(/datum/status_effect/speed_boost, 0.5 SECONDS, 4, type)
 
 /obj/structure/trash_pile/attack_hand_secondary(mob/mob_user, list/modifiers)
 	. = ..()
 	if(!iscarbon(mob_user))
-  
+
 		return ..()
 	var/mob/living/carbon/user = mob_user
 	if(DOING_INTERACTION(user, DOAFTER_SOURCE_TRASH_PILE) || !(user.mobility_flags & MOBILITY_MOVE))

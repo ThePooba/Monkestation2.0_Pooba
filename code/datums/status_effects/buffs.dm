@@ -425,7 +425,7 @@
 	show_duration = TRUE
 	alert_type = null
 	//negative speeds up, positive slows down. -1 is default speedup
-	var/slowdown
+	var/slowdown = -1
 
 /datum/status_effect/speed_boost/on_creation(mob/living/new_owner, set_duration, multiplier)
 	if(multiplier)
@@ -435,19 +435,16 @@
 	. = ..()
 
 /datum/status_effect/speed_boost/on_apply()
-	if(slowdown == null)
-		owner.add_movespeed_modifier(/datum/movespeed_modifier/status_speed_boost, update = TRUE)
-	else
-		var/datum/movespeed_modifier/status_speed_boost/newboost = new /datum/movespeed_modifier/status_speed_boost
-		newboost.multiplicative_slowdown = slowdown
-		owner.add_movespeed_modifier(newboost, update = TRUE)
+	var/datum/movespeed_modifier/status_speed_boost/newboost = new /datum/movespeed_modifier/status_speed_boost
+	newboost.multiplicative_slowdown = slowdown
+	owner.add_movespeed_modifier(newboost, update = TRUE)
 	return ..()
 
 /datum/status_effect/speed_boost/on_remove()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_speed_boost, update = TRUE)
 
 /datum/movespeed_modifier/status_speed_boost
-	multiplicative_slowdown = -1
+	multiplicative_slowdown = 0
 
 ///this buff provides a max health buff and a heal.
 /datum/status_effect/limited_buff/health_buff
