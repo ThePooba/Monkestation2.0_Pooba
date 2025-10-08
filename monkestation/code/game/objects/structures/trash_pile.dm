@@ -86,6 +86,12 @@
 		"brokecomp",
 	)
 
+	AddElement( \
+		/datum/element/contextual_screentip_bare_hands, \
+		lmb_text = "Rummage", \
+		rmb_text = "Hide", \
+	)
+
 /obj/structure/trash_pile/attack_hand(mob/living/user)
 	if(user in contents)
 		eject_mob(user)
@@ -148,10 +154,13 @@
 	var/mob/living/trashdiver = arrived
 	trashdiver.apply_status_effect(/datum/status_effect/speed_boost, 0.5 SECONDS, 6, type)
 
-/obj/structure/trash_pile/mouse_drop_receive(mob/living/dropped, mob/user, params)
-	if(user != dropped || !iscarbon(dropped))
+/obj/structure/trash_pile/attack_hand_secondary(mob/mob_user, list/modifiers)
+	. = ..()
+	if(!iscarbon(mob_user))
+  
 		return ..()
-	if(DOING_INTERACTION(user, DOAFTER_SOURCE_TRASH_PILE) || !(dropped.mobility_flags & MOBILITY_MOVE))
+	var/mob/living/carbon/user = mob_user
+	if(DOING_INTERACTION(user, DOAFTER_SOURCE_TRASH_PILE) || !(user.mobility_flags & MOBILITY_MOVE))
 		return
 
 	user.visible_message(
