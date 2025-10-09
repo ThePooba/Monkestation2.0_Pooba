@@ -51,8 +51,6 @@
 		needed_coverage |= GLASSESCOVERSEYES
 	return check_equipment_cover_flags(needed_coverage)
 
-/mob/living
-
 /mob/living/carbon/is_pepper_proof(check_flags = ALL)
 	var/obj/item/organ/internal/eyes/eyes = get_organ_by_type(/obj/item/organ/internal/eyes)
 	if(eyes?.pepperspray_protect)
