@@ -209,8 +209,11 @@
 	SIGNAL_HANDLER
 	var/turf/T = source
 
-	if(liquid_group.group_overlay_state = LIQUID_STATE_PUDDLE)
-		liquid_group.expose_atom(stepped_human, 1, TOUCH)
+	if(liquid_group.group_overlay_state == LIQUID_STATE_PUDDLE && T.has_gravity(T))
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			liquid_group.expose_atom(C, 1, TOUCH)
+		return
 	if(liquid_group.group_overlay_state >= LIQUID_STATE_ANKLES && T.has_gravity(T))
 		playsound(T, 'monkestation/sound/effects/splash.ogg', 50, 0)
 		if(iscarbon(M))
