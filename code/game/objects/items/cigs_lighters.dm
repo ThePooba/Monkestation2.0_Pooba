@@ -375,7 +375,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	STOP_PROCESSING(SSobj, src)
 	reagents.flags |= NO_REACT
 	lit = FALSE
-	playsound(src.loc, 'sound/items/cig_snuff.ogg', 100, 1)
+	playsound(src.loc, 'sound/items/lighter/cig_snuff.ogg', 100, 1)
 	update_appearance(UPDATE_ICON)
 	set_light_on(FALSE)
 	if(ismob(loc))
