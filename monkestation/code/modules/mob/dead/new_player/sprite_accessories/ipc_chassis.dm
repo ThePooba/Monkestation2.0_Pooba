@@ -18,44 +18,66 @@
 /datum/sprite_accessory/ipc_chassis/bishop_cyberkinetics
 	name = "Bishop Cyberkinetics"
 	icon_state = "bshipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/ipc_chassis/bishop_cyberkinetics_2
 	name = "Bishop Cyberkinetics 2.0"
 	icon_state = "bs2ipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/ipc_chassis/hephaestuss_industries
 	name = "Hephaestus Industries"
 	icon_state = "hsiipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/ipc_chassis/hephaestuss_industries_2
 	name = "Hephaestus Industries 2.0"
 	icon_state = "hi2ipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/ipc_chassis/shellguard_munitions
 	name = "Shellguard Munitions Standard Series"
 	icon_state = "sgmipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/ipc_chassis/ward_takahashi_manufacturing
 	name = "Ward-Takahashi Manufacturing"
 	icon_state = "wtmipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/ipc_chassis/xion_manufacturing_group
 	name = "Xion Manufacturing Group"
 	icon_state = "xmgipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/ipc_chassis/xion_manufacturing_group_2
 	name = "Xion Manufacturing Group 2.0"
 	icon_state = "zhpipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/ipc_chassis/zeng_hu_pharmaceuticals
 	name = "Zeng-Hu Pharmaceuticals"
 	icon_state = "zhpipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/ipc_chassis/pawsitronsunited
 	name = "Pawsitrons United"
 	icon_state = "pawsitrons"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 // MONKESTATION CHANGE: Adds staripc chassis by MilkForever
 /datum/sprite_accessory/ipc_chassis/star_industrial
 	name = "Star Industrial"
 	icon_state = "staripc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
