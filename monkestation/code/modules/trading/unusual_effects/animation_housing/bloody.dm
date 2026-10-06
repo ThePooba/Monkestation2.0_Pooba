@@ -6,6 +6,7 @@
 	duration = 6 SECONDS
 	random_bursts = TRUE
 	spawn_interval = 4 SECONDS
+	color
 
 /datum/component/particle_spewer/bloodydrip/animate_particle(obj/effect/abstract/particle/spawned)
 	var/chance = rand(1, 12)
@@ -25,5 +26,6 @@
 
 	spawned.layer = ABOVE_MOB_LAYER
 	spawned.pixel_y -= 12
+	spawned.color = rgb(211, 2, 2)
 	. = ..()
 
