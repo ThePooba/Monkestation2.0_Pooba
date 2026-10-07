@@ -6,7 +6,6 @@
 	duration = 6 SECONDS
 	random_bursts = TRUE
 	spawn_interval = 4 SECONDS
-	color
 
 /datum/component/particle_spewer/bloodydrip/animate_particle(obj/effect/abstract/particle/spawned)
 	var/chance = rand(1, 12)
