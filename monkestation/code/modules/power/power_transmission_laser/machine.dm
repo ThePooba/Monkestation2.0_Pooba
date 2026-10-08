@@ -294,8 +294,9 @@
 
 ////selling defines are here
 #define MINIMUM_BAR 25
-#define PROCESS_CAP 5000000 - MINIMUM_BAR
+#define PROCESS_CAP 5000000000 - MINIMUM_BAR
 
+//larger curve less cash
 #define A1_CURVE 70
 
 /obj/machinery/power/transmission_laser/proc/sell_power(power_amount)
