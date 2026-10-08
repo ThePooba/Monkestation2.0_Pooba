@@ -294,7 +294,7 @@
 
 ////selling defines are here
 #define MINIMUM_BAR 25
-#define PROCESS_CAP 5000000000 - MINIMUM_BAR
+#define PROCESS_CAP 5000000 - MINIMUM_BAR
 
 //larger curve less cash
 #define A1_CURVE 70
@@ -302,7 +302,7 @@
 /obj/machinery/power/transmission_laser/proc/sell_power(power_amount)
 	var/mw_power = power_amount / (1 MW)
 
-	var/generated_cash = (mw_power * PROCESS_CAP) / (4 * mw_power + PROCESS_CAP * A1_CURVE)
+	var/generated_cash = (mw_power * PROCESS_CAP) / (4 * mw_power + PROCESS_CAP * A1_CURVE**3)
 	generated_cash += (4 * mw_power * MINIMUM_BAR) / (4 * mw_power + MINIMUM_BAR)
 	generated_cash = round(generated_cash)
 	if(generated_cash < 0)
