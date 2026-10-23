@@ -193,6 +193,7 @@
 	var/static/list/actions_to_add = list(
 		/datum/action/drone/bar/information,
 	)
+	pass_flags = PASSTABLE | PASSMOB
 
 
 /mob/living/basic/drone/snowflake/bardrone/Initialize(mapload)
